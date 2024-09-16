@@ -1,0 +1,37 @@
+{
+	"id": "24753",
+	"firstName": "محمد الملوك",
+	"lastName": "",
+	"name": "محمد الملوك ",
+	"r_Code": "shaaA1CTxc",
+	"branchId": 26,
+	"companyId": 7,
+	"buddiesType": 2,
+	"bodyTypes": 2,
+	"type": 1,
+	"phone": "01019157637 ",
+	"mobile": "01017218044",
+	"buddiesClassInfo": {
+		"id": 6,
+		"name": "عميل عادي",
+		"color": "#008000\t\t",
+		"branchId": 9,
+		"companyId": 7,
+		"type": 1
+	},
+	"buddiesClassId": 6,
+	"buddiesMultiAddress": [
+		{
+			"id": 28175,
+			"address": " 19شارع النجاشي عند سوق الجمله أمام شركه النيل لزيت والصابون",
+			"isDefault": true,
+			"flag": 1,
+			"type": 1,
+			"buddiesAddressArea": []
+		}
+	],
+	"technicalId": null,
+	"priceSegment": 1,
+	"timeZone": 1,
+	"ownerId": 198
+}

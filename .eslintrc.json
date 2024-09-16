@@ -1,0 +1,124 @@
+{
+	"root": true,
+	"ignorePatterns": [
+		"**/*"
+	],
+	"plugins": [
+		"@nx"
+	],
+	"overrides": [
+		{
+			"files": [
+				"*.ts",
+				"*.tsx",
+				"*.js",
+				"*.jsx"
+			],
+			"extends": [
+				"eslint:recommended",
+				"plugin:@typescript-eslint/recommended",
+				"plugin:@angular-eslint/recommended",
+				"plugin:@angular-eslint/template/process-inline-templates",
+				"plugin:prettier/recommended",
+				"plugin:@nx/eslint-plugin/recommended",
+				"plugin:@nx/eslint-plugin/jest"
+			],
+			"rules": {
+				"indent": "warn",
+				"max-lines": [
+					"error",
+					300
+				],
+				"max-depth": [
+					"error",
+					4
+				],
+				"max-nested-callbacks": [
+					"error",
+					3
+				],
+				"max-lines-per-function": [
+					"error",
+					{
+						"max": 30,
+						"skipBlankLines": true,
+						"skipComments": true
+					}
+				],
+				"no-unused-labels": "error",
+				"no-unused-vars": "error",
+				"no-unused-expressions": "error",
+				"no-unused-private-class-members": "error",
+				"@nx/enforce-module-boundaries": [
+					"error",
+					{
+						"enforceBuildableLibDependency": true,
+						"allow": [],
+						"depConstraints": [
+							{
+								"sourceTag": "*",
+								"onlyDependOnLibsWithTags": [
+									"*"
+								]
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"files": [
+				"*.html"
+			],
+			"extends": [
+				"plugin:@angular-eslint/template/recommended",
+				"plugin:@angular-eslint/template/accessibility",
+				"plugin:prettier/recommended"
+			],
+			"rules": {
+				"max-lines": [
+					"error",
+					300
+				],
+				"prettier/prettier": [
+					"error",
+					{
+						"parser": "angular"
+					}
+				]
+			}
+		},
+		{
+			"files": [
+				"*.ts",
+				"*.tsx"
+			],
+			"extends": [
+				"plugin:@nx/typescript"
+			],
+			"rules": {}
+		},
+		{
+			"files": [
+				"*.js",
+				"*.jsx"
+			],
+			"extends": [
+				"plugin:@nx/javascript"
+			],
+			"rules": {}
+		},
+		{
+			"files": [
+				"*.spec.ts",
+				"*.spec.tsx",
+				"*.spec.js",
+				"*.spec.jsx"
+			],
+			"env": {
+				"jest": true
+			},
+			"rules": {}
+		}
+	]
+}

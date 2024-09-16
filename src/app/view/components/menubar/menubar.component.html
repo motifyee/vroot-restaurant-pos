@@ -1,0 +1,86 @@
+<p-toast />
+
+<div class="flex thm-panel gap-1 w-full items-center p-1">
+	<div class="fixed-btns flex gap-1">
+		<p-button
+			icon="pi pi-cog"
+			[text]="true"
+			size="small"
+			severity="secondary"
+			(onClick)="settings.toggle($event)"
+		>
+			<p-overlayPanel #settings> settings</p-overlayPanel>
+		</p-button>
+		<p-divider layout="vertical" />
+		<p-button
+			icon="pi pi-bell"
+			[text]="true"
+			size="small"
+			severity="secondary"
+			(onClick)="notifs.toggle($event)"
+		>
+			<p-overlayPanel #notifs> notifications</p-overlayPanel>
+		</p-button>
+		<p-divider layout="vertical" />
+		<p-button
+			icon="pi pi-whatsapp"
+			[text]="true"
+			size="small"
+			severity="secondary"
+			(onClick)="msgs.toggle($event)"
+		>
+			<p-overlayPanel #msgs> messages</p-overlayPanel>
+		</p-button>
+		<p-divider layout="vertical" />
+		<p-button
+			icon="pi pi-phone"
+			[text]="true"
+			size="small"
+			severity="secondary"
+			(onClick)="phone.toggle($event)"
+		>
+			<p-overlayPanel #phone> phone</p-overlayPanel>
+		</p-button>
+		<!-- <p-divider layout="vertical" /> -->
+	</div>
+	<div class="tabs flex gap-1 overflow-x-auto">
+		<div class="tab-btns flex gap-1">
+			<!-- <p-button
+				label="Inv | Customer Name"
+				[text]="true"
+				size="small"
+				severity="secondary"
+			/> -->
+			<p-button
+				label="Inv | Customer"
+				[text]="true"
+				size="small"
+				severity="secondary"
+				[outlined]="true"
+			/>
+			<p-button
+				label="Inv | Customer"
+				[text]="false"
+				size="small"
+				severity="info"
+			/>
+		</div>
+		<div class="trailing-btns flex items-center gap-1">
+			<p-button
+				icon="pi pi-angle-down"
+				[text]="true"
+				size="small"
+				severity="secondary"
+				(onClick)="menu.toggle($event)"
+			/>
+			<p-button
+				icon="pi pi-plus"
+				[text]="true"
+				size="small"
+				severity="secondary"
+			/>
+		</div>
+	</div>
+</div>
+
+<p-menu #menu [model]="items" [popup]="true" />

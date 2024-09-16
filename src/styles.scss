@@ -1,0 +1,24 @@
+@import 'primeng/resources/themes/aura-light-blue/theme.css';
+@import 'primeng/resources/primeng.css';
+@import 'primeicons/primeicons.css';
+
+@layer tailwind-base, primeng, tailwind-utilities;
+
+@layer tailwind-base {
+	@tailwind base;
+}
+
+@layer tailwind-utilities {
+	@tailwind components;
+	@tailwind utilities;
+}
+
+@import './styles/theme';
+
+html {
+	@apply h-full; //border-dotted border-2 border-red-500;
+}
+
+body {
+	@apply m-0 p-2 h-full; // border-dashed border-2 border-slate-500;
+}

@@ -1,0 +1,6 @@
+declare interface PosDevice {
+	id: string;
+	title: string; // cashier|taker|user ...
+	type: string; // tablet|phone|pc ...
+	isDefault: boolean;
+}

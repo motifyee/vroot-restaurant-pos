@@ -1,0 +1,19 @@
+@layer thm;
+
+@layer thm {
+	.thm-border {
+		@apply border border-solid border-gray-300 rounded-md;
+	}
+
+	.thm-bg {
+		@apply bg-gray-100;
+	}
+
+	.thm-shadow {
+		@apply shadow-md;
+	}
+
+	.thm-panel {
+		@apply thm-border thm-bg thm-shadow;
+	}
+}
