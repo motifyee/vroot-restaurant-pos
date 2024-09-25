@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
 import { inject } from '@angular/core';
-import { UseCase } from '../../../base/use-case';
-import { CustomerRepo, Customer } from '@features';
+import { CustomerRepo, Customer, UseCase } from '@src/app/features';
 
 type Params = {
 	pageNumber: number;

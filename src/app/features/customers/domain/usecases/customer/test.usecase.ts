@@ -1,9 +1,8 @@
 import { Observable } from 'rxjs';
-import { UseCase } from '../../../base/use-case';
 import { inject } from '@angular/core';
-import { Customer, CustomerRepo } from '@features';
+import { Customer, CustomerRepo, UseCase } from '@src/app/features';
 
-export class TestUseCase implements UseCase<CustomerEntity, Customer> {
+export class TestUseCase implements UseCase<CustomerDTO, Customer> {
 	customerRepo = inject(CustomerRepo);
 
 	execute(): Observable<Customer> {

@@ -1,24 +1,23 @@
 import { Observable } from 'rxjs';
-import { Address } from '../models/address.model';
 
 export abstract class AddressRepo {
 	abstract getAddresses(
 		params: { customerId: string },
 		config?: Config,
-	): Observable<Address[]>;
+	): Observable<AddressDTO[]>;
 
 	abstract createAddress(
 		params: {
 			customerId: string;
-			address: AddressEntity;
+			address: AddressDTO;
 		},
 		config?: Config,
-	): Observable<Address>;
+	): Observable<AddressDTO>;
 
 	abstract updateAddress(
 		params: {
 			customerId: string;
-			address: Partial<AddressEntity>;
+			address: Partial<AddressDTO>;
 		},
 		config?: Config,
 	): Observable<undefined>;

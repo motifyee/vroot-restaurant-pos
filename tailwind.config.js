@@ -8,9 +8,14 @@ module.exports = {
 	corePlugins: {
 		preflight: false,
 	},
-	important: true,
+	important: false,
 	theme: {
-		extend: {},
+		extend: {
+			gridTemplateColumns: {
+				'products-sm': 'repeat(auto-fit, minmax(8rem, 1fr))',
+				'products-lg': 'repeat(auto-fit, minmax(10rem, 1fr))',
+			},
+		},
 	},
 	plugins: [],
 	safelist: ['border-2'],

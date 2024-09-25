@@ -1,4 +1,6 @@
 import { Observable } from 'rxjs';
+import { Invoice } from '../models/Invoice.model';
+import { InvoiceIndexFilter } from '../usecases/get-invoices.usecase';
 
 export abstract class InvoiceRepo {
 	abstract getById(
@@ -7,22 +9,16 @@ export abstract class InvoiceRepo {
 	): Observable<Invoice>;
 
 	abstract getInvoices(
-		params: {
-			from: string;
-			to: string;
-			pageNumber: number;
-			pageSize: number;
-			fromBranch: number;
-			toBranch: number;
-			deliveryId: number;
-			isClosed: boolean; // status
-		},
+		params: InvoiceIndexFilter,
 		config?: Config,
 	): Observable<Invoice[]>;
 
-	abstract create(params: Invoice, config?: Config): Observable<Invoice>;
+	abstract create(
+		params: { invoice: Invoice; creationToken: string },
+		config?: Config,
+	): Observable<Invoice>;
 
 	abstract update(params: Invoice, config?: Config): Observable<Invoice>;
 
-	abstract delete(params: { id: number }, config?: Config): Observable<void>;
+	abstract delete(params: Invoice, config?: Config): Observable<Invoice>;
 }

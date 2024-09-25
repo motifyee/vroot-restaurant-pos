@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { SettingsImplRepo, SettingsRepo } from '@features';
+import { SettingsRepo } from '@src/app/features';
 import { GetBranchSettingsUseCaseProvider } from './domain/usecases/get-branch-settings.usecase';
+import { SettingsImplRepo } from './data';
 
 @NgModule({
 	providers: [GetBranchSettingsUseCaseProvider],

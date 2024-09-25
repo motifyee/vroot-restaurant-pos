@@ -3,9 +3,9 @@ import {
 	CloseShiftUseCaseProvider,
 	GetShiftUseCaseProvider,
 	OpenShiftUseCaseProvider,
-	ShiftImplRepo,
 	ShiftRepo,
-} from '@features';
+} from './domain';
+import { ShiftImplRepo } from './data';
 
 @NgModule({
 	providers: [

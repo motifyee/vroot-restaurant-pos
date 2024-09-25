@@ -7,7 +7,7 @@ import {
 	userLoginUseCaseProvider,
 	getUserProfileUseCaseProvider,
 	userRegisterUseCaseProvider,
-} from '@features';
+} from '@src/app/features';
 
 @NgModule({
 	providers: [

@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
-import { SearchCustomersUseCase } from '@features';
+import { SearchCustomersUseCase } from '@src/app/features';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStoreFeature, withMethods } from '@ngrx/signals';
 import { addEntities } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { debounceTime, distinctUntilChanged, pipe, switchMap, tap } from 'rxjs';
 
-export function withSearchCustomersMethod() {
+export function withSearchCustomersMethod<_>() {
 	return signalStoreFeature(
 		withMethods((store) => {
 			let _search = inject(SearchCustomersUseCase);

@@ -5,7 +5,7 @@ import {
 	printersMapUseCaseProvider,
 	PrintersImplRepo,
 	PrintersRepo,
-} from '@features';
+} from '@src/app/features';
 
 @NgModule({
 	providers: [

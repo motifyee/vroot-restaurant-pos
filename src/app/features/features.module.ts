@@ -1,12 +1,10 @@
 import { importProvidersFrom, NgModule } from '@angular/core';
-import {
-	CustomerDataModule,
-	InvoiceDataModule,
-	PrintersDataModule,
-	ProductsDataModule,
-	SettingsDataModule,
-	ShiftDataModule,
-} from '@features';
+import { ProductsDataModule } from './products';
+import { SettingsDataModule } from './settings';
+import { ShiftDataModule } from './shifts';
+import { CustomerDataModule } from './customers';
+import { PrintersDataModule } from './printers';
+import { InvoiceDataModule } from './invoices';
 
 @NgModule({
 	providers: [

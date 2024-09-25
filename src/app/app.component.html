@@ -1,18 +1,23 @@
-<!-- <main>
-	<p-button
+<main class="h-full w-full flex flex-col gap-2">
+	<!-- <p-button
 		label="Submit"
 		(onClick)="store$.test()"
 		[loading]="store$.isLoading()"
 	></p-button>
+	{{ store$.customersEntities() | json }} -->
 
-	{{ store$.entityMap() | json }}
-</main> -->
+	<menubar />
 
-<!-- <br /> -->
+	<!-- <section class="flex flex-col sm:flex-row gap-2 items-stretch flex-1">
+		<invoice-list-panel class="flex-1" />
+		<invoice-panel class="sm:w-64 lg:w-96" />
+	</section> -->
 
-<menubar />
-
-<div class="flex gap-2 items-stretch flex-1">
-	<invoice-panel class="w-72 h-full" />
-	<products-panel class="flex-1" />
-</div>
+	@switch (appStore.activeTab()?.type) { @case('invoice') {
+	<invoice-tab [tab]="appStore.activeTab()!" class="flex-1" />
+	} @case('invoice-list') {
+	<invoice-list-tab [tab]="appStore.activeTab()!" class="flex-1" />
+	} @default {
+	<div class="flex-1 grid place-content-center">LOGO</div>
+	}}
+</main>

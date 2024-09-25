@@ -1,11 +1,10 @@
 import { Observable } from 'rxjs';
-import { UseCase } from '../../../base/use-case';
 import { inject } from '@angular/core';
-import { AddressRepo } from '@features';
+import { AddressRepo, UseCase } from '@src/app/features';
 
 type Params = {
 	customerId: string;
-	address: Partial<AddressEntity>;
+	address: Partial<AddressDTO>;
 };
 
 export class UpdateAddressUseCase implements UseCase<Params, undefined> {

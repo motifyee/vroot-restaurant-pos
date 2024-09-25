@@ -1,13 +1,14 @@
 import { inject } from '@angular/core';
-import { DeleteCustomerUseCase } from '@features';
+import { DeleteCustomerUseCase } from '@src/app/features';
 import { tapResponse } from '@ngrx/operators';
 import { type, signalStoreFeature, withMethods } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
+import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
 
-export function withDeleteCustomerMethod() {
+export function withDeleteCustomerMethod<_>() {
 	return signalStoreFeature(
-		{ methods: type<{ setLoading(isLoading: boolean): void }>() },
+		{ methods: type<LoadingMethod>() },
 
 		withMethods((store) => {
 			let usecase = inject(DeleteCustomerUseCase);

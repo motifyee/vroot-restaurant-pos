@@ -1,5 +1,3 @@
-export * from './models/address.model';
-export * from './models/classification.model';
 export * from './models/customer.model';
 
 export * from './usecases/address/create-address.usecase';

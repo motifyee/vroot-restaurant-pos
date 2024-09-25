@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
-import { UseCase } from '../../base/use-case';
 import { User } from '../models/user.model';
-import { UserRepo } from '../data/user.repo';
 import { inject } from '@angular/core';
+import { UserRepo } from '../repo/user.repo';
+import { UseCase } from '@src/app/features/base';
 
 export class GetUserProfileUseCase implements UseCase<void, User> {
 	userRepo = inject(UserRepo);

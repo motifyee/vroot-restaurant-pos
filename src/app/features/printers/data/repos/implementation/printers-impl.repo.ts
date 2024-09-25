@@ -1,7 +1,7 @@
 import { map, Observable } from 'rxjs';
-import { PrintersRepo } from '../../../repos';
 import { inject } from '@angular/core';
-import { ENV, HttpService } from '@core';
+import { ENV, HttpService } from '@src/app/core';
+import { PrintersRepo } from '../../../domain';
 
 export class PrintersImplRepo implements PrintersRepo {
 	http = inject(HttpService);

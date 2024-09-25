@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { inject } from '@angular/core';
-import { UseCase, PrintersRepo } from '@features';
+import { UseCase, PrintersRepo } from '@src/app/features';
 
 export class GetPrintersUseCase
 	implements UseCase<{ deviceId: string }, Printer[]>

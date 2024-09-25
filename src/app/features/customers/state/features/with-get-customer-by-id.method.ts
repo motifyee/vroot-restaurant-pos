@@ -1,5 +1,9 @@
 import { inject } from '@angular/core';
-import { Customer, GetCustomerUseCase } from '@features';
+import {
+	Customer,
+	customerConfig,
+	GetCustomerUseCase,
+} from '@src/app/features';
 import { tapResponse } from '@ngrx/operators';
 import {
 	type,
@@ -7,15 +11,16 @@ import {
 	signalStoreFeature,
 	withMethods,
 } from '@ngrx/signals';
-import { addEntity, EntityState } from '@ngrx/signals/entities';
+import { addEntity, NamedEntityState } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { distinctUntilChanged, pipe, switchMap, tap } from 'rxjs';
+import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
 
-export function withGetCustomerByIdMethod() {
+export function withGetCustomerByIdMethod<_>() {
 	return signalStoreFeature(
 		{
-			state: type<EntityState<Customer>>(),
-			methods: type<{ setLoading(isLoading: boolean): void }>(),
+			state: type<NamedEntityState<Customer, 'customers'>>(),
+			methods: type<LoadingMethod>(),
 		},
 		withMethods((store) => {
 			let usecase = inject(GetCustomerUseCase);
@@ -29,7 +34,10 @@ export function withGetCustomerByIdMethod() {
 							usecase.execute(p).pipe(
 								tapResponse({
 									next: (c) =>
-										patchState(store, addEntity(c)),
+										patchState(
+											store,
+											addEntity(c, customerConfig),
+										),
 									error: console.error,
 									finalize: () => store.setLoading(false),
 								}),

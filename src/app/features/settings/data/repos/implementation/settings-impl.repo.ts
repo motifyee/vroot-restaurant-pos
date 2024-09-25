@@ -1,13 +1,13 @@
 import { map, Observable } from 'rxjs';
-import { ENV, HttpService } from '@core';
 import { inject } from '@angular/core';
-import { SettingsRepo } from '@features';
+import { SettingsRepo } from '@src/app/features';
+import { ENV, HttpService } from '@src/app/core';
 
 export class SettingsImplRepo implements SettingsRepo {
-	#http = inject(HttpService);
+	http = inject(HttpService);
 
 	getBranchSettings(config?: Config): Observable<BranchSettings> {
-		return this.#http
+		return this.http
 			.get<Response<BranchSettings>>(
 				`${ENV.endpoint}/api/settings/branch`,
 				undefined,

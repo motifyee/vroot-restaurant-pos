@@ -1,6 +1,5 @@
 import { inject } from '@angular/core';
-import { LoggerService } from '@core';
-import { Customer, TestUseCase } from '@features';
+import { Customer, customerConfig, TestUseCase } from '@src/app/features';
 import { tapResponse } from '@ngrx/operators';
 import {
 	patchState,
@@ -8,17 +7,21 @@ import {
 	type,
 	withMethods,
 } from '@ngrx/signals';
-import { addEntity, EntityState } from '@ngrx/signals/entities';
+import {
+	addEntity,
+	EntityState,
+	NamedEntityState,
+} from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
+import { LoggerService } from '@src/app/core';
+import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
 
 export function withTest<_>() {
 	return signalStoreFeature(
 		{
-			state: type<EntityState<Customer>>(),
-			methods: type<{
-				setLoading(isLoading: boolean): void;
-			}>(),
+			state: type<NamedEntityState<Customer, 'customers'>>(),
+			methods: type<LoadingMethod>(),
 		},
 		withMethods((store) => {
 			let _logger = LoggerService.injectWithHeader('CustomersStore');
@@ -32,11 +35,14 @@ export function withTest<_>() {
 							_test.execute().pipe(
 								tapResponse({
 									next: (c) => {
-										patchState(store, addEntity(c));
+										patchState(
+											store,
+											addEntity(c, customerConfig),
+										);
 									},
 									error: console.error,
 									finalize: () => {
-										_logger.log(store.entityMap());
+										_logger.log(store.customersEntityMap());
 										store.setLoading(false);
 									},
 								}),

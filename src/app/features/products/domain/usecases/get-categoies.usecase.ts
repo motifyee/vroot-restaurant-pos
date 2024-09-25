@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { inject } from '@angular/core';
-import { UseCase, ProductsRepo } from '@features';
+import { UseCase, ProductsRepo } from '@src/app/features';
 
 export class GetCategoriesUseCase implements UseCase<void, Category[]> {
 	readonly productsRepo = inject(ProductsRepo);

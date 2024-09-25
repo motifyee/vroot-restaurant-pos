@@ -16,7 +16,7 @@ import {
 	testUseCaseProvider,
 	AddressRepo,
 	AddressImplRepo,
-} from '@features';
+} from '@src/app/features';
 
 @NgModule({
 	providers: [

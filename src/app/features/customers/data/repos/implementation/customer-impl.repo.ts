@@ -1,9 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { delay, map, Observable, of } from 'rxjs';
-import { ENV, HttpService } from '@core';
 import { CustomerImplMapper } from '../mappers/customer.mapper';
-import { ClassificationImplMapper } from '../mappers/classification.mapper';
-import { CustomerRepo, Classification, Customer } from '@features';
+import { CustomerRepo, Customer } from '@src/app/features';
+import { ENV, HttpService } from '@src/app/core';
 
 type Pager = { pageNumber: number; pageSize: number };
 
@@ -13,21 +12,16 @@ type Pager = { pageNumber: number; pageSize: number };
 export class CustomerImplRepo implements CustomerRepo {
 	http = inject(HttpService);
 	customerMapper = new CustomerImplMapper();
-	classificationmapper = new ClassificationImplMapper();
 
 	test(): Observable<Customer> {
-		return of(
-			new Customer(
-				{
-					id: '123',
-					firstName: 'customer',
-					lastName: 'last',
-					phone: '010',
-					classId: 12,
-				},
-				new Classification({ id: 234, color: 'cls', name: 'cool' }),
-			),
-		).pipe(delay(1000));
+		return of({
+			id: '123',
+			name: 'customer',
+			lastName: 'last',
+			phone: '010',
+			classificationId: 12,
+			classification: { id: 234, color: 'cls', title: 'cool' },
+		}).pipe(delay(1000));
 	}
 
 	getAll(
@@ -35,7 +29,7 @@ export class CustomerImplRepo implements CustomerRepo {
 		config?: Config,
 	): Observable<Customer[]> {
 		return this.http
-			.get<Response<CustomerEntity[]>>(
+			.get<Response<CustomerDTO[]>>(
 				`${ENV.endpoint}/api/customers`,
 				{
 					headers: { pageNumber, pageSize },
@@ -50,7 +44,7 @@ export class CustomerImplRepo implements CustomerRepo {
 		config?: Config,
 	): Observable<Customer> {
 		return this.http
-			.get<Response<CustomerEntity>>(
+			.get<Response<CustomerDTO>>(
 				`${ENV.endpoint}/api/cusotmers/${params.customerId}`,
 				undefined,
 				config,
@@ -58,7 +52,7 @@ export class CustomerImplRepo implements CustomerRepo {
 			.pipe(map((res) => this.customerMapper.mapFrom(res.data!)));
 	}
 
-	create(params: CustomerEntity, config?: Config): Observable<Customer> {
+	create(params: CustomerDTO, config?: Config): Observable<Customer> {
 		return this.http
 			.post<Response<{ id: string }>>(
 				`${ENV.endpoint}/api/customers`,
@@ -76,7 +70,7 @@ export class CustomerImplRepo implements CustomerRepo {
 			);
 	}
 
-	update(params: CustomerEntity, config?: Config): Observable<Customer> {
+	update(params: CustomerDTO, config?: Config): Observable<Customer> {
 		return this.http
 			.put(`${ENV.endpoint}/api/customers`, params, undefined, config)
 			.pipe(map(() => this.customerMapper.mapFrom(params)));
@@ -98,7 +92,7 @@ export class CustomerImplRepo implements CustomerRepo {
 		config?: Config,
 	): Observable<Customer[]> {
 		return this.http
-			.get<Response<CustomerEntity[]>>(
+			.get<Response<CustomerDTO[]>>(
 				`${ENV.endpoint}/api/customers`,
 				{ headers: { query, phone } },
 				config,
@@ -106,15 +100,13 @@ export class CustomerImplRepo implements CustomerRepo {
 			.pipe(map((res) => res.data!.map(this.customerMapper.mapFrom)));
 	}
 
-	getClassifications(config?: Config): Observable<Classification[]> {
+	getClassifications(config?: Config): Observable<ClassificationDTO[]> {
 		return this.http
-			.get<Response<ClassificationEntity[]>>(
+			.get<Response<ClassificationDTO[]>>(
 				`${ENV.endpoint}/api/customers/classes`,
 				undefined,
 				config,
 			)
-			.pipe(
-				map((res) => res.data!.map(this.classificationmapper.mapFrom)),
-			);
+			.pipe(map((res) => res.data!)); //.map(this.classificationmapper.mapFrom)),
 	}
 }

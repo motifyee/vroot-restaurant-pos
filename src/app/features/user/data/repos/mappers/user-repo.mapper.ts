@@ -1,8 +1,8 @@
-import { Mapper } from '@core';
-import { User } from '../../../models/user.model';
+import { Mapper } from '@src/app/core';
+import { User } from '../../../domain';
 
-export class UserImplMapper extends Mapper<UserEntity, User> {
-	mapFrom(param: UserEntity): User {
+export class UserImplMapper extends Mapper<UserDTO, User> {
+	mapFrom(param: UserDTO): User {
 		return {
 			id: param.id,
 			fullName: param.name,
@@ -13,7 +13,7 @@ export class UserImplMapper extends Mapper<UserEntity, User> {
 		};
 	}
 
-	mapTo(param: User): UserEntity {
+	mapTo(param: User): UserDTO {
 		return {
 			id: param.id,
 			name: param.fullName,

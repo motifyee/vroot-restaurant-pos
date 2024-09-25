@@ -1,1 +1,79 @@
-<div class="thm-panel h-full">Products Panel</div>
+<div class="thm-panel h-full flex flex-col items-stretch">
+	<div class="flex flex-1">
+		<!-- Categories -->
+		<div class="flex items-center">
+			<div class="categories">
+				<!-- search button -->
+				<button
+					pButton
+					pRipple
+					type="true"
+					[icon]="searchInputVisible() ? '' : 'pi pi-search'"
+					[outlined]="true"
+					class="search-btn"
+					[class]="searchIsExpanded() ? 'w-52' : 'w-12'"
+					severity="secondary"
+					size="small"
+					(click)="expandSearch()"
+				>
+					@if( searchInputVisible()){
+					<input
+						#searchInput
+						pInputText
+						type="text"
+						(keydown.esc)="shrinkSearch()"
+					/>
+					}
+				</button>
+
+				<!-- close search -->
+				<button
+					pButton
+					icon="pi pi-times"
+					[class]="
+						searchInputVisible() ? 'mt-3 mb-4 ms-2 w-8 h-8' : 'w-0'
+					"
+					[rounded]="true"
+					severity="danger"
+					[text]="true"
+					(click)="shrinkSearch()"
+				></button>
+				<!-- category buttons -->
+				@for(category of categories; track category.id; let idx =
+				$index, e=$even){
+				<button
+					pButton
+					pRipple
+					type="button"
+					(click)="selectedCategory.set(category.id)"
+					[icon]="idx == 2 || idx == 5 ? 'pi pi-circle-fill' : ''"
+					[label]="category.name"
+					class="category-btn p-button-info"
+					[outlined]="selectedCategory() != category.id"
+					[class]="
+						selectedCategory() != category.id
+							? 'p-button-outlined'
+							: ''
+					"
+					size="small"
+				></button>
+				}
+			</div>
+		</div>
+
+		<!-- Products -->
+		<div class="flex flex-col flex-1">
+			<div class="products overflow-auto flex-[1_1_0]">
+				@for(product of products; track product.id; let idx = $index,
+				e=$even){
+				<button class="product-card thm-border thm-shadow">
+					<div class="flex-1 bg-red-300"></div>
+					<span class="p-1 font-semibold text-center">{{
+						product.name
+					}}</span>
+				</button>
+				}@empty { No products found. }
+			</div>
+		</div>
+	</div>
+</div>

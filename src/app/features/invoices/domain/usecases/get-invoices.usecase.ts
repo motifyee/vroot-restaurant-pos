@@ -1,21 +1,29 @@
 import { Observable } from 'rxjs';
 import { inject } from '@angular/core';
-import { UseCase, InvoiceRepo } from '@features';
+import { UseCase, InvoiceRepo } from '@src/app/features';
+import { Invoice, SalesInvoiceType } from '../models/Invoice.model';
 
-type Filters = {
-	from: string;
-	to: string;
+export type InvoiceIndexFilter = {
 	pageNumber: number;
 	pageSize: number;
-	fromBranch: number;
-	toBranch: number;
-	deliveryId: number;
-	isClosed: boolean; // status
+
+	from: string;
+	to: string;
+
+	isClosed?: boolean;
+	salesInvoiceType?: SalesInvoiceType;
+	deliveryMan?: BuddyDTO;
+	callCenter?: boolean;
+	branchId?: number;
+	fromBranch?: number;
+	toBranch?: number;
 };
-export class getInvoicesUseCase implements UseCase<Filters, Invoice[]> {
+export class getInvoicesUseCase
+	implements UseCase<InvoiceIndexFilter, Invoice[]>
+{
 	readonly invoiceRepo = inject(InvoiceRepo);
 
-	execute(params: Filters): Observable<Invoice[]> {
+	execute(params: InvoiceIndexFilter): Observable<Invoice[]> {
 		return this.invoiceRepo.getInvoices(params);
 	}
 }

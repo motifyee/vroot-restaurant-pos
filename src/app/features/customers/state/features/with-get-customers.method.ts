@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
-import { GetCustomersUseCase } from '@features';
+import { GetCustomersUseCase } from '@src/app/features';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStoreFeature, withMethods } from '@ngrx/signals';
 import { addEntities } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { distinctUntilChanged, pipe, switchMap, tap } from 'rxjs';
 
-export function withGetCustomersMethod() {
+export function withGetCustomersMethod<_>() {
 	return signalStoreFeature(
 		withMethods((store) => {
 			let _getAll = inject(GetCustomersUseCase);

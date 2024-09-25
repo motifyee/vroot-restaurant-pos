@@ -1,7 +1,7 @@
 import { map, Observable } from 'rxjs';
-import { ProductsRepo } from '../../../domain/repos';
 import { inject } from '@angular/core';
-import { ENV, HttpService } from '@core';
+import { ProductsRepo } from '../../../domain';
+import { ENV, HttpService } from '@src/app/core';
 
 export class ProductsImplRepo implements ProductsRepo {
 	http = inject(HttpService);

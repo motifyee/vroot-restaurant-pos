@@ -6,8 +6,8 @@ import {
 	deleteInvoiceUseCaseProvider,
 	getInvoicesUseCaseProvider,
 	getInvoiceByIdUseCaseProvider,
-} from '@features';
-import { updateInvoiceUseCaseProvider } from './usecases/update-invoice.usecase';
+} from '@src/app/features';
+import { updateInvoiceUseCaseProvider } from './domain/usecases/update-invoice.usecase';
 
 @NgModule({
 	providers: [

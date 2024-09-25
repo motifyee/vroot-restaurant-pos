@@ -1,17 +1,15 @@
 import { Observable } from 'rxjs';
-import { UseCase } from '../../../base/use-case';
 import { inject } from '@angular/core';
-import { AddressRepo } from '@features';
-import { Address } from '../../models';
+import { AddressRepo, UseCase } from '@src/app/features';
 
 type Params = {
 	customerId: string;
 };
 
-export class GetAddressesUseCase implements UseCase<Params, Address[]> {
+export class GetAddressesUseCase implements UseCase<Params, AddressDTO[]> {
 	addressRepo = inject(AddressRepo);
 
-	execute(params: Params): Observable<Address[]> {
+	execute(params: Params): Observable<AddressDTO[]> {
 		return this.addressRepo.getAddresses(params);
 	}
 }

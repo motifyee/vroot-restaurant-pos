@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { inject } from '@angular/core';
-import { UseCase, PrintersRepo } from '@features';
+import { UseCase, PrintersRepo } from '@src/app/features';
 
 export class GetPOSDevicesUseCase implements UseCase<void, PosDevice[]> {
 	readonly printersRepo = inject(PrintersRepo);

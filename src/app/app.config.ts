@@ -15,8 +15,10 @@ import { StorageModule } from './core/services/storage';
 import { AuthnModule } from './core/services/auth';
 import { ErrorHandlerService } from './core/services/error';
 import { AuthInterceptor } from './core/interceptors/api.interceptor';
-import { DataModule } from './domain/domain.module';
-import { ProductsDataModule } from '@features';
+import { FeaturesModule } from './features';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { appStoreToken } from './view/stores/app/app.store';
+import { invoiceStoreToken } from './features/invoices/state/invoice/invoice.store';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -31,7 +33,7 @@ export const appConfig: ApplicationConfig = {
 				LogSeverity.info,
 			),
 			StorageModule.forLocalStorage(),
-			DataModule,
+			FeaturesModule,
 		),
 		provideHttpClient(),
 		provideZoneChangeDetection({ eventCoalescing: true }),
@@ -45,5 +47,7 @@ export const appConfig: ApplicationConfig = {
 			useClass: AuthInterceptor,
 			multi: true,
 		},
+		ConfirmationService,
+		MessageService,
 	],
 };

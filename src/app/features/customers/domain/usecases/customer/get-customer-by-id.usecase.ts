@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
-import { UseCase } from '../../../base/use-case';
 import { inject } from '@angular/core';
-import { CustomerRepo } from '@features';
+import { CustomerRepo, UseCase } from '@src/app/features';
 import { Customer } from '../../models/customer.model';
 
 type Params = {

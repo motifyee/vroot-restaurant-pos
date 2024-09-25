@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { UseCase, SettingsRepo } from '@features';
+import { UseCase, SettingsRepo } from '@src/app/features';
 import { inject } from '@angular/core';
 
 export class GetBranchSettingsUseCase implements UseCase<void, BranchSettings> {

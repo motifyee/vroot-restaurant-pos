@@ -1,13 +1,11 @@
-import { Base } from '@core';
+// export class Classification implements ClassificationDTO {
+// 	id: number;
+// 	title: string;
+// 	color: string;
 
-export class Classification implements ClassificationEntity {
-	id: number;
-	name: string;
-	color: string;
-
-	constructor(param: ClassificationEntity) {
-		this.id = param.id;
-		this.name = param.name;
-		this.color = param.color;
-	}
-}
+// 	constructor(param: ClassificationDTO) {
+// 		this.id = param.id;
+// 		this.title = param.title;
+// 		this.color = param.color;
+// 	}
+// }

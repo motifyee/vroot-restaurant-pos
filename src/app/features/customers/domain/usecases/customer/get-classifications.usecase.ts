@@ -1,15 +1,13 @@
 import { Observable } from 'rxjs';
-import { UseCase } from '../../../base/use-case';
 import { inject } from '@angular/core';
-import { CustomerRepo } from '@features';
-import { Classification } from '../../models/classification.model';
+import { CustomerRepo, UseCase } from '@src/app/features';
 
 export class GetClassificationsUseCase
-	implements UseCase<undefined, Classification[]>
+	implements UseCase<undefined, ClassificationDTO[]>
 {
 	customerRepo = inject(CustomerRepo);
 
-	execute(): Observable<Classification[]> {
+	execute(): Observable<ClassificationDTO[]> {
 		return this.customerRepo.getClassifications();
 	}
 }

@@ -1,33 +1,31 @@
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { ENV, HttpService } from '@core';
-import { AddressImplMapper } from '../mappers/address.mapper';
-import { AddressRepo, Address } from '@features';
+import { AddressRepo } from '@src/app/features';
+import { ENV, HttpService } from '@src/app/core';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AddressImplRepo implements AddressRepo {
 	http = inject(HttpService);
-	addressMapper = new AddressImplMapper();
 
 	getAddresses(
 		{ customerId }: { customerId: string },
 		config?: Config,
-	): Observable<Address[]> {
+	): Observable<AddressDTO[]> {
 		return this.http
-			.get<Response<AddressEntity[]>>(
+			.get<Response<AddressDTO[]>>(
 				`${ENV.endpoint}/api/customers/${customerId}/addresses`,
 				undefined,
 				config,
 			)
-			.pipe(map((res) => res.data!.map(this.addressMapper.mapFrom)));
+			.pipe(map((res) => res.data!)); //.map(this.addressMapper.mapFrom)));
 	}
 
 	createAddress(
-		params: { customerId: string; address: AddressEntity },
+		params: { customerId: string; address: AddressDTO },
 		config?: Config,
-	): Observable<Address> {
+	): Observable<AddressDTO> {
 		return this.http
 			.post<Response<{ id: number }>>(
 				`${ENV.endpoint}/api/customers/${params.customerId}/addresses`,
@@ -36,17 +34,15 @@ export class AddressImplRepo implements AddressRepo {
 				config,
 			)
 			.pipe(
-				map((res) =>
-					this.addressMapper.mapFrom({
-						...params.address,
-						id: res.data!.id,
-					}),
-				),
+				map((res) => ({
+					...params.address,
+					id: res.data!.id,
+				})),
 			);
 	}
 
 	updateAddress(
-		params: { customerId: string; address: Partial<AddressEntity> },
+		params: { customerId: string; address: Partial<AddressDTO> },
 		config?: Config,
 	): Observable<undefined> {
 		return this.http.put(

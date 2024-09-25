@@ -1,6 +1,6 @@
 import { query } from '@angular/animations';
 import { inject } from '@angular/core';
-import { Classification, GetClassificationsUseCase } from '@features';
+import { GetClassificationsUseCase } from '@src/app/features';
 import { tapResponse } from '@ngrx/operators';
 import {
 	patchState,
@@ -10,12 +10,13 @@ import {
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
+import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
 
-export function withGetClassificationsMethod() {
+export function withGetClassificationsMethod<_>() {
 	return signalStoreFeature(
 		{
 			// state: type<{ classifications: Classification[] }>(),
-			methods: type<{ setLoading(isLoading: boolean): void }>(),
+			methods: type<LoadingMethod>(),
 		},
 
 		withMethods((store) => {

@@ -1,2 +1,1 @@
-
-export * from './invoices.store';
+export * from './invoice-index/invoice-index.store';

@@ -1,11 +1,12 @@
 import { Observable } from 'rxjs';
 import { inject } from '@angular/core';
-import { UseCase, InvoiceRepo } from '@features';
+import { UseCase, InvoiceRepo } from '@src/app/features';
+import { Invoice } from '../models/Invoice.model';
 
-export class DeleteInvoiceUseCase implements UseCase<{ id: number }, void> {
+export class DeleteInvoiceUseCase implements UseCase<Invoice, Invoice> {
 	readonly invoiceRepo = inject(InvoiceRepo);
 
-	execute(params: { id: number }): Observable<void> {
+	execute(params: Invoice): Observable<Invoice> {
 		return this.invoiceRepo.delete(params);
 	}
 }

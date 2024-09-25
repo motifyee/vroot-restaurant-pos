@@ -1,0 +1,35 @@
+::ng-deep {
+	.p-divider {
+		@apply my-1;
+	}
+}
+
+.products {
+	@apply grid grid-cols-products-sm lg:grid-cols-products-lg
+   gap-2 p-2 content-start justify-center align-middle;
+}
+
+.product-card {
+	@apply text-sm overflow-hidden cursor-pointer w-full p-0 h-28
+	 transition duration-200 outline-none
+	 hover:shadow-lg hover:ring-1 active:ring-2 active:bg-stone-200
+	 flex flex-col items-stretch;
+}
+
+.categories {
+	// @apply w-full h-full;
+	@apply flex flex-col justify-center gap-2 py-2
+  sticky bottom-2 top-2;
+
+	.search-btn {
+		@apply p-2 text-sm font-sans rounded-e-full
+		 absolute top-2 transition-all duration-200;
+
+		input {
+			@apply rounded-e-full ps-8 w-full;
+		}
+	}
+	.category-btn {
+		@apply p-2 text-sm font-sans w-28 rounded-e-full;
+	}
+}

@@ -1,8 +1,7 @@
 import { Observable } from 'rxjs';
-import { User } from '../models/user.model';
-import { UseCase } from '../../base/use-case';
-import { UserRepo } from '../data/user.repo';
 import { inject } from '@angular/core';
+import { UserRepo } from '../repo/user.repo';
+import { UseCase, User } from '@src/app/features';
 
 export class UserRegisterUseCase
 	implements UseCase<{ phoneNum: string; password: string }, User>

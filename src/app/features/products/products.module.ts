@@ -2,9 +2,10 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import {
 	getCategoriesUseCaseProvider,
 	getProductVariantsUseCaseProvider,
-	ProductsImplRepo,
+	// ProductsImplRepo,
 	ProductsRepo,
-} from '@features';
+} from '@src/app/features';
+import { ProductsImplRepo } from './data';
 
 @NgModule({
 	providers: [

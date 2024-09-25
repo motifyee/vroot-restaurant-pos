@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	inject,
+	OnInit,
+} from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -10,6 +15,8 @@ import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ToastModule } from 'primeng/toast';
+import { appStoreToken } from '../../stores/app/app.store';
+import { ButtonGroupModule } from 'primeng/buttongroup';
 
 @Component({
 	selector: 'menubar',
@@ -18,6 +25,7 @@ import { ToastModule } from 'primeng/toast';
 		MenubarModule,
 		ToastModule,
 		ButtonModule,
+		ButtonGroupModule,
 		CardModule,
 		DividerModule,
 		MenuModule,
@@ -34,14 +42,19 @@ import { ToastModule } from 'primeng/toast';
 export class MenubarComponent implements OnInit {
 	constructor(private messageService: MessageService) {}
 
+	appStore = inject(appStoreToken);
+
 	items: MenuItem[] | undefined;
 
 	ngOnInit() {
 		this.items = [
 			{
 				label: 'invoices',
-				icon: 'pi pi-refresh',
+				icon: 'pi pi-list',
+				command: () => this.appStore.createInvoiceListTab(),
 			},
 		];
+
+		this.appStore.createInvoiceTab();
 	}
 }

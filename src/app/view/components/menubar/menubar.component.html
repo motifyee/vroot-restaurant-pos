@@ -45,39 +45,56 @@
 	</div>
 	<div class="tabs flex gap-1 overflow-x-auto">
 		<div class="tab-btns flex gap-1">
-			<!-- <p-button
-				label="Inv | Customer Name"
-				[text]="true"
-				size="small"
-				severity="secondary"
-			/> -->
-			<p-button
-				label="Inv | Customer"
-				[text]="true"
-				size="small"
-				severity="secondary"
-				[outlined]="true"
-			/>
-			<p-button
-				label="Inv | Customer"
-				[text]="false"
-				size="small"
-				severity="info"
-			/>
+			@for(tab of appStore.entities(); track tab.id; let idx = $index) {
+			<p-buttonGroup>
+				<p-button
+					[label]="tab.title()"
+					size="small"
+					[text]="appStore.activeTab()?.id != tab.id"
+					[severity]="
+						tab.hasChanges()
+							? 'help'
+							: appStore.activeTab()?.id === tab.id
+							? 'info'
+							: 'secondary'
+					"
+					[outlined]="appStore.activeTab()?.id != tab.id"
+					(onClick)="appStore.activateTab(tab.id)"
+					[icon]="tab.icon()"
+				/>
+				<!-- appStore.entityMap()[tab.id].hasChanges()
+          ? 'pi pi-circle-fill'
+          : undefined -->
+				<!-- [text]="appStore.activeTab()?.id != tab.id" -->
+				<p-button
+					[text]="true"
+					[severity]="
+						appStore.activeTab()?.id === tab.id
+							? 'danger'
+							: 'danger'
+					"
+					[outlined]="true"
+					(onClick)="appStore.closeTab(tab.id)"
+					icon="pi pi-times"
+					size="small"
+				/>
+			</p-buttonGroup>
+			}
 		</div>
 		<div class="trailing-btns flex items-center gap-1">
+			<p-button
+				icon="pi pi-plus"
+				[text]="true"
+				size="small"
+				severity="secondary"
+				(onClick)="appStore.createInvoiceTab()"
+			/>
 			<p-button
 				icon="pi pi-angle-down"
 				[text]="true"
 				size="small"
 				severity="secondary"
 				(onClick)="menu.toggle($event)"
-			/>
-			<p-button
-				icon="pi pi-plus"
-				[text]="true"
-				size="small"
-				severity="secondary"
 			/>
 		</div>
 	</div>

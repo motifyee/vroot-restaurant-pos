@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { UseCase } from '../../../../../base';
 import { inject } from '@angular/core';
-import { ShiftRepo } from '../repos';
+import { ShiftRepo } from '../repos/shift.repo';
+import { UseCase } from '@src/app/features/base';
 
 export class CloseShiftUseCase implements UseCase<void, void> {
 	repo = inject(ShiftRepo);
