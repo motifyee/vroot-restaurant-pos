@@ -1,0 +1,31 @@
+import { TestBed } from '@angular/core/testing';
+import { POSComponent } from './pos.component';
+
+describe('AppComponent', () => {
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			imports: [POSComponent],
+		}).compileComponents();
+	});
+
+	it('should create the app', () => {
+		const fixture = TestBed.createComponent(POSComponent);
+		const app = fixture.componentInstance;
+		expect(app).toBeTruthy();
+	});
+
+	it(`should have the 'restaurant-pos' title`, () => {
+		const fixture = TestBed.createComponent(POSComponent);
+		const app = fixture.componentInstance;
+		expect(app.title).toEqual('restaurant-pos');
+	});
+
+	it('should render title', () => {
+		const fixture = TestBed.createComponent(POSComponent);
+		fixture.detectChanges();
+		const compiled = fixture.nativeElement as HTMLElement;
+		expect(compiled.querySelector('h1')?.textContent).toContain(
+			'Hello, restaurant-pos',
+		);
+	});
+});

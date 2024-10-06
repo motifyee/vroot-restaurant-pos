@@ -6,27 +6,23 @@ import {
 	withState,
 } from '@ngrx/signals';
 import { Invoice } from '../../domain/models/Invoice.model';
-import {
-	addEntity,
-	EntityId,
-	removeEntity,
-	updateEntity,
-	withEntities,
-} from '@ngrx/signals/entities';
+import { withEntities } from '@ngrx/signals/entities';
 import { InvoiceIndexFilter } from '../../domain';
 import { withGetInvoicesMethod } from './features/with-get-invoices.method';
 import { withGetInvoiceByIdMethod } from './features/with-get-invoice-by-id.method';
 import { computed } from '@angular/core';
-import { storeType } from '@src/app/view/stores/utils/utils';
+import { storeType } from '@src/app/view/state/utils/utils';
 import { withCreateInvoiceMethod } from './features/with-create-invoice.method';
 import { withUpdateInvoiceMethod } from './features/with-update-invoice.method';
 import { withDeleteInvoiceMethod } from './features/with-delete-invoice.method';
 
 export type InvoiceStoreState = {
+	selectedIds: number[];
 	filters: InvoiceIndexFilter;
 };
 
 const initialState: InvoiceStoreState = {
+	selectedIds: [],
 	filters: {
 		pageNumber: 1,
 		pageSize: 10,
@@ -36,10 +32,25 @@ const initialState: InvoiceStoreState = {
 	},
 };
 
-export const invoiceIndexStoreToken = signalStore(
+export const invoiceIndexStore = signalStore(
 	{ providedIn: 'root' },
 	withEntities<Invoice>(),
 	withState(initialState),
+	withComputed((store) => {
+		return {
+			selectedInvoices: computed(() =>
+				store.selectedIds().map((id) => store.entityMap()[id]),
+			),
+		};
+	}),
+	withMethods((store) => {
+		return {
+			selectIds: (ids: number[]) =>
+				patchState(store, { selectedIds: ids }),
+			selectInvoices: (invs: Invoice[]) =>
+				patchState(store, { selectedIds: invs.map((inv) => inv.id) }),
+		};
+	}),
 
 	withGetInvoicesMethod(),
 	withGetInvoiceByIdMethod(),
@@ -47,13 +58,6 @@ export const invoiceIndexStoreToken = signalStore(
 	withCreateInvoiceMethod(),
 	withUpdateInvoiceMethod(),
 	withDeleteInvoiceMethod(),
-
-	withMethods((store) => ({
-		addInvoice: (inv: Invoice) => patchState(store, addEntity(inv)),
-		deleteInvoice: (id: EntityId) => patchState(store, removeEntity(id)),
-		updateInvoice: (inv: Invoice) =>
-			patchState(store, updateEntity({ id: inv.id, changes: inv })),
-	})),
 
 	withComputed((store) => {
 		return {
@@ -87,5 +91,5 @@ export const invoiceIndexStoreToken = signalStore(
 	})),
 );
 
-let _i = storeType(invoiceIndexStoreToken);
+let _i = storeType(invoiceIndexStore);
 export type InvoiceIndexStore = typeof _i;

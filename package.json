@@ -7,9 +7,8 @@
 		"build": "ng build",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
-		"mrt": "ng serve --port 3300",
-		"nabhan": "ng serve --port 3100",
-		"salous": "ng serve --port 3200"
+		"mrt": "ng serve --port 3000",
+		"yusuf": "ng serve --port 3100"
 	},
 	"private": true,
 	"dependencies": {

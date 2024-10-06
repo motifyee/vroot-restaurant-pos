@@ -1,0 +1,9 @@
+<section class="flex flex-col sm:flex-row gap-2 items-stretch h-full">
+	<invoice-list-panel class="flex-1 overflow-auto" />
+
+	<invoice-panel
+		[products]="products()"
+		[readonly]="true"
+		class="sm:w-64 lg:w-96"
+	/>
+</section>

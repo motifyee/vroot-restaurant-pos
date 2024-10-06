@@ -17,8 +17,6 @@ import { ErrorHandlerService } from './core/services/error';
 import { AuthInterceptor } from './core/interceptors/api.interceptor';
 import { FeaturesModule } from './features';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { appStoreToken } from './view/stores/app/app.store';
-import { invoiceStoreToken } from './features/invoices/state/invoice/invoice.store';
 
 export const appConfig: ApplicationConfig = {
 	providers: [

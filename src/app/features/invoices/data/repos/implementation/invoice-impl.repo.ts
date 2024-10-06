@@ -1,8 +1,9 @@
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { inject } from '@angular/core';
 import { InvoiceRepo } from '../../../domain';
 import { ENV, HttpService } from '@src/app/core';
 import { Invoice } from '../../../domain/models/Invoice.model';
+import { unum, uuidv4 } from '@src/app/view/state/app/utils/uuid';
 
 export class InvoiceImplRepo implements InvoiceRepo {
 	http = inject(HttpService);
@@ -63,19 +64,23 @@ export class InvoiceImplRepo implements InvoiceRepo {
 		params: { invoice: Invoice; creationToken: string },
 		config?: Config,
 	): Observable<Invoice> {
-		return this.http
-			.post<Response<{ id: number }>>(
-				`${ENV.endpoint}/api/invoices`,
-				params.invoice,
-				{ headers: { creationToken: params.creationToken } },
-				config,
-			)
-			.pipe(
-				map(
-					(res) =>
-						({ ...params.invoice, id: res.data!.id } as Invoice),
-				),
-			);
+		return of({
+			...params.invoice,
+			id: unum(),
+		} as Invoice);
+		// return this.http
+		// 	.post<Response<{ id: number }>>(
+		// 		`${ENV.endpoint}/api/invoices`,
+		// 		params.invoice,
+		// 		{ headers: { creationToken: params.creationToken } },
+		// 		config,
+		// 	)
+		// 	.pipe(
+		// 		map(
+		// 			(res) =>
+		// 				({ ...params.invoice, id: res.data!.id } as Invoice),
+		// 		),
+		// 	);
 	}
 
 	update(params: Invoice, config?: Config): Observable<Invoice> {

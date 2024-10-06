@@ -2,6 +2,7 @@ import { Buddy, Customer } from './buddies';
 
 interface Invoice {
 	id: number;
+	date: Date;
 	creationToken: string; // r_code
 	invoiceType: number; //??? مبيعات 2 - مشتريات 1
 	salesInvoiceType: number; // invoiceStatus: number; // delivery|takeaway|indoor

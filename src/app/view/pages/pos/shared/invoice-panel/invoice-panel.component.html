@@ -1,0 +1,173 @@
+<div class="flex flex-col thm-panel h-full">
+	<!-- invoice header -->
+	<section class="font-light text-xs">
+		<div class="flex justify-between p-1 pt-2">
+			<span>Company Name</span>
+			<span>Branch Name</span>
+		</div>
+		<p-divider />
+
+		<div class="flex justify-center py-1">For Serian Food</div>
+		<p-divider />
+
+		<div class="flex mb-2">
+			<span class="flex-1 flex justify-center items-center"
+				>Invoice No</span
+			>
+			<p-divider layout="vertical" />
+			<span class="flex-1 flex justify-center items-center"
+				><p-dropdown
+					[options]="items"
+					[(ngModel)]="selectedItem"
+					placeholder="Select Item"
+					[virtualScroll]="true"
+					[virtualScrollItemSize]="38"
+					[virtualScrollOptions]="options"
+			/></span>
+			<p-divider layout="vertical" />
+			<span class="flex-1 flex justify-center items-center">Time</span>
+		</div>
+	</section>
+
+	<!-- products -->
+	<section
+		class="flex flex-col flex-[1_1_10rem] items-stretch overflow-auto font-light text-xs"
+	>
+		<p-table
+			[value]="products()"
+			tableStyleClass="p-datatable-striped bg-red-500"
+			styleClass="p-datatable-striped bg-red-400"
+			[style]="{ 'min-height': 'min-content' }"
+		>
+			<ng-template pTemplate="body" let-product>
+				<tr class="flexitems-stretch">
+					<td class="p-1">
+						<div
+							class="flex flex-colx items-stretch w-10x border border-dashexd"
+						>
+							@if(!readonly()){
+							<button
+								pButton
+								pRipple
+								type="button"
+								icon="pi pi-times"
+								class="p-button-text p-button-warning h-6 w-6 py-1 px-2"
+								size="small"
+								(click)="removeProduct(product.id)"
+							></button>
+							<button
+								pButton
+								pRipple
+								type="button"
+								icon="pi pi-pencil"
+								class="p-button-text p-button-info h-6 w-6 py-1 px-2"
+								size="small"
+								(click)="visible = true"
+							></button>
+							}
+						</div>
+					</td>
+
+					<td class="p-1 w-full">
+						<div class="font-semibold text-start text-sm">
+							{{ product.productVariant.title }}
+						</div>
+						<div class="text-xs text-start">
+							a note for
+							<em>{{ product.productVariant.title }}</em> which is
+							somewhat lengthy to overflow below
+						</div>
+					</td>
+
+					<td class="p-1 w-6 text-center">{{ product.quantity }}</td>
+					<td class="p-1 w-12 text-center">
+						<span class="w-full inline-flex justify-center">
+							{{ product.quantity }}
+						</span>
+					</td>
+				</tr>
+			</ng-template>
+		</p-table>
+	</section>
+
+	<!-- invoice info -->
+	<section>
+		<p-table tableStyleClass="font-semibold text-xs" [value]="invoiceInfo">
+			<ng-template pTemplate="body" let-info>
+				<tr class="thm-bg">
+					<td class="py-2 text-start">{{ info.title }}</td>
+					<td class="w-12 text-center py-2 px-1">{{ info.value }}</td>
+				</tr>
+			</ng-template>
+		</p-table>
+	</section>
+
+	<br />
+
+	<!-- payment methods -->
+	<section class="flex justify-around px-">
+		<button
+			pButton
+			label="Cash"
+			severity="success"
+			size="small"
+			[outlined]="true"
+		></button>
+		<button
+			pButton
+			label="Visa"
+			severity="info"
+			size="small"
+			[outlined]="true"
+		></button>
+		<button
+			pButton
+			label="Later"
+			severity="danger"
+			size="small"
+			[outlined]="true"
+		></button>
+	</section>
+
+	<br />
+</div>
+
+<!-- edit product dialog -->
+<p-dialog
+	header="Edit Product"
+	[modal]="true"
+	[(visible)]="visible"
+	[style]="{ width: '25rem' }"
+>
+	<div class="flex items-center gap-3 mb-3">
+		<label for="username" class="font-semibold w-12">Count</label>
+		<input
+			pInputText
+			id="username"
+			class="w-20 text-center flex-1"
+			autocomplete="off"
+		/>
+		<p-button
+			icon="pi pi-plus"
+			severity="success"
+			(onClick)="visible = false"
+		/>
+		<p-button
+			icon="pi pi-minus"
+			severity="danger"
+			(onClick)="visible = false"
+		/>
+	</div>
+	<div class="flex items-center gap-3 mb-5">
+		<label for="email" class="font-semibold w-12">Note</label>
+		<input pInputText id="email" class="flex-auto" autocomplete="off" />
+	</div>
+	<div class="flex justify-end gap-2">
+		<p-button
+			label="Cancel"
+			severity="secondary"
+			(onClick)="visible = false"
+		/>
+		<p-button label="Save" (onClick)="visible = false" />
+	</div>
+</p-dialog>

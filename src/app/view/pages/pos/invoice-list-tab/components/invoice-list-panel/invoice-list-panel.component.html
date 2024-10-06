@@ -1,0 +1,92 @@
+<section class="thm-panel h-full overflow-hidden">
+	<p-table
+		#dt1
+		[value]="idxStore.entities()"
+		[globalFilterFields]="[
+			'name',
+			'country.name',
+			'representative.name',
+			'status'
+		]"
+		selectionMode="single"
+		[(selection)]="selectedInvoice"
+		(onRowSelect)="onRowSelect($event.data)"
+		dataKey="id"
+		[tableStyle]="{ 'min-width': '50rem' }"
+		[rows]="10"
+		[paginator]="true"
+	>
+		<ng-template pTemplate="caption">
+			<p-iconField iconPosition="left">
+				<p-inputIcon>
+					<i class="pi pi-search"></i>
+				</p-inputIcon>
+				<input
+					pInputText
+					type="text"
+					#input
+					(input)="dt1.filterGlobal(input.value, 'contains')"
+					placeholder="Global Search"
+				/>
+			</p-iconField>
+		</ng-template>
+		<ng-template pTemplate="header">
+			<tr>
+				<th pSortableColumn="branchDateFlag">
+					No <p-sortIcon field="branchDateFlag" />
+				</th>
+				<th pSortableColumn="date">
+					Date <p-sortIcon field="date" style="width: 10rem" />
+				</th>
+				<th pSortableColumn="customer.name" style="width: 15rem">
+					Customer <p-sortIcon field="customer.name" />
+				</th>
+				<th pSortableColumn="netPrice">
+					Amount <p-sortIcon field="netPrice" />
+				</th>
+				<th pSortableColumn="isClosed">
+					Status <p-sortIcon field="isClosed" />
+				</th>
+				<th pSortableColumn="salesInvoiceType">
+					Type <p-sortIcon field="salesInvoiceType" />
+				</th>
+				<th pSortableColumn="paymentType">
+					Payment <p-sortIcon field="paymentType" />
+				</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-invoice>
+			<tr [pSelectableRow]="invoice">
+				<td>
+					{{ invoice.branchDateFlag }}
+				</td>
+				<td>
+					<span class="">{{ invoice.date }}</span>
+				</td>
+				<td>
+					<span class="ml-1 vertical-align-middle">{{
+						invoice.customer?.name
+					}}</span>
+				</td>
+				<td>
+					<span>{{ invoice.netPrice }}</span>
+				</td>
+				<td>
+					<span>{{ invoice.isClosed }}</span>
+				</td>
+				<td>
+					{{ invoice.salesInvoiceType }}
+					<!-- <p-tag [value]="" /> -->
+				</td>
+				<td>
+					<span>{{ invoice.paymentType }}</span>
+				</td>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="emptymessage">
+			<tr>
+				<td colspan="7">No Invoices found.</td>
+			</tr>
+		</ng-template>
+	</p-table>
+</section>

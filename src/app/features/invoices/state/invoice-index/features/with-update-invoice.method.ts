@@ -5,7 +5,7 @@ import {
 	withMethods,
 } from '@ngrx/signals';
 import { Invoice } from '../../../domain/models/Invoice.model';
-import { distinctUntilChanged, of, switchMap } from 'rxjs';
+import { distinctUntilChanged, of, switchMap, tap, timeout } from 'rxjs';
 import { inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import { UpdateInvoiceUseCase } from '../../../domain/usecases/update-invoice.usecase';
@@ -20,20 +20,19 @@ export function withUpdateInvoiceMethod<_>() {
 			return {
 				updateInvoice: (inv: Invoice) =>
 					of(inv).pipe(
+						timeout(1000),
 						distinctUntilChanged(),
 						switchMap((inv) =>
 							usecase.execute(inv).pipe(
-								tapResponse({
-									next: (inv) =>
-										patchState(
-											store,
-											updateEntity({
-												id: inv.id,
-												changes: inv,
-											}),
-										),
-									error: console.error,
-								}),
+								tap(() =>
+									patchState(
+										store,
+										updateEntity({
+											id: inv.id,
+											changes: inv,
+										}),
+									),
+								),
 							),
 						),
 					),

@@ -7,21 +7,16 @@
       "type": "chrome",
       "request": "launch",
       "preLaunchTask": "npm: mrt",
-      "url": "http://localhost:3000/"
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
     },
     {
-      "name": "nanhan",
+      "name": "yusuf",
       "type": "chrome",
       "request": "launch",
-      "preLaunchTask": "npm: nanhan",
-      "url": "http://localhost:3100/"
-    },
-    {
-      "name": "salous",
-      "type": "chrome",
-      "request": "launch",
-      "preLaunchTask": "npm: salous",
-      "url": "http://localhost:3200/"
+      "preLaunchTask": "npm: yusuf",
+      "url": "http://localhost:3100",
+      "webRoot": "${workspaceFolder}"
     },
     {
       "name": "ng test",

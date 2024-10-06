@@ -6,7 +6,7 @@ import {
 	withState,
 } from '@ngrx/signals';
 import { Invoice } from '../../domain/models/Invoice.model';
-import { storeType } from '@src/app/view/stores/utils/utils';
+import { storeType } from '@src/app/view/state/utils/utils';
 import { InvoiceProduct } from '../../domain/models/invoice-product.model';
 import {
 	addEntity,
@@ -25,7 +25,7 @@ const initialState: InvoiceStoreState = {
 	_invoice: {} as Invoice,
 };
 
-export const invoiceStoreToken = signalStore(
+export const invoiceStore = signalStore(
 	withState(initialState),
 	withEntities<InvoiceProduct>(),
 	withComputed((store) => ({
@@ -72,5 +72,5 @@ export const invoiceStoreToken = signalStore(
 	}),
 );
 
-const _i = storeType(invoiceStoreToken);
+const _i = storeType(invoiceStore);
 export type InvoiceStore = typeof _i;

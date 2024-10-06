@@ -11,7 +11,7 @@ import { withDeleteCustomerMethod } from './features/with-delete-customer.method
 import { withGetClassificationsMethod } from './features/with-get-classifications.method';
 import { withGetCustomerByIdMethod } from './features/with-get-customer-by-id.method';
 import { withUpdateCustomerMethod } from './features/with-update-customer.method';
-import { storeType } from '@src/app/view/stores/utils/utils';
+import { storeType } from '@src/app/view/state/utils/utils';
 
 interface CustomerState {
 	query: string;
@@ -25,7 +25,7 @@ export const customerConfig = entityConfig({
 	collection: 'customers',
 });
 
-export const customersStoreToken = signalStore(
+export const customersStore = signalStore(
 	withState(initialState),
 	withEntities(customerConfig),
 	//
@@ -42,5 +42,5 @@ export const customersStoreToken = signalStore(
 	withTest(),
 );
 
-let _c = storeType(customersStoreToken);
+let _c = storeType(customersStore);
 export type CustomerStore = typeof _c;

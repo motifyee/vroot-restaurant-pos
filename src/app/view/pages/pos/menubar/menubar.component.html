@@ -1,0 +1,139 @@
+<p-toast />
+
+<div class="flex thm-panel gap-1 w-full items-center p-1">
+	<div class="fixed-btns flex gap-1">
+		<p-button
+			icon="pi pi-cog"
+			[text]="true"
+			size="small"
+			severity="secondary"
+			(onClick)="settings.toggle($event)"
+		>
+			<p-overlayPanel #settings> settings</p-overlayPanel>
+		</p-button>
+		<p-divider layout="vertical" />
+		<p-button
+			icon="pi pi-bell"
+			[text]="true"
+			size="small"
+			severity="secondary"
+			(onClick)="notifs.toggle($event)"
+		>
+			<p-overlayPanel #notifs> notifications</p-overlayPanel>
+		</p-button>
+		<p-divider layout="vertical" />
+		<p-button
+			icon="pi pi-whatsapp"
+			[text]="true"
+			size="small"
+			severity="secondary"
+			(onClick)="msgs.toggle($event)"
+		>
+			<p-overlayPanel #msgs> messages</p-overlayPanel>
+		</p-button>
+		<p-divider layout="vertical" />
+		<p-button
+			icon="pi pi-phone"
+			[text]="true"
+			size="small"
+			severity="secondary"
+			(onClick)="phone.toggle($event)"
+		>
+			<p-overlayPanel #phone> phone</p-overlayPanel>
+		</p-button>
+		<!-- <p-divider layout="vertical" /> -->
+	</div>
+	<div class="tabs flex gap-1 overflow-x-auto">
+		<div class="tab-btns flex gap-1">
+			@for(tab of appStore.entities(); track tab.id; let idx = $index) {
+			<p-buttonGroup>
+				<p-button
+					[label]="tab.title()"
+					size="small"
+					[text]="appStore.activeTab()?.id != tab.id"
+					[severity]="
+						tab.hasChanges()
+							? 'help'
+							: appStore.activeTab()?.id === tab.id
+							? 'info'
+							: 'secondary'
+					"
+					[outlined]="appStore.activeTab()?.id != tab.id"
+					(onClick)="appStore.activateTab(tab.id)"
+					[icon]="tab.icon()"
+				/>
+				<!-- appStore.entityMap()[tab.id].hasChanges()
+          ? 'pi pi-circle-fill'
+          : undefined -->
+				<!-- [text]="appStore.activeTab()?.id != tab.id" -->
+				<p-button
+					[text]="true"
+					[severity]="
+						appStore.activeTab()?.id === tab.id
+							? 'danger'
+							: 'danger'
+					"
+					[outlined]="true"
+					(onClick)="appStore.closeTab(tab.id)"
+					icon="pi pi-times"
+					size="small"
+				/>
+			</p-buttonGroup>
+			}
+		</div>
+		<div class="trailing-btns flex items-center gap-1">
+			<p-button
+				icon="pi pi-plus"
+				[text]="true"
+				size="small"
+				severity="secondary"
+				(onClick)="appStore.createInvoiceTab()"
+			/>
+			<p-button
+				icon="pi pi-angle-down"
+				[text]="true"
+				size="small"
+				severity="secondary"
+				(onClick)="menu.toggle($event)"
+			/>
+		</div>
+	</div>
+</div>
+
+<p-menu #menu [model]="items" [popup]="true" />
+
+<p-dialog
+	header="Close Tab"
+	[(visible)]="showConfirmCloseUnsavedTab"
+	[modal]="true"
+	[breakpoints]="{ '1199px': '65vw', '575px': '90vw' }"
+	[style]="{ width: '30vw' }"
+	[draggable]="false"
+	[resizable]="false"
+	[closable]="false"
+>
+	<p>
+		Your current tab has unsaved changes. Are you sure you want to close it?
+	</p>
+	<div class="flex justify-stretch gap-2">
+		<p-button
+			label="Discard"
+			severity="danger"
+			(onClick)="discardTab()"
+			class="flex-1"
+			[disabled]="confirmSaveBtnLoading"
+		/>
+		<p-button
+			label="Cancel"
+			severity="secondary"
+			(onClick)="showConfirmCloseUnsavedTab = false"
+			[disabled]="confirmSaveBtnLoading"
+		/>
+		<p-button
+			label="Save"
+			severity="success"
+			(onClick)="saveTab()"
+			[loading]="confirmSaveBtnLoading"
+		/>
+	</div>
+</p-dialog>

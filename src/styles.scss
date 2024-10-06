@@ -2,7 +2,7 @@
 @import 'primeng/resources/primeng.css';
 @import 'primeicons/primeicons.css';
 
-@layer tailwind-base, primeng, tailwind-utilities;
+@layer primeng, tailwind-base, tailwind-utilities;
 
 @layer tailwind-base {
 	@tailwind base;
@@ -14,6 +14,7 @@
 }
 
 @import './styles/theme';
+@import './styles/prime_overrides/index';
 
 html {
 	@apply h-full; //border-dotted border-2 border-red-500;

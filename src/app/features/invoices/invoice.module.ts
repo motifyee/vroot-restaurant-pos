@@ -6,11 +6,13 @@ import {
 	deleteInvoiceUseCaseProvider,
 	getInvoicesUseCaseProvider,
 	getInvoiceByIdUseCaseProvider,
+	calcInvoicePricesUseCaseProvider,
 } from '@src/app/features';
 import { updateInvoiceUseCaseProvider } from './domain/usecases/update-invoice.usecase';
 
 @NgModule({
 	providers: [
+		calcInvoicePricesUseCaseProvider,
 		createInvoiceUseCaseProvider,
 		deleteInvoiceUseCaseProvider,
 		getInvoicesUseCaseProvider,

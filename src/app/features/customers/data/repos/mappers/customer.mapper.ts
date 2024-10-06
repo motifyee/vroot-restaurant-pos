@@ -1,10 +1,10 @@
 import { Mapper } from '@src/app/core';
 import { Customer } from '../../../domain';
 import { inject } from '@angular/core';
-import { settingsStoreToken } from '@src/app/features/settings';
+import { settingsStore } from '@src/app/features/settings';
 
 export class CustomerImplMapper extends Mapper<CustomerDTO, Customer> {
-	store = inject(settingsStoreToken);
+	store = inject(settingsStore);
 
 	override mapFrom(param: CustomerDTO): Customer {
 		return this.store.mapEntityToCustomer(param);
