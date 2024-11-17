@@ -1,0 +1,228 @@
+.order-type {
+	padding: 0.5rem;
+	top: 1rem;
+	width: 800px;
+	max-width: calc(100% - 1rem);
+	max-height: calc(100vh - 2rem);
+	background-color: white;
+	border-radius: 10px !important;
+	margin: auto !important;
+	justify-content: space-between !important;
+	flex-direction: column !important;
+	height: 100% !important;
+	right: 0 !important;
+	left: 0 !important;
+	position: fixed !important;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+	overflow: hidden !important;
+	opacity: 0;
+	transform: scale(0) translateY(-100%);
+	visibility: hidden;
+
+	/* Initial state */
+	transition: visibility 0s 0.5s, opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+	z-index: 1000;
+
+	&.show {
+	  visibility: visible;
+
+	  /* Make visible when showing */
+	  opacity: 1;
+	  transform: scale(1) translateY(0);
+	  animation: popping-up 0.5s forwards;
+	  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+	}
+
+	&.hide {
+	  opacity: 0; /* Fade out */
+	  transform: scale(0) translateY(-100%); /* Scale and move up */
+	  animation: popping-down 0.5s forwards;
+	  visibility: hidden; /* Applied after animation ends */
+	  transition: visibility 0s 0.5s, opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+	}
+  }
+
+  /* Keyframes */
+  @keyframes popping-up {
+	0% {
+	  transform: scale(0) translateY(-100%);
+	  opacity: 0;
+	}
+
+	60% {
+	  opacity: 0.5;
+	}
+
+	100% {
+	  transform: scale(1) translateY(0);
+	  opacity: 1;
+	}
+  }
+
+  @keyframes popping-down {
+	0% {
+	  transform: scale(1) translateY(0);
+	  opacity: 1;
+	}
+
+	60% {
+	  opacity: 0.5;
+	}
+
+	100% {
+	  transform: scale(0) translateY(-100%);
+	  opacity: 0;
+	}
+  }
+
+
+  .tabsArea {
+	gap: 10px;
+	z-index: 999;
+	align-items: center;
+	justify-content: flex-start;
+	flex-shrink: 0 !important;
+	display: flex;
+	padding-bottom: 10px;
+
+	button {
+	  height: 40px;
+	  font-size: 14px;
+	  border-radius: 5px;
+	  font-weight: 700;
+	  cursor: pointer;
+	  padding-right: 0.5rem;
+	  padding-left: 0.5rem;
+	  color: #777777;
+	  background-color: #f1f1f1;
+	  border: 0;
+	  flex-grow: 1 !important;
+	  font-family: inherit;
+
+	  &.active {
+		background-color: var(--GreenBackground);
+		color: #fff;
+	  }
+	}
+  }
+
+  .contentArea {
+	/* display: flex !important; */
+	flex-grow: 1 !important;
+
+	.card {
+	  background-color: rgb(255, 255, 255);
+	  border-radius: 10px;
+	  border: 1px solid var(--cardBorder);
+	  box-shadow: rgba(0, 0, 0, 0) 0px 0px 8px 1px;
+	  display: flex;
+	  font-size: 15px;
+	  font-weight: 400;
+	  min-height: 115px;
+	  justify-content: space-between;
+	  line-height: 22.5px;
+	  margin: 8px 0;
+	  align-items: center;
+	  align-self: stretch;
+	  width: auto;
+
+	  .rightArea {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		justify-content: center;
+		align-self: stretch;
+		padding: 1rem;
+		gap: 0.5rem;
+
+		.name, .status {
+		  display: flex;
+		  justify-content: flex-start;
+		  align-items: center;
+		  gap: 0.25rem;
+		}
+
+		.name {
+		  font-weight: 700;
+		}
+
+		.status .status-text {
+		  border-radius: 0.25rem;
+		  min-width: 50px;
+		  height: 20px;
+		  font-size: 10px;
+		  background-color: #e9f9ee;
+		  color: #2ac770;
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		}
+	  }
+
+	  .leftArea {
+		display: flex;
+		flex-shrink: 0;
+		justify-content: flex-end;
+		align-items: center;
+		align-self: stretch;
+		padding: 0.5rem;
+		gap: 0.5rem;
+
+		a, button {
+		  width: 32px;
+		  height: 32px;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		}
+	  }
+
+	  span i {
+		font-size: 25px;
+		color: #878787;
+	  }
+
+	  .leftArea {
+		a span {
+		  width: 26px;
+		  height: 26px;
+		  mask-size: contain;
+		}
+
+		button {
+		  border: 0;
+		  background-color: transparent;
+
+		  span {
+			width: 26px;
+			height: 26px;
+			mask-size: contain;
+		  }
+		}
+	  }
+	}
+  }
+
+  /* Overlay for blurry background */
+
+  .overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(2px);
+
+	/* Apply blur */
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.4s ease, visibility 0.4s ease;
+	transition: all .4s ease-in-out;
+	z-index: 993;
+
+	&.active {
+	  opacity: 1;
+	  visibility: visible;
+	}
+  }

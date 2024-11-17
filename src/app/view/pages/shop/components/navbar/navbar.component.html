@@ -1,0 +1,65 @@
+<div [ngClass]="{ 'active': isVisibleState }" class="side-nav" id="side-nav">
+	<!--  [classList]="{active:!isSidebarOpen}" -->
+  <!-- Close Icon -->
+  <!-- <div class="close-btn" id="close-btn">&times;</div> -->
+  <div  class="close-btn modal-title">
+    <div (click)="onButtonClick()"  id="close-btn" class="close-sidebar-menu-modal-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14.151"
+        height="25"
+        viewBox="0 0 14.151 25"
+      >
+        <path
+          d="m0 23.345 1.651 1.651 12.5-12.5-12.5-12.5L0 1.651 10.849 12.5 0 23.345Z"
+          fill="#fff"
+          fill-rule="evenodd"
+        ></path>
+      </svg>
+    </div>
+  </div>
+
+  <!--  -->
+  <div class="modal-content overflow-auto flex-grow-1 p-3">
+    <ul class="m-0 p-0 flex-grow-1">
+      <li>
+        <a href="#" title="الرئيسية" class="position-relative">
+          الرئيسية
+          <!---->
+          <!----></a
+        >
+        <!---->
+      </li>
+      <li>
+        <a href="#" title="حسابي" class="position-relative">
+          حسابي
+          <!---->
+          <!----></a
+        >
+        <!---->
+      </li>
+      <li>
+        <!---->
+        <!---->
+      </li>
+      <li>
+        <a href="#" title="الفروع" class="position-relative">
+          الفروع
+
+          <!---->
+          <!----></a
+        >
+        <!---->
+      </li>
+      <li>
+        <!---->
+        <a href="#" class="position-relative">English</a>
+        <!---->
+      </li>
+    </ul>
+  </div>
+  <!--  -->
+</div>
+
+
+<div (click)="onButtonClick()"  [ngClass]="{ 'active': isVisibleState }" class="overlay" id="overlay"></div>

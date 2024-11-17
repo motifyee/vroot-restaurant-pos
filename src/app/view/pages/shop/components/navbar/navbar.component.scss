@@ -1,0 +1,90 @@
+/* Side Navigation */
+.side-nav {
+	position: fixed;
+	bottom: 15px;
+	top: 15px;
+	right: -437px; /* Hidden initially */
+	width: 437px;
+	opacity: 0;
+	background-color: var(--GreenBackground);
+	transition: all 0.6s ease-in-out;
+	z-index: 1001;
+	border-radius: 0.5rem;
+
+	@media (max-width: 768px) {
+	  width: 93%;
+	}
+  }
+
+  .side-nav ul {
+	list-style-type: none;
+  }
+
+  .side-nav ul li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+	unicode-bidi: isolate;
+  }
+
+  .side-nav ul li a {
+	text-decoration: none;
+	display: block;
+	padding: 13px 0;
+	color: #fff;
+	text-align: right;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.09); /* dynamic */
+  }
+
+  /* Overlay for blurry background */
+  .overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(2px); /* Apply blur */
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.4s ease, visibility 0.4s ease;
+	transition: all 0.4s ease-in-out;
+	z-index: 993;
+
+	&.active {
+	  opacity: 1;
+	  visibility: visible;
+	}
+  }
+
+  /* Active states */
+  .side-nav.active {
+	right: 15px;
+	opacity: 1;
+  }
+
+  /* Modal Content */
+  .modal-content {
+	padding: 1rem !important;
+  }
+
+  .modal-title {
+	padding-bottom: 0;
+	padding: 1rem 1rem 0 1rem;
+	justify-content: space-between;
+	flex-shrink: 0;
+  }
+
+  .close-sidebar-menu-modal-btn {
+	width: 45px;
+	height: 45px;
+	cursor: pointer;
+	border-radius: 0.5rem;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+
+	svg {
+	  width: 20px;
+	  height: 20px;
+	}
+  }

@@ -1,0 +1,40 @@
+.banner {
+	margin: 0 auto;
+	padding: 0 12px;
+
+	> div {
+	  align-items: center;
+	  display: flex;
+	  justify-content: center;
+	  padding-bottom: 1rem;
+
+	  > a {
+		box-sizing: border-box;
+		color: rgb(13, 110, 253);
+		cursor: pointer;
+		direction: rtl;
+		display: block;
+		font-size: 15px;
+		height: 129.984px;
+		line-height: 22.5px;
+		margin: 0px;
+		outline-color: rgb(13, 110, 253);
+		outline-style: none;
+		outline-width: 0px;
+		padding: 0px;
+		scroll-behavior: smooth;
+		text-align: right;
+		text-decoration: none;
+		text-size-adjust: 100%;
+		transition: all 0.2s ease-in-out;
+		width: 174.75px;
+
+		> img {
+    cursor: pointer;
+    direction: rtl;
+    height: 129.984px;
+    max-height: 130px;
+		}
+	  }
+	}
+  }

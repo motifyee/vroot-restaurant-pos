@@ -15,4 +15,11 @@ export const routes: Routes = [
 				(m) => m.StoreComponent,
 			),
 	},
+	{
+		path: 'shop',
+		loadComponent: () =>
+			import('./view/pages/shop/shop.component').then(
+				(m) => m.ShopComponent,
+			),
+	},
 ];
