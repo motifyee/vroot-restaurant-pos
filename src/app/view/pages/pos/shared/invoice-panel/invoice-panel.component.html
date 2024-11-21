@@ -1,31 +1,109 @@
 <div class="flex flex-col thm-panel h-full">
 	<!-- invoice header -->
 	<section class="font-light text-xs">
-		<div class="flex justify-between p-1 pt-2">
-			<span>Company Name</span>
-			<span>Branch Name</span>
-		</div>
-		<p-divider />
-
-		<div class="flex justify-center py-1">For Serian Food</div>
-		<p-divider />
-
 		<div class="flex mb-2">
-			<span class="flex-1 flex justify-center items-center"
-				>Invoice No</span
-			>
-			<p-divider layout="vertical" />
-			<span class="flex-1 flex justify-center items-center"
-				><p-dropdown
+			<span class="invoice-dropdowns flex-1 pt-1">
+				<p-dropdown
 					[options]="items"
-					[(ngModel)]="selectedItem"
-					placeholder="Select Item"
+					[(ngModel)]="selectedInvoiceType"
+					placeholder="Order"
 					[virtualScroll]="true"
 					[virtualScrollItemSize]="38"
-					[virtualScrollOptions]="options"
-			/></span>
-			<p-divider layout="vertical" />
-			<span class="flex-1 flex justify-center items-center">Time</span>
+					[virtualScrollOptions]="scrollOptions"
+					(onChange)="onSalesInvoiceTypeChange($event)"
+					class="orderType-dropdown"
+					optionLabel="name"
+				/>
+				<p-dropdown
+					[options]="items"
+					[(ngModel)]="selectedBranch"
+					placeholder="Branch"
+					[virtualScroll]="true"
+					[virtualScrollItemSize]="38"
+					[virtualScrollOptions]="scrollOptions"
+					(onChange)="onToBranchIdChange($event)"
+					class="branch-dropdown"
+					optionLabel="name"
+				/>
+
+				<p-dropdown
+					[options]="items"
+					[(ngModel)]="selectedCustomer"
+					placeholder="Customer"
+					[virtualScroll]="true"
+					[virtualScrollItemSize]="38"
+					[virtualScrollOptions]="scrollOptions"
+					[filter]="true"
+					(onFilter)="onCustomersFilter($event)"
+					(onChange)="onCustomerChange($event)"
+					[showClear]="true"
+					class="customer-dropdown flex-1"
+					dataKey="id"
+					optionLabel="name"
+					filterBy="name, phone, mobile"
+					(onShow)="onShow($event)"
+					(onHide)="onHide($event)"
+					#customerDropdown
+				>
+					<!--  -->
+					<ng-template
+						pTemplate="filter"
+						let-options="options"
+						let-filter="filterCallback"
+					>
+						<div class="flex gap-1">
+							<input
+								type="text"
+								pInputText
+								role="searchbox"
+								placeholder="Filter"
+								[(ngModel)]="filterValue"
+								(focus)="options?.filter?.({ target: customFilterInput })"
+								(input)="options?.filter?.({ target: customFilterInput })"
+								class="flex-1"
+								#customFilterInput
+							/>
+
+							<p-button
+								icon="pi pi-plus"
+								[text]="true"
+								severity="success"
+								[rounded]="true"
+								class="add-btn"
+								(onClick)="
+									customerPopupVisible.set(true);
+									customerDropdown.hide()
+								"
+							/>
+						</div>
+					</ng-template>
+
+					<ng-template pTemplate="item" let-customer>
+						@if(customer.name == null){
+						<p-skeleton width="100%" />
+						}@else{
+						<span class="font-semibold min-w-24">
+							{{ customer.name }}
+						</span>
+						}
+					</ng-template>
+				</p-dropdown>
+
+				<p-button
+					icon="pi pi-pencil"
+					[text]="true"
+					(onClick)="customerPopupVisible.set(true)"
+				/>
+
+				<!-- <p-listbox
+					[options]="cities"
+					[(ngModel)]="selectedCity"
+					optionLabel="name"
+					class="w-full"
+					[listStyle]="{ 'max-height': '40px' }"
+				/> -->
+			</span>
+			<!-- <span class="flex-1 flex justify-center items-center">Time</span> -->
 		</div>
 	</section>
 
@@ -62,7 +140,7 @@
 								icon="pi pi-pencil"
 								class="p-button-text p-button-info h-6 w-6 py-1 px-2"
 								size="small"
-								(click)="visible = true"
+								(click)="productPopupVisible = true"
 							></button>
 							}
 						</div>
@@ -105,27 +183,14 @@
 	<br />
 
 	<!-- payment methods -->
-	<section class="flex justify-around px-">
-		<button
-			pButton
-			label="Cash"
-			severity="success"
-			size="small"
-			[outlined]="true"
-		></button>
-		<button
-			pButton
-			label="Visa"
-			severity="info"
-			size="small"
-			[outlined]="true"
-		></button>
+	<section class="flex gap-1 justify-around px-1">
+		<button pButton label="Cash" severity="success" class="flex-1"></button>
+		<button pButton label="Visa" severity="info" class="flex-1"></button>
 		<button
 			pButton
 			label="Later"
-			severity="danger"
-			size="small"
-			[outlined]="true"
+			severity="warning"
+			class="flex-1"
 		></button>
 	</section>
 
@@ -133,41 +198,11 @@
 </div>
 
 <!-- edit product dialog -->
-<p-dialog
-	header="Edit Product"
-	[modal]="true"
-	[(visible)]="visible"
-	[style]="{ width: '25rem' }"
->
-	<div class="flex items-center gap-3 mb-3">
-		<label for="username" class="font-semibold w-12">Count</label>
-		<input
-			pInputText
-			id="username"
-			class="w-20 text-center flex-1"
-			autocomplete="off"
-		/>
-		<p-button
-			icon="pi pi-plus"
-			severity="success"
-			(onClick)="visible = false"
-		/>
-		<p-button
-			icon="pi pi-minus"
-			severity="danger"
-			(onClick)="visible = false"
-		/>
-	</div>
-	<div class="flex items-center gap-3 mb-5">
-		<label for="email" class="font-semibold w-12">Note</label>
-		<input pInputText id="email" class="flex-auto" autocomplete="off" />
-	</div>
-	<div class="flex justify-end gap-2">
-		<p-button
-			label="Cancel"
-			severity="secondary"
-			(onClick)="visible = false"
-		/>
-		<p-button label="Save" (onClick)="visible = false" />
-	</div>
-</p-dialog>
+@if(productPopupVisible){
+<edit-product-popup (dismiss)="productPopupVisible = false" />
+} @if(customerPopupVisible()){
+<add-customer-popup
+	[customer]="selectedCustomer || emptyCustomer"
+	(dismiss)="customerPopupVisible.set(false)"
+/>
+}

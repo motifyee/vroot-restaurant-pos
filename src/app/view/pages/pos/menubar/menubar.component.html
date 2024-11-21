@@ -1,6 +1,6 @@
 <p-toast />
 
-<div class="flex thm-panel gap-1 w-full items-center p-1">
+<div class="thm-panel w-full flex gap-1 items-center p-1">
 	<div class="fixed-btns flex gap-1">
 		<p-button
 			icon="pi pi-cog"
@@ -43,8 +43,9 @@
 		</p-button>
 		<!-- <p-divider layout="vertical" /> -->
 	</div>
-	<div class="tabs flex gap-1 overflow-x-auto">
-		<div class="tab-btns flex gap-1">
+
+	<div class="tabs flex gap-1">
+		<!-- <div class="tab-btns flex gap-1">
 			@for(tab of appStore.entities(); track tab.id; let idx = $index) {
 			<p-buttonGroup>
 				<p-button
@@ -62,10 +63,7 @@
 					(onClick)="appStore.activateTab(tab.id)"
 					[icon]="tab.icon()"
 				/>
-				<!-- appStore.entityMap()[tab.id].hasChanges()
-          ? 'pi pi-circle-fill'
-          : undefined -->
-				<!-- [text]="appStore.activeTab()?.id != tab.id" -->
+			
 				<p-button
 					[text]="true"
 					[severity]="
@@ -80,7 +78,43 @@
 				/>
 			</p-buttonGroup>
 			}
-		</div>
+		</div> -->
+		<p-tabMenu
+			[scrollable]="true"
+			[activeItem]="activeItem()"
+			[model]="menuitems()"
+			(activeItemChange)="chngActiveItem($event)"
+			class="max-w-screen-md"
+			#tabmenu
+		>
+			<ng-template pTemplate="item" let-item>
+				<ng-container>
+					<a [routerLink]="item.link" class="p-menuitem-link">
+						@if(item.hasChanges){
+						<span
+							pBadge
+							severity="danger"
+							[class]="item.icon"
+						></span>
+						}@else {
+						<span [class]="item.icon"></span>
+						}
+						<span class="ps-2 pe-1">{{ item.label }}</span>
+						<p-button
+							icon="pi pi-times"
+							severity="danger"
+							[text]="true"
+							[rounded]="true"
+							(onClick)="
+								$event.stopPropagation();
+								this.appStore.closeTab(item.id)
+							"
+						/>
+					</a>
+				</ng-container>
+			</ng-template>
+		</p-tabMenu>
+
 		<div class="trailing-btns flex items-center gap-1">
 			<p-button
 				icon="pi pi-plus"

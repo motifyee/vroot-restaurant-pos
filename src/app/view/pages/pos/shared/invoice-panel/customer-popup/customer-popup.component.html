@@ -1,0 +1,141 @@
+<p-dialog
+	header="Add Customer"
+	[modal]="true"
+	[visible]="true"
+	styleClass="add-customer-popup"
+	(visibleChange)="dismiss.emit()"
+>
+	<form>
+		<div class="flex gap-2">
+			<div class="flex-1">
+				<!-- name -->
+				<div class="flex items-center gap-3 mt-1">
+					<label for="name" class="font-semibold w-28"> Name </label>
+					<input
+						pInputText
+						name="name"
+						id="name"
+						class="w-20 flex-1"
+						autocomplete="off"
+						[(ngModel)]="customer().name"
+						#name="ngModel"
+						required
+					/>
+				</div>
+
+				@if(name.dirty && name.hasError('required')) {
+				<div class="text-red-500 text-end">Name is required</div>
+				} @else {
+				<div class="mb3">&nbsp;</div>
+				}
+
+				<!-- classification -->
+				<div class="flex items-center gap-3 mb-5">
+					<label for="classification" class="font-semibold w-28">
+						Classification
+					</label>
+					<p-dropdown
+						[options]="cities"
+						name="classification"
+						[(ngModel)]="customer().classification"
+						optionLabel="name"
+						placeholder="Classification"
+						id="classification"
+						class="flex-1"
+					/>
+				</div>
+			</div>
+
+			<div class="flex-1">
+				<!-- phone -->
+				<div class="flex items-center gap-3 mt-1">
+					<label for="phone" class="font-semibold w-28">Phone</label>
+					<input
+						pInputText
+						name="phone"
+						id="phone"
+						class="w-20 flex-1"
+						autocomplete="off"
+						[(ngModel)]="customer().phone"
+						required
+						#phone="ngModel"
+					/>
+				</div>
+
+				@if(phone.dirty && phone.hasError('required')) {
+				<div class="text-red-500 text-end">Phone is required</div>
+				} @else {
+				<div class="mb3">&nbsp;</div>
+				}
+
+				<!-- other phone -->
+				<div class="flex items-center gap-3 mb-3 mt-1">
+					<label
+						for="other-phone"
+						class="font-semibold w-28 whitespace-nowrap"
+						>Other Phone</label
+					>
+					<input
+						pInputText
+						id="other-phone"
+						name="other-phone"
+						class="w-20 flex-1"
+						autocomplete="off"
+						[(ngModel)]="customer().mobile"
+					/>
+				</div>
+			</div>
+		</div>
+
+		<!-- address -->
+		<div class="mb-5">
+			<label for="classification" class="block font-semibold w-28 mb-2">
+				Address
+			</label>
+
+			<p-table
+				[value]="cities"
+				selectionMode="single"
+				[(selection)]="selectedCity"
+				[metaKeySelection]="true"
+				dataKey="code"
+				[tableStyle]="{ width: '100%' }"
+				required
+			>
+				<ng-template pTemplate="header">
+					<tr>
+						<th style="width: 4rem"></th>
+						<th>Name</th>
+						<th>Code</th>
+						<th>Toggle</th>
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="body" let-city>
+					<tr [pSelectableRow]="city">
+						<td><p-tableRadioButton [value]="city" /></td>
+						<td>{{ city.name }}</td>
+						<td>{{ city.code }}</td>
+						<td>
+							<span (click)="$event.stopPropagation()">
+								<p-toggleButton
+									name="address"
+									onLabel="On"
+									offLabel="Off"
+								/>
+							</span>
+						</td>
+					</tr>
+				</ng-template>
+			</p-table>
+		</div>
+
+		<div class="flex justify-end gap-2">
+			<p-button
+				label="Cancel"
+				severity="secondary"
+				(onClick)="dismiss.emit()"
+			/>
+			<p-button label="Save" (onClick)="logCustomer()" />
+		</div>
+	</form>
+</p-dialog>

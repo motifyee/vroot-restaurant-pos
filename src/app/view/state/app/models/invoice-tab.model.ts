@@ -1,10 +1,13 @@
-import { Invoice } from '@src/app/features/invoices/domain/models/Invoice.model';
+import {
+	Invoice,
+	SalesInvoiceType,
+} from '@src/app/features/invoices/domain/models/Invoice.model';
 import { Tab } from './tab.model';
 import { computed, Injector, signal } from '@angular/core';
 import { deepMatch } from '../utils/utils';
 import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { uuidv4 } from '../utils/uuid';
-import { InvoiceIndexStore } from '@src/app/features';
+import { Customer, InvoiceIndexStore } from '@src/app/features';
 import { InvoiceProduct } from '@src/app/features/invoices/domain/models/invoice-product.model';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CalcInvoicePricesUseCase } from '@src/app/features/invoices/domain/usecases/calc-invoice-prices.usecase';
@@ -99,6 +102,8 @@ export class InvoiceTab extends Tab {
 	);
 
 	#initialInvoice = signal<Invoice>({
+		netPrice: 0,
+		invoiceTax: 0,
 		products: [],
 	} as unknown as Invoice);
 	invoice = signal<Invoice>({} as Invoice);
@@ -171,5 +176,23 @@ export class InvoiceTab extends Tab {
 		})();
 
 		this.invoice.set(invoice);
+	}
+
+	setCustomer(customer: Customer) {
+		let invoice = { ...this.invoice() };
+
+		if (!customer) delete invoice.customer;
+		else invoice.customer = customer;
+
+		this.invoice.set(invoice);
+	}
+
+	setSalesInvoiceType(salesInvoiceType: SalesInvoiceType) {
+		this.invoice.set({ ...this.invoice(), salesInvoiceType });
+	}
+
+	setToBranchId(branch: Branch) {
+		if (!branch?.id) return;
+		this.invoice.set({ ...this.invoice(), toBranchId: branch.id });
 	}
 }

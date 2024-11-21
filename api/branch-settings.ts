@@ -31,7 +31,7 @@ interface BranchSettings {
 export const apis: API = {
 	getBranchSettings: {
 		method: 'GET',
-		url: 'api/settings/branch',
+		url: 'api/settings/branches',
 		successCode: 200,
 		response: { data: {} as BranchSettings },
 	},

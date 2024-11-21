@@ -1,0 +1,14 @@
+:host::ng-deep {
+	.add-customer-popup {
+		width: 50rem;
+	}
+
+	p-dropdown {
+		.p-inputwrapper {
+			@apply w-full;
+		}
+		span.p-inputtext {
+			@apply p-2;
+		}
+	}
+}
