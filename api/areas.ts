@@ -10,7 +10,7 @@ export const apis: API = {
 		method: 'GET',
 		url: 'api/delivery-areas',
 		successCode: 200,
-		response: { data: {} as DeliverArea },
+		response: { data: [] as DeliverArea[] },
 		notes: `better be paginated, but laid as such for simplicity`,
 	},
 	createAreas: {
