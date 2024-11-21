@@ -3,22 +3,20 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
 	{
 		path: '',
+		redirectTo: 'shop',
+		pathMatch: 'full',
+	},
+	{
+		path: 'pos',
 		loadComponent: () =>
 			import('./view/pages/pos/pos.component').then(
 				(m) => m.POSComponent,
 			),
 	},
 	{
-		path: 'store',
-		loadComponent: () =>
-			import('./view/pages/store/store.component').then(
-				(m) => m.StoreComponent,
-			),
-	},
-	{
 		path: 'shop',
 		loadComponent: () =>
-			import('./view/pages/shop/shop.component').then(
+			import('./view/pages/webstore/webstore.component').then(
 				(m) => m.ShopComponent,
 			),
 	},
