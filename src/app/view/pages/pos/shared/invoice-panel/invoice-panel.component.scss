@@ -1,5 +1,34 @@
-p-divider::ng-deep {
-	.p-divider {
+:host::ng-deep {
+	p-divider .p-divider {
 		@apply my-1;
+	}
+
+	.invoice-dropdowns {
+		p-button.add-btn button {
+			padding: 0;
+		}
+		p-dropdown {
+			// .p-dropdown-trigger {
+			// 	display: none;
+			// }
+			.p-inputwrapper {
+				@apply w-full;
+			}
+			span.p-inputtext {
+				@apply p-2;
+			}
+		}
+	}
+}
+
+.invoice-dropdowns {
+	@apply flex gap-1 mx-1 justify-center items-stretch flex-wrap;
+	.customer-dropdown {
+		@apply flex-[1_1_80%];
+		// @apply lg:flex-1;
+	}
+	.orderType-dropdown,
+	.branch-dropdown {
+		@apply flex-1;
 	}
 }

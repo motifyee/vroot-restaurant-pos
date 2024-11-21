@@ -1,6 +1,7 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
+	computed,
 	inject,
 	OnInit,
 } from '@angular/core';
@@ -11,13 +12,16 @@ import { ChipsModule } from 'primeng/chips';
 import { DividerModule } from 'primeng/divider';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-import { MenuModule } from 'primeng/menu';
+import { Menu, MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ToastModule } from 'primeng/toast';
 import { appStore } from '../../../state/app/app.store';
 import { ButtonGroupModule } from 'primeng/buttongroup';
 import { DialogModule } from 'primeng/dialog';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { Tab } from '@src/app/view/state/app/models/tab.model';
+import { BadgeModule } from 'primeng/badge';
 
 @Component({
 	selector: 'menubar',
@@ -35,6 +39,8 @@ import { DialogModule } from 'primeng/dialog';
 		InputGroupAddonModule,
 		ChipsModule,
 		DialogModule,
+		TabMenuModule,
+    BadgeModule,
 	],
 	providers: [MessageService],
 	templateUrl: './menubar.component.html',
@@ -112,4 +118,36 @@ export class MenubarComponent implements OnInit {
 			life: 3000,
 		});
 	}
+
+	_createMenuItem(tab?: Tab): MenuItem {
+		if (!tab) return {} as MenuItem;
+		let res: MenuItem = {
+			label: tab.title(),
+			icon: tab.icon(),
+			id: tab.id,
+			hasChanges: tab.hasChanges(),
+			command: () => this.appStore.activateTab(tab.id as string),
+		};
+
+		return res;
+	}
+
+	activeItem = computed(() =>
+		this.menuitems().find(
+			(item) => item.id === this.appStore.activeTabId(),
+		),
+	);
+
+	menuitems = computed(() =>
+		this.appStore.ids().map((id) => {
+			const tab = this.appStore.entityMap()[id];
+			return this._createMenuItem(tab);
+		}),
+	);
+
+	chngActiveItem = (menuitem: MenuItem) => {
+		if (!menuitem || !menuitem.id) return;
+		if (this.appStore.activeTabId() === menuitem.id) return;
+		this.appStore.activateTab(menuitem.id);
+	};
 }

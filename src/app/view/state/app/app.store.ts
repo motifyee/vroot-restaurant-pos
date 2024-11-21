@@ -17,11 +17,13 @@ import { storeType } from '../utils/utils';
 
 type AppStoreState = {
 	activeTabId: string;
+	activeTabIdx?: number;
 	confirmCloseUnsavedTabId: string;
 };
 
 const initialState: AppStoreState = {
 	activeTabId: '',
+	activeTabIdx: 0,
 	confirmCloseUnsavedTabId: '',
 };
 
@@ -39,11 +41,17 @@ export const appStore = signalStore(
 	}),
 	withMethods((store) => {
 		return {
-			activateTab: (tabId: string): void => {
+			activateTab: (activeTabId: string): void => {
 				// if (tabIndex < store.entities().length)
-				patchState(store, { activeTabId: tabId });
+				let activeTabIdx = store
+					.ids()
+					.findIndex((id) => id === activeTabId);
+				patchState(store, { activeTabId, activeTabIdx });
 			},
-
+		};
+	}),
+	withMethods((store) => {
+		return {
 			closeTab: (tabId: string): void => {
 				if (store.entityMap()[tabId]?.hasChanges())
 					return patchState(store, {
@@ -60,7 +68,7 @@ export const appStore = signalStore(
 
 					let newActiveTab = store.entities()[idx];
 
-					patchState(store, { activeTabId: newActiveTab?.id });
+					store.activateTab(newActiveTab?.id);
 				}
 
 				patchState(store, removeEntity(tabId));
@@ -83,7 +91,9 @@ export const appStore = signalStore(
 					invoice,
 				});
 				patchState(store, addEntity(tab as Tab));
-				patchState(store, { activeTabId: tab.id });
+				setTimeout(() => {
+					store.activateTab(tab.id);
+				}, 10);
 
 				return tab;
 			},
@@ -92,7 +102,9 @@ export const appStore = signalStore(
 				let tab = new InvoiceListTab(idxStore);
 
 				patchState(store, addEntity(tab as Tab));
-				patchState(store, { activeTabId: tab.id });
+				setTimeout(() => {
+					store.activateTab(tab.id);
+				}, 10);
 
 				return tab;
 			},
