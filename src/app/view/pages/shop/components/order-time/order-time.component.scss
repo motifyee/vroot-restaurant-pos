@@ -1,0 +1,325 @@
+.time-type-modal-wrapper {
+	z-index: 999;
+	width: 450px;
+	height: calc(100vh - 10rem);
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	background-color: #F3F3ED;
+	border: 1px solid #A39172;
+	color: var(--Greentextcolor);
+	border-radius: 15px;
+	box-shadow: rgba(0, 0, 0, 0) 0 0 8px 1px;
+	margin: auto !important;
+	justify-content: space-between !important;
+	flex-direction: column !important;
+	right: 0 !important;
+	left: 0 !important;
+	bottom: 0 !important;
+	top: 0 !important;
+	position: fixed !important;
+	display: flex !important;
+
+	/* Start hidden with initial visibility and opacity */
+	visibility: hidden;
+	opacity: 0;
+	transform: scale(0) translateY(-100%);
+	transition: all 1s ease-in-out;
+	z-index: 9999999;
+	&.show {
+		visibility: visible;
+		opacity: 1;
+		transform: scale(1) translateY(0);
+		animation: move-down-and-bounce 0.5s forwards;
+	  }
+
+	  &.hide {
+		animation: move-up-and-scale 0.5s forwards;
+		/* visibility: hidden is set after the animation ends */
+		visibility: hidden;
+	  }
+  }
+
+
+  /* Show modal */
+
+  /* Hide modal (applied when modal is hidden) */
+
+  /* Keyframes for showing animation */
+@keyframes move-down-and-bounce {
+	0% {
+	  transform: scale(0) translateY(-100%);
+	  opacity: 0;
+	}
+
+	60% {
+	  opacity: 0.5;
+	}
+
+	100% {
+	  transform: scale(1) translateY(0);
+	  opacity: 1;
+	}
+  }
+
+  /* Keyframes for hiding animation */
+  @keyframes move-up-and-scale {
+	0% {
+	  transform: scale(1) translateY(0);
+	  opacity: 1;
+	}
+
+	100% {
+	  transform: scale(0) translateY(-100%);
+	  opacity: 0;
+	  /* visibility will be applied via the class */
+	}
+  }
+
+
+
+  .modal-title {
+	padding: 1rem !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+	flex-shrink: 0 !important;
+	display: flex !important;
+
+	span {
+	  --bs-text-opacity:1;
+	  color: rgba(33, 37, 41, 1) !important;
+	  font-weight: 700 !important;
+	  display: block !important;
+	}
+  }
+
+  .closeModalBtn {
+	width: 25px;
+	height: 25px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color: transparent !important;
+	cursor: pointer;
+	--bs-bg-opacity:1;
+	padding: 0 !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	-webkit-appearance: button;
+	text-transform: none;
+	margin: 0;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	border-radius: 0;
+  }
+
+  .modal-content {
+	margin-bottom: 65px;
+	padding-top: 0 !important;
+	padding: 1rem !important;
+	flex-grow: 1 !important;
+	overflow: auto !important;
+  }
+
+  .scheduled-days-tabs {
+	overflow-x: auto;
+	flex-shrink: 0;
+	margin: 0 -1rem;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	-ms-scroll-snap-type: x mandatory;
+	scroll-snap-type: x mandatory;
+	-webkit-overflow-scrolling: touch;
+	padding: 0.5rem !important;
+	align-items: center !important;
+	justify-content: flex-start !important;
+	border-bottom: 1px solid #dee2e6 !important;
+	border-top: 1px solid #dee2e6 !important;
+	display: flex !important;
+
+	label {
+	  scroll-snap-align: start;
+	  user-drag: none;
+	  touch-action: pan-y;
+	  cursor: grab;
+	  min-width: 19%;
+	  min-width: 80px;
+	  margin: 0 !important;
+	  position: relative !important;
+	  display: inline-block;
+
+	  input {
+		opacity: 0;
+		z-index: 9;
+		cursor: pointer;
+		height: 100% !important;
+		width: 100% !important;
+		left: 0 !important;
+		top: 0 !important;
+		position: absolute !important;
+		margin: 0;
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+	  }
+
+	  div {
+		color: #fff !important;
+		min-height: 60px;
+		border-radius: .5rem !important;
+		--bs-text-opacity:1;
+		text-align: center !important;
+		align-items: center !important;
+		justify-content: center !important;
+		flex-direction: column !important;
+		display: flex !important;
+
+		&.active {
+		  background-color: var(--GreenBackground);
+		}
+
+		span {
+		  color: rgba(108, 117, 125, 1);
+		}
+
+		time {
+		  color: rgba(108, 117, 125, 1);
+		  font-size: 14px;
+		  margin-top: 2px;
+		}
+
+		span.active {
+		  color: #fff;
+		}
+
+		time.active {
+		  color: #fff;
+		  font-size: 14px;
+		  margin-top: 2px;
+		}
+	  }
+	}
+  }
+
+  .scheduledTimes {
+	margin: 0 -1rem;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	flex-grow: 1 !important;
+	overflow: auto !important;
+
+	label {
+	  margin: 0;
+
+	  input {
+		opacity: 0;
+		cursor: pointer;
+		position: absolute;
+		margin: 0;
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+	  }
+
+	  span {
+		height: 45px;
+		--bs-text-opacity:1;
+		color: rgba(33, 37, 41, 1) !important;
+		padding: 0.5rem !important;
+		align-items: center !important;
+		justify-content: center !important;
+		border-bottom: 1px solid #dee2e6 !important;
+		display: flex !important;
+	  }
+	}
+  }
+
+  .order-time-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(2px);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.4s ease, visibility 0.4s ease;
+	transition: all .4s ease-in-out;
+	z-index: 1000;
+
+	&.active {
+	  opacity: 1;
+	  visibility: visible;
+	}
+  }
+
+
+  @media (max-width: 768px) {
+	.time-type-modal-wrapper {
+		width: 95%;
+	}
+  }
+
+
+
+
+
+  .horizontal-scroll {
+	width: 98%;
+    margin: 0 auto !important;
+	display: flex;
+	overflow-x: auto; /* Enables horizontal scrolling */
+	overflow-y: hidden; /* Prevent vertical scrolling */
+	flex-shrink: 0;
+	margin: 0 -1rem; /* Adjust margins for better edge visibility */
+	padding: 0.5rem;
+	align-items: center;
+	justify-content: flex-start;
+	border-bottom: 1px solid #dee2e6;
+	border-top: 1px solid #dee2e6;
+	-ms-overflow-style: none; /* Hides scrollbars in IE */
+	scrollbar-width: none; /* Hides scrollbars in Firefox */
+	-webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS devices */
+
+
+	/* Hide scrollbars on modern browsers */
+	&::-webkit-scrollbar {
+	  display: none;
+	}
+
+	scroll-snap-type: x mandatory; /* Enables snap scrolling */
+
+	/* Makes each child snap to the viewport */
+	> * {
+	  scroll-snap-align: start; /* Aligns children at the start of the viewport */
+	  flex-shrink: 0; /* Prevents children from shrinking */
+	  margin-right: 1rem; /* Adds spacing between items */
+	}
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+	.horizontal-scroll {
+	  margin: 0 -0.5rem;
+	  padding: 0.25rem;
+	}
+
+	.horizontal-scroll > * {
+	  margin-right: 0.5rem;
+	}
+  }
+
+  @media (min-width: 768px) and (max-width: 1200px) {
+	.horizontal-scroll {
+	  margin: 0 -0.75rem;
+	  padding: 0.4rem;
+	}
+  }
+
+  @media (min-width: 1200px) {
+	.horizontal-scroll {
+	  margin: 0 -1rem;
+	  padding: 0.5rem;
+	}
+  }

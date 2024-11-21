@@ -1,0 +1,48 @@
+	<div  [ngClass]="{ 'show': isVisibleState , 'hide': !isVisibleState  }"  class="order-type">
+  <div>
+    <div class="order-type-content">
+      <!-- Tabs Area -->
+      <div class="tabsArea">
+        <button type="button" [class.active]="activeTab === 'delivery'" (click)="setActiveTab('delivery')">توصيل</button>
+        <button type="button" [class.active]="activeTab === 'pickup'" (click)="setActiveTab('pickup')">استلام</button>
+        <button type="button" [class.active]="activeTab === 'drive'" (click)="setActiveTab('drive')">من السيارة</button>
+      </div>
+      <!-- ./Tabs Area -->
+
+
+
+      <div class="content-wrapper">
+      <!-- Content Area -->
+      <div class="contentArea">
+        <!-- Content for 'توصيل' tab -->
+        <div *ngIf="activeTab === 'delivery'">
+<app-delivery></app-delivery>
+<app-phone-popup *ngIf="isVisibleState"></app-phone-popup>
+<!-- <app-code-verification  *ngIf="isVisibleState"></app-code-verification> -->
+
+        </div>
+
+        <!-- Content for 'استلام' tab -->
+        <div *ngIf="activeTab === 'pickup'">
+          <app-pickup></app-pickup>
+
+        </div>
+
+        <!-- Content for 'من السيارة' tab -->
+        <div *ngIf="activeTab === 'drive'">
+          <!-- <app-pickup></app-pickup> -->
+           <app-drive></app-drive>
+
+        </div>
+      </div>
+      <!-- ./Content Area -->
+
+    </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<div (click)="toggleOrderOptionsVisibility()" [ngClass]="{'active': isVisibleState}" class="overlay" id="menuBarOverlay"></div>

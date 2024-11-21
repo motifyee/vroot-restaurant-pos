@@ -1,0 +1,705 @@
+.menuItemModalWrapper {
+	top: 1rem;
+	z-index: 9999;
+	width: 500px;
+	max-height: calc(100vh - 2rem);
+	max-width: calc(100vw - 1rem);
+	background-color: #F3F3ED;
+	border-radius: 0.5rem !important;
+	margin: auto !important;
+	right: 0 !important;
+	left: 0 !important;
+	position: fixed !important;
+	overflow: hidden !important;
+	opacity: 0;
+	transform: scale(0) translateY(-100%);
+	visibility: hidden;
+
+	/* Initial state (hidden) */
+	transition: visibility 0s 0.5s, opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+
+	&.show {
+	  visibility: visible; /* Ensure it's visible when showing */
+	  opacity: 1;
+	  transform: scale(1) translateY(0);
+	  animation: moveDownAndBounce 0.5s forwards;
+	  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+	}
+
+	&.hide {
+	  opacity: 0; /* Fade out */
+	  transform: scale(0) translateY(-100%); /* Scale and move up */
+	  animation: moveUpAndScale 0.5s forwards;
+	  visibility: hidden; /* Applied after animation ends */
+	  transition: visibility 0s 0.5s, opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+	}
+  }
+
+  /* Keyframes */
+  @keyframes moveDownAndBounce {
+	0% {
+	  transform: scale(0) translateY(-100%);
+	  opacity: 0;
+	}
+
+	60% {
+	  opacity: 0.5;
+	}
+
+	100% {
+	  transform: scale(1) translateY(0);
+	  opacity: 1;
+	}
+  }
+
+  @keyframes moveUpAndScale {
+	0% {
+	  transform: scale(1) translateY(0);
+	  opacity: 1;
+	}
+
+	100% {
+	  transform: scale(0) translateY(-100%);
+	  opacity: 0;
+	}
+  }
+
+
+  .productItem {
+	justify-content: space-between !important;
+	flex-direction: column !important;
+	display: flex !important;
+  }
+
+  .modalTopArea {
+	max-height: calc(100vh - 83px - 2rem);
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	flex-grow: 1 !important;
+	position: relative !important;
+	overflow: auto !important;
+  }
+
+  .closeMenuItemModalBtn {
+	left: 1rem;
+	width: 32px;
+	height: 32px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-size: 22px 22px;
+	background-color: hsla(0, 0%, 100%, 0.64);
+	box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.16);
+	cursor: pointer;
+	z-index: 9;
+	top: 1rem;
+	border-radius: 50% !important;
+	align-items: center !important;
+	justify-content: center !important;
+	position: absolute !important;
+	display: flex !important;
+
+	i {
+	  color: rgb(122, 122, 122);
+	}
+  }
+
+  .itemImgthumb {
+	position: relative;
+	overflow: hidden;
+  }
+
+  .slick-slider {
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-touch-callout: none;
+	-khtml-user-select: none;
+	touch-action: pan-y;
+	-webkit-tap-highlight-color: transparent;
+  }
+
+  .slick-list {
+	height: 300px;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	display: block;
+	transform: translateZ(0);
+  }
+
+  .slick-track {
+	opacity: 1;
+	width: 500px;
+	transform: translate3d(0px, 0px, 0px);
+	position: relative;
+	top: 0;
+	left: 0;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+  }
+
+  .slick-slide {
+	width: 500px;
+	display: block;
+	float: right;
+	height: 100%;
+	min-height: 1px;
+  }
+
+  .item {
+	width: 100%;
+	display: inline-block;
+	height: 300px;
+	--bs-bg-opacity:1;
+	background-color: rgba(255, 255, 255, 1) !important;
+	overflow: hidden !important;
+
+	img {
+	  object-fit: cover;
+	  display: block;
+
+	  /* for .slick-slide img */
+	  height: 100% !important;
+
+	  /* from .h-100 */
+	  width: 100% !important;
+
+	  /* from .w-100 */
+	  vertical-align: middle;
+
+	  /* from img, svg */
+
+
+	      /* object-fit: cover; */
+		//   display: block;
+		//   height: 100% !important;
+		//   width: 100% !important;
+		//   vertical-align: middle;
+		//   background-position: center;
+		//   background-repeat: no-repeat;
+		//   background-size: cover;
+	}
+  }
+
+  .aboutItem {
+	gap: 1rem !important;
+	padding-top: 1rem !important;
+	padding-bottom: 1rem !important;
+	padding-right: .5rem !important;
+	padding-left: .5rem !important;
+	flex-direction: column !important;
+	display: flex !important;
+  }
+
+  .nameAndPrice {
+	gap: .5rem !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+	display: flex !important;
+  }
+
+  .itemInfo {
+	color: var(--Greentextcolor);
+	font-weight: 700 !important;
+	flex-grow: 1 !important;
+  }
+
+  .item-description {
+	color: #A39172;
+	font-size: 13px;
+	text-align: center !important;
+
+	p {
+	  margin: 0;
+	}
+  }
+
+  .itemOptions {
+	border-top-color: hsla(0, 0%, 86.7%, 0.2) !important;
+	padding: .5rem !important;
+  }
+
+  .title {
+	margin-bottom: .5rem !important;
+	align-items: flex-start !important;
+	justify-content: space-between !important;
+	flex-wrap: wrap !important;
+	display: flex !important;
+  }
+
+  .optionsItems {
+	margin: 0 -.5rem;
+  }
+
+  .optionItem {
+	align-items: center !important;
+	justify-content: flex-start !important;
+	flex-wrap: wrap !important;
+	width: 100% !important;
+	position: relative !important;
+	display: flex !important;
+	transition: all .2s;
+
+	&:hover {
+	  background-color: rgb(218, 218, 218);
+	}
+  }
+
+  .optionTxt {
+	transition: all .2s ease-in-out;
+	align-items: flex-start !important;
+	justify-content: flex-start !important;
+	flex-direction: column !important;
+	width: 100% !important;
+	display: flex !important;
+
+	label {
+	  padding: .5rem !important;
+	  margin: 0 !important;
+	  align-items: center !important;
+	  justify-content: space-between !important;
+	  flex-wrap: wrap !important;
+	  width: 100% !important;
+	  position: relative !important;
+	  display: flex !important;
+
+	  input {
+		cursor: pointer;
+		opacity: 0;
+		z-index: 9;
+		height: 100% !important;
+		width: 100% !important;
+		left: 0 !important;
+		top: 0 !important;
+		position: absolute !important;
+		margin: 0;
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+	  }
+	}
+  }
+
+  .sideR {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: flex-start !important;
+  }
+
+  .checkMark {
+	margin-left: 10px;
+
+	/* from [dir=rtl] .menuItemModalWrapper .modalTopArea .itemOptions .optionsItems .optionItem .optionTxt label .sideR .checkMark */
+	background-color: #fff;
+	width: 20px;
+
+	/* from width */
+	height: 20px;
+
+	/* from height */
+	transition: all .2s ease-in-out;
+
+	/* from transition */
+	border-radius: 0.25rem !important;
+
+	/* from .rounded-1 */
+	position: relative;
+
+	&.checked {
+	  background-color: var(--GreenBackground);
+
+	  /* background-image: url("https://cdn-icons-png.flaticon.com/512/14034/14034688.png"); */
+	}
+  }
+
+  /* .checkMark:after {
+	  position: absolute;
+	  border-radius: .2rem;
+	  top: 0;
+	  width: 20px;
+	  height: 20px;
+	  content: "";
+	  opacity: 0;
+	  background-position: 50%;
+	  background-repeat: no-repeat;
+	  background-size: 12px 12px;
+	  background-color: var(--GreenBackground);
+	  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 24 24'%3E%3Cpath d='M9.707 19.121a.997.997 0 01-1.414 0l-5.646-5.647a1.5 1.5 0 010-2.121l.707-.707a1.5 1.5 0 012.121 0L9 14.171l9.525-9.525a1.5 1.5 0 012.121 0l.707.707a1.5 1.5 0 010 2.121z' fill='%23fff' data-original='%23000000' xmlns='http://www.w3.org/2000/svg'/%3E%3C/svg%3E");
+	  transition: all .2s ease-in-out;
+  } */
+
+  .checkIcon {
+	color: #fff;
+	transform: translate(-3px, 1px);
+  }
+
+  .optionName {
+	color: var(--Greentextcolor);
+
+	/* from color */
+	font-size: 13px;
+
+	/* from font-size */
+	transition: all .2s ease-in-out;
+
+	/* from transition */
+	align-items: center !important;
+
+	/* from .align-items-center */
+	justify-content: flex-start !important;
+
+	/* from .justify-content-start */
+	display: flex !important;
+
+	/* from .d-flex */
+  }
+
+  .optionPrice {
+	color: var(--Greentextcolor);
+	font-size: 13px;
+	transition: all .2s ease-in-out;
+	display: flex !important;
+	justify-content: flex-start !important;
+	align-items: center !important;
+	gap: .25rem !important;
+
+	small {
+	  font-size: .875em;
+	}
+  }
+
+  .required {
+	height: 20px;
+
+	/* from .menuItemModalWrapper .modalTopArea .itemOptions .colL .required */
+	min-width: 60px;
+
+	/* from min-width */
+	color: #28c76f;
+
+	/* from color */
+	font-size: 10px;
+
+	/* from font-size */
+	background-color: rgba(40, 199, 111, 0.12);
+
+	/* from background-color */
+	font-weight: 700 !important;
+
+	/* from .fw-bold */
+	border-radius: var(--bs-border-radius) !important;
+
+	/* from .rounded */
+	padding-right: .5rem !important;
+
+	/* from .px-2 */
+	padding-left: .5rem !important;
+
+	/* from .px-2 */
+	align-items: center !important;
+
+	/* from .align-items-center */
+	justify-content: center !important;
+
+	/* from .justify-content-center */
+	display: flex !important;
+
+	/* from .d-flex */
+  }
+
+  .menuItemModalWrapper small {
+	color: rgb(163, 145, 114);
+  }
+
+  .optionCalories {
+	font-size: 11px;
+	color: var(--bodySecondaryTextColor);
+	transition: all .2s ease-in-out;
+	display: flex !important;
+	margin-right: .25rem !important;
+	margin-left: .25rem !important;
+	align-items: center !important;
+	justify-content: center !important;
+  }
+
+  .itemNote {
+	padding: .5rem !important;
+	border-top-color: hsla(0, 0%, 86.7%, 0.2) !important;
+
+	label {
+	  font-weight: 700 !important;
+	  display: inline-block;
+	  margin-bottom: .25rem !important;
+	}
+
+	textarea {
+	  min-height: 70px;
+
+	  /* from min-height */
+	  vertical-align: top;
+
+	  /* from vertical-align */
+	  border-color: hsla(0, 0%, 86.7%, 0.2) !important;
+
+	  /* from border-color */
+	  border-radius: 0.5 !important;
+
+	  /* from .rounded-3 */
+	  background-color: transparent !important;
+
+	  /* from .bg-transparent */
+	  padding: .5rem !important;
+
+	  /* from .p-2 */
+	  width: 100% !important;
+
+	  /* from .w-100 */
+	  border: 1px solid #dee2e6 !important;
+
+	  /* from .border */
+	  border-color: hsla(0, 0%, 86.7%, 0.2) !important;
+	  resize: vertical;
+
+	  /* from textarea */
+	  margin: 0;
+
+	  /* from button, input, optgroup, select, textarea */
+	  font-family: inherit;
+
+	  /* from button, input, optgroup, select, textarea */
+	  font-size: inherit;
+
+	  /* from button, input, optgroup, select, textarea */
+	  line-height: inherit;
+
+	  /* from button, input, optgroup, select, textarea */
+	  outline: none;
+	}
+  }
+
+  .colR span {
+	line-height: 32.5px;
+  }
+
+  .modalBottomArea {
+	background-color: var(--popUpBackgroundColor);
+
+	/* Background color */
+	border-radius: var(--bs-border-radius-lg) !important;
+
+	/* Rounded corners */
+	padding: 1rem !important;
+
+	/* Padding */
+	align-items: center !important;
+
+	/* Align items center */
+	justify-content: space-between !important;
+
+	/* Justify content between */
+	flex-shrink: 0 !important;
+
+	/* Prevent flex item from shrinking */
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+
+	/* Box shadow */
+	display: flex !important;
+
+	/* Display flex */
+  }
+
+  .qtyArea {
+	height: 50px;
+
+	/* Height of the quantity area */
+	border-radius: var(--buttonsBorderRadius);
+
+	/* Border radius from variable */
+	width: 152px;
+
+	/* Width of the quantity area */
+	background-color: #f8f8f8;
+
+	/* Background color */
+	align-self: stretch !important;
+
+	/* Stretch to fill the container */
+	align-items: center !important;
+
+	/* Center align items */
+	justify-content: center !important;
+
+	/* Center justify content */
+	flex-shrink: 0 !important;
+
+	/* Prevent flex item from shrinking */
+	display: flex !important;
+
+	/* Display as flexbox */
+	overflow: hidden !important;
+
+	/* Hide overflow */
+	margin-left: 10px;
+
+	/* Left margin */
+
+	input {
+	  outline: none;
+
+	  /* Removes the outline */
+	  width: 50px;
+
+	  /* Sets the width */
+	  font-size: 22px !important;
+
+	  /* Font size with important flag */
+	  cursor: not-allowed;
+
+	  /* Sets cursor to indicate non-clickable */
+	  -moz-appearance: textfield;
+
+	  /* Removes spinner for Firefox number inputs */
+	  background-color: transparent !important;
+
+	  /* Transparent background */
+	  text-align: center !important;
+
+	  /* Centers the text */
+	  padding: 0 !important;
+
+	  /* Removes padding */
+	  flex-grow: 1 !important;
+
+	  /* Allows element to grow within flex */
+	  height: 100% !important;
+
+	  /* Sets height to 100% */
+	  border: 0 !important;
+
+	  /* Removes border */
+	  box-shadow: none !important;
+
+	  /* Removes shadow */
+	}
+  }
+
+  .addItemToCartBtn {
+	flex-grow: 1 !important;
+	position: relative;
+  }
+
+  .btnStyle {
+	background-color: var(--GreenBackground);
+	display: flex !important;
+	border: 0 !important;
+	width: 100% !important;
+	justify-content: center !important;
+	align-items: center !important;
+	padding-right: .5rem !important;
+	padding-left: .5rem !important;
+	gap: .5rem !important;
+	font-weight: 700 !important;
+	text-transform: none;
+	margin: 0;
+	color: var(--buttonText);
+	border-radius: var(--buttonsBorderRadius);
+	box-shadow: var(--buttonsBoxShadow);
+	height: 50px;
+	transition: .2s;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	cursor: pointer;
+
+	span {
+	  color: #fff !important;
+	}
+  }
+
+  .qtyArea button {
+	width: 50px;
+
+	/* Button width */
+	background-size: 25px;
+
+	/* Size of background icon/image */
+	background-repeat: no-repeat;
+
+	/* Prevents background from repeating */
+	background-position: 50%;
+
+	/* Centers background image */
+	cursor: pointer;
+
+	/* Pointer cursor on hover */
+	background-color: transparent !important;
+
+	/* Transparent background */
+	padding: 0 !important;
+
+	/* Removes padding */
+	flex-shrink: 0 !important;
+
+	/* Prevents shrinking in flex layouts */
+	height: 100% !important;
+
+	/* Full height */
+	border: 0;
+
+	/* Removes border */
+	text-transform: none;
+
+	/* Prevents text transformation */
+	margin: 0;
+
+	/* Removes default margin */
+	font-family: inherit;
+
+	/* Inherits font family */
+	font-size: inherit;
+
+	/* Inherits font size */
+	line-height: inherit;
+
+	/* Inherits line height */
+	border-radius: 0;
+
+	/* Removes border radius */
+
+	i {
+	  border: 1px solid rgb(204, 204, 204);
+	  color: rgb(204, 204, 204);
+	  padding: 5px;
+	  border-radius: 5px;
+	}
+  }
+
+  /*  animation */
+
+  .addtoCardOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(2px);
+
+	/* Apply blur */
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.4s ease, visibility 0.4s ease;
+	transition: all .4s ease-in-out;
+	z-index: 1000;
+
+	&.active {
+	  opacity: 1;
+	  visibility: visible;
+	}
+  }
