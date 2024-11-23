@@ -1,20 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ScrollService } from '../../services/scroll.service';
+import { productStore } from '@src/app/features/products';
 
 @Component({
-  selector: 'app-category-bar',
-  standalone: true,
-  imports: [],
-  templateUrl: './category-bar.component.html',
-  styleUrls: ['./category-bar.component.scss']
+	selector: 'app-category-bar',
+	standalone: true,
+	imports: [],
+	templateUrl: './category-bar.component.html',
+	styleUrls: ['./category-bar.component.scss'],
 })
 export class CategoryBarComponent {
-  activeCategoryId: string | null = null;
+	private productStore = inject(productStore);
+	private scrollService = inject(ScrollService);
 
-  constructor(private scrollService: ScrollService) {}
+	activeCategoryIdx: number | null = null;
 
-  scrollToCategory(categoryId: string) {
-    this.activeCategoryId = categoryId;  // Set active category
-    this.scrollService.scrollToSection(categoryId);  // Trigger scroll event in the service
-  }
+	menu = this.productStore.categories;
+
+	scrollToCategory(categoryIdx: number) {
+		this.activeCategoryIdx = categoryIdx; // Set active category
+		this.scrollService.inViewCategory.set(categoryIdx);
+	}
 }

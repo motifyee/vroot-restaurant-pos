@@ -7,6 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { AddToCartItemModalComponent } from './components/add-to-cart-item-modal/add-to-cart-item-modal.component';
 import { MobilCategoryBarComponent } from './components/mobil-category-bar/mobil-category-bar.component';
+import { ScrollService } from './services/scroll.service';
 
 @Component({
 	selector: 'shop',
@@ -24,6 +25,7 @@ import { MobilCategoryBarComponent } from './components/mobil-category-bar/mobil
 	templateUrl: './webstore.component.html',
 	styleUrls: ['./webstore.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	providers: [ScrollService],
 })
 export class ShopComponent {
 	isSideBarVisible = signal(false);

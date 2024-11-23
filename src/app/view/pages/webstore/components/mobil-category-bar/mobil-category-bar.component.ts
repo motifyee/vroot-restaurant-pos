@@ -24,7 +24,10 @@ export class MobilCategoryBarComponent implements AfterViewInit, OnDestroy {
 	private readonly SCROLL_DELAY = 300; // Delay between tab activations
 	private readonly OBSERVER_REENABLE_DELAY = 500; // Delay before re-enabling observer
 
-	constructor(private cdr: ChangeDetectorRef, private scrollService: ScrollService) {}
+	constructor(
+		private cdr: ChangeDetectorRef,
+		private scrollService: ScrollService,
+	) {}
 
 	ngAfterViewInit(): void {
 		this.initializeObserver();
@@ -52,11 +55,14 @@ export class MobilCategoryBarComponent implements AfterViewInit, OnDestroy {
 	 * Creates and initializes the IntersectionObserver for active category tracking.
 	 */
 	private initializeObserver() {
-		this.observer = new IntersectionObserver(this.handleIntersection.bind(this), {
-			root: null,
-			rootMargin: '0px 0px -10% 0px',
-			threshold: 0.1,
-		});
+		this.observer = new IntersectionObserver(
+			this.handleIntersection.bind(this),
+			{
+				root: null,
+				rootMargin: '0px 0px -10% 0px',
+				threshold: 0.1,
+			},
+		);
 
 		this.observeCategorySections();
 	}
@@ -109,7 +115,7 @@ export class MobilCategoryBarComponent implements AfterViewInit, OnDestroy {
 				this.cdr.detectChanges();
 				this.scrollActiveTabIntoView();
 
-				if (isLastTab) this.scrollCategoryIntoView(tabId);
+				if (isLastTab) this.scrollCategoryIntoView(+tabId); // TODO Fix
 				resolve();
 			}, this.SCROLL_DELAY);
 		});
@@ -118,11 +124,11 @@ export class MobilCategoryBarComponent implements AfterViewInit, OnDestroy {
 	/**
 	 * Scrolls the corresponding category section into view.
 	 */
-	private scrollCategoryIntoView(categoryId: string) {
-		const section = document.getElementById(categoryId);
+	private scrollCategoryIntoView(categoryIdx: number) {
+		const section = document.getElementById(categoryIdx.toString()); // TODO Fix
 		if (section) {
 			section.scrollIntoView({ behavior: 'smooth' });
-			this.scrollService.scrollToSection(categoryId);
+			this.scrollService.inViewCategory.set(categoryIdx);
 		}
 	}
 
@@ -130,7 +136,9 @@ export class MobilCategoryBarComponent implements AfterViewInit, OnDestroy {
 	 * Scrolls the active tab into view within the tab container.
 	 */
 	private scrollActiveTabIntoView() {
-		const activeTab = document.getElementById(`tab-${this.activeCategoryId}`);
+		const activeTab = document.getElementById(
+			`tab-${this.activeCategoryId}`,
+		);
 		if (activeTab) {
 			activeTab.scrollIntoView({
 				behavior: 'smooth',
@@ -144,13 +152,21 @@ export class MobilCategoryBarComponent implements AfterViewInit, OnDestroy {
 	 * Determines the sequence of tabs to highlight during scrolling.
 	 */
 	private getTabsToHighlight(targetCategoryId: string): string[] {
-		const currentTabIndex = parseInt(this.activeCategoryId.replace('category', ''));
-		const targetTabIndex = parseInt(targetCategoryId.replace('category', ''));
+		const currentTabIndex = parseInt(
+			this.activeCategoryId.replace('category', ''),
+		);
+		const targetTabIndex = parseInt(
+			targetCategoryId.replace('category', ''),
+		);
 
 		const tabsToHighlight: string[] = [];
 		const step = currentTabIndex < targetTabIndex ? 1 : -1;
 
-		for (let i = currentTabIndex + step; i !== targetTabIndex + step; i += step) {
+		for (
+			let i = currentTabIndex + step;
+			i !== targetTabIndex + step;
+			i += step
+		) {
 			tabsToHighlight.push(`category${i}`);
 		}
 
@@ -161,7 +177,9 @@ export class MobilCategoryBarComponent implements AfterViewInit, OnDestroy {
 	 * Re-enables the observer after a delay to avoid interference.
 	 */
 	private reenableObserverAfterDelay() {
-		setTimeout(() => (this.isScrolling = false), this.OBSERVER_REENABLE_DELAY);
+		setTimeout(
+			() => (this.isScrolling = false),
+			this.OBSERVER_REENABLE_DELAY,
+		);
 	}
 }
-

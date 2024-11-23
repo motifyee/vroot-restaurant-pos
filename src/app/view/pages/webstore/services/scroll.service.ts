@@ -1,19 +1,8 @@
 // scroll.service.ts
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ScrollService {
-  private scrollToSectionSource = new Subject<string>();
-  scrollToSection$ = this.scrollToSectionSource.asObservable();
-
-  scrollToSection(categoryId: string) {
-    this.scrollToSectionSource.next(categoryId);
-  }
+	headerEl?: HTMLElement;
+	inViewCategory = signal(0);
 }
-
-
-
-
