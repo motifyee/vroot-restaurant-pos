@@ -6,4 +6,5 @@ declare interface Category {
 	parentId?: string;
 	imageUrl?: string;
 	sn: number; //sort number
+	products: Product[];
 }
