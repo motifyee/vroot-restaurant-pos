@@ -1,47 +1,60 @@
-
-
 <main dir="rtl" class="shop-body">
-
 	<!-- the header section -->
-	<app-header [toggleVisibility]="toggleChildTwoVisibility.bind(this)" ></app-header>
+	<app-header
+		[toggleVisibility]="toggleChildTwoVisibility.bind(this)"
+	></app-header>
 	<!-- ./the header section -->
 
 	<!--  side navbar , when I click on the burger memu it open -->
 	<app-navbar
-	  [isVisible]="isSideBarVisible" [toggleVisibility]="toggleChildTwoVisibility.bind(this)">
+		[isVisible]="isSideBarVisible"
+		[toggleVisibility]="toggleChildTwoVisibility.bind(this)"
+	>
 	</app-navbar>
 	<!--  ./side navbar , when I click on the burger memu it open -->
 
-
 	<!--  banner for logo -->
 	<app-banner></app-banner>
-	  <!-- ./banner for logo -->
+	<!-- ./banner for logo -->
 
 	<section>
-	  <div class="container">
-		<div class="items main-section">
-		  <div class="category">
-			<div class="category-section">
+		<div class="container">
+			<div class="items main-section">
+				<div class="category">
+					<div class="category-section">
+						<!--  -->
+						<!-- category bar   -->
+						<app-category-bar
+							class="category-list"
+						></app-category-bar>
+						<!-- for big screen -->
+						<app-mobil-category-bar
+							[categoriesViewInit]="categoriesViewInit"
+							class="mobile-category-list-container"
+						></app-mobil-category-bar>
+						<!-- for small screen -->
+						<!-- ./category bar -->
 
-<!--  -->
-				<!-- category bar   -->
-				<app-category-bar class="category-list" ></app-category-bar>  <!-- for big screen -->
-				<app-mobil-category-bar class="mobile-category-list-container"></app-mobil-category-bar> <!-- for small screen -->
-				<!-- ./category bar -->
+						<app-items
+							[categoriesViewInit]="categoriesViewInit"
+							class="category-items"
+							[toggleVisibility]="
+								toggleOrderDetailsVisibility.bind(this)
+							"
+						></app-items>
+						<!-- item details pop up  -->
+						<app-add-to-cart-item-modal
+							[isVisible]="isOrderDetailsVisible"
+							[toggleVisibility]="
+								toggleOrderDetailsVisibility.bind(this)
+							"
+						></app-add-to-cart-item-modal>
+						<!--item popup  -->
+					</div>
+				</div>
 
-			   <app-items class="category-items" [toggleVisibility]="toggleOrderDetailsVisibility.bind(this)"></app-items> <!-- item details pop up  -->
-			   <app-add-to-cart-item-modal [isVisible]="isOrderDetailsVisible" [toggleVisibility]="toggleOrderDetailsVisibility.bind(this)"></app-add-to-cart-item-modal> <!--item popup  -->
+				<app-cart class="side-bar cart-section"></app-cart>
 			</div>
-		  </div>
-
-		   <app-cart class=" side-bar cart-section"></app-cart>
 		</div>
-	  </div>
 	</section>
-
-
-
-  </main>
-
-
-
+</main>

@@ -12,6 +12,13 @@ import {
 	viewChildren,
 	ViewChildren,
 	QueryList,
+	input,
+	WritableSignal,
+	AfterViewInit,
+	AfterViewChecked,
+	ChangeDetectorRef,
+	OnChanges,
+	SimpleChanges,
 } from '@angular/core';
 import { ScrollService } from '../../services/scroll.service'; // Import your scroll service
 import { Subscription } from 'rxjs';
@@ -26,11 +33,13 @@ import { HeaderComponent } from '../header/header.component';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [HeaderComponent],
 })
-export class ItemsComponent implements OnInit, OnDestroy {
-	// private injector;
+export class ItemsComponent implements OnInit, AfterViewChecked, OnDestroy {
+	private cdr = inject(ChangeDetectorRef);
 	private scrollSubscription!: Subscription;
 	private scrollService = inject(ScrollService);
 	private productStore = inject(productStore);
+
+	categoriesViewInit = input.required<WritableSignal<boolean>>();
 
 	@ViewChild('scrollHook') public scrollHook?: ElementRef;
 	@ViewChildren('category') categoriesElements?: QueryList<
@@ -40,13 +49,25 @@ export class ItemsComponent implements OnInit, OnDestroy {
 	menu = this.productStore.categories;
 	products = effect(() => this.productStore.categories());
 
+	//  trigger ngAfterViewChecked on menu change
 	_ = effect(() => {
+		this.menu();
+		this.cdr.markForCheck();
+	});
+
+	//  scroll to active category
+	__ = effect(() => {
 		const idx = this.scrollService.inViewCategory();
 		this.scrollToCategory(idx);
 	});
 
 	ngOnInit() {
 		this.productStore.getCategories().subscribe();
+	}
+
+	ngAfterViewChecked(): void {
+		if (!this.menu().length) return;
+		this.categoriesViewInit().set(true);
 	}
 
 	// Scroll to a category

@@ -31,6 +31,8 @@ export class ShopComponent {
 	isSideBarVisible = signal(false);
 	isOrderDetailsVisible = signal(false);
 
+	categoriesViewInit = signal(false);
+
 	// Toggle sidebar visibility
 	toggleChildTwoVisibility() {
 		this.isSideBarVisible.update((value) => !value);
