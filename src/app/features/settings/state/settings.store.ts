@@ -12,7 +12,7 @@ export const classificationsConfig = entityConfig({
 });
 
 const intialState = {
-	branches: [],
+	branches: <Branch[]>[],
 };
 
 export const settingsStore = signalStore(

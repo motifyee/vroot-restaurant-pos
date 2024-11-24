@@ -18,7 +18,7 @@ export function withGetBranchesMethod<_>() {
 			let _get = inject(GetBranchesUseCase);
 
 			return {
-				getBranches: rxMethod(
+				getBranches: rxMethod<void>(
 					pipe(
 						tap(() => patchState(store, { isLoading: true })),
 						switchMap((p) =>
