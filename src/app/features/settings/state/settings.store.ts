@@ -3,6 +3,7 @@ import { entityConfig, withEntities } from '@ngrx/signals/entities';
 import { withMapEntityToCustomerMethod } from './features/with-map-entity-to-customer.method';
 import { withLoading } from '../../base/state/with-loading.method';
 import { storeType } from '@src/app/view/state/utils/utils';
+import { withGetBranchesMethod } from './features/with-get-branches';
 
 export const classificationsConfig = entityConfig({
 	entity: type<ClassificationDTO>(),
@@ -10,11 +11,17 @@ export const classificationsConfig = entityConfig({
 	selectId: (c: ClassificationDTO) => c.id,
 });
 
+const intialState = {
+	branches: [],
+};
+
 export const settingsStore = signalStore(
 	{ providedIn: 'root' },
+	withState(intialState),
 	withState<Partial<BranchSettings>>({}),
 	withEntities(classificationsConfig),
 	withLoading(),
+	withGetBranchesMethod(),
 	withMapEntityToCustomerMethod(),
 );
 
