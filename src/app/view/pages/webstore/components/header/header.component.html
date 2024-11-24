@@ -53,10 +53,8 @@
 			>
 			</app-order-time>
 			<app-order-option
-				[isOrderOptionsVisible]="isOrderOptionsVisible"
-				[toggleOrderOptionsVisibility]="
-					toggleOrderOptionsVisibility.bind(this)
-				"
+				[isVisible]="isOrderOptionsVisible()"
+				(toggleVisibility)="toggleOrderOptionsVisibility()"
 			>
 			</app-order-option>
 		</div>
