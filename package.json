@@ -7,6 +7,7 @@
 		"build": "ng build",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
+		"pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
 		"mrt": "ng serve --port 3000",
 		"yusuf": "ng serve --port 3100"
 	},

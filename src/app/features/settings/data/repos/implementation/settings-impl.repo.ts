@@ -15,4 +15,12 @@ export class SettingsImplRepo implements SettingsRepo {
 			)
 			.pipe(map((res) => res.data!));
 	}
+
+	getBranches(config?: Config): Observable<Branch[]> {
+		return this.http.get<Branch[]>(
+			`${ENV.endpoint}/api/store/10/branches`,
+			undefined,
+			config,
+		);
+	}
 }

@@ -3,23 +3,37 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
 	{
 		path: '',
+		redirectTo: 'webstore',
+		pathMatch: 'full',
+	},
+	{
+		path: 'pos',
 		loadComponent: () =>
 			import('./view/pages/pos/pos.component').then(
 				(m) => m.POSComponent,
 			),
 	},
 	{
-		path: 'store',
+		path: 'webstore',
 		loadComponent: () =>
-			import('./view/pages/store/store.component').then(
-				(m) => m.StoreComponent,
+			import('./view/pages/webstore/webstore.component').then(
+				(m) => m.WebstoreComponent,
 			),
-	},
-	{
-		path: 'shop',
-		loadComponent: () =>
-			import('./view/pages/shop/shop.component').then(
-				(m) => m.ShopComponent,
-			),
+		loadChildren: () => [
+			{
+				path: '',
+				loadComponent: () =>
+					import(
+						'./view/pages/webstore/pages/products/products-page.component'
+					).then((m) => m.ProductsPageComponent),
+			},
+			{
+				path: 'branches',
+				loadComponent: () =>
+					import(
+						'./view/pages/webstore/components/topbar/order-type/pickup/pickup.component'
+					).then((m) => m.PickupComponent),
+			},
+		],
 	},
 ];

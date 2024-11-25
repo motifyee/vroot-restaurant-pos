@@ -1,0 +1,14 @@
+<main dir="rtl" class="webstore-body">
+	<topbar
+		(toggleSideBarVisibility)="isSideBarVisible.set(!isSideBarVisible())"
+	/>
+
+	<section>
+		<router-outlet />
+	</section>
+
+	<sidebar
+		[isVisible]="isSideBarVisible"
+		(hide)="isSideBarVisible.set(false)"
+	/>
+</main>

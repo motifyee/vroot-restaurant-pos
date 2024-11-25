@@ -1,10 +1,10 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { SettingsRepo } from '@src/app/features';
+import { GetBranchesUseCaseProvider, SettingsRepo } from '@src/app/features';
 import { GetBranchSettingsUseCaseProvider } from './domain/usecases/get-branch-settings.usecase';
 import { SettingsImplRepo } from './data';
 
 @NgModule({
-	providers: [GetBranchSettingsUseCaseProvider],
+	providers: [GetBranchSettingsUseCaseProvider, GetBranchesUseCaseProvider],
 })
 export class SettingsDataModule {
 	static forRoot(): ModuleWithProviders<SettingsDataModule> {

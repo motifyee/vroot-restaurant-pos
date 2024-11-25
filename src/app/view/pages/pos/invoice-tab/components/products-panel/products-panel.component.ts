@@ -115,51 +115,61 @@ export class ProductsPanelComponent {
 			id: 1,
 			sn: 1,
 			title: 'Category 1',
+			products: [],
 		},
 		{
 			id: 2,
 			sn: 2,
 			title: 'Category 2',
+			products: [],
 		},
 		{
 			id: 3,
 			sn: 3,
 			title: 'Category 3',
+			products: [],
 		},
 		{
 			id: 4,
 			sn: 4,
 			title: 'Category 4',
+			products: [],
 		},
 		{
 			id: 5,
 			sn: 5,
 			title: 'Category 5',
+			products: [],
 		},
 		{
 			id: 6,
 			sn: 6,
 			title: 'Category 6',
+			products: [],
 		},
 		{
 			id: 7,
 			sn: 7,
 			title: 'Category 7',
+			products: [],
 		},
 		{
 			id: 8,
 			sn: 8,
 			title: 'Category 8',
+			products: [],
 		},
 		{
 			id: 9,
 			sn: 9,
 			title: 'Category 9',
+			products: [],
 		},
 		{
 			id: 10,
 			sn: 10,
 			title: 'Category 10',
+			products: [],
 		},
 	];
 
