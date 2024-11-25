@@ -8,20 +8,16 @@ export class ProductsImplRepo implements ProductsRepo {
 
 	getCategories(config?: Config): Observable<Category[]> {
 		return this.http
-			.get<Category[]>(
-				`${ENV.endpoint}/api/store/9/menu`,
-				undefined,
-				config,
-			)
+			.get<
+				Category[]
+			>(`${ENV.endpoint}/api/store/9/menu`, undefined, config)
 			.pipe(map((res) => res));
 	}
 	getVariants(config?: Config): Observable<ProductVariant[]> {
 		return this.http
-			.get<Response<ProductVariant[]>>(
-				`${ENV.endpoint}/api/products/variants`,
-				undefined,
-				config,
-			)
+			.get<
+				Response<ProductVariant[]>
+			>(`${ENV.endpoint}/api/products/variants`, undefined, config)
 			.pipe(map((res) => res.data!));
 	}
 }

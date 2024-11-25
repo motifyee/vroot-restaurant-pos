@@ -26,7 +26,7 @@ export const passwordInputValidators = (
 
 	const classOf = (valid: boolean | undefined) => {
 		if (typeof valid === 'undefined') return '';
-		return valid ? validClass ?? valid : invalidClass ?? valid;
+		return valid ? (validClass ?? valid) : (invalidClass ?? valid);
 	};
 
 	return [

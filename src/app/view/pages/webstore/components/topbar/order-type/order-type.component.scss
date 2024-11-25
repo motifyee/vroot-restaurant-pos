@@ -20,63 +20,70 @@
 	visibility: hidden;
 
 	/* Initial state */
-	transition: visibility 0s 0.5s, opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+	transition:
+		visibility 0s 0.5s,
+		opacity 0.1s ease-in-out,
+		transform 0.1s ease-in-out;
 	z-index: 1000;
 
 	&.show {
-	  visibility: visible;
+		visibility: visible;
 
-	  /* Make visible when showing */
-	  opacity: 1;
-	  transform: scale(1) translateY(0);
-	  animation: popping-up 0.5s forwards;
-	  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+		/* Make visible when showing */
+		opacity: 1;
+		transform: scale(1) translateY(0);
+		animation: popping-up 0.5s forwards;
+		transition:
+			opacity 0.1s ease-in-out,
+			transform 0.1s ease-in-out;
 	}
 
 	&.hide {
-	  opacity: 0; /* Fade out */
-	  transform: scale(0) translateY(-100%); /* Scale and move up */
-	  animation: popping-down 0.5s forwards;
-	  visibility: hidden; /* Applied after animation ends */
-	  transition: visibility 0s 0.5s, opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+		opacity: 0; /* Fade out */
+		transform: scale(0) translateY(-100%); /* Scale and move up */
+		animation: popping-down 0.5s forwards;
+		visibility: hidden; /* Applied after animation ends */
+		transition:
+			visibility 0s 0.5s,
+			opacity 0.1s ease-in-out,
+			transform 0.1s ease-in-out;
 	}
-  }
+}
 
-  /* Keyframes */
-  @keyframes popping-up {
+/* Keyframes */
+@keyframes popping-up {
 	0% {
-	  transform: scale(0) translateY(-100%);
-	  opacity: 0;
+		transform: scale(0) translateY(-100%);
+		opacity: 0;
 	}
 
 	60% {
-	  opacity: 0.5;
+		opacity: 0.5;
 	}
 
 	100% {
-	  transform: scale(1) translateY(0);
-	  opacity: 1;
+		transform: scale(1) translateY(0);
+		opacity: 1;
 	}
-  }
+}
 
-  @keyframes popping-down {
+@keyframes popping-down {
 	0% {
-	  transform: scale(1) translateY(0);
-	  opacity: 1;
+		transform: scale(1) translateY(0);
+		opacity: 1;
 	}
 
 	60% {
-	  opacity: 0.5;
+		opacity: 0.5;
 	}
 
 	100% {
-	  transform: scale(0) translateY(-100%);
-	  opacity: 0;
+		transform: scale(0) translateY(-100%);
+		opacity: 0;
 	}
-  }
+}
 
-
-  .tabsArea {
+.tabsArea {
 	gap: 10px;
 	z-index: 999;
 	align-items: center;
@@ -86,126 +93,128 @@
 	padding-bottom: 10px;
 
 	button {
-	  height: 40px;
-	  font-size: 14px;
-	  border-radius: 5px;
-	  font-weight: 700;
-	  cursor: pointer;
-	  padding-right: 0.5rem;
-	  padding-left: 0.5rem;
-	  color: #777777;
-	  background-color: #f1f1f1;
-	  border: 0;
-	  flex-grow: 1 !important;
-	  font-family: inherit;
+		height: 40px;
+		font-size: 14px;
+		border-radius: 5px;
+		font-weight: 700;
+		cursor: pointer;
+		padding-right: 0.5rem;
+		padding-left: 0.5rem;
+		color: #777777;
+		background-color: #f1f1f1;
+		border: 0;
+		flex-grow: 1 !important;
+		font-family: inherit;
 
-	  &.active {
-		background-color: var(--GreenBackground);
-		color: #fff;
-	  }
+		&.active {
+			background-color: var(--GreenBackground);
+			color: #fff;
+		}
 	}
-  }
+}
 
-  .contentArea {
+.contentArea {
 	/* display: flex !important; */
 	flex-grow: 1 !important;
 
 	.card {
-	  background-color: rgb(255, 255, 255);
-	  border-radius: 10px;
-	  border: 1px solid var(--cardBorder);
-	  box-shadow: rgba(0, 0, 0, 0) 0px 0px 8px 1px;
-	  display: flex;
-	  font-size: 15px;
-	  font-weight: 400;
-	  min-height: 115px;
-	  justify-content: space-between;
-	  line-height: 22.5px;
-	  margin: 8px 0;
-	  align-items: center;
-	  align-self: stretch;
-	  width: auto;
-
-	  .rightArea {
+		background-color: rgb(255, 255, 255);
+		border-radius: 10px;
+		border: 1px solid var(--cardBorder);
+		box-shadow: rgba(0, 0, 0, 0) 0px 0px 8px 1px;
 		display: flex;
-		flex-direction: column;
-		flex-grow: 1;
-		justify-content: center;
-		align-self: stretch;
-		padding: 1rem;
-		gap: 0.5rem;
-
-		.name, .status {
-		  display: flex;
-		  justify-content: flex-start;
-		  align-items: center;
-		  gap: 0.25rem;
-		}
-
-		.name {
-		  font-weight: 700;
-		}
-
-		.status .status-text {
-		  border-radius: 0.25rem;
-		  min-width: 50px;
-		  height: 20px;
-		  font-size: 10px;
-		  background-color: #e9f9ee;
-		  color: #2ac770;
-		  display: flex;
-		  align-items: center;
-		  justify-content: center;
-		}
-	  }
-
-	  .leftArea {
-		display: flex;
-		flex-shrink: 0;
-		justify-content: flex-end;
+		font-size: 15px;
+		font-weight: 400;
+		min-height: 115px;
+		justify-content: space-between;
+		line-height: 22.5px;
+		margin: 8px 0;
 		align-items: center;
 		align-self: stretch;
-		padding: 0.5rem;
-		gap: 0.5rem;
+		width: auto;
 
-		a, button {
-		  width: 32px;
-		  height: 32px;
-		  display: flex;
-		  justify-content: center;
-		  align-items: center;
+		.rightArea {
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			justify-content: center;
+			align-self: stretch;
+			padding: 1rem;
+			gap: 0.5rem;
+
+			.name,
+			.status {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				gap: 0.25rem;
+			}
+
+			.name {
+				font-weight: 700;
+			}
+
+			.status .status-text {
+				border-radius: 0.25rem;
+				min-width: 50px;
+				height: 20px;
+				font-size: 10px;
+				background-color: #e9f9ee;
+				color: #2ac770;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
 		}
-	  }
 
-	  span i {
-		font-size: 25px;
-		color: #878787;
-	  }
+		.leftArea {
+			display: flex;
+			flex-shrink: 0;
+			justify-content: flex-end;
+			align-items: center;
+			align-self: stretch;
+			padding: 0.5rem;
+			gap: 0.5rem;
 
-	  .leftArea {
-		a span {
-		  width: 26px;
-		  height: 26px;
-		  mask-size: contain;
+			a,
+			button {
+				width: 32px;
+				height: 32px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
 		}
 
-		button {
-		  border: 0;
-		  background-color: transparent;
-
-		  span {
-			width: 26px;
-			height: 26px;
-			mask-size: contain;
-		  }
+		span i {
+			font-size: 25px;
+			color: #878787;
 		}
-	  }
+
+		.leftArea {
+			a span {
+				width: 26px;
+				height: 26px;
+				mask-size: contain;
+			}
+
+			button {
+				border: 0;
+				background-color: transparent;
+
+				span {
+					width: 26px;
+					height: 26px;
+					mask-size: contain;
+				}
+			}
+		}
 	}
-  }
+}
 
-  /* Overlay for blurry background */
+/* Overlay for blurry background */
 
-  .overlay {
+.overlay {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -217,12 +226,14 @@
 	/* Apply blur */
 	opacity: 0;
 	visibility: hidden;
-	transition: opacity 0.4s ease, visibility 0.4s ease;
-	transition: all .4s ease-in-out;
+	transition:
+		opacity 0.4s ease,
+		visibility 0.4s ease;
+	transition: all 0.4s ease-in-out;
 	z-index: 993;
 
 	&.active {
-	  opacity: 1;
-	  visibility: visible;
+		opacity: 1;
+		visibility: visible;
 	}
-  }
+}

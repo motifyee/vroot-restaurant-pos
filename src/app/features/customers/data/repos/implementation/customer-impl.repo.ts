@@ -44,22 +44,17 @@ export class CustomerImplRepo implements CustomerRepo {
 		config?: Config,
 	): Observable<Customer> {
 		return this.http
-			.get<Response<CustomerDTO>>(
-				`${ENV.endpoint}/api/cusotmers/${params.customerId}`,
-				undefined,
-				config,
-			)
+			.get<
+				Response<CustomerDTO>
+			>(`${ENV.endpoint}/api/cusotmers/${params.customerId}`, undefined, config)
 			.pipe(map((res) => this.customerMapper.mapFrom(res.data!)));
 	}
 
 	create(params: CustomerDTO, config?: Config): Observable<Customer> {
 		return this.http
-			.post<Response<{ id: string }>>(
-				`${ENV.endpoint}/api/customers`,
-				params,
-				undefined,
-				config,
-			)
+			.post<
+				Response<{ id: string }>
+			>(`${ENV.endpoint}/api/customers`, params, undefined, config)
 			.pipe(
 				map((res) =>
 					this.customerMapper.mapFrom({
@@ -92,21 +87,17 @@ export class CustomerImplRepo implements CustomerRepo {
 		config?: Config,
 	): Observable<Customer[]> {
 		return this.http
-			.get<Response<CustomerDTO[]>>(
-				`${ENV.endpoint}/api/customers`,
-				{ headers: { query, phone } },
-				config,
-			)
+			.get<
+				Response<CustomerDTO[]>
+			>(`${ENV.endpoint}/api/customers`, { headers: { query, phone } }, config)
 			.pipe(map((res) => res.data!.map(this.customerMapper.mapFrom)));
 	}
 
 	getClassifications(config?: Config): Observable<ClassificationDTO[]> {
 		return this.http
-			.get<Response<ClassificationDTO[]>>(
-				`${ENV.endpoint}/api/customers/classes`,
-				undefined,
-				config,
-			)
+			.get<
+				Response<ClassificationDTO[]>
+			>(`${ENV.endpoint}/api/customers/classes`, undefined, config)
 			.pipe(map((res) => res.data!)); //.map(this.classificationmapper.mapFrom)),
 	}
 }

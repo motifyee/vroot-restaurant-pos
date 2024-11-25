@@ -1,9 +1,13 @@
 <div>
-	@if(branches().length){ @for(branch of branches(); track branch.id){
-	<branch-card [branch]="branch" />
-	} } @else { @for(branch of [1,2,3]; track branch){
-	<branch-card />
-	} }
+	@if (branches().length) {
+		@for (branch of branches(); track branch.id) {
+			<branch-card [branch]="branch" />
+		}
+	} @else {
+		@for (branch of [1, 2, 3]; track branch) {
+			<branch-card />
+		}
+	}
 </div>
 
 <div class="btn-wrapper">

@@ -14,11 +14,9 @@ export class AddressImplRepo implements AddressRepo {
 		config?: Config,
 	): Observable<AddressDTO[]> {
 		return this.http
-			.get<Response<AddressDTO[]>>(
-				`${ENV.endpoint}/api/customers/${customerId}/addresses`,
-				undefined,
-				config,
-			)
+			.get<
+				Response<AddressDTO[]>
+			>(`${ENV.endpoint}/api/customers/${customerId}/addresses`, undefined, config)
 			.pipe(map((res) => res.data!)); //.map(this.addressMapper.mapFrom)));
 	}
 
@@ -27,12 +25,9 @@ export class AddressImplRepo implements AddressRepo {
 		config?: Config,
 	): Observable<AddressDTO> {
 		return this.http
-			.post<Response<{ id: number }>>(
-				`${ENV.endpoint}/api/customers/${params.customerId}/addresses`,
-				params.address,
-				undefined,
-				config,
-			)
+			.post<
+				Response<{ id: number }>
+			>(`${ENV.endpoint}/api/customers/${params.customerId}/addresses`, params.address, undefined, config)
 			.pipe(
 				map((res) => ({
 					...params.address,

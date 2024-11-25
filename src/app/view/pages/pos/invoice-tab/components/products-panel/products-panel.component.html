@@ -16,13 +16,13 @@
 					size="small"
 					(click)="expandSearch()"
 				>
-					@if( searchInputVisible()){
-					<input
-						#searchInput
-						pInputText
-						type="text"
-						(keydown.esc)="shrinkSearch()"
-					/>
+					@if (searchInputVisible()) {
+						<input
+							#searchInput
+							pInputText
+							type="text"
+							(keydown.esc)="shrinkSearch()"
+						/>
 					}
 				</button>
 
@@ -39,24 +39,28 @@
 					(click)="shrinkSearch()"
 				></button>
 				<!-- category buttons -->
-				@for(category of categories; track category.id; let idx =
-				$index, e=$even){
-				<button
-					pButton
-					pRipple
-					type="button"
-					(click)="selectedCategoryId.set(category.id)"
-					[icon]="idx == 2 || idx == 5 ? 'pi pi-circle-fill' : ''"
-					[label]="category.title"
-					class="category-btn p-button-info"
-					[outlined]="selectedCategoryId() != category.id"
-					[class]="
-						selectedCategoryId() != category.id
-							? 'p-button-outlined'
-							: ''
-					"
-					size="small"
-				></button>
+				@for (
+					category of categories;
+					track category.id;
+					let idx =
+				$index, e=$even
+				) {
+					<button
+						pButton
+						pRipple
+						type="button"
+						(click)="selectedCategoryId.set(category.id)"
+						[icon]="idx == 2 || idx == 5 ? 'pi pi-circle-fill' : ''"
+						[label]="category.title"
+						class="category-btn p-button-info"
+						[outlined]="selectedCategoryId() != category.id"
+						[class]="
+							selectedCategoryId() != category.id
+								? 'p-button-outlined'
+								: ''
+						"
+						size="small"
+					></button>
 				}
 			</div>
 		</div>
@@ -64,18 +68,24 @@
 		<!-- Products -->
 		<div class="flex flex-col flex-1">
 			<div class="products overflow-auto flex-[1_1_0]">
-				@for(product of products; track product.id; let idx = $index,
-				e=$even){
-				<button
-					class="product-card thm-border thm-shadow"
-					(click)="addProduct(product, 1)"
-				>
-					<div class="flex-1 bg-red-300"></div>
-					<span class="p-1 font-semibold text-center">{{
-						product.title
-					}}</span>
-				</button>
-				}@empty { No products found. }
+				@for (
+					product of products;
+					track product.id;
+					let idx = $index,
+				e=$even
+				) {
+					<button
+						class="product-card thm-border thm-shadow"
+						(click)="addProduct(product, 1)"
+					>
+						<div class="flex-1 bg-red-300"></div>
+						<span class="p-1 font-semibold text-center">{{
+							product.title
+						}}</span>
+					</button>
+				} @empty {
+					No products found.
+				}
 			</div>
 		</div>
 	</div>

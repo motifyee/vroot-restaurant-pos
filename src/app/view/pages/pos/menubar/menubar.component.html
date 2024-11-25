@@ -90,14 +90,14 @@
 			<ng-template pTemplate="item" let-item>
 				<ng-container>
 					<a [routerLink]="item.link" class="p-menuitem-link">
-						@if(item.hasChanges){
-						<span
-							pBadge
-							severity="danger"
-							[class]="item.icon"
-						></span>
-						}@else {
-						<span [class]="item.icon"></span>
+						@if (item.hasChanges) {
+							<span
+								pBadge
+								severity="danger"
+								[class]="item.icon"
+							></span>
+						} @else {
+							<span [class]="item.icon"></span>
 						}
 						<span class="ps-2 pe-1">{{ item.label }}</span>
 						<p-button

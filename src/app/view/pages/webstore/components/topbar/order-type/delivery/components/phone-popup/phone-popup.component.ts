@@ -2,20 +2,20 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 
 @Component({
-  selector: 'app-phone-popup',
-  standalone: true,
-  imports: [CommonModule], // Add CommonModule here
-  templateUrl: './phone-popup.component.html',
-  styleUrls: ['./phone-popup.component.scss']
+	selector: 'app-phone-popup',
+	standalone: true,
+	imports: [CommonModule], // Add CommonModule here
+	templateUrl: './phone-popup.component.html',
+	styleUrls: ['./phone-popup.component.scss'],
 })
 export class PhonePopupComponent {
-  isModalVisible = true;
+	isModalVisible = true;
 
-  closeModal() {
-    this.isModalVisible = false;
-  }
+	closeModal() {
+		this.isModalVisible = false;
+	}
 
-  openModal() {
-    this.isModalVisible = true;
-  }
+	openModal() {
+		this.isModalVisible = true;
+	}
 }

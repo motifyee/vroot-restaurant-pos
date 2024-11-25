@@ -58,8 +58,16 @@
 								role="searchbox"
 								placeholder="Filter"
 								[(ngModel)]="filterValue"
-								(focus)="options?.filter?.({ target: customFilterInput })"
-								(input)="options?.filter?.({ target: customFilterInput })"
+								(focus)="
+									options?.filter?.({
+										target: customFilterInput,
+									})
+								"
+								(input)="
+									options?.filter?.({
+										target: customFilterInput,
+									})
+								"
 								class="flex-1"
 								#customFilterInput
 							/>
@@ -79,12 +87,12 @@
 					</ng-template>
 
 					<ng-template pTemplate="item" let-customer>
-						@if(customer.name == null){
-						<p-skeleton width="100%" />
-						}@else{
-						<span class="font-semibold min-w-24">
-							{{ customer.name }}
-						</span>
+						@if (customer.name == null) {
+							<p-skeleton width="100%" />
+						} @else {
+							<span class="font-semibold min-w-24">
+								{{ customer.name }}
+							</span>
 						}
 					</ng-template>
 				</p-dropdown>
@@ -123,25 +131,25 @@
 						<div
 							class="flex flex-colx items-stretch w-10x border border-dashexd"
 						>
-							@if(!readonly()){
-							<button
-								pButton
-								pRipple
-								type="button"
-								icon="pi pi-times"
-								class="p-button-text p-button-warning h-6 w-6 py-1 px-2"
-								size="small"
-								(click)="removeProduct(product.id)"
-							></button>
-							<button
-								pButton
-								pRipple
-								type="button"
-								icon="pi pi-pencil"
-								class="p-button-text p-button-info h-6 w-6 py-1 px-2"
-								size="small"
-								(click)="productPopupVisible = true"
-							></button>
+							@if (!readonly()) {
+								<button
+									pButton
+									pRipple
+									type="button"
+									icon="pi pi-times"
+									class="p-button-text p-button-warning h-6 w-6 py-1 px-2"
+									size="small"
+									(click)="removeProduct(product.id)"
+								></button>
+								<button
+									pButton
+									pRipple
+									type="button"
+									icon="pi pi-pencil"
+									class="p-button-text p-button-info h-6 w-6 py-1 px-2"
+									size="small"
+									(click)="productPopupVisible = true"
+								></button>
 							}
 						</div>
 					</td>
@@ -198,11 +206,12 @@
 </div>
 
 <!-- edit product dialog -->
-@if(productPopupVisible){
-<edit-product-popup (dismiss)="productPopupVisible = false" />
-} @if(customerPopupVisible()){
-<add-customer-popup
-	[customer]="selectedCustomer || emptyCustomer"
-	(dismiss)="customerPopupVisible.set(false)"
-/>
+@if (productPopupVisible) {
+	<edit-product-popup (dismiss)="productPopupVisible = false" />
+}
+@if (customerPopupVisible()) {
+	<add-customer-popup
+		[customer]="selectedCustomer || emptyCustomer"
+		(dismiss)="customerPopupVisible.set(false)"
+	/>
 }

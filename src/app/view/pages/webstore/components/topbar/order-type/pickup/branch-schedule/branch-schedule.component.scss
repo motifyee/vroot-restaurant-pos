@@ -21,9 +21,9 @@
 	position: fixed;
 	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 	display: flex;
-  }
+}
 
-  .general-Modal-Header {
+.general-Modal-Header {
 	padding: 1rem;
 	align-items: center;
 	justify-content: space-between;
@@ -34,32 +34,32 @@
 	scroll-behavior: smooth;
 
 	span {
-	  font-weight: 700;
-	  display: block;
+		font-weight: 700;
+		display: block;
 	}
 
 	button {
-	  width: 32px;
-	  height: 32px;
-	  background-position: 50%;
-	  background-repeat: no-repeat;
-	  background-size: 22px 22px;
-	  background-color: hsla(0, 0%, 100%, 0.64);
-	  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.16);
-	  cursor: pointer;
-	  border-radius: 50%;
-	  padding: 0;
-	  border: 0;
-	  -webkit-appearance: button;
-	  text-transform: none;
-	  margin: 0;
-	  font-family: inherit;
-	  font-size: inherit;
-	  line-height: inherit;
+		width: 32px;
+		height: 32px;
+		background-position: 50%;
+		background-repeat: no-repeat;
+		background-size: 22px 22px;
+		background-color: hsla(0, 0%, 100%, 0.64);
+		box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.16);
+		cursor: pointer;
+		border-radius: 50%;
+		padding: 0;
+		border: 0;
+		-webkit-appearance: button;
+		text-transform: none;
+		margin: 0;
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
 	}
-  }
+}
 
-  .modalContent {
+.modalContent {
 	padding: 1rem;
 
 	/* from .p-md-3 */
@@ -68,23 +68,23 @@
 	/* from .p-2, will override previous padding */
 	flex-grow: 1;
 	overflow: auto;
-  }
+}
 
-  .branchPeriodsTabs {
+.branchPeriodsTabs {
 	gap: 0.5rem;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: nowrap;
 	display: flex;
-  }
+}
 
-  .branchPeriodsContent {
+.branchPeriodsContent {
 	width: 100%;
 	outline: none;
 	scroll-behavior: smooth;
-  }
+}
 
-  .item24Hours {
+.item24Hours {
 	margin-top: 3rem;
 	margin-bottom: 3rem;
 	align-items: center;
@@ -93,18 +93,18 @@
 	display: flex;
 
 	span {
-	  min-width: 90px;
-	  height: 30px;
-	  background-color: #f1f1f1;
-	  color: #777777;
-	  border-radius: 0.5rem;
-	  align-items: center;
-	  justify-content: center;
-	  display: flex;
+		min-width: 90px;
+		height: 30px;
+		background-color: #f1f1f1;
+		color: #777777;
+		border-radius: 0.5rem;
+		align-items: center;
+		justify-content: center;
+		display: flex;
 	}
-  }
+}
 
-  .tabButton {
+.tabButton {
 	flex: 1;
 	font-size: 13px;
 	min-height: 30px;
@@ -123,12 +123,12 @@
 	font-family: inherit;
 
 	&.current {
-	  background-color: var(--GreenBackground);
-	  color: #fff;
+		background-color: var(--GreenBackground);
+		color: #fff;
 	}
-  }
+}
 
-  .time-overlay {
+.time-overlay {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -152,27 +152,27 @@
 	/* Ensure it is above other content */
 
 	&.show {
-	  opacity: 1;
+		opacity: 1;
 
-	  /* Fade in */
-	  visibility: visible;
+		/* Fade in */
+		visibility: visible;
 
-	  /* Make visible */
+		/* Make visible */
 	}
 
 	&.hide {
-	  opacity: 0;
+		opacity: 0;
 
-	  /* Fade out */
-	  visibility: hidden;
+		/* Fade out */
+		visibility: hidden;
 
-	  /* Hide after fade out */
+		/* Hide after fade out */
 	}
-  }
+}
 
-  /* animation  */
+/* animation  */
 
-  .branch-periods-modal-wrapper {
+.branch-periods-modal-wrapper {
 	opacity: 0;
 	pointer-events: none;
 
@@ -182,66 +182,66 @@
 	/* Adjust the opacity transition */
 
 	&.show {
-	  opacity: 1;
-	  pointer-events: auto;
+		opacity: 1;
+		pointer-events: auto;
 
-	  /* Allow interaction when visible */
-	  animation: moveDownAndBounce 0.5s forwards;
+		/* Allow interaction when visible */
+		animation: moveDownAndBounce 0.5s forwards;
 
-	  /* Play the show animation */
+		/* Play the show animation */
 	}
 
 	&.hide {
-	  opacity: 0;
-	  pointer-events: none;
+		opacity: 0;
+		pointer-events: none;
 
-	  /* Prevent interaction when hidden */
-	  animation: moveUpAndScale 0.5s forwards;
+		/* Prevent interaction when hidden */
+		animation: moveUpAndScale 0.5s forwards;
 
-	  /* Play the hide animation */
+		/* Play the hide animation */
 	}
-  }
+}
 
-  @keyframes moveDownAndBounce {
+@keyframes moveDownAndBounce {
 	0% {
-	  transform: scale(0) translateY(-100%);
+		transform: scale(0) translateY(-100%);
 
-	  /* Start scaled down and off-screen above */
-	  opacity: 0;
+		/* Start scaled down and off-screen above */
+		opacity: 0;
 	}
 
 	60% {
-	  opacity: .5;
+		opacity: 0.5;
 	}
 
 	100% {
-	  transform: scale(1) translateY(0);
+		transform: scale(1) translateY(0);
 
-	  /* Settle at final position */
-	  opacity: 1;
+		/* Settle at final position */
+		opacity: 1;
 	}
-  }
+}
 
-  @keyframes moveUpAndScale {
+@keyframes moveUpAndScale {
 	0% {
-	  transform: scale(1) translateY(0);
+		transform: scale(1) translateY(0);
 
-	  /* Start at normal scale and position */
-	  opacity: 1;
+		/* Start at normal scale and position */
+		opacity: 1;
 	}
 
 	60% {
-	  opacity: .5;
+		opacity: 0.5;
 	}
 
 	100% {
-	  transform: scale(0) translateY(-100%);
+		transform: scale(0) translateY(-100%);
 
-	  /* Scale down and move off-screen above */
-	  opacity: 0;
+		/* Scale down and move off-screen above */
+		opacity: 0;
 	}
-  }
+}
 
-  .current {
+.current {
 	background-color: #ccc;
-  }
+}

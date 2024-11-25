@@ -23,11 +23,9 @@ export class PrintersImplRepo implements PrintersRepo {
 
 	getPosDevices(config: Config): Observable<PosDevice[]> {
 		return this.http
-			.get<Response<PosDevice[]>>(
-				`${ENV.endpoint}/api/posDevices`,
-				undefined,
-				config,
-			)
+			.get<
+				Response<PosDevice[]>
+			>(`${ENV.endpoint}/api/posDevices`, undefined, config)
 			.pipe(map((res) => res.data!));
 	}
 
@@ -36,12 +34,9 @@ export class PrintersImplRepo implements PrintersRepo {
 		config: Config,
 	): Observable<{ [printerId: string]: string[] }> {
 		return this.http
-			.post<Response<{ [printerId: string]: string[] }>>(
-				`${ENV.endpoint}/api/posDevices`,
-				{ productIds: params.productIds },
-				{ headers: { mapPrinters: true } },
-				config,
-			)
+			.post<
+				Response<{ [printerId: string]: string[] }>
+			>(`${ENV.endpoint}/api/posDevices`, { productIds: params.productIds }, { headers: { mapPrinters: true } }, config)
 			.pipe(map((res) => res.data!));
 	}
 }

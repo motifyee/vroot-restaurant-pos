@@ -4,14 +4,14 @@ import { CanActivateChildFn } from '@angular/router';
 import { rolesGuard } from './roles.guard';
 
 describe('rolesGuard', () => {
-  const executeGuard: CanActivateChildFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => rolesGuard(...guardParameters));
+	const executeGuard: CanActivateChildFn = (...guardParameters) =>
+		TestBed.runInInjectionContext(() => rolesGuard(...guardParameters));
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-  });
+	beforeEach(() => {
+		TestBed.configureTestingModule({});
+	});
 
-  it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
-  });
+	it('should be created', () => {
+		expect(executeGuard).toBeTruthy();
+	});
 });

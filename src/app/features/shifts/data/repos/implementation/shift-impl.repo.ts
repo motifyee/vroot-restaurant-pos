@@ -8,11 +8,9 @@ export class ShiftImplRepo implements ShiftRepo {
 
 	getShift(config?: Config): Observable<Shift> {
 		return this.http
-			.get<Response<Shift>>(
-				`${ENV.endpoint}/api/shifts`,
-				undefined,
-				config,
-			)
+			.get<
+				Response<Shift>
+			>(`${ENV.endpoint}/api/shifts`, undefined, config)
 			.pipe(map((res) => res.data!));
 	}
 

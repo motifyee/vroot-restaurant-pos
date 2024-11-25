@@ -1,22 +1,40 @@
-<div [ngClass]="{'show': isModalVisible, 'hide': !isModalVisible}" role="dialog" class="login-modal-wrapper">
-  <div class="general-Modal-Header">
-    <span class="d-block fw-bold">التحقق</span>
-    <button type="button" class="close-modal-btn" (click)="closeModal()">
-      <i class="fas fa-times"></i>
-    </button>
-  </div>
-  <div class="modalContent">
-    <h4>تم ارسال رمز للتحقق من رقم هاتفك</h4>
-    <h4>20109765545+</h4>
+<div
+	[ngClass]="{ show: isModalVisible, hide: !isModalVisible }"
+	role="dialog"
+	class="login-modal-wrapper"
+>
+	<div class="general-Modal-Header">
+		<span class="d-block fw-bold">التحقق</span>
+		<button type="button" class="close-modal-btn" (click)="closeModal()">
+			<i class="fas fa-times"></i>
+		</button>
+	</div>
+	<div class="modalContent">
+		<h4>تم ارسال رمز للتحقق من رقم هاتفك</h4>
+		<h4>20109765545+</h4>
 
-    <div class="inputfield">
-      <input type="number" maxlength="1" class="input" [disabled]="true" *ngFor="let control of otpControls; let i = index"
-             [(ngModel)]="otpValues[i]" (keyup)="onKeyUp($event, i)" />
-    </div>
+		<div class="inputfield">
+			<input
+				type="number"
+				maxlength="1"
+				class="input"
+				[disabled]="true"
+				*ngFor="let control of otpControls; let i = index"
+				[(ngModel)]="otpValues[i]"
+				(keyup)="onKeyUp($event, i)"
+			/>
+		</div>
 
-    <button type="submit" class="btn-style w-100 border-0 fw-bold">تحقق</button>
-  </div>
+		<button type="submit" class="btn-style w-100 border-0 fw-bold">
+			تحقق
+		</button>
+	</div>
 </div>
 
 <!-- Overlay -->
-<div [ngClass]="{'active': isModalVisible}" id="dialog-overlay" class="dialog-overlay" (click)="closeModal()"></div>
+<div
+	[ngClass]="{ active: isModalVisible }"
+	id="dialog-overlay"
+	class="dialog-overlay"
+	(click)="closeModal()"
+></div>

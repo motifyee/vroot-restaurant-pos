@@ -1,42 +1,94 @@
-<div [ngClass]="{'show': showModal, 'hide': !showModal}" class="branch-periods-modal-wrapper" role="dialog">
-  <div>
-
-
-
-    <div class="general-Modal-Header">
-      <span class="d-block fw-bold">مواعيد الفرع</span>
-      <button type="button" class="close-modal-btn" (click)="closeModal()">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-    <div class="modalContent">
-      <div class="branchPeriodsTabs">
-        <button type="button" class="tabButton" (click)="setActiveTab('الاثنين')" [class.current]="activeTab === 'الاثنين'">الاثنين</button>
-        <button type="button" class="tabButton" (click)="setActiveTab('الثلاثاء')" [class.current]="activeTab === 'الثلاثاء'">الثلاثاء</button>
-        <button type="button" class="tabButton" (click)="setActiveTab('الاربعاء')" [class.current]="activeTab === 'الاربعاء'">الاربعاء</button>
-        <button type="button" class="tabButton" (click)="setActiveTab('الخميس')" [class.current]="activeTab === 'الخميس'">الخميس</button>
-        <button type="button" class="tabButton" (click)="setActiveTab('الجمعة')" [class.current]="activeTab === 'الجمعة'">الجمعة</button>
-        <button type="button" class="tabButton" (click)="setActiveTab('السبت')" [class.current]="activeTab === 'السبت'">السبت</button>
-        <button type="button" class="tabButton" (click)="setActiveTab('الأحد')" [class.current]="activeTab === 'الأحد'">الأحد</button>
-      </div>
-      <div class="branchPeriodsContent">
-        <div class="periodContent">
-          <div class="item24Hours">
-            <span>۲٤ ساعة</span>
-
-          </div>
-        </div>
-      </div>
-
-
-    </div>
-  </div>
+<div
+	[ngClass]="{ show: showModal, hide: !showModal }"
+	class="branch-periods-modal-wrapper"
+	role="dialog"
+>
+	<div>
+		<div class="general-Modal-Header">
+			<span class="d-block fw-bold">مواعيد الفرع</span>
+			<button
+				type="button"
+				class="close-modal-btn"
+				(click)="closeModal()"
+			>
+				<i class="fas fa-times"></i>
+			</button>
+		</div>
+		<div class="modalContent">
+			<div class="branchPeriodsTabs">
+				<button
+					type="button"
+					class="tabButton"
+					(click)="setActiveTab('الاثنين')"
+					[class.current]="activeTab === 'الاثنين'"
+				>
+					الاثنين
+				</button>
+				<button
+					type="button"
+					class="tabButton"
+					(click)="setActiveTab('الثلاثاء')"
+					[class.current]="activeTab === 'الثلاثاء'"
+				>
+					الثلاثاء
+				</button>
+				<button
+					type="button"
+					class="tabButton"
+					(click)="setActiveTab('الاربعاء')"
+					[class.current]="activeTab === 'الاربعاء'"
+				>
+					الاربعاء
+				</button>
+				<button
+					type="button"
+					class="tabButton"
+					(click)="setActiveTab('الخميس')"
+					[class.current]="activeTab === 'الخميس'"
+				>
+					الخميس
+				</button>
+				<button
+					type="button"
+					class="tabButton"
+					(click)="setActiveTab('الجمعة')"
+					[class.current]="activeTab === 'الجمعة'"
+				>
+					الجمعة
+				</button>
+				<button
+					type="button"
+					class="tabButton"
+					(click)="setActiveTab('السبت')"
+					[class.current]="activeTab === 'السبت'"
+				>
+					السبت
+				</button>
+				<button
+					type="button"
+					class="tabButton"
+					(click)="setActiveTab('الأحد')"
+					[class.current]="activeTab === 'الأحد'"
+				>
+					الأحد
+				</button>
+			</div>
+			<div class="branchPeriodsContent">
+				<div class="periodContent">
+					<div class="item24Hours">
+						<span>۲٤ ساعة</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
-<div [ngClass]="{'show': showModal, 'hide': !showModal}" class="time-overlay" (click)="closeModal()"></div>
-
-
-
+<div
+	[ngClass]="{ show: showModal, hide: !showModal }"
+	class="time-overlay"
+	(click)="closeModal()"
+></div>
 
 <!-- spinner (loading icon) -->
 <!-- <app-spinner></app-spinner> -->

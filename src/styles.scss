@@ -24,25 +24,18 @@ body {
 	@apply m-0 p-0 h-full;
 }
 
-
-
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  :root {
-
-	--GreenBackground : #65725B;
-	--Greentextcolor : #65725B;
-	--Greenbordercolor : #65725B;
-	--priceColor: #D0A328;
-	--cardsBG : #F3F3ED;
-	--bodyBG : #fff;
-	--borderColor : #A39172;
-	--cardBorder: #A39172;
-	}
-
-
-
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+:root {
+	--GreenBackground: #65725b;
+	--Greentextcolor: #65725b;
+	--Greenbordercolor: #65725b;
+	--priceColor: #d0a328;
+	--cardsBG: #f3f3ed;
+	--bodyBG: #fff;
+	--borderColor: #a39172;
+	--cardBorder: #a39172;
+}

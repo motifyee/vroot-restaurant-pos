@@ -17,16 +17,20 @@
 	}} -->
 
 	<p-tabView [activeIndex]="activeTabIndex()" class="flex-1 block">
-		@for(tab of appStore.entities(); track tab.id; let idx = $index) {
-		<p-tabPanel [header]="tab.id">
-			@switch (tab.type) { @case('invoice') {
-			<invoice-tab [tab]="tab" class="flex-1" />
-			} @case('invoice-list') {
-			<invoice-list-tab [tab]="tab" class="flex-1" />
-			} @default {
-			<div class="flex-1 grid place-content-center">LOGO</div>
-			}}
-		</p-tabPanel>
+		@for (tab of appStore.entities(); track tab.id; let idx = $index) {
+			<p-tabPanel [header]="tab.id">
+				@switch (tab.type) {
+					@case ('invoice') {
+						<invoice-tab [tab]="tab" class="flex-1" />
+					}
+					@case ('invoice-list') {
+						<invoice-list-tab [tab]="tab" class="flex-1" />
+					}
+					@default {
+						<div class="flex-1 grid place-content-center">LOGO</div>
+					}
+				}
+			</p-tabPanel>
 		}
 	</p-tabView>
 </main>

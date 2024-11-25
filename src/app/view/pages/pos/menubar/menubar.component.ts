@@ -40,7 +40,7 @@ import { BadgeModule } from 'primeng/badge';
 		ChipsModule,
 		DialogModule,
 		TabMenuModule,
-    BadgeModule,
+		BadgeModule,
 	],
 	providers: [MessageService],
 	templateUrl: './menubar.component.html',

@@ -21,9 +21,9 @@
 	height: fit-content;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-  }
+}
 
-  .general-Modal-Header {
+.general-Modal-Header {
 	display: flex;
 	flex-shrink: 0;
 	justify-content: space-between;
@@ -31,12 +31,12 @@
 	padding: 1rem;
 
 	span {
-	  font-weight: 700;
-	  display: block;
+		font-weight: 700;
+		display: block;
 	}
-  }
+}
 
-  .modal-content {
+.modal-content {
 	grid-gap: 0.5rem;
 	gap: 0.5rem;
 	padding: 1rem;
@@ -48,10 +48,10 @@
 	padding: 0;
 	outline: none;
 	scroll-behavior: smooth;
-	padding: 1rem ;
-  }
+	padding: 1rem;
+}
 
-  .closeModalBtn {
+.closeModalBtn {
 	/* background-image: url(); */
 	width: 32px;
 	height: 32px;
@@ -71,11 +71,11 @@
 	line-height: inherit;
 
 	i {
-	  font-size: 20px;
+		font-size: 20px;
 	}
-  }
+}
 
-  .phoneInput {
+.phoneInput {
 	height: 50px;
 	border-radius: 0.5rem;
 	background-color: rgba(#fff, 1);
@@ -86,37 +86,37 @@
 	overflow: hidden;
 
 	span {
-	  border-right: 1px solid #dee2e6;
-	  min-width: 50px;
-	  background-color: rgba(248, 249, 250, 1);
-	  color: rgba(33, 37, 41, 1);
-	  align-self: stretch;
-	  align-items: center;
-	  justify-content: center;
-	  flex-shrink: 0;
-	  display: flex;
+		border-right: 1px solid #dee2e6;
+		min-width: 50px;
+		background-color: rgba(248, 249, 250, 1);
+		color: rgba(33, 37, 41, 1);
+		align-self: stretch;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		display: flex;
 	}
 
 	input {
-	  background-color: rgba(255, 255, 255, 1);
-	  color: rgba(33, 37, 41, 1);
-	  padding-top: 0;
-	  padding-bottom: 0;
-	  padding-right: 0.5rem;
-	  padding-left: 0.5rem;
-	  align-self: stretch;
-	  flex-grow: 1;
-	  border: 0;
-	  margin: 0;
-	  font-family: inherit;
-	  font-size: inherit;
-	  line-height: inherit;
-	  outline: none;
-	  scroll-behavior: smooth;
+		background-color: rgba(255, 255, 255, 1);
+		color: rgba(33, 37, 41, 1);
+		padding-top: 0;
+		padding-bottom: 0;
+		padding-right: 0.5rem;
+		padding-left: 0.5rem;
+		align-self: stretch;
+		flex-grow: 1;
+		border: 0;
+		margin: 0;
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		outline: none;
+		scroll-behavior: smooth;
 	}
-  }
+}
 
-  .modal-content button {
+.modal-content button {
 	cursor: pointer;
 	font-weight: 700;
 	background-color: var(--GreenBackground);
@@ -124,7 +124,7 @@
 	border-radius: 5px;
 	box-shadow: rgba(0, 0, 0, 0.3) 0 0 15 0;
 	height: 50px;
-	transition: .2s;
+	transition: 0.2s;
 	width: 100%;
 	border: 0;
 	text-transform: none;
@@ -132,12 +132,12 @@
 	font-family: inherit;
 	font-size: inherit;
 	line-height: inherit;
-  }
+}
 
-  /*  */
-  /* Overlay styles */
+/*  */
+/* Overlay styles */
 
-  .dialog-overlay {
+.dialog-overlay {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -161,18 +161,18 @@
 	/* Ensure it is above other content */
 
 	&.active {
-	  opacity: 1;
+		opacity: 1;
 
-	  /* Fade in */
-	  visibility: visible;
+		/* Fade in */
+		visibility: visible;
 
-	  /* Make visible */
+		/* Make visible */
 	}
-  }
+}
 
-  /* Modal styles */
+/* Modal styles */
 
-  .loginModalWrapper {
+.loginModalWrapper {
 	opacity: 0;
 
 	/* Start hidden */
@@ -184,67 +184,67 @@
 	/* Adjust the opacity transition */
 
 	&.show {
-	  opacity: 1;
+		opacity: 1;
 
-	  /* Fade in for the modal */
-	  pointer-events: auto;
+		/* Fade in for the modal */
+		pointer-events: auto;
 
-	  /* Allow interaction when visible */
-	  animation: moveDownAndBounce 0.5s forwards;
+		/* Allow interaction when visible */
+		animation: moveDownAndBounce 0.5s forwards;
 
-	  /* Play the show animation for modal */
+		/* Play the show animation for modal */
 	}
 
 	&.hide {
-	  opacity: 0;
+		opacity: 0;
 
-	  /* Fade out for the modal */
-	  pointer-events: none;
+		/* Fade out for the modal */
+		pointer-events: none;
 
-	  /* Prevent interaction when hidden */
-	  animation: moveUpAndScale 0.5s forwards;
+		/* Prevent interaction when hidden */
+		animation: moveUpAndScale 0.5s forwards;
 
-	  /* Play the hide animation for modal */
+		/* Play the hide animation for modal */
 	}
-  }
+}
 
-  /* Keyframes for modal animations */
-  @keyframes moveDownAndBounce {
+/* Keyframes for modal animations */
+@keyframes moveDownAndBounce {
 	0% {
-	  transform: scale(0) translateY(-100%);
+		transform: scale(0) translateY(-100%);
 
-	  /* Start scaled down and off-screen above */
-	  opacity: 0;
+		/* Start scaled down and off-screen above */
+		opacity: 0;
 	}
 
 	60% {
-	  opacity: .5;
+		opacity: 0.5;
 	}
 
 	100% {
-	  transform: scale(1) translateY(0);
+		transform: scale(1) translateY(0);
 
-	  /* Settle at final position */
-	  opacity: 1;
+		/* Settle at final position */
+		opacity: 1;
 	}
-  }
+}
 
-  @keyframes moveUpAndScale {
+@keyframes moveUpAndScale {
 	0% {
-	  transform: scale(1) translateY(0);
+		transform: scale(1) translateY(0);
 
-	  /* Start at normal scale and position */
-	  opacity: 1;
+		/* Start at normal scale and position */
+		opacity: 1;
 	}
 
 	60% {
-	  opacity: .5;
+		opacity: 0.5;
 	}
 
 	100% {
-	  transform: scale(0) translateY(-100%);
+		transform: scale(0) translateY(-100%);
 
-	  /* Scale down and move off-screen above */
-	  opacity: 0;
+		/* Scale down and move off-screen above */
+		opacity: 0;
 	}
-  }
+}

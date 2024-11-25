@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'messages-overlay',
-  standalone: true,
-  imports: [],
-  templateUrl: './messages-overlay.component.html',
-  styleUrl: './messages-overlay.component.scss'
+	selector: 'messages-overlay',
+	standalone: true,
+	imports: [],
+	templateUrl: './messages-overlay.component.html',
+	styleUrl: './messages-overlay.component.scss',
 })
-export class MessagesOverlayComponent {
-
-}
+export class MessagesOverlayComponent {}

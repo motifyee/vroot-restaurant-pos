@@ -123,19 +123,22 @@ export class InvoicePanelComponent implements OnInit {
 			clearTimeout(this.loadLazyTimeout);
 		}
 		//imitate delay of a backend call
-		this.loadLazyTimeout = setTimeout(() => {
-			const { first, last } = event;
-			// const items = [...this.items];
+		this.loadLazyTimeout = setTimeout(
+			() => {
+				const { first, last } = event;
+				// const items = [...this.items];
 
-			for (let i = first; i < last; i++) {
-				this.items[i] = {
-					...this.customers[i],
-				};
-			}
+				for (let i = first; i < last; i++) {
+					this.items[i] = {
+						...this.customers[i],
+					};
+				}
 
-			// this.items = items;
-			this.loading = false;
-		}, Math.random() * 1000 + 250);
+				// this.items = items;
+				this.loading = false;
+			},
+			Math.random() * 1000 + 250,
+		);
 	}
 
 	onCustomersFilter(event: DropdownFilterEvent) {

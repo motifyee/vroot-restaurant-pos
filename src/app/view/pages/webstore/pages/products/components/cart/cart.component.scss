@@ -76,9 +76,7 @@
 			align-items: center;
 			margin-bottom: 10px;
 			gap: 11px;
-			padding:  8px 0 ;
-
-
+			padding: 8px 0;
 
 			.btn-delete {
 				background-color: rgba(220, 53, 69, 1);
@@ -118,7 +116,7 @@
 			justify-content: space-between;
 			margin-bottom: 10px;
 			font-size: 14px;
-			padding:  8px 0 ;
+			padding: 8px 0;
 
 			&-label {
 				font-size: 14px;
@@ -144,9 +142,9 @@
 			font-size: 16px;
 			cursor: pointer;
 			text-align: center;
-			padding: .5rem;
+			padding: 0.5rem;
 			height: 45px;
-            font-size: 15px;
+			font-size: 15px;
 			font-family: inherit;
 		}
 	}

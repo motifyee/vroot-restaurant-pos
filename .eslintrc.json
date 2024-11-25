@@ -1,19 +1,10 @@
 {
 	"root": true,
-	"ignorePatterns": [
-		"**/*"
-	],
-	"plugins": [
-		"@nx"
-	],
+	"ignorePatterns": ["**/*"],
+	"plugins": ["@nx"],
 	"overrides": [
 		{
-			"files": [
-				"*.ts",
-				"*.tsx",
-				"*.js",
-				"*.jsx"
-			],
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
 			"extends": [
 				"eslint:recommended",
 				"plugin:@typescript-eslint/recommended",
@@ -25,18 +16,9 @@
 			],
 			"rules": {
 				"indent": "warn",
-				"max-lines": [
-					"error",
-					300
-				],
-				"max-depth": [
-					"error",
-					4
-				],
-				"max-nested-callbacks": [
-					"error",
-					3
-				],
+				"max-lines": ["error", 300],
+				"max-depth": ["error", 4],
+				"max-nested-callbacks": ["error", 3],
 				"max-lines-per-function": [
 					"error",
 					{
@@ -57,9 +39,7 @@
 						"depConstraints": [
 							{
 								"sourceTag": "*",
-								"onlyDependOnLibsWithTags": [
-									"*"
-								]
+								"onlyDependOnLibsWithTags": ["*"]
 							}
 						]
 					}
@@ -67,19 +47,14 @@
 			}
 		},
 		{
-			"files": [
-				"*.html"
-			],
+			"files": ["*.html"],
 			"extends": [
 				"plugin:@angular-eslint/template/recommended",
 				"plugin:@angular-eslint/template/accessibility",
 				"plugin:prettier/recommended"
 			],
 			"rules": {
-				"max-lines": [
-					"error",
-					300
-				],
+				"max-lines": ["error", 300],
 				"prettier/prettier": [
 					"error",
 					{
@@ -89,32 +64,17 @@
 			}
 		},
 		{
-			"files": [
-				"*.ts",
-				"*.tsx"
-			],
-			"extends": [
-				"plugin:@nx/typescript"
-			],
+			"files": ["*.ts", "*.tsx"],
+			"extends": ["plugin:@nx/typescript"],
 			"rules": {}
 		},
 		{
-			"files": [
-				"*.js",
-				"*.jsx"
-			],
-			"extends": [
-				"plugin:@nx/javascript"
-			],
+			"files": ["*.js", "*.jsx"],
+			"extends": ["plugin:@nx/javascript"],
 			"rules": {}
 		},
 		{
-			"files": [
-				"*.spec.ts",
-				"*.spec.tsx",
-				"*.spec.js",
-				"*.spec.jsx"
-			],
+			"files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
 			"env": {
 				"jest": true
 			},

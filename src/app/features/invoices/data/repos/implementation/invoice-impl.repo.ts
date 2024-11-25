@@ -10,11 +10,9 @@ export class InvoiceImplRepo implements InvoiceRepo {
 
 	getById(params: { id: number }, config?: Config): Observable<Invoice> {
 		return this.http
-			.get<Response<Invoice>>(
-				`${ENV.endpoint}/api/invoices/${params.id}`,
-				undefined,
-				config,
-			)
+			.get<
+				Response<Invoice>
+			>(`${ENV.endpoint}/api/invoices/${params.id}`, undefined, config)
 			.pipe(map((res) => res.data!));
 	}
 
@@ -85,12 +83,9 @@ export class InvoiceImplRepo implements InvoiceRepo {
 
 	update(params: Invoice, config?: Config): Observable<Invoice> {
 		return this.http
-			.put<Response<{ id: number }>>(
-				`${ENV.endpoint}/api/invoices/${params.id}`,
-				params,
-				undefined,
-				config,
-			)
+			.put<
+				Response<{ id: number }>
+			>(`${ENV.endpoint}/api/invoices/${params.id}`, params, undefined, config)
 			.pipe(map((res) => params));
 	}
 

@@ -54,7 +54,7 @@ export class InvoiceTab extends Tab {
 			? this.idxStore!.createInvoice({
 					invoice: this.invoice(),
 					creationToken: this.creationToken,
-			  })
+				})
 			: this.idxStore!.updateInvoice(this.invoice());
 
 		return save.pipe(

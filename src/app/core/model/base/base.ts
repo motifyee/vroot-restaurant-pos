@@ -49,7 +49,7 @@ export function applyProps(
 						baseClass,
 						exclude,
 						value,
-				  )
+					)
 				: new (baseClass as typeof Base<any>)(value);
 
 		self[key] = value;
