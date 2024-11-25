@@ -10,7 +10,7 @@ SHOP COMPONENT STRUCTURE:
 
 component (root node)
   ├── header
-  │   ├── order-time 
+  │   ├── order-time
   │   │   - A popup that appears when the "time-type-btn" is clicked.
   │   ├── order-option
   │   │   - A popup that appears when the "header-dropdown-container" is clicked.
@@ -19,31 +19,30 @@ component (root node)
   │   │   ├── code-verification
   │   │   ├── pickup
   │   │   └── drive
-  │   │       └── branch-periods 
+  │   │       └── branch-periods
   │   │           - A popup that appears when selecting a car and clicking the clock icon.
-  │   └── banner 
+  │   └── banner
   │       - Contains the logo.
   │
-  ├── navbar 
+  ├── navbar
   │   - A sidebar that opens when the burger menu is clicked.
   │
   ├── category-bar (mobile-category-bar)
   │   - Contains category tabs. Clicking a tab scrolls to its corresponding section.
   │
-  ├── items 
+  ├── items
   │   - Displays the list of items.
   │
-  ├── add-to-cart-item-modal 
+  ├── add-to-cart-modal
   │   - Shows item details in a popup when an item is clicked.
   │
-  └── cart 
+  └── cart
       - Displays the shopping cart.
 
 SERVICES (temporary):
-  ├── scroll.service 
+  ├── scroll.service
       - Handles the logic for scrolling to specific sections .
 
 ADDITIONAL INFORMATION:
 - In addition to the components listed above, the shop page includes four primary components.
 -->
-

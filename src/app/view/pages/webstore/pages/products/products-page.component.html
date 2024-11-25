@@ -1,0 +1,23 @@
+<banner />
+
+<div class="container">
+	<div class="main-section">
+		<div class="category">
+			<div class="category-section">
+				<category-bar class="category-list" />
+
+				<mobile-category-bar class="mobile-category-list-container" />
+
+				<product-list class="category-items" />
+			</div>
+		</div>
+
+		<cart class="side-bar cart-section" />
+	</div>
+</div>
+
+<add-to-cart-modal
+	[isVisible]="selectedProduct() !== undefined"
+	[product]="selectedProduct()"
+	(closeModal)="productsPageStore.selectProduct(undefined)"
+/>

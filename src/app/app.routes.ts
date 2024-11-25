@@ -15,19 +15,23 @@ export const routes: Routes = [
 	},
 	{
 		path: 'webstore',
+		loadComponent: () =>
+			import('./view/pages/webstore/webstore.component').then(
+				(m) => m.WebstoreComponent,
+			),
 		loadChildren: () => [
 			{
 				path: '',
 				loadComponent: () =>
-					import('./view/pages/webstore/webstore.component').then(
-						(m) => m.ShopComponent,
-					),
+					import(
+						'./view/pages/webstore/pages/products/products-page.component'
+					).then((m) => m.ProductsPageComponent),
 			},
 			{
 				path: 'branches',
 				loadComponent: () =>
 					import(
-						'./view/pages/webstore/components/order-options/pickup/pickup.component'
+						'./view/pages/webstore/components/topbar/order-type/pickup/pickup.component'
 					).then((m) => m.PickupComponent),
 			},
 		],

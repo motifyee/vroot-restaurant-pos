@@ -1,0 +1,31 @@
+<div #scrollHook class="scroll-hook"></div>
+
+@for (category of menu(); track category.id){
+<div #category class="category-section" [id]="'category-' + category.id">
+	<div class="category-name">
+		<span>{{ category.title }}</span>
+	</div>
+
+	@for(product of category.products; track product.id){
+	<div (click)="addProduct(product)" class="item-card">
+		<div class="card-content">
+			<div class="card-content-name">{{ product.title }}</div>
+			<div class="card-content-price">
+				<div class="card-content-price-2">
+					<div dir="ltr" class="card-content-price-3">
+						{{ product.variants?.[0]?.price ?? 0 }}
+						<small>SAR</small>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card-img">
+			<img
+				src="https://media-files.tryordersystem.com/menu/saladfactory/11c14024-78aa-4bfb-bf55-46e61abbc18e/671f938fb6c1e.png"
+				[alt]="product.title"
+			/>
+		</div>
+	</div>
+	}
+</div>
+}

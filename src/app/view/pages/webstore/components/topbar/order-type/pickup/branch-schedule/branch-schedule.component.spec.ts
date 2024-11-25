@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WebstoreComponent } from './webstore.component';
+import { BranchPeriodsComponent } from './branch-schedule.component';
 
-describe('ShopComponent', () => {
-	let component: WebstoreComponent;
-	let fixture: ComponentFixture<WebstoreComponent>;
+describe('BranchPeriodsComponent', () => {
+	let component: BranchPeriodsComponent;
+	let fixture: ComponentFixture<BranchPeriodsComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [WebstoreComponent],
+			imports: [BranchPeriodsComponent],
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(WebstoreComponent);
+		fixture = TestBed.createComponent(BranchPeriodsComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

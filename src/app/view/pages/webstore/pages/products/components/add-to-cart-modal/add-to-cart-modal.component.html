@@ -1,0 +1,147 @@
+<div
+	[ngClass]="{ show: isVisible(), hide: !isVisible() }"
+	id="menu-item-modal"
+	class="menuItemModalWrapper"
+>
+	<div class="productItem">
+		<div class="modalTopArea">
+			<div
+				(click)="closeModal.emit()"
+				id="menuItemModalWrapperIcon"
+				class="closeMenuItemModalBtn"
+			>
+				<i class="fas fa-times"></i>
+			</div>
+			<div class="itemImgthumb">
+				<div class="slick-slider">
+					<div class="slick-list draggable">
+						<div class="slick-track">
+							<div
+								class="slick-slide slick-current slick-active"
+								data-slick-index="0"
+								aria-hidden="false"
+								style="width: 500px"
+							>
+								<div>
+									<div class="item">
+										<img
+											src="https://media-files.tryordersystem.com/menu/saladfactory/91cce529-1566-4b3d-89c5-6cae0d4de6af/6706c64ea20e1.png"
+											class="w-100 h-100"
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="aboutItem d-flex flex-column gap-3 py-3 px-2">
+				<div
+					class="nameAndPrice d-flex align-items-center justify-content-between gap-2"
+				>
+					<div class="itemInfo flex-grow-1 fw-bold">
+						كومبو الجمعات
+					</div>
+					<div class="itemPrice">
+						<div class="twoPrices">
+							<span data-v-d982a23a="" dir="ltr" class=""
+								>24.00 <small>SAR</small></span
+							>
+						</div>
+					</div>
+				</div>
+				<div class="item-description d-block text-center">
+					<p class="m-0">اشتري 3 سلطات والرابعة مجانا</p>
+				</div>
+			</div>
+			<div class="itemOptions p-2">
+				<div
+					class="title d-flex align-items-start justify-content-between flex-wrap mb-2"
+				>
+					<div class="colR">
+						<div
+							class="groupName d-flex align-items-start justify-content-start flex-column fw-bold"
+						>
+							اختر نوع السلطة
+						</div>
+						<span class="d-block fw-normal">
+							<small>اختر 3</small>&nbsp;&nbsp;
+							<small>بحد أقصى 3</small>
+						</span>
+					</div>
+					<div class="colL">
+						<div class="required rounded fw-bold px-2">مطلوب</div>
+					</div>
+				</div>
+
+				<!-- Updated section with ngFor loop for options -->
+				<div class="optionsItems">
+					<div *ngFor="let option of options" class="optionItem">
+						<div class="optionTxt">
+							<label>
+								<input
+									type="checkbox"
+									[checked]="option.checked"
+									(click)="toggleCheck(option)"
+								/>
+								<div class="sideR">
+									<div
+										class="checkMark"
+										[ngClass]="{ checked: option.checked }"
+									>
+										<i
+											*ngIf="option.checked"
+											class="checkIcon fas fa-check"
+										></i>
+									</div>
+									<div class="optionName">
+										{{ option.name }}
+									</div>
+								</div>
+								<div dir="ltr" class="optionPrice">
+									{{ option.price }} <small>SAR</small>
+								</div>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Remaining parts of the menu modal go here -->
+			<div class="itemNote p-2">
+				<label class="mb-1 fw-bold">ملاحظات</label>
+				<textarea
+					rows="2"
+					cols="3"
+					placeholder="أكتب ملاحظتك"
+					maxlength=""
+					class="w-100 rounded-3 bg-transparent border p-2"
+				></textarea>
+			</div>
+		</div>
+		<div class="modalBottomArea">
+			<div class="qtyArea">
+				<button type="button" class="plusQty">
+					<i class="fas fa-plus"></i>
+				</button>
+				<input type="number" inputmode="numeric" value="1" class="" />
+				<button disabled="disabled" type="button" class="minusQty">
+					<i class="fas fa-minus"></i>
+				</button>
+			</div>
+			<div class="addItemToCartBtn">
+				<button type="button" id="add_to_cart" class="btnStyle">
+					<span>إضافة</span>
+				</button>
+			</div>
+		</div>
+		<div class="timeTypeModal"></div>
+	</div>
+</div>
+
+<div
+	[ngClass]="{ active: isVisible() && hasRenderedOnce }"
+	(click)="closeModal.emit()"
+	class="addtoCardOverlay"
+	id="addtoCardOverlay"
+></div>
