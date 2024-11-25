@@ -1,10 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { settingsStore } from '@src/app/features/settings';
+import { SkeletonModule } from 'primeng/skeleton';
+import { BranchCardComponent } from '../../branch-card/branch-card.component';
 
 @Component({
 	selector: 'app-pickup',
 	standalone: true,
-	imports: [],
+	imports: [SkeletonModule, BranchCardComponent],
 	templateUrl: './pickup.component.html',
 	styleUrl: './pickup.component.scss',
 })

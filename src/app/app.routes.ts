@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
 	{
 		path: '',
-		redirectTo: 'shop',
+		redirectTo: 'webstore',
 		pathMatch: 'full',
 	},
 	{
@@ -14,10 +14,22 @@ export const routes: Routes = [
 			),
 	},
 	{
-		path: 'shop',
-		loadComponent: () =>
-			import('./view/pages/webstore/webstore.component').then(
-				(m) => m.ShopComponent,
-			),
+		path: 'webstore',
+		loadChildren: () => [
+			{
+				path: '',
+				loadComponent: () =>
+					import('./view/pages/webstore/webstore.component').then(
+						(m) => m.ShopComponent,
+					),
+			},
+			{
+				path: 'branches',
+				loadComponent: () =>
+					import(
+						'./view/pages/webstore/components/order-options/pickup/pickup.component'
+					).then((m) => m.PickupComponent),
+			},
+		],
 	},
 ];
