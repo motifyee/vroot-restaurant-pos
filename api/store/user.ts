@@ -6,9 +6,6 @@ interface User {
 	email: string;
 	companyId: string; // the store registered in
 	profilePicture: string;
-	address: string;
-	long: number;
-	lat: number;
 }
 
 interface Address {
@@ -30,7 +27,7 @@ export const apis: API = {
 		url: 'api/accounts/store/login',
 		successCode: 200,
 		payload: {} as { username: string; password: string },
-		response: { data: {} as User },
+		response: { data: { user: {} as User, token: '' } },
 	},
 	// ###########################################################################
 	getCustomerAddresses: {
