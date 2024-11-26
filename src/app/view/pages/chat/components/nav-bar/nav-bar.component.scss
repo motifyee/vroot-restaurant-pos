@@ -1,0 +1,56 @@
+.user-thumbnail-box {
+	border-radius: 50%;
+	max-width: 100%;
+	position: relative;
+	height: 32px;
+	width: 32px;
+  }
+
+  .avatar-container {
+	background-image: linear-gradient(to top, #135899, #135899); // Single consistent gradient
+	display: flex;
+	cursor: default;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	font-weight: 500;
+	font-size: 12px; // Moved from inline style
+	line-height: 100%;
+	color: #c2e1ff;
+  }
+
+  .user-thumbnail {
+	border-radius: 50%;
+	height: 100%;
+	width: 100%;
+	box-sizing: border-box;
+	object-fit: cover;
+	vertical-align: baseline; // Removed redundant `vertical-align: initial`
+  }
+
+  .source-badge {
+	border-radius: 50%;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	padding: 0.125rem;
+	position: absolute;
+	right: 0;
+	bottom: 0.125rem;
+	width: 8px;
+	height: 8px;
+	background-color: rgb(51, 176, 116); // Single consistent color
+  }
+
+  .button__content {
+	cursor: pointer;
+	text-align: left;
+
+	// RTL support
+	&.rtl {
+	  text-align: right;
+	}
+  }
+
+  // State-specific styles for user online status
+  .user-online-status--online {
+	background-color: rgb(51, 176, 116);
+  }
