@@ -12,6 +12,7 @@ import {
 	QueryList,
 	AfterViewChecked,
 	ChangeDetectorRef,
+	computed,
 } from '@angular/core';
 import { ScrollService } from '../../../../services/scroll.service'; // Import your scroll service
 import { Subscription } from 'rxjs';
@@ -38,8 +39,8 @@ export class ProductListComponent
 
 	categoriesViewHasInit = this.productsPageStore.categoriesViewHasInit;
 
-	addProduct(product: Product) {
-		this.productsPageStore.selectProduct(product);
+	addProduct(variant: ProductVariant, product: Product) {
+		this.productsPageStore.selectProduct(variant, product);
 	}
 
 	@ViewChild('scrollHook') public scrollHook?: ElementRef;
@@ -47,8 +48,14 @@ export class ProductListComponent
 		ElementRef<HTMLElement>
 	>;
 
-	menu = this.productStore.categories;
-	products = effect(() => this.productStore.categories());
+	menu = computed(() => this._menu());
+	_menu = computed(() =>
+		this.productStore.categories().map((c) => ({
+			...c,
+			variants: c.products.flatMap((p) => p.variants),
+		})),
+	);
+	variants = effect(() => this.menu().flatMap((c) => c.products));
 
 	//  trigger ngAfterViewChecked on menu change
 	_ = effect(() => {
@@ -63,7 +70,7 @@ export class ProductListComponent
 	});
 
 	ngOnInit() {
-		this.productStore.getCategories().subscribe();
+		this.productStore.getCategories().subscribe((m) => console.log(m));
 	}
 
 	ngAfterViewChecked(): void {

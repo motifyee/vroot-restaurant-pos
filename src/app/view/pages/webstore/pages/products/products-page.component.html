@@ -16,8 +16,11 @@
 	</div>
 </div>
 
-<add-to-cart-modal
-	[isVisible]="selectedProduct() !== undefined"
-	[product]="selectedProduct()"
-	(closeModal)="productsPageStore.selectProduct(undefined)"
-/>
+@if (selectedProduct()) {
+	<div
+		add-to-cart-modal
+		@scaleInOut
+		[variant]="selectedProduct()"
+		(closeModal)="productsPageStore.selectProduct()"
+	></div>
+}

@@ -11,7 +11,7 @@ const intialState: ProductsState = {
 	selectedProduct: undefined,
 };
 
-export const productsPageStore = signalStore(
+export const webstorePageStore = signalStore(
 	withState(intialState),
 	withMethods((store) => {
 		return {
@@ -25,5 +25,5 @@ export const productsPageStore = signalStore(
 	}),
 );
 
-let _s = storeType(productsPageStore);
+let _s = storeType(webstorePageStore);
 export type ProductsStore = typeof _s;

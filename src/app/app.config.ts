@@ -17,13 +17,15 @@ import { ErrorHandlerService } from './core/services/error';
 import { AuthInterceptor } from './core/interceptors/api.interceptor';
 import { FeaturesModule } from './features';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
+		// BrowserModule,
+		// BrowserAnimationsModule,
+		provideAnimationsAsync(),
 		importProvidersFrom(
 			RouterModule,
-			BrowserModule,
-			BrowserAnimationsModule,
 			AuthnModule,
 			LoggerModule.forAdaptive(
 				LogSeverity.info,
