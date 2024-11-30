@@ -18,11 +18,15 @@ import { AuthInterceptor } from './core/interceptors/api.interceptor';
 import { FeaturesModule } from './features';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideTranslateService } from '@ngx-translate/core';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
 		// BrowserModule,
 		// BrowserAnimationsModule,
+		provideTranslateService({
+			defaultLanguage: 'en',
+		}),
 		provideAnimationsAsync(),
 		importProvidersFrom(
 			RouterModule,

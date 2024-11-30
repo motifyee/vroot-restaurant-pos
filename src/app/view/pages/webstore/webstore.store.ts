@@ -1,6 +1,6 @@
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { withTranslator } from '@src/app/core';
 import { storeType } from '@src/app/view/state/utils/utils';
-
 interface ProductsState {
 	categoriesViewHasInit: boolean;
 	selectedProduct: ProductVariant | undefined;
@@ -13,6 +13,10 @@ const intialState: ProductsState = {
 
 export const webstorePageStore = signalStore(
 	withState(intialState),
+	withTranslator({
+		en: () => import('./i18n/en.json'),
+		ar: () => import('./i18n/ar.json'),
+	}),
 	withMethods((store) => {
 		return {
 			setCategoriesViewInit: () =>

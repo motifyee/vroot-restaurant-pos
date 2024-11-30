@@ -8,3 +8,4 @@ export * from './resolvers';
 export * from './services';
 export * from './util';
 export * from './model';
+export * from './i18n';
