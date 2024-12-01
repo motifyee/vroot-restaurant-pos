@@ -19,6 +19,7 @@ import { Subscription } from 'rxjs';
 import { productStore } from '@src/app/features/products';
 import { HeaderComponent } from '../../../../components/topbar/topbar.component';
 import { productsPageStore } from '../../products-page.store';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
 	selector: 'product-list',
@@ -27,6 +28,7 @@ import { productsPageStore } from '../../products-page.store';
 	styleUrls: ['./product-list.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [HeaderComponent],
+	imports: [SkeletonModule],
 })
 export class ProductListComponent
 	implements OnInit, AfterViewChecked, OnDestroy
@@ -66,7 +68,7 @@ export class ProductListComponent
 	//  scroll to active category
 	__ = effect(() => {
 		const idx = this.scrollService.inViewCategory();
-		this.scrollToCategory(idx);
+		if (idx > -1) this.scrollToCategory(idx);
 	});
 
 	ngOnInit() {

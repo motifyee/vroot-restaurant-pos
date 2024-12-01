@@ -23,19 +23,3 @@ html {
 body {
 	@apply m-0 p-0 h-full;
 }
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-:root {
-	--GreenBackground: #65725b;
-	--Greentextcolor: #65725b;
-	--Greenbordercolor: #65725b;
-	--priceColor: #d0a328;
-	--cardsBG: #f3f3ed;
-	--bodyBG: #fff;
-	--borderColor: #a39172;
-	--cardBorder: #a39172;
-}

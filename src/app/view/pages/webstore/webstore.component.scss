@@ -9,3 +9,14 @@
 	background-color: #f7f7f7;
 	background-color: #ffffff;
 }
+
+::ng-deep:root {
+	--GreenBackground: #65725b;
+	--Greentextcolor: #65725b;
+	--Greenbordercolor: #65725b;
+	--priceColor: #d0a328;
+	--cardsBG: #f3f3ed;
+	--bodyBG: #fff;
+	--borderColor: #a39172;
+	--cardBorder: #a39172;
+}

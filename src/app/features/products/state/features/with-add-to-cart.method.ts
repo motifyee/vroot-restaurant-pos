@@ -27,7 +27,8 @@ export const withAddToCartMethod = <_>() =>
 							setEntity(
 								{
 									...existing,
-									quantity: existing.quantity + 1,
+									quantity:
+										existing.quantity + product.quantity,
 								},
 								cartProductsConfig,
 							),

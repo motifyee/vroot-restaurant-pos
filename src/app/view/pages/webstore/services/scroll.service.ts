@@ -4,5 +4,5 @@ import { Injectable, signal } from '@angular/core';
 @Injectable()
 export class ScrollService {
 	headerEl?: HTMLElement;
-	inViewCategory = signal(0);
+	inViewCategory = signal(-1);
 }

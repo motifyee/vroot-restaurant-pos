@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { ScrollService } from '../../../../services/scroll.service';
 import { productStore } from '@src/app/features/products';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
 	selector: 'category-bar',
 	standalone: true,
-	imports: [],
+	imports: [SkeletonModule],
 	templateUrl: './category-bar.component.html',
 	styleUrls: ['./category-bar.component.scss'],
 })

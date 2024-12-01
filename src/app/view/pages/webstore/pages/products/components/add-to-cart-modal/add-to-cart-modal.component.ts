@@ -15,7 +15,7 @@ import { productStore } from '@src/app/features/products';
 @Component({
 	selector: 'add-to-cart-modal, [add-to-cart-modal]',
 	standalone: true,
-	imports: [NgClass, CommonModule, FormsModule],
+	imports: [CommonModule, FormsModule],
 	templateUrl: './add-to-cart-modal.component.html',
 	styleUrls: ['./add-to-cart-modal.component.scss'],
 })
