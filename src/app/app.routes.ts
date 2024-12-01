@@ -36,4 +36,20 @@ export const routes: Routes = [
 			},
 		],
 	},
+	{
+		path: 'chat',
+		loadComponent: () =>
+			import('./view/pages/chat/chat.component').then(
+				(m) => m.ChatComponent,
+			),
+		loadChildren: () => [
+			{
+				path: '',
+				loadComponent: () =>
+					import(
+						'./view/pages/chat/pages/dashboard/dashboard.component'
+					).then((m) => m.DashboardComponent),
+			},
+		],
+	},
 ];
