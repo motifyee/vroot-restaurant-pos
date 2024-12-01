@@ -8,6 +8,7 @@
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
 		"pretty": "prettier --write \"./**/*.{ts,scss,css,html,json}\"",
+		"extract-i18n": "ngx-translate-extract  -i ./src -o ./public/i18n/en.json -o ./public/i18n/ar.json -f namespaced-json",
 		"mrt": "ng serve --port 3000",
 		"yusuf": "ng serve --port 3100"
 	},
@@ -23,6 +24,7 @@
 		"@angular/router": "^18.2.0",
 		"@ngrx/operators": "^18.0.2",
 		"@ngrx/signals": "^18.0.2",
+		"@ngx-translate/core": "^16.0.3",
 		"@types/google-one-tap": "^1.2.6",
 		"google-one-tap": "^1.0.6",
 		"primeicons": "^7.0.0",
@@ -36,6 +38,7 @@
 		"@angular/cli": "^18.2.3",
 		"@angular/compiler-cli": "^18.2.0",
 		"@types/jasmine": "~5.1.0",
+		"@vendure/ngx-translate-extract": "^9.3.1",
 		"autoprefixer": "^10.4.20",
 		"jasmine-core": "~5.2.0",
 		"karma": "~6.4.0",

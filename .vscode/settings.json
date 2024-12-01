@@ -1,6 +1,6 @@
 {
-	"typescript.tsdk": "node_modules\\typescript\\lib",
-	"workbench.colorCustomizations": {
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#3399ff",
     "activityBar.background": "#3399ff",
     "activityBar.foreground": "#15202b",
@@ -20,5 +20,5 @@
     "titleBar.inactiveForeground": "#e7e7e799",
     "tab.activeBorder": "#3399ff"
   },
-	"peacock.color": "#007fff"
+  "peacock.color": "#007fff"
 }

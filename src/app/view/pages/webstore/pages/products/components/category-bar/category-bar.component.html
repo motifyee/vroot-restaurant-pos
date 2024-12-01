@@ -1,12 +1,21 @@
 <aside class="sticky-content">
-	@for (category of menu(); track category.id; let idx = $index) {
-		<a
-			(click)="scrollToCategory(idx)"
-			[class.active]="activeCategoryIdx === idx"
-			[title]="category.title"
-			class=""
-			><i class="fas fa-chevron-left"></i
-			><span class="">{{ category.title }}</span>
-		</a>
+	@if (menu().length > 0) {
+		@for (category of menu(); track category.id; let idx = $index) {
+			<a
+				(click)="scrollToCategory(idx)"
+				[class.active]="activeCategoryIdx === idx"
+				[title]="category.title"
+				><i class="fas fa-chevron-left"></i
+				><span class="">{{ category.title }}</span>
+			</a>
+		}
+		<!-- skeleton -->
+	} @else {
+		<div class="p-4">
+			@for (_ of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track $index) {
+				<p-skeleton width="10rem" class="my-2" />
+				<br />
+			}
+		</div>
 	}
 </aside>

@@ -1,8 +1,4 @@
-<div
-	[ngClass]="{ show: isVisible(), hide: !isVisible() }"
-	id="menu-item-modal"
-	class="menuItemModalWrapper"
->
+<div id="menu-item-modal" class="menuItemModalWrapper">
 	<div class="productItem">
 		<div class="modalTopArea">
 			<div
@@ -40,21 +36,23 @@
 					class="nameAndPrice d-flex align-items-center justify-content-between gap-2"
 				>
 					<div class="itemInfo flex-grow-1 fw-bold">
-						كومبو الجمعات
+						{{ variant()?.product?.title }} - {{ variant()?.title }}
 					</div>
 					<div class="itemPrice">
 						<div class="twoPrices">
-							<span data-v-d982a23a="" dir="ltr" class=""
-								>24.00 <small>SAR</small></span
-							>
+							<span dir="ltr" class="">
+								{{ variant()?.price }}
+								<small>SAR</small>
+							</span>
 						</div>
 					</div>
 				</div>
-				<div class="item-description d-block text-center">
+				<!-- <div class="item-description d-block text-center">
 					<p class="m-0">اشتري 3 سلطات والرابعة مجانا</p>
-				</div>
+				</div> -->
 			</div>
-			<div class="itemOptions p-2">
+
+			<!-- <div class="itemOptions p-2">
 				<div
 					class="title d-flex align-items-start justify-content-between flex-wrap mb-2"
 				>
@@ -74,7 +72,6 @@
 					</div>
 				</div>
 
-				<!-- Updated section with ngFor loop for options -->
 				<div class="optionsItems">
 					<div *ngFor="let option of options" class="optionItem">
 						<div class="optionTxt">
@@ -82,7 +79,7 @@
 								<input
 									type="checkbox"
 									[checked]="option.checked"
-									(click)="toggleCheck(option)"
+									(click)="option.checked = !option.checked"
 								/>
 								<div class="sideR">
 									<div
@@ -105,7 +102,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<!-- Remaining parts of the menu modal go here -->
 			<div class="itemNote p-2">
@@ -116,21 +113,40 @@
 					placeholder="أكتب ملاحظتك"
 					maxlength=""
 					class="w-100 rounded-3 bg-transparent border p-2"
+					[(ngModel)]="note"
 				></textarea>
 			</div>
 		</div>
 		<div class="modalBottomArea">
 			<div class="qtyArea">
-				<button type="button" class="plusQty">
+				<button
+					(click)="incrementQuantity()"
+					type="button"
+					class="plusQty"
+				>
 					<i class="fas fa-plus"></i>
 				</button>
-				<input type="number" inputmode="numeric" value="1" class="" />
-				<button disabled="disabled" type="button" class="minusQty">
+				<input
+					[(ngModel)]="quantity"
+					type="number"
+					inputmode="numeric"
+					class=""
+				/>
+				<button
+					(click)="decrementQuantity()"
+					type="button"
+					class="minusQty"
+				>
 					<i class="fas fa-minus"></i>
 				</button>
 			</div>
 			<div class="addItemToCartBtn">
-				<button type="button" id="add_to_cart" class="btnStyle">
+				<button
+					(click)="addToCart()"
+					type="button"
+					id="add_to_cart"
+					class="btnStyle"
+				>
 					<span>إضافة</span>
 				</button>
 			</div>
@@ -140,8 +156,7 @@
 </div>
 
 <div
-	[ngClass]="{ active: isVisible() && hasRenderedOnce }"
 	(click)="closeModal.emit()"
-	class="addtoCardOverlay"
+	class="addtoCardOverlay active"
 	id="addtoCardOverlay"
 ></div>

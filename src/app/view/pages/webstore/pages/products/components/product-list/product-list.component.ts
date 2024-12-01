@@ -12,12 +12,14 @@ import {
 	QueryList,
 	AfterViewChecked,
 	ChangeDetectorRef,
+	computed,
 } from '@angular/core';
 import { ScrollService } from '../../../../services/scroll.service'; // Import your scroll service
 import { Subscription } from 'rxjs';
 import { productStore } from '@src/app/features/products';
 import { HeaderComponent } from '../../../../components/topbar/topbar.component';
 import { productsPageStore } from '../../products-page.store';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
 	selector: 'product-list',
@@ -26,6 +28,7 @@ import { productsPageStore } from '../../products-page.store';
 	styleUrls: ['./product-list.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [HeaderComponent],
+	imports: [SkeletonModule],
 })
 export class ProductListComponent
 	implements OnInit, AfterViewChecked, OnDestroy
@@ -38,8 +41,8 @@ export class ProductListComponent
 
 	categoriesViewHasInit = this.productsPageStore.categoriesViewHasInit;
 
-	addProduct(product: Product) {
-		this.productsPageStore.selectProduct(product);
+	addProduct(variant: ProductVariant, product: Product) {
+		this.productsPageStore.selectProduct(variant, product);
 	}
 
 	@ViewChild('scrollHook') public scrollHook?: ElementRef;
@@ -47,8 +50,14 @@ export class ProductListComponent
 		ElementRef<HTMLElement>
 	>;
 
-	menu = this.productStore.categories;
-	products = effect(() => this.productStore.categories());
+	menu = computed(() => this._menu());
+	_menu = computed(() =>
+		this.productStore.categories().map((c) => ({
+			...c,
+			variants: c.products.flatMap((p) => p.variants),
+		})),
+	);
+	variants = effect(() => this.menu().flatMap((c) => c.products));
 
 	//  trigger ngAfterViewChecked on menu change
 	_ = effect(() => {
@@ -59,11 +68,11 @@ export class ProductListComponent
 	//  scroll to active category
 	__ = effect(() => {
 		const idx = this.scrollService.inViewCategory();
-		this.scrollToCategory(idx);
+		if (idx > -1) this.scrollToCategory(idx);
 	});
 
 	ngOnInit() {
-		this.productStore.getCategories().subscribe();
+		this.productStore.getCategories().subscribe((m) => console.log(m));
 	}
 
 	ngAfterViewChecked(): void {
