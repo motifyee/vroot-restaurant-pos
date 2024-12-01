@@ -1,9 +1,25 @@
+.menu-link {
+	@apply flex items-center relative justify-center 
+  w-10 h-10 my-2 rounded-lg 
+  text-slate-700 
+  dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:text-slate-100 
+   hover:bg-slate-50 hover:text-slate-600;
+}
+
 .user-thumbnail-box {
 	border-radius: 50%;
 	max-width: 100%;
 	position: relative;
 	height: 32px;
 	width: 32px;
+}
+
+.notification-btn {
+	@apply relative flex items-center justify-center
+   w-10 h-10 p-0 my-2 rounded-lg 
+   text-slate-600 dark:text-slate-100 hover:bg-slate-50
+   dark:hover:text-slate-100 hover:text-slate-600
+   dark:hover:bg-slate-700;
 }
 
 .avatar-container {
@@ -44,23 +60,7 @@
 	background-color: rgb(51, 176, 116); // Single consistent color
 }
 
-.button__content {
-	cursor: pointer;
-	text-align: left;
-
-	// RTL support
-	&.rtl {
-		text-align: right;
-	}
-}
-
 // State-specific styles for user online status
 .user-online-status--online {
 	background-color: rgb(51, 176, 116);
 }
-
-
-
-
-
-// apply

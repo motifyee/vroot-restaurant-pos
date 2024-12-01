@@ -1,6 +1,6 @@
 <aside class="flex h-full" route=" " has-banner="false">
 	<div
-		class="flex flex-col justify-between w-16 h-full bg-white border-r dark:bg-slate-900 border-slate-50 dark:border-slate-800/50 rtl:border-l rtl:border-r-0"
+		class="flex flex-col justify-between w-16 h-full bg-white border-r dark:bg-slate-900 border-slate-50 dark:border-slate-800/50"
 	>
 		<div class="flex flex-col items-center">
 			<div class="w-8 h-8 m-4 mb-10">
@@ -8,90 +8,59 @@
 					href="/dashboard"
 					class="router-link-active router-link-exact-active"
 					aria-current="page"
-					><img
-						src="https://chat-app.vroot.com/brand-assets/logo_thumbnail.svg"
-						alt="Chatwoot"
-				/></a>
+				>
+					<message-icon class="w-8 h-8" />
+				</a>
 			</div>
-			<a
-				href="inbox-view"
-				class="text-slate-700 dark:text-slate-100 w-10 h-10 my-2 flex items-center justify-center rounded-lg hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600 relative"
-			>
-				<inbox></inbox>
+			<a href="inbox-view" class="menu-link">
+				<inbox-icon />
 				<span class="sr-only">INBOX_VIEW</span>
 			</a>
 			<a
 				href="dashboard"
-				class="text-slate-700 dark:text-slate-100 w-10 h-10 my-2 flex items-center justify-center rounded-lg hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600 relative bg-woot-50 dark:bg-slate-800 text-woot-500 hover:bg-woot-50"
+				class="menu-link bg-woot-50 dark:bg-slate-800 text-woot-500 hover:bg-woot-50"
 			>
-				<conversation></conversation>
+				<conversation-icon />
 				<span class="sr-only">CONVERSATIONS</span>
 			</a>
-			<a
-				href="captain"
-				class="text-slate-700 dark:text-slate-100 w-10 h-10 my-2 flex items-center justify-center rounded-lg hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600 relative"
-			>
-				<captain></captain>
+			<a href="captain" class="menu-link">
+				<captain-icon />
 				<span class="sr-only">CAPTAIN</span>
 			</a>
-			<a
-				href="contacts"
-				class="text-slate-700 dark:text-slate-100 w-10 h-10 my-2 flex items-center justify-center rounded-lg hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600 relative"
-			>
-				<contacts></contacts>
+			<a href="contacts" class="menu-link">
+				<contacts-icon />
 				<span class="sr-only">CONTACTS</span>
 			</a>
-			<a
-				href="reports"
-				class="text-slate-700 dark:text-slate-100 w-10 h-10 my-2 flex items-center justify-center rounded-lg hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600 relative"
-			>
-				<reports></reports>
+			<a href="reports" class="menu-link">
+				<reports-icon />
 				<span class="sr-only">REPORTS</span>
 			</a>
-			<a
-				href="campaigns"
-				class="text-slate-700 dark:text-slate-100 w-10 h-10 my-2 flex items-center justify-center rounded-lg hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600 relative v-popper--has-tooltip"
-			>
-				<campaigns></campaigns>
+			<a href="campaigns" class="menu-link">
+				<campaign-icon />
 				<span class="sr-only">CAMPAIGNS</span>
 			</a>
-			<a
-				href="/portals"
-				class="text-slate-700 dark:text-slate-100 w-10 h-10 my-2 flex items-center justify-center rounded-lg hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600 relative v-popper--has-tooltip"
-			>
-				<portals></portals>
+			<a href="/portals" class="menu-link">
+				<portals-icon />
 				<span class="sr-only">portals</span>
 			</a>
-			<a
-				href="/settings"
-				class="text-slate-700 dark:text-slate-100 w-10 h-10 my-2 flex items-center justify-center rounded-lg hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600 relative"
-			>
-				<settings></settings>
+			<a href="/settings" class="menu-link">
+				<settings-icon />
 				<span class="sr-only">SETTINGS</span>
 			</a>
 		</div>
 		<div class="flex flex-col items-center justify-end pb-6">
 			<div class="mb-4">
-				<button
-					id="notification"
-					class="relative flex items-center justify-center w-10 h-10 p-0 my-2 rounded-lg text-slate-600 dark:text-slate-100 hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600"
-				>
-					<notification></notification>
+				<button class="notification-btn bg-transparent border-0">
+					<notification-icon />
 				</button>
 			</div>
 			<button
-				class="button clear link primary flex items-center rounded-full v-popper--has-tooltip"
+				class="button clear link primary flex items-center rounded-full border-0"
 			>
-				<span class="button__content text-left rtl:text-right">
-					<div class="user-thumbnail-box is-rounded" title="">
-						<img
-							src=""
-							draggable="false"
-							class="user-thumbnail thumbnail-rounded"
-							style="display: none"
-						/>
+				<span class="cursor-pointer text-start">
+					<div class="user-thumbnail-box" title="">
 						<div
-							class="avatar-container user-thumbnail thumbnail-rounded"
+							class="avatar-container user-thumbnail"
 							aria-hidden="true"
 							style="font-size: 12px"
 						>
@@ -99,7 +68,7 @@
 						</div>
 
 						<div
-							class="source-badge user-online-status user-online-status--online"
+							class="source-badge user-online-status--online"
 						></div>
 					</div>
 				</span>
