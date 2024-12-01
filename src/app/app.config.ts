@@ -25,7 +25,7 @@ export const appConfig: ApplicationConfig = {
 		// BrowserModule,
 		// BrowserAnimationsModule,
 		provideTranslateService({
-			defaultLanguage: 'en',
+			defaultLanguage: localStorage.getItem('lang') || 'en',
 		}),
 		provideAnimationsAsync(),
 		importProvidersFrom(

@@ -10,17 +10,31 @@ export class Translator {
 	tr = inject(TranslateService);
 
 	constructor(
-		public loader: { [key: string]: () => Promise<any> },
-		reset = true,
+		private loader: { [key: string]: () => Promise<any> },
+		{ resetTranslations = true, followChange = false } = {},
 	) {
-		this.use(this.tr.currentLang || this.tr.defaultLang, reset);
+		this.use(this.currentLang, resetTranslations).subscribe(() => {
+			//! experimental
+			// used to set translations reactively to the current language
+			// experiment with a singlton event listener
+			if (followChange)
+				this.tr.onTranslationChange.subscribe(
+					(o) =>
+						!this._isSwitchingLangLocally &&
+						this.use(o.lang, resetTranslations),
+				);
+		});
 	}
 
+	_isSwitchingLangLocally = false;
 	use(
 		lang: string,
 		reset: boolean = true,
 	): Observable<InterpolatableTranslationObject> {
+		this._isSwitchingLangLocally = true;
+
 		if (!this.loader[lang]) return of({});
+		this.currentLang;
 
 		const subject = new Subject<InterpolatableTranslationObject>();
 
@@ -31,8 +45,10 @@ export class Translator {
 				this.tr.setTranslation(lang, { ...old, ...data });
 
 				this.tr.use(lang).subscribe((trObj) => {
+					localStorage.setItem('lang', lang);
 					subject.next(trObj);
 					subject.complete();
+					setTimeout(() => (this._isSwitchingLangLocally = false), 1);
 				});
 			})
 			.catch(subject.error);

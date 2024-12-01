@@ -6,13 +6,17 @@ export const withTranslator = <_>(
 	languages: {
 		[key: string]: () => Promise<any>;
 	},
-	reset = true,
+	resetTranslations = true,
+	followChange = false,
 ) =>
 	signalStoreFeature(
 		// used a computed to create translator in an injection context
 		// must be called from within the component tree to initialize translation bindings
 		withComputed((store) => {
-			const tr = new Translator(languages, reset);
+			const tr = new Translator(languages, {
+				resetTranslations,
+				followChange,
+			});
 			return {
 				tr: computed(() => tr),
 			};
