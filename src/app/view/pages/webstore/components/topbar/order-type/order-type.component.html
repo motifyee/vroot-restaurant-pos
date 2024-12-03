@@ -1,58 +1,40 @@
-<div [ngClass]="{ show: isVisible(), hide: !isVisible() }" class="order-type">
-	<div>
-		<div class="order-type-content">
-			<!-- Tabs Area -->
-			<div class="tabsArea">
-				<button
-					type="button"
-					[class.active]="activeTab() === 'delivery'"
-					(click)="activeTab.set('delivery')"
-				>
-					توصيل
-				</button>
-				<button
-					type="button"
-					[class.active]="activeTab() === 'pickup'"
-					(click)="activeTab.set('pickup')"
-				>
-					استلام
-				</button>
-				<button
-					type="button"
-					[class.active]="activeTab() === 'drive'"
-					(click)="activeTab.set('drive')"
-				>
-					من السيارة
-				</button>
-			</div>
-			<!-- ./Tabs Area -->
+<div (click)="onClose.emit()" class="overlay"></div>
 
-			<div class="content-wrapper">
-				<!-- Content Area -->
-				<div class="contentArea">
-					<!-- Content for 'توصيل' tab -->
-					<div *ngIf="activeTab() === 'delivery'">
-						<app-delivery />
-						<app-phone-popup *ngIf="isVisible()" />
-					</div>
+<div class="order-type">
+  <div>
+    <div class="order-type-content">
+      <!-- Tabs Area -->
+      <div class="tabsArea">
+        <button type="button" [class.active]="activeTab() === 'delivery'" (click)="activeTab.set('delivery')">
+          توصيل
+        </button>
+        <button type="button" [class.active]="activeTab() === 'pickup'" (click)="activeTab.set('pickup')">
+          استلام
+        </button>
+        <button type="button" [class.active]="activeTab() === 'drive'" (click)="activeTab.set('drive')">
+          من السيارة
+        </button>
+      </div>
 
-					<!-- Content for 'استلام' tab -->
-					<div *ngIf="activeTab() === 'pickup'"><app-pickup /></div>
 
-					<!-- Content for 'من السيارة' tab -->
-					<div *ngIf="activeTab() === 'drive'">
-						<app-drive />
-					</div>
-				</div>
-				<!-- ./Content Area -->
-			</div>
-		</div>
-	</div>
+      <div class="content-wrapper">
+
+        <div class="contentArea">
+
+          @switch (activeTab()) {
+          @case ('drive'){
+          <app-drive />
+          }
+          @case ('pickup') {
+          <app-pickup />
+          }
+          @case ('delivery') {
+          <app-delivery />
+          }
+          }
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div
-	(click)="toggleVisibility.emit()"
-	[ngClass]="{ active: isVisible() }"
-	class="overlay"
-	id="menuBarOverlay"
-></div>

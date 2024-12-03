@@ -1,8 +1,15 @@
 import { NgClass, CommonModule } from '@angular/common';
-import { Component, Input, Signal, OnInit } from '@angular/core';
+import {
+	Component,
+	Input,
+	Signal,
+	OnInit,
+	EventEmitter,
+	Output,
+} from '@angular/core';
 
 @Component({
-	selector: 'app-order-time',
+	selector: 'order-time',
 	standalone: true,
 	imports: [NgClass, CommonModule],
 	templateUrl: './order-time.component.html',
@@ -21,14 +28,5 @@ export class OrderTimeComponent implements OnInit {
 		}, 0); // This sets the flag after the initial render cycle
 	}
 
-	get isVisibleState(): boolean {
-		return this.isOrderTimeVisible();
-	}
-
-	@Input() toggleOrderTimeVisibility!: () => void; // Function to toggle visibility
-
-	onButtonClick() {
-		this.toggleOrderTimeVisibility(); // Call the parent's toggle method when button is clicked
-		console.log('details');
-	}
+	@Output() dismiss = new EventEmitter<void>();
 }

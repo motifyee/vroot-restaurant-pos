@@ -1,3 +1,7 @@
+:host {
+	@apply fixed min-w-full min-h-full top-0 left-0 z-20;
+}
+
 .time-type-modal-wrapper {
 	z-index: 999;
 	width: 450px;
@@ -18,60 +22,6 @@
 	top: 0 !important;
 	position: fixed !important;
 	display: flex !important;
-
-	/* Start hidden with initial visibility and opacity */
-	visibility: hidden;
-	opacity: 0;
-	transform: scale(0) translateY(-100%);
-	transition: all 1s ease-in-out;
-	z-index: 9999999;
-	&.show {
-		visibility: visible;
-		opacity: 1;
-		transform: scale(1) translateY(0);
-		animation: move-down-and-bounce 0.5s forwards;
-	}
-
-	&.hide {
-		animation: move-up-and-scale 0.5s forwards;
-		/* visibility: hidden is set after the animation ends */
-		visibility: hidden;
-	}
-}
-
-/* Show modal */
-
-/* Hide modal (applied when modal is hidden) */
-
-/* Keyframes for showing animation */
-@keyframes move-down-and-bounce {
-	0% {
-		transform: scale(0) translateY(-100%);
-		opacity: 0;
-	}
-
-	60% {
-		opacity: 0.5;
-	}
-
-	100% {
-		transform: scale(1) translateY(0);
-		opacity: 1;
-	}
-}
-
-/* Keyframes for hiding animation */
-@keyframes move-up-and-scale {
-	0% {
-		transform: scale(1) translateY(0);
-		opacity: 1;
-	}
-
-	100% {
-		transform: scale(0) translateY(-100%);
-		opacity: 0;
-		/* visibility will be applied via the class */
-	}
 }
 
 .modal-title {

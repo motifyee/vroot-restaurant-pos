@@ -1,21 +1,26 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { Component, EventEmitter, inject, Output, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { customersStore } from '@src/app/features';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-	selector: 'app-phone-popup',
+	selector: 'add-phone-popup',
 	standalone: true,
-	imports: [CommonModule], // Add CommonModule here
+	imports: [CommonModule, FormsModule],
 	templateUrl: './phone-popup.component.html',
 	styleUrls: ['./phone-popup.component.scss'],
 })
 export class PhonePopupComponent {
-	isModalVisible = true;
+	@Output() dismiss = new EventEmitter<void>();
 
-	closeModal() {
-		this.isModalVisible = false;
-	}
+	customerStore = inject(customersStore);
 
-	openModal() {
-		this.isModalVisible = true;
+	mobile = signal('');
+
+	register() {
+		this.customerStore.create({
+			name: 'John Doe',
+			mobile: this.mobile(),
+		});
 	}
 }

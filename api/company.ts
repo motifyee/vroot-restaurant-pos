@@ -16,4 +16,11 @@ export const apis: API = {
 		successCode: 200,
 		response: { data: {} as Company },
 	},
+
+	getCompanyInfoByFilter: {
+		method: 'GET',
+		url: 'api/companies?domain={domain}',
+		successCode: 200,
+		response: { data: {} as Company },
+	},
 };

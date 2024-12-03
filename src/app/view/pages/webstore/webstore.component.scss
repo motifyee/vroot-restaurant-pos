@@ -20,3 +20,28 @@
 	--borderColor: #a39172;
 	--cardBorder: #a39172;
 }
+
+::ng-deep webstore .overlay {
+	@apply z-0;
+	position: fixed;
+	top: -1000%;
+	left: -1000%;
+	width: 2000%;
+	height: 2000%;
+	background: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(2px);
+
+	/* Apply blur */
+	// opacity: 0;
+	// visibility: hidden;
+	transition:
+		opacity 0.4s ease,
+		visibility 0.4s ease;
+	transition: all 0.4s ease-in-out;
+	// z-index: 993;
+
+	&.active {
+		opacity: 1;
+		visibility: visible;
+	}
+}

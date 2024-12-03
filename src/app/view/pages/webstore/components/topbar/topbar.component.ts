@@ -4,14 +4,14 @@ import {
 	ElementRef,
 	EventEmitter,
 	inject,
-	Input,
 	Output,
 	signal,
 	ViewChild,
 } from '@angular/core';
-import { OrderTimeComponent } from './order-time/order-time.component';
+import { OrderTimeComponent } from '../branch-card/order-time/order-time.component';
 import { ScrollService } from '../../services/scroll.service';
 import { OrderOptionComponent } from './order-type/order-type.component';
+import { scaleInOut } from '../../animations/scaleInOut.animation';
 
 @Component({
 	selector: 'topbar',
@@ -19,6 +19,7 @@ import { OrderOptionComponent } from './order-type/order-type.component';
 	imports: [OrderTimeComponent, OrderOptionComponent],
 	templateUrl: './topbar.component.html',
 	styleUrl: './topbar.component.scss',
+	animations: [scaleInOut],
 })
 export class HeaderComponent implements AfterViewInit {
 	@Output() toggleSideBarVisibility = new EventEmitter<void>();
@@ -30,18 +31,7 @@ export class HeaderComponent implements AfterViewInit {
 	}
 	@ViewChild('container') container: ElementRef<HTMLElement> | undefined;
 
-	// Signal to control order Time popup's visibility
+	isOrderTypeVisible = signal(false);
+
 	isOrderTimeVisible = signal(false);
-	// Signal to control order options popup's visibility
-	isOrderOptionsVisible = signal(false);
-
-	// Method to toggle the visibility of order Time popup
-	toggleOrderTimeVisibility() {
-		this.isOrderTimeVisible.update((value) => !value);
-	}
-
-	// Method to toggle the visibility of order options popup
-	toggleOrderOptionsVisibility() {
-		this.isOrderOptionsVisible.update((value) => !value);
-	}
 }

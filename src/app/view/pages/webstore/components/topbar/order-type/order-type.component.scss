@@ -1,3 +1,7 @@
+:host {
+	@apply fixed min-w-full min-h-full top-0 left-0 z-20;
+}
+
 .order-type {
 	padding: 0.5rem;
 	top: 1rem;
@@ -15,9 +19,9 @@
 	position: fixed !important;
 	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 	overflow: hidden !important;
-	opacity: 0;
-	transform: scale(0) translateY(-100%);
-	visibility: hidden;
+	// opacity: 0;
+	// transform: scale(0) translateY(-100%);
+	// visibility: hidden;
 
 	/* Initial state */
 	transition:
@@ -213,27 +217,3 @@
 }
 
 /* Overlay for blurry background */
-
-.overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
-	backdrop-filter: blur(2px);
-
-	/* Apply blur */
-	opacity: 0;
-	visibility: hidden;
-	transition:
-		opacity 0.4s ease,
-		visibility 0.4s ease;
-	transition: all 0.4s ease-in-out;
-	z-index: 993;
-
-	&.active {
-		opacity: 1;
-		visibility: visible;
-	}
-}

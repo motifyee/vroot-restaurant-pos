@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { PhonePopupComponent } from './components/phone-popup/phone-popup.component';
 
 @Component({
@@ -8,4 +8,6 @@ import { PhonePopupComponent } from './components/phone-popup/phone-popup.compon
 	templateUrl: './delivery.component.html',
 	styleUrl: './delivery.component.scss',
 })
-export class DeliveryComponent {}
+export class DeliveryComponent {
+	isAddPhoneVisible = signal(false);
+}

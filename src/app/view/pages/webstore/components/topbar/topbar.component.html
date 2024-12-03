@@ -15,7 +15,7 @@
 
 			<div class="bg-white menu-bar">
 				<div
-					(click)="toggleOrderOptionsVisibility()"
+					(click)="isOrderTypeVisible.set(true)"
 					id="menu-bar"
 					class="header-dropdown-container"
 				>
@@ -36,27 +36,18 @@
 					</div>
 				</div>
 
-				<div
-					(click)="toggleOrderTimeVisibility()"
-					class="time-type-btn"
-				>
+				<div class="time-type-btn">
 					<small class="d-block">وقت الطلب</small>
 					<span class="d-block fw-bold">الآن</span>
 				</div>
 			</div>
 
-			<app-order-time
-				[isOrderTimeVisible]="isOrderTimeVisible"
-				[toggleOrderTimeVisibility]="
-					toggleOrderTimeVisibility.bind(this)
-				"
-			>
-			</app-order-time>
-			<order-type
-				[isVisible]="isOrderOptionsVisible()"
-				(toggleVisibility)="toggleOrderOptionsVisibility()"
-			>
-			</order-type>
+			@if (isOrderTypeVisible()) {
+				<order-type
+					@scaleInOut
+					(onClose)="isOrderTypeVisible.set(false)"
+				/>
+			}
 		</div>
 	</nav>
 </div>
