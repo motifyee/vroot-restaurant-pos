@@ -50,7 +50,10 @@
 		</div>
 		<div class="flex flex-col items-center justify-end pb-6">
 			<div class="mb-4">
-				<button class="notification-btn bg-transparent border-0">
+				<button
+					(click)="toggleUnreadNotifications()"
+					class="notification-btn bg-transparent border-0"
+				>
 					<notification-icon />
 				</button>
 			</div>
@@ -76,3 +79,9 @@
 		</div>
 	</div>
 </aside>
+
+<unread-notifications
+	[isVisible]="showUnreadNotifications()"
+	(close)="handleUnreadNotificationsClose()"
+>
+</unread-notifications>

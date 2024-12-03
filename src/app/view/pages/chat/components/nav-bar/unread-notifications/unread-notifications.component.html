@@ -1,0 +1,31 @@
+<div class="modal-mask" *ngIf="isVisible">
+	<div class="modal-container">
+		<div class="modal-header">
+			<div class="header-title">
+				<span>Unread Notifications</span>
+			</div>
+			<div class="header-actions">
+				<button class="button icon tiny" type="submit">
+					<app-gear-icon></app-gear-icon>
+				</button>
+				<button
+					(click)="closePopup()"
+					class="button icon clear tiny"
+					type="submit"
+				>
+					<app-dismiss-icon></app-dismiss-icon>
+				</button>
+			</div>
+		</div>
+		<div class="modal-content">
+			<div class="empty-state">
+				<h3>You have no unread notifications</h3>
+			</div>
+			<button class="button expanded primary mt-3" type="submit">
+				<span>View all notifications</span>
+			</button>
+		</div>
+		<div></div>
+	</div>
+	<div (click)="closePopup()" class="overlay"></div>
+</div>
