@@ -1,30 +1,26 @@
 <div class="overlay" (click)="dismiss.emit()"></div>
 
 <div role="dialog" class="modal-wrapper">
-	<div class="general-Modal-Header">
-		<span class="d-block fw-bold">التحقق من رقم الهاتف</span>
-		<button type="button" class="closeModalBtn" (click)="dismiss.emit()">
-			<i class="fas fa-times"></i>
-		</button>
-	</div>
-	<div class="modal-content">
-		<div dir="ltr" class="phoneInput">
-			<span>+20</span>
-			<input
-				type="tel"
-				inputmode="numeric"
-				maxlength="9"
-				placeholder="01XXXXXXX"
-				class="border-0 px-2 py-0 flex-grow-1 align-self-stretch bg-white text-body"
-				[(ngModel)]="mobile"
-			/>
-		</div>
-		<button
-			(click)="register()"
-			type="submit"
-			class="btn-style w-100 border-0 fw-bold"
-		>
-			التالي
-		</button>
-	</div>
+  <div class="general-Modal-Header">
+    <span class="d-block fw-bold">{{ header() }}</span>
+    <button type="button" class="closeModalBtn" (click)="dismiss.emit()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <div class="modal-content">
+    <div dir="ltr" class="phoneInput">
+      <span>+20</span>
+      <input type="tel" inputmode="numeric" maxlength="9" placeholder="01XXXXXXX"
+        class="border-0 px-2 py-0 flex-grow-1 align-self-stretch bg-white text-body" [(ngModel)]="mobile" />
+    </div>
+    <button type="submit" class="action-btn">
+      التالي
+    </button>
+  </div>
 </div>
+
+<template #enterMobile></template>
+<template #verify></template>
+<template #register></template>
+<template #login></template>

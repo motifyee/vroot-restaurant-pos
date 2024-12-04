@@ -16,6 +16,6 @@ export class PickupComponent implements OnInit {
 
 	ngOnInit(): void {
 		// get branches once and keep them in the store
-		if (!this.branches().length) this.#settings.getBranches();
+		// if (!this.branches().length) this.#settings.getBranches();
 	}
 }

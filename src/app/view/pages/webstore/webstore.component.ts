@@ -16,6 +16,7 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { CommonModule } from '@angular/common';
+import { customersStore } from '@src/app/features';
 
 @Component({
 	selector: 'webstore',
@@ -35,6 +36,8 @@ import { CommonModule } from '@angular/common';
 		productsPageStore,
 		webstorePageStore,
 		PickBranchPopupComponent,
+		customersStore,
+		settingsStore,
 	],
 	animations: [scaleInOut],
 })

@@ -1,4 +1,7 @@
 import { Routes } from '@angular/router';
+import { WebstoreFeaturesModule } from './features';
+import { importProvidersFrom } from '@angular/core';
+import { PosFeaturesModule } from './features/pos-features.module';
 
 export const routes: Routes = [
 	{
@@ -8,6 +11,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'pos',
+		providers: [importProvidersFrom(PosFeaturesModule)],
 		loadComponent: () =>
 			import('./view/pages/pos/pos.component').then(
 				(m) => m.POSComponent,
@@ -15,6 +19,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'webstore',
+		providers: [importProvidersFrom(WebstoreFeaturesModule)],
 		loadComponent: () =>
 			import('./view/pages/webstore/webstore.component').then(
 				(m) => m.WebstoreComponent,

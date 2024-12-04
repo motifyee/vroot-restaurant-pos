@@ -52,14 +52,20 @@ export class CustomerImplRepo implements CustomerRepo {
 
 	create(params: CustomerDTO, config?: Config): Observable<Customer> {
 		return this.http
-			.post<
-				Response<{ id: string }>
-			>(`${ENV.endpoint}/api/customers`, params, undefined, config)
+			.post<{
+				id: string;
+				token: string;
+			}>(
+				`${ENV.endpoint}/api/accounts/store/register`,
+				params,
+				undefined,
+				config,
+			)
 			.pipe(
 				map((res) =>
 					this.customerMapper.mapFrom({
 						...params,
-						id: res.data!.id,
+						id: res.id,
 					}),
 				),
 			);

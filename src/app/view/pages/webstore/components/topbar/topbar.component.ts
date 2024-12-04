@@ -8,7 +8,6 @@ import {
 	signal,
 	ViewChild,
 } from '@angular/core';
-import { OrderTimeComponent } from '../branch-card/order-time/order-time.component';
 import { ScrollService } from '../../services/scroll.service';
 import { OrderOptionComponent } from './order-type/order-type.component';
 import { scaleInOut } from '../../animations/scaleInOut.animation';
@@ -16,12 +15,12 @@ import { scaleInOut } from '../../animations/scaleInOut.animation';
 @Component({
 	selector: 'topbar',
 	standalone: true,
-	imports: [OrderTimeComponent, OrderOptionComponent],
+	imports: [OrderOptionComponent],
 	templateUrl: './topbar.component.html',
 	styleUrl: './topbar.component.scss',
 	animations: [scaleInOut],
 })
-export class HeaderComponent implements AfterViewInit {
+export class TopbarComponent implements AfterViewInit {
 	@Output() toggleSideBarVisibility = new EventEmitter<void>();
 
 	scrollService = inject(ScrollService);
@@ -31,7 +30,7 @@ export class HeaderComponent implements AfterViewInit {
 	}
 	@ViewChild('container') container: ElementRef<HTMLElement> | undefined;
 
-	isOrderTypeVisible = signal(false);
+	isOrderTypeVisible = signal(true);
 
 	isOrderTimeVisible = signal(false);
 }
