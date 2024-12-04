@@ -21,4 +21,10 @@ export class SettingsImplRepo implements SettingsRepo {
 			config,
 		);
 	}
+
+	getCompanyInfo(params: { domain: string }): Observable<Company> {
+		return this.http.get<Company>(
+			`${ENV.endpoint}/api/companies?domain=${params.domain}`,
+		);
+	}
 }

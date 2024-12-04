@@ -1,0 +1,15 @@
+<div class="overlay"></div>
+
+<div role="dialog" class="modal-wrapper">
+  <div class="general-Modal-Header">
+    <span class="d-block fw-bold">اختر الفرع التشغيلي</span>
+  </div>
+
+  <div class="modal-content">
+    @for(branch of settings.companyInfo().branchs; track branch.id) {
+    <button (click)="onBranchSelected.emit(branch)" class="tab-style">
+      {{ branch.name }}
+    </button>
+    }
+  </div>
+</div>

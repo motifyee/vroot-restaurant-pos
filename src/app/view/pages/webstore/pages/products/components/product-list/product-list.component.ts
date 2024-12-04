@@ -17,7 +17,7 @@ import {
 import { ScrollService } from '../../../../services/scroll.service'; // Import your scroll service
 import { Subscription } from 'rxjs';
 import { productStore } from '@src/app/features/products';
-import { HeaderComponent } from '../../../../components/topbar/topbar.component';
+import { TopbarComponent } from '../../../../components/topbar/topbar.component';
 import { productsPageStore } from '../../products-page.store';
 import { SkeletonModule } from 'primeng/skeleton';
 
@@ -27,7 +27,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 	templateUrl: './product-list.component.html',
 	styleUrls: ['./product-list.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	providers: [HeaderComponent],
+	providers: [TopbarComponent],
 	imports: [SkeletonModule],
 })
 export class ProductListComponent
@@ -72,7 +72,16 @@ export class ProductListComponent
 	});
 
 	ngOnInit() {
-		this.productStore.getCategories().subscribe((m) => console.log(m));
+		// if (localStorage.getItem('products'))
+		// 	this.productStore.setCategories(
+		// 		JSON.parse(localStorage.getItem('products')!),
+		// 	);
+		// else
+		this.productStore
+			.getCategories()
+			.subscribe((m) =>
+				localStorage.setItem('products', JSON.stringify(m)),
+			);
 	}
 
 	ngAfterViewChecked(): void {

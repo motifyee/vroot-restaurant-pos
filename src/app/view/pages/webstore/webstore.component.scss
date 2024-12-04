@@ -12,6 +12,7 @@
 
 ::ng-deep:root {
 	--GreenBackground: #65725b;
+	--GreenBGHover: #808a78;
 	--Greentextcolor: #65725b;
 	--Greenbordercolor: #65725b;
 	--priceColor: #d0a328;
@@ -19,29 +20,99 @@
 	--bodyBG: #fff;
 	--borderColor: #a39172;
 	--cardBorder: #a39172;
+
+	--btnBorderRadius: 5px;
+	--btnHeight: 50px;
 }
 
-::ng-deep webstore .overlay {
-	@apply z-0;
-	position: fixed;
-	top: -1000%;
-	left: -1000%;
-	width: 2000%;
-	height: 2000%;
-	background: rgba(0, 0, 0, 0.5);
-	backdrop-filter: blur(2px);
+::ng-deep webstore {
+	font-family: 'Almarai', 'Roboto';
 
-	/* Apply blur */
-	// opacity: 0;
-	// visibility: hidden;
-	transition:
-		opacity 0.4s ease,
-		visibility 0.4s ease;
-	transition: all 0.4s ease-in-out;
-	// z-index: 993;
+	.overlay {
+		@apply z-0;
+		position: fixed;
+		top: -1000%;
+		left: -1000%;
+		width: 2000%;
+		height: 2000%;
+		background: rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(2px);
 
-	&.active {
-		opacity: 1;
-		visibility: visible;
+		transition:
+			opacity 0.4s ease,
+			visibility 0.4s ease;
+		transition: all 0.4s ease-in-out;
+	}
+
+	.action-btn {
+		cursor: pointer;
+		font-weight: 700;
+		background-color: var(--GreenBackground);
+		color: #fff;
+		border-radius: 5px;
+		box-shadow: rgba(0, 0, 0, 0.3) 0 0 15 0;
+		height: 50px;
+		transition: 0.2s;
+		width: 100%;
+		border: 0;
+		text-transform: none;
+		margin: 0;
+
+		&:hover {
+			background-color: var(--GreenBGHover);
+		}
+	}
+
+	.tab-style {
+		cursor: pointer;
+		font-weight: 700;
+		border: 0;
+		background-color: #f1f1f1;
+		color: #fff;
+		border-radius: var(--btnBorderRadius);
+		box-shadow: rgba(0, 0, 0, 0.3) 0 0 15 0;
+		color: var(--Greentextcolor);
+		height: 50px;
+		// color: var(--tabsText);
+
+		&:hover {
+			background-color: var(--GreenBGHover);
+			color: white;
+		}
+	}
+
+	.spinner {
+		width: 65px;
+		height: 65px;
+		border-radius: 50%;
+		background:
+			radial-gradient(
+					farthest-side,
+					var(--GreenBackground) 94%,
+					transparent
+				)
+				top/10px 10px no-repeat,
+			conic-gradient(transparent 30%, var(--GreenBackground));
+		mask: radial-gradient(
+			farthest-side,
+			transparent calc(100% - 10px),
+			#000 0
+		);
+		-webkit-mask: radial-gradient(
+			farthest-side,
+			transparent calc(100% - 10px),
+			#000 0
+		);
+		animation: spin 1s linear infinite;
+	}
+
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(1turn);
+		}
 	}
 }

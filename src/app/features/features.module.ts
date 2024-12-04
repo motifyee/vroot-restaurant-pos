@@ -5,6 +5,7 @@ import { ShiftDataModule } from './shifts';
 import { CustomerDataModule } from './customers';
 import { PrintersDataModule } from './printers';
 import { InvoiceDataModule } from './invoices';
+import { UserDataModule } from './user';
 
 @NgModule({
 	providers: [
@@ -15,6 +16,7 @@ import { InvoiceDataModule } from './invoices';
 			InvoiceDataModule.forRoot(),
 			SettingsDataModule.forRoot(),
 			ShiftDataModule.forRoot(),
+			UserDataModule.forRoot(),
 		),
 	],
 })

@@ -6,6 +6,13 @@ import { GetCategoriesUseCase } from '../../domain';
 export const withGetCategoriesMethod = <_>() =>
 	signalStoreFeature(
 		withMethods((store) => {
+			return {
+				clearCategories: () => patchState(store, { categories: [] }),
+				setCategories: (categories: Category[]) =>
+					patchState(store, { categories }),
+			};
+		}),
+		withMethods((store) => {
 			let usecase = inject(GetCategoriesUseCase);
 
 			return {
