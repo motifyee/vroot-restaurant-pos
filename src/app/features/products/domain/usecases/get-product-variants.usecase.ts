@@ -12,7 +12,7 @@ export class GetProductVariantsUseCase
 	}
 }
 
-export const getProductVariantsUseCaseProvider = {
+export const GetProductVariantsUseCaseProvider = {
 	provide: GetProductVariantsUseCase,
 	useFactory: () => new GetProductVariantsUseCase(),
 };

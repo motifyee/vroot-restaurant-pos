@@ -2,18 +2,25 @@ import { map, Observable } from 'rxjs';
 import { inject } from '@angular/core';
 import { UseCase, ProductsRepo } from '@src/app/features';
 
-export class GetCategoriesUseCase implements UseCase<void, Category[]> {
+export class GetCategoriesUseCase
+	implements UseCase<{ branchId: number }, Category[]>
+{
 	readonly productsRepo = inject(ProductsRepo);
 
-	execute(config?: Config): Observable<Category[]> {
-		let categories = this.productsRepo.getCategories(config).pipe(
-			map((c) =>
-				c.map((c) => ({
-					...c,
-					products: c.products.map(referenceProduct),
-				})),
-			),
-		);
+	execute(
+		params: { branchId: number },
+		config?: Config,
+	): Observable<Category[]> {
+		let categories = this.productsRepo
+			.getCategories(params.branchId, config)
+			.pipe(
+				map((c) =>
+					c.map((c) => ({
+						...c,
+						products: c.products.map(referenceProduct),
+					})),
+				),
+			);
 		return categories;
 	}
 }
@@ -29,7 +36,7 @@ function referenceProduct(product: Product): Product {
 	};
 }
 
-export const getCategoriesUseCaseProvider = {
+export const GetCategoriesUseCaseProvider = {
 	provide: GetCategoriesUseCase,
 	useFactory: () => new GetCategoriesUseCase(),
 };

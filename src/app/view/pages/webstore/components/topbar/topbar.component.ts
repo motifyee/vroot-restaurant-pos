@@ -30,7 +30,7 @@ export class TopbarComponent implements AfterViewInit {
 	}
 	@ViewChild('container') container: ElementRef<HTMLElement> | undefined;
 
-	isOrderTypeVisible = signal(true);
+	isOrderTypeVisible = signal(false);
 
 	isOrderTimeVisible = signal(false);
 }

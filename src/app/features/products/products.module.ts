@@ -1,16 +1,15 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import {
-	getCategoriesUseCaseProvider,
-	getProductVariantsUseCaseProvider,
-	// ProductsImplRepo,
+	GetCategoriesUseCaseProvider,
+	GetProductVariantsUseCaseProvider,
 	ProductsRepo,
-} from '@src/app/features';
+} from '@features/products';
 import { ProductsImplRepo } from './data';
 
 @NgModule({
 	providers: [
-		getCategoriesUseCaseProvider,
-		getProductVariantsUseCaseProvider,
+		GetCategoriesUseCaseProvider,
+		GetProductVariantsUseCaseProvider,
 	],
 })
 export class ProductsDataModule {

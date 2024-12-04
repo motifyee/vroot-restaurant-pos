@@ -21,13 +21,9 @@ export const cartProductsConfig = entityConfig({
 
 // #############################################################################
 
-export type ProductStoreState = {
-	categories: Category[];
-};
+export type ProductStoreState = {};
 
-const initialState: ProductStoreState = {
-	categories: [],
-};
+const initialState: ProductStoreState = {};
 
 // #############################################################################
 

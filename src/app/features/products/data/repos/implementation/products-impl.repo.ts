@@ -2,14 +2,12 @@ import { map, Observable } from 'rxjs';
 import { inject } from '@angular/core';
 import { ProductsRepo } from '../../../domain';
 import { ENV, HttpService } from '@src/app/core';
-import { settingsStore } from '@src/app/features/settings';
 
 export class ProductsImplRepo implements ProductsRepo {
 	http = inject(HttpService);
-	settings = inject(settingsStore);
 
-	getCategories(config?: Config): Observable<Category[]> {
-		let branchId = this.settings.selectedBranch?.()?.id ?? '-1';
+	getCategories(branchId: number, config?: Config): Observable<Category[]> {
+		// let branchId = this.settings.selectedBranch?.()?.id ?? '-1';
 
 		return this.http
 			.get<

@@ -17,6 +17,7 @@ import { AuthInterceptor } from './core/interceptors/api.interceptor';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideTranslateService } from '@ngx-translate/core';
+import { WebstoreFeaturesModule } from './features';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -26,6 +27,7 @@ export const appConfig: ApplicationConfig = {
 		}),
 		provideAnimationsAsync(),
 		importProvidersFrom(
+			WebstoreFeaturesModule,
 			RouterModule,
 			AuthnModule,
 			LoggerModule.forAdaptive(

@@ -20,6 +20,7 @@ import { productStore } from '@src/app/features/products';
 import { TopbarComponent } from '../../../../components/topbar/topbar.component';
 import { productsPageStore } from '../../products-page.store';
 import { SkeletonModule } from 'primeng/skeleton';
+import { settingsStore } from '@src/app/features/settings';
 
 @Component({
 	selector: 'product-list',
@@ -36,7 +37,7 @@ export class ProductListComponent
 	private cdr = inject(ChangeDetectorRef);
 	private scrollSubscription!: Subscription;
 	private scrollService = inject(ScrollService);
-	private productStore = inject(productStore);
+	productStore = inject(productStore);
 	private productsPageStore = inject(productsPageStore);
 
 	categoriesViewHasInit = this.productsPageStore.categoriesViewHasInit;
@@ -71,14 +72,16 @@ export class ProductListComponent
 		if (idx > -1) this.scrollToCategory(idx);
 	});
 
+	settings = inject(settingsStore);
 	ngOnInit() {
 		// if (localStorage.getItem('products'))
 		// 	this.productStore.setCategories(
 		// 		JSON.parse(localStorage.getItem('products')!),
 		// 	);
 		// else
+		let branchId = this.settings.selectedBranch?.()?.id ?? -1;
 		this.productStore
-			.getCategories()
+			.getCategories(branchId)
 			.subscribe((m) =>
 				localStorage.setItem('products', JSON.stringify(m)),
 			);
