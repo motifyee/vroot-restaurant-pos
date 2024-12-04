@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
@@ -14,8 +14,14 @@ import {
 		userLoginUseCaseProvider,
 		userRegisterUseCaseProvider,
 		getUserProfileUseCaseProvider,
-		{ provide: UserRepo, useClass: UserImplRepo },
 	],
 	imports: [CommonModule],
 })
-export class UserDataModule {}
+export class UserDataModule {
+	static forRoot(): ModuleWithProviders<UserDataModule> {
+		return {
+			ngModule: UserDataModule,
+			providers: [{ provide: UserRepo, useClass: UserImplRepo }],
+		};
+	}
+}

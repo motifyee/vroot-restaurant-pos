@@ -6,4 +6,4 @@ export * from './products/domain';
 export * from './settings/domain';
 export * from './user';
 
-export * from './features.module';
+export * from './webstore-features.module';

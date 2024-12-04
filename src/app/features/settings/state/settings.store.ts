@@ -4,7 +4,7 @@ import { withMapEntityToCustomerMethod } from './features/with-map-entity-to-cus
 import { withLoading } from '../../base/state/with-loading.method';
 import { storeType } from '@src/app/view/state/utils/utils';
 import { withGetBranchesMethod } from './features/with-get-branches';
-import { withLoadCompanyInfoMethod } from './features/with-load-company-info.methd';
+import { withGetCompanyInfoMethod } from './features/with-get-company-info.method';
 
 export const classificationsConfig = entityConfig({
 	entity: type<ClassificationDTO>(),
@@ -17,14 +17,13 @@ const intialState = {
 };
 
 export const settingsStore = signalStore(
-	{ providedIn: 'root' },
 	withState(intialState),
 	withState<Partial<BranchSettings>>({}),
 	withEntities(classificationsConfig),
 	withLoading(),
 	withGetBranchesMethod(),
 	withMapEntityToCustomerMethod(),
-	withLoadCompanyInfoMethod(),
+	withGetCompanyInfoMethod(),
 );
 
 let _s = storeType(settingsStore);

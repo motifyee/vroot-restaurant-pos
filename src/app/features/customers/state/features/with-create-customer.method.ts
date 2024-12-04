@@ -24,7 +24,7 @@ export function withCreateCustomerMethod<_>() {
 			let _create = inject(CreateCustomerUseCase);
 
 			return {
-				create: rxMethod<CustomerDTO>(
+				create: rxMethod<Partial<CustomerDTO>>(
 					pipe(
 						// tap(() => patchState(store, { isLoading: true })),
 						switchMap((c) =>

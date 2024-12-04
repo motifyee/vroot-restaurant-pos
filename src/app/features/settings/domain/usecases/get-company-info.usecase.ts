@@ -16,7 +16,7 @@ export class GetCompanyInfoUseCase implements UseCase<void, Company> {
 	}
 }
 
-export const getCompanyInfoUseCaseProvider = {
+export const GetCompanyInfoUseCaseProvider = {
 	provide: GetCompanyInfoUseCase,
 	useFactory: () => new GetCompanyInfoUseCase(),
 };

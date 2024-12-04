@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PickBranchPopupComponent } from './pick-branch-popup.component';
 
-import { PhonePopupComponent } from './pick-branch-popup.component';
-
-describe('PhonePopupComponent', () => {
-	let component: PhonePopupComponent;
-	let fixture: ComponentFixture<PhonePopupComponent>;
+describe('PickBranchPopupComponent', () => {
+	let component: PickBranchPopupComponent;
+	let fixture: ComponentFixture<PickBranchPopupComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [PhonePopupComponent],
+			imports: [PickBranchPopupComponent],
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(PhonePopupComponent);
+		fixture = TestBed.createComponent(PickBranchPopupComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

@@ -17,7 +17,10 @@ export abstract class CustomerRepo {
 		config?: Config,
 	): Observable<Customer>;
 
-	abstract create(params: CustomerDTO, config?: Config): Observable<Customer>;
+	abstract create(
+		params: Partial<CustomerDTO>,
+		config?: Config,
+	): Observable<Customer>;
 
 	abstract update(params: CustomerDTO, config?: Config): Observable<Customer>;
 

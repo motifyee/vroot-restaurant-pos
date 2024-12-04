@@ -10,14 +10,14 @@ import { UserDataModule } from './user';
 @NgModule({
 	providers: [
 		importProvidersFrom(
-			CustomerDataModule.forRoot(),
-			PrintersDataModule.forRoot(),
 			ProductsDataModule.forRoot(),
-			InvoiceDataModule.forRoot(),
 			SettingsDataModule.forRoot(),
 			ShiftDataModule.forRoot(),
+			CustomerDataModule.forRoot(),
+			PrintersDataModule.forRoot(),
+			InvoiceDataModule.forRoot(),
 			UserDataModule.forRoot(),
 		),
 	],
 })
-export class FeaturesModule {}
+export class PosFeaturesModule {}

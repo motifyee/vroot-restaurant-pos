@@ -22,7 +22,7 @@ const initialState: State = {
 	selectedBranch: undefined,
 };
 
-export function withLoadCompanyInfoMethod<_>() {
+export function withGetCompanyInfoMethod<_>() {
 	return signalStoreFeature(
 		withState(initialState),
 		withMethods((store) => {
@@ -48,8 +48,9 @@ export function withLoadCompanyInfoMethod<_>() {
 						),
 					),
 				),
-				selectBranch: (branch: Branch) =>
-					patchState(store, { selectedBranch: branch }),
+				selectBranch: (branch: Branch) => {
+					patchState(store, { selectedBranch: branch });
+				},
 			};
 		}),
 	);
