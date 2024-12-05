@@ -1,66 +1,82 @@
+/* General utility classes */
+.flex-center {
+	@apply flex items-center justify-center;
+}
+
+.flex-col-center {
+	@apply flex flex-col items-center;
+}
+
+/* State-specific styles for user online status */
+.user-online-status--online {
+	@apply bg-green-500; 
+}
+
+/* Sidebar */
+.aside-container {
+	height: 100vh;
+}
+
+.sidebar {
+	@apply flex flex-col justify-between w-16 h-full bg-white border-r dark:bg-slate-900 border-slate-50 dark:border-slate-800/50;
+}
+
+/* Menu items container */
+.menu-items {
+	@apply flex flex-col items-center;
+}
+
+/* Menu link styles */
 .menu-link {
-	@apply flex items-center relative justify-center 
-  w-10 h-10 my-2 rounded-lg 
-  text-slate-700 
-  dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:text-slate-100 
-   hover:bg-slate-50 hover:text-slate-600;
+	@apply flex-center w-10 h-10 my-2 rounded-lg text-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:bg-slate-50 hover:text-slate-600;
+}
+
+/* Active menu link */
+.router-link-active,
+.router-link-exact-active {
+	@apply text-blue-600;
+}
+
+/* Icon container */
+.icon-container {
+	@apply w-8 h-8 m-4 mb-10;
+}
+
+/* Button container at the bottom */
+.bottom-buttons {
+	@apply flex-col-center pb-6;
+}
+
+/* Notification button */
+.notification-btn {
+	@apply relative flex-center bg-transparent border-0 w-10 h-10 p-0 my-2 rounded-lg text-slate-600 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-600 dark:hover:text-slate-100;
+}
+
+/* User button */
+.user-button {
+	@apply flex items-center rounded-full border-0;
+}
+
+/* User thumbnail box */
+.user-thumbnail {
+	@apply h-full w-full;
 }
 
 .user-thumbnail-box {
-	border-radius: 50%;
-	max-width: 100%;
-	position: relative;
-	height: 32px;
-	width: 32px;
+	@apply flex-center rounded-full max-w-full relative h-8 w-8;
 }
 
-.notification-btn {
-	@apply relative flex items-center justify-center
-   w-10 h-10 p-0 my-2 rounded-lg 
-   text-slate-600 dark:text-slate-100 hover:bg-slate-50
-   dark:hover:text-slate-100 hover:text-slate-600
-   dark:hover:bg-slate-700;
-}
-
+/* Avatar container */
 .avatar-container {
-	background-image: linear-gradient(
-		to top,
-		#135899,
-		#135899
-	); // Single consistent gradient
-	display: flex;
-	cursor: default;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	font-weight: 500;
-	font-size: 12px; // Moved from inline style
+	@apply rounded-full flex-center bg-slate-200 dark:bg-slate-600 text-center font-medium text-slate-100;
+	background-image: linear-gradient(to top, #135899, #135899);
+	font-size: 12px;
 	line-height: 100%;
-	color: #c2e1ff;
 }
 
-.user-thumbnail {
-	border-radius: 50%;
-	height: 100%;
-	width: 100%;
-	box-sizing: border-box;
-	object-fit: cover;
-	vertical-align: baseline; // Removed redundant `vertical-align: initial`
-}
-
+/* User badge */
 .source-badge {
-	border-radius: 50%;
+	@apply rounded-full w-2.5 h-2.5 bg-green-500 absolute right-0 bottom-0.5;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 	padding: 0.125rem;
-	position: absolute;
-	right: 0;
-	bottom: 0.125rem;
-	width: 8px;
-	height: 8px;
-	background-color: rgb(51, 176, 116); // Single consistent color
-}
-
-// State-specific styles for user online status
-.user-online-status--online {
-	background-color: rgb(51, 176, 116);
 }
