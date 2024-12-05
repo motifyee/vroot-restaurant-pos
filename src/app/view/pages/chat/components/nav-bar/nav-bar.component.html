@@ -1,9 +1,7 @@
-<aside class="flex h-full" route=" " has-banner="false">
-	<div
-		class="flex flex-col justify-between w-16 h-full bg-white border-r dark:bg-slate-900 border-slate-50 dark:border-slate-800/50"
-	>
-		<div class="flex flex-col items-center">
-			<div class="w-8 h-8 m-4 mb-10">
+<aside class="aside-container" route="">
+	<div class="sidebar">
+		<div class="menu-items">
+			<div class="icon-container">
 				<a
 					href="/dashboard"
 					class="router-link-active router-link-exact-active"
@@ -14,59 +12,51 @@
 			</div>
 			<a href="inbox-view" class="menu-link">
 				<inbox-icon />
-				<span class="sr-only">INBOX_VIEW</span>
 			</a>
 			<a
 				href="dashboard"
 				class="menu-link bg-woot-50 dark:bg-slate-800 text-woot-500 hover:bg-woot-50"
 			>
 				<conversation-icon />
-				<span class="sr-only">CONVERSATIONS</span>
 			</a>
 			<a href="captain" class="menu-link">
 				<captain-icon />
-				<span class="sr-only">CAPTAIN</span>
 			</a>
 			<a href="contacts" class="menu-link">
 				<contacts-icon />
-				<span class="sr-only">CONTACTS</span>
 			</a>
 			<a href="reports" class="menu-link">
 				<reports-icon />
-				<span class="sr-only">REPORTS</span>
 			</a>
 			<a href="campaigns" class="menu-link">
 				<campaign-icon />
-				<span class="sr-only">CAMPAIGNS</span>
 			</a>
 			<a href="/portals" class="menu-link">
 				<portals-icon />
-				<span class="sr-only">portals</span>
 			</a>
 			<a href="/settings" class="menu-link">
 				<settings-icon />
-				<span class="sr-only">SETTINGS</span>
 			</a>
 		</div>
-		<div class="flex flex-col items-center justify-end pb-6">
+
+		<div class="bottom-buttons">
 			<div class="mb-4">
-				<button class="notification-btn bg-transparent border-0">
+				<button
+					(click)="toggleUnreadNotifications()"
+					class="notification-btn"
+				>
 					<notification-icon />
 				</button>
 			</div>
-			<button
-				class="button clear link primary flex items-center rounded-full border-0"
-			>
+			<button class="user-button">
 				<span class="cursor-pointer text-start">
 					<div class="user-thumbnail-box" title="">
 						<div
 							class="avatar-container user-thumbnail"
 							aria-hidden="true"
-							style="font-size: 12px"
 						>
 							YD
 						</div>
-
 						<div
 							class="source-badge user-online-status--online"
 						></div>
@@ -76,3 +66,9 @@
 		</div>
 	</div>
 </aside>
+
+<unread-notifications
+	[isVisible]="showUnreadNotifications()"
+	(close)="handleUnreadNotificationsClose()"
+>
+</unread-notifications>
