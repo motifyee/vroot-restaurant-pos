@@ -1,0 +1,13 @@
+	<svg
+		width="12"
+		height="12"
+		fill="none"
+		viewBox="0 0 24 24"
+		xmlns="http://www.w3.org/2000/svg"
+		class="flex-shrink-0 icon--font filter icon"
+	>
+		<path
+			d="M13.5 16a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5h3Zm3-5a.75.75 0 0 1 0 1.5h-9a.75.75 0 0 1 0-1.5h9Zm3-5a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1 0-1.5h15Z"
+			fill="currentColor"
+		></path>
+	</svg>

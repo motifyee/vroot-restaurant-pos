@@ -1,0 +1,47 @@
+.container {
+	@apply flex items-center justify-between px-4 py-0;
+}
+
+.left-section {
+	@apply flex max-w-[85%] justify-center items-center;
+}
+
+.heading {
+	@apply text-xl font-medium break-words truncate  dark:text-slate-100;
+}
+
+.status-badge {
+	@apply p-1 my-0.5 mx-1 rounded-md capitalize bg-slate-50 dark:bg-slate-800  text-slate-600 dark:text-slate-300;
+}
+
+.right-section {
+	@apply flex items-center gap-1;
+}
+
+.icon-button {
+	@apply flex-shrink-0;
+	color: #e0e1e6;
+	width: 1.5rem;
+	height: 1.5rem;
+	color: rgb(224 225 230 / 1);
+	font-size: 10px;
+	transition:
+		background-color 0.25s ease-out,
+		color 0.25s ease-out;
+	display: inline-block;
+	cursor: pointer;
+	align-items: center;
+	border-radius: 0.3125rem;
+	border-width: 1px;
+	border-style: solid;
+	border-color: transparent;
+	padding: 0.25rem 0.625rem;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #5a6169;
+}
