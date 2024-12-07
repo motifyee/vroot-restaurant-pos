@@ -1,0 +1,172 @@
+// tabs--container
+.tabs {
+	margin-bottom: 0;
+	display: flex;
+	min-width: 6.25rem;
+	list-style-type: none;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 1rem;
+	padding-right: 1rem;
+
+	.tabs-title {
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 0.5rem;
+		margin-right: 0.5rem;
+		flex-shrink: 0;
+
+		&.is-active a {
+			border-bottom-width: 1px;
+			border-color: #3b9eff;
+			color: #3b9eff;
+		}
+	}
+}
+
+.tabs-title {
+	a {
+		transition: border-color 0.15s cubic-bezier(0.37, 0, 0.63, 1);
+		position: relative;
+		top: 1px;
+		display: flex;
+		cursor: pointer;
+		user-select: none;
+		flex-direction: row;
+		align-items: center;
+		border-bottom-width: 1px;
+		border-color: transparent;
+		padding-top: 0.625rem;
+		padding-bottom: 0.625rem;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		color: #777b84;
+	}
+
+	.badge {
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 0.25rem;
+		margin-right: 0.25rem;
+		display: flex;
+		height: 1.25rem;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0.375rem;
+		padding-left: 0.25rem;
+		padding-right: 0.25rem;
+		padding-top: 0;
+		padding-bottom: 0;
+		font-size: 0.625rem;
+		font-weight: 600;
+		background-color: rgb(39 42 45 / 1);
+		color: #e0e1e6;
+	}
+}
+
+// ./tabs--container
+
+// contact list
+.container {
+	@apply flex-1 overflow-hidden hover:overflow-y-auto;
+}
+.inner-container {
+	@apply w-full h-full overflow-auto;
+}
+.min-height {
+	min-height: 419px; /* Not a Tailwind class; must stay as a custom style */
+}
+.footer {
+	@apply p-4 text-center text-slate-400 dark:text-slate-300;
+}
+
+/* Conversation box */
+.conversation {
+	@apply relative flex items-start flex-grow-0 flex-shrink-0 w-auto max-w-full px-4 py-0 border-l-2 border-transparent cursor-pointer dark:hover:bg-slate-800;
+}
+.user-thumbnail-box {
+	@apply rounded-full;
+	margin-top: 1rem;
+	height: 40px;
+	width: 40px;
+}
+.user-thumbnail {
+	@apply rounded-full hidden;
+}
+.avatar-container {
+	@apply flex justify-center items-center rounded-full bg-slate-50 dark:bg-slate-700;
+	height: 40px;
+	width: 40px;
+}
+
+/* Message Box */
+.message-box {
+	@apply px-0 py-3 flex-1 border-b border-slate-50 dark:border-slate-800/75;
+}
+.message-header {
+	@apply flex justify-between;
+}
+.gap-box {
+	@apply flex gap-2 ml-2 rtl:mr-2 rtl:ml-0; /* 'rtl:mr-2 rtl:ml-0' assumes an RTL plugin is in use */
+}
+.icon-box {
+	@apply shrink-0 rounded-sm inline-flex w-3.5 h-3.5 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-200;
+}
+
+/* Conversation title */
+.conversation-title {
+	@apply text-sm my-0 mx-2 capitalize pt-0.5 font-medium overflow-hidden whitespace-nowrap text-slate-900 dark:text-slate-100;
+	width: calc(
+		100% - 70px
+	); /* Converted from @apply for invalid w-[calc(100%-70px)] */
+}
+.conversation-message {
+	@apply overflow-hidden text-ellipsis whitespace-nowrap my-0 mx-2 leading-6 text-sm text-slate-700 dark:text-slate-200;
+	width: calc(
+		100% - 16.875rem
+	); /* Converted for invalid max-w-[96%] and w-[16.875rem] */
+}
+
+/* Meta Info */
+.meta-container {
+	@apply absolute flex flex-col right-4 top-4;
+}
+.meta-text {
+	@apply ml-auto leading-4  text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100;
+	font-size: 0.625rem;
+}
+.unread {
+	@apply shadow-lg rounded-full hidden  font-semibold h-4 leading-4 ml-auto mt-1 text-center text-white bg-green-400;
+	min-width: 1rem; /* Converted from min-w-[1rem] */
+	padding-inline: 0.25rem; /* Converted from px-1 py-0 */
+}
+
+/* Label styles */
+.label-wrapper {
+	@apply inline-flex ltr:mr-1 rtl:ml-1 mb-1  max-w-[calc(100%-0.5rem)];
+	height: 1.2rem;
+	align-items: center;
+	gap: 0.25rem;
+	border-radius: 4px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(90 97 105 / 1);
+	padding: 0.25rem;
+	font-size: 0.75rem;
+	line-height: 1rem;
+	font-weight: 500;
+}
+.label-color-dot {
+	@apply flex-shrink-0;
+	height: 0.5rem;
+	width: 0.5rem;
+	border-radius: 0.125rem;
+}
+.label-text {
+	@apply whitespace-nowrap text-ellipsis overflow-hidden;
+	font-size: 0.75rem;
+}
+// ./contact list

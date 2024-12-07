@@ -1,0 +1,11 @@
+:host {
+	width: 100%;
+}
+
+.main-container {
+	@apply flex flex-1 h-full min-h-0 px-0 overflow-hidden;
+}
+
+.conversation-section {
+	@apply bg-white dark:bg-slate-900 w-full h-full flex;
+}
