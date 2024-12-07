@@ -1,7 +1,7 @@
 import { map, Observable, of } from 'rxjs';
 import { inject } from '@angular/core';
 import { InvoiceRepo } from '../../../domain';
-import { ENV, HttpService } from '@src/app/core';
+import { ENDPOINT, HttpService } from '@src/app/core';
 import { Invoice } from '../../../domain/models/Invoice.model';
 import { unum, uuidv4 } from '@src/app/view/state/app/utils/uuid';
 
@@ -12,7 +12,7 @@ export class InvoiceImplRepo implements InvoiceRepo {
 		return this.http
 			.get<
 				Response<Invoice>
-			>(`${ENV.endpoint}/api/invoices/${params.id}`, undefined, config)
+			>(`${ENDPOINT}/api/invoices/${params.id}`, undefined, config)
 			.pipe(map((res) => res.data!));
 	}
 
@@ -40,7 +40,7 @@ export class InvoiceImplRepo implements InvoiceRepo {
 	): Observable<Invoice[]> {
 		return this.http
 			.get<Response<Invoice[]>>(
-				`${ENV.endpoint}/api/invoices`,
+				`${ENDPOINT}/api/invoices`,
 				{
 					params: {
 						from,
@@ -85,17 +85,13 @@ export class InvoiceImplRepo implements InvoiceRepo {
 		return this.http
 			.put<
 				Response<{ id: number }>
-			>(`${ENV.endpoint}/api/invoices/${params.id}`, params, undefined, config)
+			>(`${ENDPOINT}/api/invoices/${params.id}`, params, undefined, config)
 			.pipe(map((res) => params));
 	}
 
 	delete(params: Invoice, config?: Config): Observable<Invoice> {
 		return this.http
-			.delete(
-				`${ENV.endpoint}/api/invoices/${params.id}`,
-				undefined,
-				config,
-			)
+			.delete(`${ENDPOINT}/api/invoices/${params.id}`, undefined, config)
 			.pipe(map(() => params));
 	}
 }

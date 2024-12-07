@@ -12,7 +12,7 @@ import {
 	HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, catchError, retry, tap, throwError, timer } from 'rxjs';
-import { ENV, StorageService } from '../';
+import { IS_DEVMODE, StorageService } from '../';
 import { HttpService } from '../services';
 
 type APILoadingStatus = 'loading' | 'loaded' | 'error';
@@ -127,7 +127,7 @@ export class AuthInterceptor implements HttpInterceptor {
 			retry({
 				count: 3,
 				delay: (err, retryCount) => {
-					if (ENV.DEV) return throwError(() => err);
+					if (IS_DEVMODE) return throwError(() => err);
 
 					if (err instanceof HttpErrorResponse && err.status === 0)
 						return timer(retryCount * 1000);

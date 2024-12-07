@@ -1,7 +1,7 @@
 import { map, Observable } from 'rxjs';
 import { inject } from '@angular/core';
 import { ProductsRepo } from '../../../domain';
-import { ENV, HttpService } from '@src/app/core';
+import { ENDPOINT, HttpService } from '@src/app/core';
 
 export class ProductsImplRepo implements ProductsRepo {
 	http = inject(HttpService);
@@ -12,7 +12,7 @@ export class ProductsImplRepo implements ProductsRepo {
 		return this.http
 			.get<
 				Category[]
-			>(`${ENV.endpoint}/api/store/${branchId}/menu`, undefined, config)
+			>(`${ENDPOINT}/api/store/${branchId}/menu`, undefined, config)
 			.pipe(map((res) => res));
 	}
 
@@ -20,7 +20,7 @@ export class ProductsImplRepo implements ProductsRepo {
 		return this.http
 			.get<
 				Response<ProductVariant[]>
-			>(`${ENV.endpoint}/api/products/variants`, undefined, config)
+			>(`${ENDPOINT}/api/products/variants`, undefined, config)
 			.pipe(map((res) => res.data!));
 	}
 }

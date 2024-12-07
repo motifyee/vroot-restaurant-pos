@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ENV } from '../../../environments/env';
+import { GOOGLE_CLIENT_ID } from '@env';
 import { CredentialResponse } from 'google-one-tap';
 import { AuthnProvider } from '../authn.model';
 import { Observable } from 'rxjs';
@@ -22,7 +22,7 @@ export class GoogleAuthnService extends AuthnProvider {
 		!this._initiazed &&
 			(this._initiazed = true) && // @ts-ignore
 			google.accounts.id.initialize({
-				client_id: ENV.googleClientId,
+				client_id: GOOGLE_CLIENT_ID,
 				callback: this.handleCredentialResponse.bind(this),
 				auto_select: true,
 				cancel_on_tap_outside: false,

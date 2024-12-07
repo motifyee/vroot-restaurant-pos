@@ -10,7 +10,7 @@ import {
 import { ConsoleLoggerService } from './providers/console.logger.service';
 import { ServerLoggerService } from './providers/server.logger.service';
 import { DbLoggerService } from './providers/db.logger.service';
-import { ENV } from '../../environments';
+import { IS_DEVMODE, IS_TESTMODE } from '../../environments';
 
 @NgModule({
 	providers: [
@@ -124,9 +124,9 @@ export class LoggerModule {
 		dbSeverity: LogSeverity = LogSeverity.warn,
 		serverSeverity: LogSeverity = LogSeverity.warn,
 	): ModuleWithProviders<LoggerModule> {
-		if (ENV.DEV) return this.forDev(consoleSeverity);
+		if (IS_DEVMODE) return this.forDev(consoleSeverity);
 
-		if (ENV.TEST) return this.forTesting(consoleSeverity, dbSeverity);
+		if (IS_TESTMODE) return this.forTesting(consoleSeverity, dbSeverity);
 
 		return this.forProduction(consoleSeverity, dbSeverity, serverSeverity);
 	}

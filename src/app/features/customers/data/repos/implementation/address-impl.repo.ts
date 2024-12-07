@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { AddressRepo } from '@src/app/features';
-import { ENV, HttpService } from '@src/app/core';
+import { ENDPOINT, HttpService } from '@src/app/core';
 
 @Injectable({
 	providedIn: 'root',
@@ -16,7 +16,7 @@ export class AddressImplRepo implements AddressRepo {
 		return this.http
 			.get<
 				Response<AddressDTO[]>
-			>(`${ENV.endpoint}/api/customers/${customerId}/addresses`, undefined, config)
+			>(`${ENDPOINT}/api/customers/${customerId}/addresses`, undefined, config)
 			.pipe(map((res) => res.data!)); //.map(this.addressMapper.mapFrom)));
 	}
 
@@ -27,7 +27,7 @@ export class AddressImplRepo implements AddressRepo {
 		return this.http
 			.post<
 				Response<{ id: number }>
-			>(`${ENV.endpoint}/api/customers/${params.customerId}/addresses`, params.address, undefined, config)
+			>(`${ENDPOINT}/api/customers/${params.customerId}/addresses`, params.address, undefined, config)
 			.pipe(
 				map((res) => ({
 					...params.address,
@@ -41,7 +41,7 @@ export class AddressImplRepo implements AddressRepo {
 		config?: Config,
 	): Observable<undefined> {
 		return this.http.put(
-			`${ENV.endpoint}/api/customers/${params.customerId}/addresses`,
+			`${ENDPOINT}/api/customers/${params.customerId}/addresses`,
 			params.address,
 			undefined,
 			config,
@@ -53,7 +53,7 @@ export class AddressImplRepo implements AddressRepo {
 		config?: Config,
 	): Observable<undefined> {
 		return this.http.delete(
-			`${ENV.endpoint}/api/customers/${params.customerId}/addresses/${params.addressId}`,
+			`${ENDPOINT}/api/customers/${params.customerId}/addresses/${params.addressId}`,
 			undefined,
 			config,
 		);

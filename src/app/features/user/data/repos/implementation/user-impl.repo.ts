@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { inject, Injectable } from '@angular/core';
 import { UserImplMapper } from '../mappers/user-repo.mapper';
-import { ENV, HttpService } from '@src/app/core';
+import { ENDPOINT, HttpService } from '@src/app/core';
 import { UserRepo } from '../../../domain/repo/user.repo';
 import { User } from '../../../domain';
 
@@ -15,19 +15,19 @@ export class UserImplRepo implements UserRepo {
 
 	login(params: { username: string; password: string }): Observable<User> {
 		return this.http
-			.post<UserDTO>(`${ENV.endpoint}/login`, params)
+			.post<UserDTO>(`${ENDPOINT}/login`, params)
 			.pipe(map(this.userMapper.mapFrom));
 	}
 
 	register(params: { phoneNum: string; password: string }): Observable<User> {
 		return this.http
-			.post<UserDTO>(`${ENV.endpoint}/register`, params)
+			.post<UserDTO>(`${ENDPOINT}/register`, params)
 			.pipe(map(this.userMapper.mapFrom));
 	}
 
 	getUserProfile(): Observable<User> {
 		return this.http
-			.get<UserDTO>(`${ENV.endpoint}/user`)
+			.get<UserDTO>(`${ENDPOINT}/user`)
 			.pipe(map(this.userMapper.mapFrom));
 	}
 }

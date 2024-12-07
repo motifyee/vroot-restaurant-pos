@@ -1,6 +1,6 @@
 import { map, Observable } from 'rxjs';
 import { inject } from '@angular/core';
-import { ENV, HttpService } from '@src/app/core';
+import { ENDPOINT, HttpService } from '@src/app/core';
 import { ShiftRepo } from '../../../domain';
 
 export class ShiftImplRepo implements ShiftRepo {
@@ -8,15 +8,13 @@ export class ShiftImplRepo implements ShiftRepo {
 
 	getShift(config?: Config): Observable<Shift> {
 		return this.http
-			.get<
-				Response<Shift>
-			>(`${ENV.endpoint}/api/shifts`, undefined, config)
+			.get<Response<Shift>>(`${ENDPOINT}/api/shifts`, undefined, config)
 			.pipe(map((res) => res.data!));
 	}
 
 	openShift(config?: Config): Observable<void> {
 		return this.http.post(
-			`${ENV.endpoint}/api/shifts`,
+			`${ENDPOINT}/api/shifts`,
 			undefined,
 			undefined,
 			config,
@@ -25,7 +23,7 @@ export class ShiftImplRepo implements ShiftRepo {
 
 	closeShift(config?: Config): Observable<void> {
 		return this.http.put(
-			`${ENV.endpoint}/api/shifts`,
+			`${ENDPOINT}/api/shifts`,
 			undefined,
 			{ params: { close: true } },
 			config,

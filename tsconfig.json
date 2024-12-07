@@ -33,6 +33,9 @@
       "@features/*": [
         "./src/app/features/*"
       ],
+      "@env": [
+        "./src/app/core/environments/env"
+      ],
       "@assets/*": [
         "./src/assets/*"
       ],
