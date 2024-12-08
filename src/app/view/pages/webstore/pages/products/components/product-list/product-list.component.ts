@@ -21,6 +21,7 @@ import { productsPageStore } from '../../products-page.store';
 import { SkeletonModule } from 'primeng/skeleton';
 import { settingsStore } from '@src/app/features/settings';
 import { IS_DEVMODE } from '@src/app/core';
+import { BannerComponent } from '../banner/banner.component';
 
 @Component({
 	selector: 'product-list',
@@ -29,7 +30,7 @@ import { IS_DEVMODE } from '@src/app/core';
 	styleUrls: ['./product-list.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [TopbarComponent],
-	imports: [SkeletonModule],
+	imports: [SkeletonModule, BannerComponent],
 })
 export class ProductListComponent
 	implements OnInit, AfterViewChecked, OnDestroy
@@ -50,10 +51,12 @@ export class ProductListComponent
 	menu = this.productStore.menu;
 
 	ngOnInit() {
-		if (IS_DEVMODE && localStorage.getItem('products'))
+		if (IS_DEVMODE && localStorage.getItem('products')) {
+			console.log(JSON.parse(localStorage.getItem('products')!));
 			return this.productStore.setCategories(
 				JSON.parse(localStorage.getItem('products')!),
 			);
+		}
 
 		let branchId = this.settings.selectedBranch?.()?.id ?? -1;
 		this.productStore

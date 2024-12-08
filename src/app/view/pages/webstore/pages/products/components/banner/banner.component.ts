@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { settingsStore } from '@src/app/features';
 
 @Component({
@@ -10,6 +10,8 @@ import { settingsStore } from '@src/app/features';
 })
 export class BannerComponent {
 	settings = inject(settingsStore);
+
+	fontSize = input<number>(30);
 
 	companyInfo = this.settings.companyInfo;
 }

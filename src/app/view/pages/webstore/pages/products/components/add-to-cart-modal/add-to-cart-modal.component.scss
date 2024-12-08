@@ -2,6 +2,12 @@
 	@apply fixed min-w-full min-h-full top-0 left-0 z-20;
 }
 
+.image-container {
+	@apply relative overflow-hidden min-h-[300px]
+   grid place-items-center 
+   bg-white;
+}
+
 .menuItemModalWrapper {
 	@apply z-10;
 	top: 1rem;
@@ -55,11 +61,6 @@
 	}
 }
 
-.itemImgthumb {
-	position: relative;
-	overflow: hidden;
-}
-
 .slick-slider {
 	position: relative;
 	display: block;
@@ -107,35 +108,9 @@
 .item {
 	width: 100%;
 	display: inline-block;
-	height: 300px;
 	--bs-bg-opacity: 1;
 	background-color: rgba(255, 255, 255, 1) !important;
 	overflow: hidden !important;
-
-	img {
-		object-fit: cover;
-		display: block;
-
-		/* for .slick-slide img */
-		height: 100% !important;
-
-		/* from .h-100 */
-		width: 100% !important;
-
-		/* from .w-100 */
-		vertical-align: middle;
-
-		/* from img, svg */
-
-		/* object-fit: cover; */
-		//   display: block;
-		//   height: 100% !important;
-		//   width: 100% !important;
-		//   vertical-align: middle;
-		//   background-position: center;
-		//   background-repeat: no-repeat;
-		//   background-size: cover;
-	}
 }
 
 .aboutItem {
