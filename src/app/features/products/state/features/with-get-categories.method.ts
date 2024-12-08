@@ -1,10 +1,11 @@
 import {
 	patchState,
 	signalStoreFeature,
+	withComputed,
 	withMethods,
 	withState,
 } from '@ngrx/signals';
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import { GetCategoriesUseCase } from '@src/app/features';
 
@@ -21,6 +22,16 @@ const initialState: State = {
 export const withGetCategoriesMethod = <_>() =>
 	signalStoreFeature(
 		withState(initialState),
+		withComputed((store) => {
+			return {
+				menu: computed(() =>
+					store.categories().map((c) => ({
+						...c,
+						variants: c.products.flatMap((p) => p.variants),
+					})),
+				),
+			};
+		}),
 		withMethods((store) => {
 			return {
 				clearCategories: () => patchState(store, { categories: [] }),

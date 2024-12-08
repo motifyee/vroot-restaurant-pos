@@ -1,13 +1,12 @@
-<div #tabContainer class="mobile-category-list">
+<div #container class="mobile-category-list">
 	<ul class="group-list">
 		@for (category of menu(); track category.id) {
 			<li>
 				<a
-					(click)="scrollToCategory('category-' + category.id)"
-					[class.active]="
-						activeCategoryId === 'category-' + category.id
-					"
-					id="tab-category-{{ category.id }}"
+					(click)="scrollToCategory(category.id)"
+					[class.active]="activeCategoryId() === category.id"
+					[attr.category-id]="category.id"
+					id="category-tab-{{ category.id }}"
 					>{{ category.title }}</a
 				>
 			</li>

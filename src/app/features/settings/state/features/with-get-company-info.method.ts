@@ -9,6 +9,7 @@ import {
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap } from 'rxjs';
+import { IS_DEVMODE } from '@src/app/core';
 
 type State = {
 	companyInfo: Company;
@@ -33,12 +34,8 @@ export function withGetCompanyInfoMethod<_>() {
 						switchMap(() =>
 							useCase.execute().pipe(
 								tapResponse({
-									next: (companyInfo: Company) => {
-										patchState(store, {
-											companyInfo,
-											companyInfoStatus: 'loaded',
-										});
-									},
+									next: (companyInfo: Company) =>
+										_handleSuccess(store, companyInfo),
 									error: () =>
 										patchState(store, {
 											companyInfoStatus: 'error',
@@ -54,4 +51,16 @@ export function withGetCompanyInfoMethod<_>() {
 			};
 		}),
 	);
+}
+
+function _handleSuccess(store: any, companyInfo: Company) {
+	patchState(store, {
+		companyInfo,
+		companyInfoStatus: 'loaded',
+	});
+
+	if (IS_DEVMODE && localStorage.getItem('test-company'))
+		patchState(store, {
+			selectedBranch: companyInfo.branchs[0],
+		});
 }

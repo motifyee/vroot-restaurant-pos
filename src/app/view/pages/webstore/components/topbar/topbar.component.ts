@@ -26,7 +26,8 @@ export class TopbarComponent implements AfterViewInit {
 	scrollService = inject(ScrollService);
 	ngAfterViewInit(): void {
 		if (!this.container) return;
-		this.scrollService.headerEl = this.container.nativeElement;
+
+		this.scrollService.headerEl.set(this.container.nativeElement);
 	}
 	@ViewChild('container') container: ElementRef<HTMLElement> | undefined;
 

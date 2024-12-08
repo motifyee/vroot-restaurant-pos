@@ -1,14 +1,15 @@
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { storeType } from '@src/app/view/state/utils/utils';
 
-interface ProductsState {
+interface ProductsPageState {
+	//  `product-list.component` is responsible detecting this
 	categoriesViewHasInit: boolean;
-	selectedProduct: ProductVariant | undefined;
+	selectedVariant: ProductVariant | undefined;
 }
 
-const intialState: ProductsState = {
+const intialState: ProductsPageState = {
 	categoriesViewHasInit: false,
-	selectedProduct: undefined,
+	selectedVariant: undefined,
 };
 
 export const productsPageStore = signalStore(
@@ -17,10 +18,8 @@ export const productsPageStore = signalStore(
 		return {
 			setCategoriesViewInit: () =>
 				patchState(store, { categoriesViewHasInit: true }),
-			selectProduct: (v?: ProductVariant, p?: Product) =>
-				patchState(store, {
-					selectedProduct: v ? { ...v, product: p } : v,
-				}),
+			selectProduct: (selectedVariant?: ProductVariant) =>
+				patchState(store, { selectedVariant }),
 		};
 	}),
 );

@@ -14,12 +14,12 @@ export class CategoryBarComponent {
 	private productStore = inject(productStore);
 	private scrollService = inject(ScrollService);
 
-	activeCategoryIdx: number | null = null;
+	activeCategoryId: string | null = null;
 
 	menu = this.productStore.categories;
 
-	scrollToCategory(categoryIdx: number) {
-		this.activeCategoryIdx = categoryIdx; // Set active category
-		this.scrollService.inViewCategory.set(categoryIdx);
+	scrollToCategory(categoryIdx: string) {
+		this.activeCategoryId = categoryIdx; // Set active category
+		this.scrollService.tappedCategoryId.set(categoryIdx);
 	}
 }

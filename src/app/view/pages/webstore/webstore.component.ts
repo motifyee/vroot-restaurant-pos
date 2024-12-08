@@ -46,7 +46,7 @@ export class WebstoreComponent implements OnInit {
 	isOrderDetailsVisible = signal<Product | undefined>(undefined);
 
 	productsPageStore = inject(productsPageStore);
-	selectedProduct = this.productsPageStore.selectedProduct;
+	selectedProduct = this.productsPageStore.selectedVariant;
 
 	categoriesViewInit = signal(false);
 

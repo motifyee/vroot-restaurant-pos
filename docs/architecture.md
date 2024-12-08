@@ -24,7 +24,7 @@ We follow a layered architecture to maintain clear boundaries between different 
 -   **Boundary**
     The Domain Layer is the most abstract layer and sits at the core of the application. It has no dependencies on infrastructure or presentation concerns. It communicates with other layers via interfaces, ensuring that the business logic is isolated from external changes or implementation details.
 
-1. Presentation Layer (UI Boundary)
+3. Presentation Layer (UI Boundary)
     - **Purpose**
       Manages the visual elements and user interactions. This layer is responsible for rendering data and responding to user inputs.
     - **Responsibilities**

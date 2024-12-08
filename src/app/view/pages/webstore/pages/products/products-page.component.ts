@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	HostListener,
+	inject,
+	signal,
+} from '@angular/core';
 import { BannerComponent } from './components/banner/banner.component';
 import { CategoryBarComponent } from './components/category-bar/category-bar.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
@@ -28,5 +34,12 @@ import { scaleInOut } from '../../animations/scaleInOut.animation';
 })
 export class ProductsPageComponent {
 	productsPageStore = inject(productsPageStore);
-	selectedProduct = this.productsPageStore.selectedProduct;
+	selectedProduct = this.productsPageStore.selectedVariant;
+
+	isNarrowWidth = signal(window.innerWidth <= 1000);
+
+	@HostListener('window:resize', ['$event'])
+	onResize(event: any) {
+		this.isNarrowWidth.set(event.target.innerWidth <= 1000);
+	}
 }

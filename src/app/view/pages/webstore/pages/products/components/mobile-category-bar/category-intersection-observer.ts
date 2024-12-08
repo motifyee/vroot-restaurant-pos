@@ -2,12 +2,12 @@ import { signal } from '@angular/core';
 
 export class CategoryIntersectionObserver {
 	private observer!: IntersectionObserver;
-	isScrolling: boolean = false;
-	activeEntryId = signal('');
-	/**
-	 * Creates and initializes the IntersectionObserver for active category tracking.
-	 */
-	initializeObserver() {
+	skipIntersections: boolean = false;
+	intersectingCategoryId = signal<number>(-1);
+
+	// Creates and initializes the IntersectionObserver for active category tracking.
+	// should be called after view init
+	initializeObserver(selector: string) {
 		this.observer = new IntersectionObserver(
 			this.handleIntersection.bind(this),
 			{
@@ -17,34 +17,23 @@ export class CategoryIntersectionObserver {
 			},
 		);
 
-		this.observeCategorySections();
+		const sections = document.querySelectorAll(selector);
+		sections.forEach((section) => this.observer.observe(section));
 	}
 
-	/**
-	 * Disconnects the IntersectionObserver.
-	 */
+	//  should be called on destroy
 	disconnectObserver() {
 		this.observer?.disconnect();
 	}
 
-	/**
-	 * Handles intersection changes for category sections.
-	 */
+	// Handles intersection changes for category sections.
 	private handleIntersection(entries: IntersectionObserverEntry[]) {
-		if (this.isScrolling) return;
+		if (this.skipIntersections) return;
 
-		for (const entry of entries)
-			if (entry.isIntersecting) {
-				this.activeEntryId.set(entry.target.id);
-				break;
-			}
-	}
+		const entry = entries.find((entry) => entry.isIntersecting);
+		if (!entry) return;
 
-	/**
-	 * Observes all category sections for the IntersectionObserver.
-	 */
-	private observeCategorySections() {
-		const sections = document.querySelectorAll('.category-section');
-		sections.forEach((section) => this.observer.observe(section));
+		const categoryId = +(entry.target.getAttribute('category-id') || -1);
+		this.intersectingCategoryId.set(categoryId);
 	}
 }

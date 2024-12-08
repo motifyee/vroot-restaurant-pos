@@ -2,11 +2,13 @@
 	@if (menu().length > 0) {
 		@for (category of menu(); track category.id; let idx = $index) {
 			<a
-				(click)="scrollToCategory(idx)"
-				[class.active]="activeCategoryIdx === idx"
+				[id]="'category-tab-' + category.id"
+				(click)="scrollToCategory(category.id.toString())"
+				[class.active]="activeCategoryId === category.id.toString()"
 				[title]="category.title"
-				><i class="fas fa-chevron-left"></i
-				><span class="">{{ category.title }}</span>
+			>
+				<i class="fas fa-chevron-left"></i>
+				<span class="">{{ category.title }}</span>
 			</a>
 		}
 		<!-- skeleton -->
