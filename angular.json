@@ -24,36 +24,58 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:application",
 					"options": {
-						"outputPath": "dist/restaurant-pos",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
 						"polyfills": ["zone.js"],
 						"tsConfig": "tsconfig.app.json",
 						"inlineStyleLanguage": "scss",
+						"styles": ["src/styles.scss"],
+						"scripts": [],
 						"assets": [
 							{
 								"glob": "**/*",
 								"input": "public"
 							}
 						],
-						"styles": ["src/styles.scss"],
-						"scripts": []
+						"budgets": [
+							{
+								"type": "initial",
+								"maximumWarning": "500kB",
+								"maximumError": "1.1MB"
+							},
+							{
+								"type": "anyComponentStyle",
+								"maximumWarning": "2kB",
+								"maximumError": "4kB"
+							}
+						]
 					},
 					"configurations": {
-						"production": {
-							"budgets": [
-								{
-									"type": "initial",
-									"maximumWarning": "500kB",
-									"maximumError": "1.1MB"
-								},
-								{
-									"type": "anyComponentStyle",
-									"maximumWarning": "2kB",
-									"maximumError": "4kB"
-								}
-							],
+						"webstore": {
 							"outputHashing": "all",
+							"outputPath": "dist/webstore",
+							"browser": "src/targets/webstore/main.ts",
+							"fileReplacements": [
+								{
+									"replace": "src/app/core/environments/env.ts",
+									"with": "src/app/core/environments/env.prod.ts"
+								}
+							]
+						},
+						"chat": {
+							"outputHashing": "all",
+							"outputPath": "dist/chat",
+							"browser": "src/targets/chat/main.ts",
+							"fileReplacements": [
+								{
+									"replace": "src/app/core/environments/env.ts",
+									"with": "src/app/core/environments/env.prod.ts"
+								}
+							]
+						},
+						"production": {
+							"outputHashing": "all",
+							"outputPath": "dist/restaurant-pos",
 							"fileReplacements": [
 								{
 									"replace": "src/app/core/environments/env.ts",
@@ -62,9 +84,11 @@
 							]
 						},
 						"development": {
+							"outputPath": "dist/restaurant-pos",
 							"optimization": false,
 							"extractLicenses": false,
-							"sourceMap": true
+							"sourceMap": true,
+							"budgets": []
 						}
 					},
 					"defaultConfiguration": "production"

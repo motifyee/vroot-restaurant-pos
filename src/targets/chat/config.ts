@@ -6,28 +6,29 @@ import {
 } from '@angular/core';
 import { provideRouter, RouterModule } from '@angular/router';
 
-import { routes } from './app.routes';
-import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
-import { LoggerModule, LogSeverity } from './core/services/logger';
-import { StorageModule } from './core/services/storage';
-import { AuthnModule } from './core/services/auth';
-import { ErrorHandlerService } from './core/services/error';
-import { AuthInterceptor } from './core/interceptors/api.interceptor';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideTranslateService } from '@ngx-translate/core';
-import { FeaturesModule } from './features';
+import {
+	AuthInterceptor,
+	AuthnModule,
+	ErrorHandlerService,
+	LoggerModule,
+	LogSeverity,
+	StorageModule,
+} from '@src/app/core';
+import { ChatFeaturesModule } from './features.module';
+import { chatRoutes } from '@src/app/view/pages/chat/routes';
 
-export const appConfig: ApplicationConfig = {
+export const chatConfig: ApplicationConfig = {
 	providers: [
-		// BrowserModule,
 		provideTranslateService({
 			defaultLanguage: localStorage.getItem('lang') || 'en',
 		}),
 		provideAnimationsAsync(),
 		importProvidersFrom(
-			FeaturesModule,
+			ChatFeaturesModule,
 			RouterModule,
 			AuthnModule,
 			LoggerModule.forAdaptive(
@@ -39,7 +40,7 @@ export const appConfig: ApplicationConfig = {
 		),
 		provideHttpClient(),
 		provideZoneChangeDetection({ eventCoalescing: true }),
-		provideRouter(routes),
+		provideRouter(chatRoutes),
 		{
 			provide: ErrorHandler,
 			useClass: ErrorHandlerService,

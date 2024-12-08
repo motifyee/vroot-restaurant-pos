@@ -1,11 +1,11 @@
 import { importProvidersFrom, NgModule } from '@angular/core';
+import { ProductsDataModule } from './products';
 import { SettingsDataModule } from './settings';
 import { ShiftDataModule } from './shifts';
 import { CustomerDataModule } from './customers';
 import { PrintersDataModule } from './printers';
 import { InvoiceDataModule } from './invoices';
 import { UserDataModule } from './user';
-import { ProductsDataModule } from '@features/products';
 
 @NgModule({
 	providers: [
@@ -20,4 +20,4 @@ import { ProductsDataModule } from '@features/products';
 		),
 	],
 })
-export class WebstoreFeaturesModule {}
+export class FeaturesModule {}

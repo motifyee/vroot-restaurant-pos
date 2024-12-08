@@ -5,6 +5,7 @@
 		"ng": "ng",
 		"start": "ng serve",
 		"build": "ng build",
+		"build-webstore": "ng build --configuration webstore",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
 		"pretty": "prettier --write \"./**/*.{ts,scss,css,html,json}\"",
