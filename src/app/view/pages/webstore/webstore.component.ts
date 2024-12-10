@@ -1,6 +1,7 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
+	HostListener,
 	inject,
 	OnInit,
 	signal,
@@ -44,6 +45,7 @@ import { settingsStore } from '@src/app/features/settings';
 export class WebstoreComponent implements OnInit {
 	isSideBarVisible = signal(false);
 	isOrderDetailsVisible = signal<Product | undefined>(undefined);
+	scrollService = inject(ScrollService);
 
 	productsPageStore = inject(productsPageStore);
 	selectedProduct = this.productsPageStore.selectedVariant;
@@ -58,6 +60,11 @@ export class WebstoreComponent implements OnInit {
 	constructor() {}
 	ngOnInit(): void {
 		this.settings.getCompanyInfo();
+	}
+
+	@HostListener('window:resize', ['$event'])
+	onResize(event: any) {
+		this.scrollService.isNarrowScreen.set(event.target.innerWidth <= 1000);
 	}
 
 	async toggleLang() {

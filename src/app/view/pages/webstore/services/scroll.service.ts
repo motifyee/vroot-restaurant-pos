@@ -21,4 +21,8 @@ export class ScrollService {
 	tappedCategoryId = signal<string | number>('', {
 		equal: () => false, // to always react to updates whether changed or not
 	});
+
+	// ###########################################################################
+
+	isNarrowScreen = signal(window.innerWidth <= 1000);
 }

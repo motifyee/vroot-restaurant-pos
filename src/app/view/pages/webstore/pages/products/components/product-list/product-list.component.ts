@@ -51,18 +51,21 @@ export class ProductListComponent
 	menu = this.productStore.menu;
 
 	ngOnInit() {
-		if (IS_DEVMODE && localStorage.getItem('products')) {
-			console.log(JSON.parse(localStorage.getItem('products')!));
+		if (IS_DEVMODE && localStorage.getItem('test-products')) {
+			console.log(JSON.parse(localStorage.getItem('test-products')!));
 			return this.productStore.setCategories(
-				JSON.parse(localStorage.getItem('products')!),
+				JSON.parse(localStorage.getItem('test-products')!),
 			);
 		}
 
 		let branchId = this.settings.selectedBranch?.()?.id ?? -1;
 		this.productStore
 			.getCategories(branchId)
-			.subscribe((m) =>
-				localStorage.setItem('products', JSON.stringify(m)),
+			.subscribe(
+				(m) =>
+					IS_DEVMODE &&
+					localStorage.getItem('test-branch-idx') &&
+					localStorage.setItem('test-products', JSON.stringify(m)),
 			);
 	}
 

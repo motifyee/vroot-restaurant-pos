@@ -59,8 +59,11 @@ function _handleSuccess(store: any, companyInfo: Company) {
 		companyInfoStatus: 'loaded',
 	});
 
-	if (IS_DEVMODE && localStorage.getItem('test-company'))
-		patchState(store, {
-			selectedBranch: companyInfo.branchs[0],
-		});
+	if (IS_DEVMODE && localStorage.getItem('test-branch-idx')) {
+		const branchIdx = parseInt(
+			localStorage.getItem('test-branch-idx')!,
+			10,
+		);
+		patchState(store, { selectedBranch: companyInfo.branchs[branchIdx] });
+	}
 }

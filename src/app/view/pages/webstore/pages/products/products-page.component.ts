@@ -1,10 +1,4 @@
-import {
-	ChangeDetectionStrategy,
-	Component,
-	HostListener,
-	inject,
-	signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { BannerComponent } from './components/banner/banner.component';
 import { CategoryBarComponent } from './components/category-bar/category-bar.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
@@ -14,6 +8,7 @@ import { productsPageStore } from './products-page.store';
 import { AddToCartItemModalComponent } from './components/add-to-cart-modal/add-to-cart-modal.component';
 
 import { scaleInOut } from '../../animations/scaleInOut.animation';
+import { ScrollService } from '../../services/scroll.service';
 
 @Component({
 	selector: 'products-page',
@@ -33,13 +28,8 @@ import { scaleInOut } from '../../animations/scaleInOut.animation';
 	animations: [scaleInOut],
 })
 export class ProductsPageComponent {
+	scrollService = inject(ScrollService);
+
 	productsPageStore = inject(productsPageStore);
 	selectedProduct = this.productsPageStore.selectedVariant;
-
-	isNarrowWidth = signal(window.innerWidth <= 1000);
-
-	@HostListener('window:resize', ['$event'])
-	onResize(event: any) {
-		this.isNarrowWidth.set(event.target.innerWidth <= 1000);
-	}
 }

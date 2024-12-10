@@ -3,14 +3,6 @@
 		flex-direction: column;
 	}
 }
-@media (max-width: 768px) {
-	.main-section {
-		flex-direction: column;
-	}
-	.main-section > div {
-		width: 100%;
-	}
-}
 
 .main-section {
 	display: flex;
@@ -29,15 +21,6 @@
 .cart-section {
 	padding: 0 12px;
 	width: 25%;
-}
-
-@media (max-width: 768px) {
-	.main-section {
-		flex-direction: column;
-	}
-	.main-section > div {
-		width: 100%;
-	}
 }
 
 .category-list {

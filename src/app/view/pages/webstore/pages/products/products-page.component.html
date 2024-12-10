@@ -4,7 +4,7 @@
 	<div class="main-section">
 		<div class="category">
 			<div class="category-section">
-				@if (isNarrowWidth()) {
+				@if (scrollService.isNarrowScreen()) {
 					<mobile-category-bar
 						class="mobile-category-list-container"
 					/>
