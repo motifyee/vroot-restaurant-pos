@@ -1,0 +1,420 @@
+<div class="modal-mask skip-context-menu" transition="modal">
+	<div
+		class="relative max-h-full overflow-auto bg-white shadow-md modal-container rtl:text-right dark:bg-slate-800 skip-context-menu rounded-xl w-[37.5rem] medium"
+	>
+		<button
+			class="button clear button--only-icon secondary absolute z-10 ltr:right-2 rtl:left-2 top-2"
+			type="submit"
+		>
+
+
+			<dismiss-icon/>
+
+		</button>
+		<div >
+			<div
+
+				class="flex flex-col items-start px-8 pt-8 pb-0"
+			>
+
+				<h2
+					data-test-id="modal-header-title"
+					class="text-base font-semibold leading-6 text-slate-800 dark:text-slate-50"
+				>
+					Filter conversations
+				</h2>
+
+				<p
+
+					class="text-slate-600 dark:text-slate-200"
+				>
+					Add your filters below and hit 'Apply filters' to cut
+					through the chat clutter.
+				</p>
+			</div>
+			<div  class="p-8">
+
+				
+				<div
+
+					class="p-4 mb-4 border border-solid rounded-lg bg-slate-25 dark:bg-slate-900 border-slate-50 dark:border-slate-700/50"
+				>
+					<div  >
+						<div
+
+							class="p-2 border border-solid rounded-md bg-slate-50 dark:bg-slate-800 border-slate-75 dark:border-slate-700/50"
+						>
+							<div  class="flex">
+								<select
+
+									class="bg-white max-w-[30%] dark:bg-slate-900 mb-0 mr-1 text-slate-800 dark:text-slate-100 border-slate-75 dark:border-slate-600"
+								>
+									<optgroup
+
+										label="Standard filters"
+									>
+										<option
+
+											selected=""
+											value="status"
+										>
+											Status
+										</option>
+										<option
+
+											selected=""
+											value="assignee_id"
+										>
+											Assignee name
+										</option>
+										<option
+
+											selected=""
+											value="inbox_id"
+										>
+											Inbox name
+										</option>
+										<option
+
+											selected=""
+											value="team_id"
+										>
+											Team name
+										</option>
+										<option
+
+											selected=""
+											value="display_id"
+										>
+											Conversation identifier
+										</option>
+										<option
+
+											selected=""
+											value="campaign_id"
+										>
+											Campaign name
+										</option>
+										<option
+
+											selected=""
+											value="labels"
+										>
+											Labels
+										</option>
+										<option
+
+											selected=""
+											value="created_at"
+										>
+											Created at
+										</option>
+										<option
+
+											selected=""
+											value="last_activity_at"
+										>
+											Last activity
+										</option>
+									</optgroup>
+									<optgroup
+
+										label="Additional filters"
+									>
+										<option
+
+											selected=""
+											value="browser_language"
+										>
+											Browser language
+										</option>
+										<option
+
+											selected=""
+											value="country_code"
+										>
+											Country name
+										</option>
+										<option
+
+											selected=""
+											value="referer"
+										>
+											Referer link
+										</option>
+									</optgroup>
+									<optgroup
+
+										label="Custom attributes"
+									></optgroup></select
+								><select
+
+									class="bg-white dark:bg-slate-900 max-w-[20%] mb-0 mr-1 text-slate-800 dark:text-slate-100 border-slate-75 dark:border-slate-600"
+								>
+									<option  value="equal_to">
+										Equal to
+									</option>
+									<option
+
+										value="not_equal_to"
+									>
+										Not equal to
+									</option>
+								</select>
+								<div
+
+									class="flex-grow mr-1 filter__answer--wrap"
+								>
+									<div
+
+										class="multiselect-wrap--small"
+									>
+										<div
+
+											tabindex="-1"
+											class="multiselect"
+											role="combobox"
+											aria-owns="listbox-null"
+										>
+											<div
+												class="multiselect__select"
+											></div>
+											<div class="multiselect__tags">
+												<div
+													class="multiselect__tags-wrap"
+												>
+													<span
+														class="multiselect__tag"
+														><span>Open</span
+														><i
+															tabindex="1"
+															class="multiselect__tag-icon"
+														></i
+													></span>
+												</div>
+												<!--v-if-->
+												<div
+													class="multiselect__spinner"
+													style="display: none"
+												></div>
+												<input
+													name=""
+													type="text"
+													autocomplete="off"
+													spellcheck="false"
+													placeholder="Select"
+													tabindex="0"
+													class="multiselect__input"
+													aria-controls="listbox-null"
+													value=""
+													style="
+														width: 0px;
+														position: absolute;
+														padding: 0px;
+													"
+												/><!--v-if--><!--v-if-->
+											</div>
+											<div
+												class="multiselect__content-wrapper"
+												tabindex="-1"
+												style="
+													max-height: 160px;
+													display: none;
+												"
+											>
+												<ul
+													class="multiselect__content"
+													role="listbox"
+													id="listbox-null"
+													aria-multiselectable="true"
+													style="
+														display: inline-block;
+													"
+												>
+													<!--v-if-->
+													<li
+														class="multiselect__element"
+														aria-selected="true"
+														id="null-0"
+														role="option"
+													>
+														<span
+															class="multiselect__option--highlight multiselect__option--selected multiselect__option"
+															data-select="Press enter to select"
+															data-selected=""
+															data-deselect=""
+															><span
+																>Open</span
+															></span
+														><!--v-if-->
+													</li>
+													<li
+														class="multiselect__element"
+														aria-selected="false"
+														id="null-1"
+														role="option"
+													>
+														<span
+															class="multiselect__option"
+															data-select="Press enter to select"
+															data-selected=""
+															data-deselect=""
+															><span
+																>Resolved</span
+															></span
+														><!--v-if-->
+													</li>
+													<li
+														class="multiselect__element"
+														aria-selected="false"
+														id="null-2"
+														role="option"
+													>
+														<span
+															class="multiselect__option"
+															data-select="Press enter to select"
+															data-selected=""
+															data-deselect=""
+															><span
+																>Pending</span
+															></span
+														><!--v-if-->
+													</li>
+													<li
+														class="multiselect__element"
+														aria-selected="false"
+														id="null-3"
+														role="option"
+													>
+														<span
+															class="multiselect__option"
+															data-select="Press enter to select"
+															data-selected=""
+															data-deselect=""
+															><span
+																>Snoozed</span
+															></span
+														><!--v-if-->
+													</li>
+													<li
+														class="multiselect__element"
+														aria-selected="false"
+														id="null-4"
+														role="option"
+													>
+														<span
+															class="multiselect__option"
+															data-select="Press enter to select"
+															data-selected=""
+															data-deselect=""
+															><span
+																>All</span
+															></span
+														><!--v-if-->
+													</li>
+													<li style="display: none">
+														<span
+															class="multiselect__option"
+															>No elements found.
+															Consider changing
+															the search
+															query.</span
+														>
+													</li>
+													<li style="display: none">
+														<span
+															class="multiselect__option"
+															>List is
+															empty.</span
+														>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+								<button
+
+									class="button clear button--only-icon secondary"
+									type="submit"
+								>
+
+
+			<dismiss-icon/>
+
+								</button>
+							</div>
+
+						</div>
+						<div
+
+							class="flex items-center justify-center relative my-2.5 mx-0"
+						>
+							<hr
+
+								class="absolute w-full border-b border-solid border-slate-75 dark:border-slate-800"
+							/>
+							<select
+
+								class="relative w-auto mb-0 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 border-slate-75 dark:border-slate-600"
+							>
+								<option  value="and">
+									AND
+								</option>
+								<option  value="or">
+									OR
+								</option>
+							</select>
+						</div>
+					</div>
+
+
+					<div  class="mt-4">
+						<button
+
+							class="button smooth small success"
+							type="submit"
+						>
+
+			<dismiss-icon/>
+
+							<span
+								class="button__content text-left rtl:text-right"
+								>Add filter</span
+							>
+						</button>
+					</div>
+				</div>
+
+
+
+				<div  class="w-full">
+					<div
+
+						class="flex flex-row justify-end w-full gap-2 px-0 py-2"
+					>
+						<button
+
+							class="button primary button clear"
+							type="submit"
+						>
+							<span
+								class="button__content text-left rtl:text-right"
+								>Cancel</span
+							></button
+						><button
+
+							class="button primary"
+							type="submit"
+						>
+							<span
+								class="button__content text-left rtl:text-right"
+								>Apply filters</span
+							>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
