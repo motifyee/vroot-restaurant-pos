@@ -1,6 +1,8 @@
 <aside class="sticky mb-4 top-20">
-	@if (!cartItems().length && !scrollService.isNarrowScreen()) {
-		<ng-container [ngTemplateOutlet]="emptyCart" />
+	@if (!cartItems().length) {
+		@if (!scrollService.isNarrowScreen()) {
+			<ng-container [ngTemplateOutlet]="emptyCart" />
+		}
 	} @else if (scrollService.isNarrowScreen()) {
 		<ng-container [ngTemplateOutlet]="floatingCart" />
 	} @else {

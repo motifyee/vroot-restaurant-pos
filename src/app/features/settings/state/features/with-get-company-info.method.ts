@@ -7,8 +7,7 @@ import {
 	withMethods,
 	withState,
 } from '@ngrx/signals';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap } from 'rxjs';
+import { of, switchMap } from 'rxjs';
 import { IS_DEVMODE } from '@src/app/core';
 
 type State = {
@@ -29,8 +28,8 @@ export function withGetCompanyInfoMethod<_>() {
 		withMethods((store) => {
 			let useCase = inject(GetCompanyInfoUseCase);
 			return {
-				getCompanyInfo: rxMethod<void>(
-					pipe(
+				getCompanyInfo: () =>
+					of(null).pipe(
 						switchMap(() =>
 							useCase.execute().pipe(
 								tapResponse({
@@ -44,7 +43,6 @@ export function withGetCompanyInfoMethod<_>() {
 							),
 						),
 					),
-				),
 				selectBranch: (branch: Branch) => {
 					patchState(store, { selectedBranch: branch });
 				},
@@ -66,4 +64,6 @@ function _handleSuccess(store: any, companyInfo: Company) {
 		);
 		patchState(store, { selectedBranch: companyInfo.branchs[branchIdx] });
 	}
+
+	return companyInfo;
 }

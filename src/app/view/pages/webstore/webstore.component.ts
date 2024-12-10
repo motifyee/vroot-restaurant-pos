@@ -59,7 +59,10 @@ export class WebstoreComponent implements OnInit {
 
 	constructor() {}
 	ngOnInit(): void {
-		this.settings.getCompanyInfo();
+		this.settings.getCompanyInfo().subscribe((info) => {
+			if (info.branchs.length == 1)
+				this.settings.selectBranch(info.branchs[0]);
+		});
 	}
 
 	@HostListener('window:resize', ['$event'])
