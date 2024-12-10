@@ -1,10 +1,9 @@
 //conversations-list
 :host {
 	display: flex;
-	flex-basis: clamp(7rem, 9vw + 28.25rem, 33.5rem);
 }
 
 .conversations-overview {
-	flex-basis: clamp(20rem, 4vw + 21.25rem, 27.5rem);
+	width: 100%;
 	@apply flex flex-col flex-shrink-0 overflow-hidden border-r  rtl:border-r-0 rtl:border-l border-slate-50 dark:border-slate-800/50;
 }

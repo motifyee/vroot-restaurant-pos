@@ -1,6 +1,10 @@
 <main class="main-container">
 	<section class="conversation-section">
-	  <conversations-overview />
-	  <conversation-details />
+		<!-- <conversations-overview [style.width]="isExpanded ? '540px' : '100%'" /> -->
+		<conversations-overview [ngClass]="{ 'expanded': isExpanded, 'full-width': !isExpanded }" />
+
+		@if (isExpanded) {
+			<conversation-details />
+		}
 	</section>
-  </main>
+</main>

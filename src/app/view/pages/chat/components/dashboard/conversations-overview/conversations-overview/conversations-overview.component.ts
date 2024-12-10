@@ -12,17 +12,18 @@ import { SortingFilteringSectionComponent } from '../sorting-filtering-section/s
 	selector: 'conversations-overview',
 	standalone: true,
 	imports: [
-		ContactListComponent,
-		ListIconComponent,
-		ArrowRightIconComponent,
-		SearchIconComponent,
-		SortIconComponent,
-		FilterIconComponent,
-		SearchBarSectionComponent,
-		SortingFilteringSectionComponent,
+	  ContactListComponent,
+	  ListIconComponent,
+	  ArrowRightIconComponent,
+	  SearchIconComponent,
+	  SortIconComponent,
+	  FilterIconComponent,
+	  SearchBarSectionComponent,
+	  SortingFilteringSectionComponent
 	],
 	templateUrl: './conversations-overview.component.html',
-	styleUrl: './conversations-overview.component.scss',
+	styleUrls: ['./conversations-overview.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class ConversationsOverviewComponent {}
+  })
+  export class ConversationsOverviewComponent {}
+  
