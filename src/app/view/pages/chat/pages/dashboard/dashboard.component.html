@@ -1,6 +1,8 @@
 <main class="main-container">
 	<section class="conversation-section">
-		<!-- <conversations-overview [style.width]="isExpanded ? '540px' : '100%'" /> -->
+		@if (isSideBarExpanded) {
+			<side-bar/>
+		}
 		<conversations-overview [ngClass]="{ 'expanded': isExpanded, 'full-width': !isExpanded }" />
 
 		@if (isExpanded) {
