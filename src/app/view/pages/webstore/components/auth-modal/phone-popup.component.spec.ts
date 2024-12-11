@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PhonePopupComponent } from './phone-popup.component';
+import { PhonePopupComponent } from './auth-modal.component';
 
 describe('PhonePopupComponent', () => {
 	let component: PhonePopupComponent;

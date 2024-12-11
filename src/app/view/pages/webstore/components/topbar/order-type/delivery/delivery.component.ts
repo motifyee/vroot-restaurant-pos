@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { PhonePopupComponent } from './components/phone-popup/phone-popup.component';
+import { PhonePopupComponent } from '../../../auth-modal/auth-modal.component';
 import { scaleInOut } from '../../../../animations/scaleInOut.animation';
 
 @Component({
@@ -11,5 +11,5 @@ import { scaleInOut } from '../../../../animations/scaleInOut.animation';
 	animations: [scaleInOut],
 })
 export class DeliveryComponent {
-	isAddPhoneVisible = signal(true);
+	isAuthModalVisible = signal(true);
 }

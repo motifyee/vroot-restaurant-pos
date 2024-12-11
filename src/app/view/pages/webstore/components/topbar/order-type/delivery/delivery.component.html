@@ -2,6 +2,6 @@
 	<button type="button" class="btn-style">استلام من هذا الفرع</button>
 </div>
 
-@if (isAddPhoneVisible()) {
-	<add-phone-popup @scaleInOut (dismiss)="isAddPhoneVisible.set(false)" />
+@if (isAuthModalVisible()) {
+	<auth-modal @scaleInOut (dismiss)="isAuthModalVisible.set(false)" />
 }

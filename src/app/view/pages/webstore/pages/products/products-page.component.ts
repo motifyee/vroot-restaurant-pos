@@ -44,9 +44,12 @@ export class ProductsPageComponent implements OnInit {
 
 	settings = inject(settingsStore);
 
-	choseBranch = signal(false);
+	chooseBranch = signal(false);
+
+	showAuth = signal(false);
+
 	ngOnInit(): void {
 		if (!this.settings.selectedBranch?.() || !this.settings.orderType())
-			this.choseBranch.set(true);
+			this.chooseBranch.set(true);
 	}
 }

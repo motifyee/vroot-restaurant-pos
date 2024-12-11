@@ -13,11 +13,11 @@ import { FormsModule } from '@angular/forms';
 type Step = 'check-mobile' | 'otp' | 'register' | 'login';
 
 @Component({
-	selector: 'add-phone-popup',
+	selector: 'auth-modal',
 	standalone: true,
 	imports: [CommonModule, FormsModule],
-	templateUrl: './phone-popup.component.html',
-	styleUrls: ['./phone-popup.component.scss'],
+	templateUrl: './auth-modal.component.html',
+	styleUrls: ['./auth-modal.component.scss'],
 })
 export class PhonePopupComponent {
 	@Output() dismiss = new EventEmitter<void>();

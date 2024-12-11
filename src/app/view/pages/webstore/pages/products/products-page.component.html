@@ -31,10 +31,10 @@
 	></div>
 }
 
-@if (choseBranch()) {
+@if (chooseBranch()) {
 	<branch-ordertype-picker
-		(onCancel)="choseBranch.set(false)"
-		(onFinished)="choseBranch.set(false)"
+		(onCancel)="chooseBranch.set(false)"
+		(onFinished)="chooseBranch.set(false)"
 		@scaleInOut
 	/>
 }
