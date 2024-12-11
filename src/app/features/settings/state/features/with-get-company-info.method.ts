@@ -43,7 +43,7 @@ export function withGetCompanyInfoMethod<_>() {
 							),
 						),
 					),
-				selectBranch: (branch: Branch) => {
+				selectBranch: (branch?: Branch) => {
 					patchState(store, { selectedBranch: branch });
 				},
 			};

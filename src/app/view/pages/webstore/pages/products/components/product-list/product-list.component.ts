@@ -112,6 +112,6 @@ export class ProductListComponent
 	// ###########################################################################
 
 	ngOnDestroy() {
-		this.scrollSubscription.unsubscribe(); // Cleanup subscription
+		this.scrollSubscription?.unsubscribe(); // Cleanup subscription
 	}
 }

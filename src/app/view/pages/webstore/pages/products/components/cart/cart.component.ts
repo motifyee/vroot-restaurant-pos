@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { productStore } from '@src/app/features/products';
 import { CartIconComponent } from './icons/cart-icon.component';
 import { ScrollService } from '../../../../services/scroll.service';
-import { float } from './animations/float.animation';
+import { float } from '../../../../animations/float.animation';
 
 @Component({
 	selector: 'cart',

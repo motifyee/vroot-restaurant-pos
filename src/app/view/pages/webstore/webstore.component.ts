@@ -10,7 +10,7 @@ import { ScrollService } from './services/scroll.service';
 import { productsPageStore } from './pages/products/products-page.store';
 import { _ } from '@ngx-translate/core';
 import { webstorePageStore } from './webstore.store';
-import { PickBranchPopupComponent } from './components/pick-branch-popup/pick-branch-popup.component';
+import { BranchOrderTypePickerComponent } from './components/pick-branch-popup/pick-branch-popup.component';
 import { scaleInOut } from './animations/scaleInOut.animation';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -22,13 +22,7 @@ import { settingsStore } from '@src/app/features/settings';
 @Component({
 	selector: 'webstore',
 	standalone: true,
-	imports: [
-		PickBranchPopupComponent,
-		RouterOutlet,
-		SidebarComponent,
-		TopbarComponent,
-		CommonModule,
-	],
+	imports: [RouterOutlet, SidebarComponent, TopbarComponent, CommonModule],
 	templateUrl: './webstore.component.html',
 	styleUrls: ['./webstore.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,7 +30,7 @@ import { settingsStore } from '@src/app/features/settings';
 		ScrollService,
 		productsPageStore,
 		webstorePageStore,
-		PickBranchPopupComponent,
+		BranchOrderTypePickerComponent,
 		customersStore,
 		settingsStore,
 	],

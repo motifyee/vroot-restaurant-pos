@@ -1,7 +1,3 @@
-:host {
-	@apply fixed min-w-full min-h-full top-0 left-0 z-20;
-}
-
 .time-type-modal-wrapper {
 	z-index: 999;
 	width: 450px;
@@ -13,29 +9,29 @@
 	color: var(--Greentextcolor);
 	border-radius: 15px;
 	box-shadow: rgba(0, 0, 0, 0) 0 0 8px 1px;
-	margin: auto !important;
-	justify-content: space-between !important;
-	flex-direction: column !important;
-	right: 0 !important;
-	left: 0 !important;
-	bottom: 0 !important;
-	top: 0 !important;
-	position: fixed !important;
-	display: flex !important;
+	margin: auto;
+	justify-content: space-between;
+	flex-direction: column;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	top: 0;
+	position: fixed;
+	display: flex;
 }
 
 .modal-title {
-	padding: 1rem !important;
-	align-items: center !important;
-	justify-content: space-between !important;
-	flex-shrink: 0 !important;
-	display: flex !important;
+	padding: 1rem;
+	align-items: center;
+	justify-content: space-between;
+	flex-shrink: 0;
+	display: flex;
 
 	span {
 		--bs-text-opacity: 1;
-		color: rgba(33, 37, 41, 1) !important;
-		font-weight: 700 !important;
-		display: block !important;
+		color: rgba(33, 37, 41, 1);
+		font-weight: 700;
+		display: block;
 	}
 }
 
@@ -45,12 +41,12 @@
 	background-position: 50%;
 	background-repeat: no-repeat;
 	background-size: contain;
-	background-color: transparent !important;
+	background-color: transparent;
 	cursor: pointer;
 	--bs-bg-opacity: 1;
-	padding: 0 !important;
-	border: 0 !important;
-	box-shadow: none !important;
+	padding: 0;
+	border: 0;
+	box-shadow: none;
 	-webkit-appearance: button;
 	text-transform: none;
 	margin: 0;
@@ -62,10 +58,10 @@
 
 .modal-content {
 	margin-bottom: 65px;
-	padding-top: 0 !important;
-	padding: 1rem !important;
-	flex-grow: 1 !important;
-	overflow: auto !important;
+	padding-top: 0;
+	padding: 1rem;
+	flex-grow: 1;
+	overflow: auto;
 }
 
 .scheduled-days-tabs {
@@ -77,12 +73,12 @@
 	-ms-scroll-snap-type: x mandatory;
 	scroll-snap-type: x mandatory;
 	-webkit-overflow-scrolling: touch;
-	padding: 0.5rem !important;
-	align-items: center !important;
-	justify-content: flex-start !important;
-	border-bottom: 1px solid #dee2e6 !important;
-	border-top: 1px solid #dee2e6 !important;
-	display: flex !important;
+	padding: 0.5rem;
+	align-items: center;
+	justify-content: flex-start;
+	border-bottom: 1px solid #dee2e6;
+	border-top: 1px solid #dee2e6;
+	display: flex;
 
 	label {
 		scroll-snap-align: start;
@@ -91,19 +87,19 @@
 		cursor: grab;
 		min-width: 19%;
 		min-width: 80px;
-		margin: 0 !important;
-		position: relative !important;
+		margin: 0;
+		position: relative;
 		display: inline-block;
 
 		input {
 			opacity: 0;
 			z-index: 9;
 			cursor: pointer;
-			height: 100% !important;
-			width: 100% !important;
-			left: 0 !important;
-			top: 0 !important;
-			position: absolute !important;
+			height: 100%;
+			width: 100%;
+			left: 0;
+			top: 0;
+			position: absolute;
 			margin: 0;
 			font-family: inherit;
 			font-size: inherit;
@@ -111,15 +107,15 @@
 		}
 
 		div {
-			color: #fff !important;
+			color: #fff;
 			min-height: 60px;
-			border-radius: 0.5rem !important;
+			border-radius: 0.5rem;
 			--bs-text-opacity: 1;
-			text-align: center !important;
-			align-items: center !important;
-			justify-content: center !important;
-			flex-direction: column !important;
-			display: flex !important;
+			text-align: center;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			display: flex;
 
 			&.active {
 				background-color: var(--GreenBackground);
@@ -152,8 +148,8 @@
 	margin: 0 -1rem;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-	flex-grow: 1 !important;
-	overflow: auto !important;
+	flex-grow: 1;
+	overflow: auto;
 
 	label {
 		margin: 0;
@@ -171,12 +167,12 @@
 		span {
 			height: 45px;
 			--bs-text-opacity: 1;
-			color: rgba(33, 37, 41, 1) !important;
-			padding: 0.5rem !important;
-			align-items: center !important;
-			justify-content: center !important;
-			border-bottom: 1px solid #dee2e6 !important;
-			display: flex !important;
+			color: rgba(33, 37, 41, 1);
+			padding: 0.5rem;
+			align-items: center;
+			justify-content: center;
+			border-bottom: 1px solid #dee2e6;
+			display: flex;
 		}
 	}
 }
@@ -211,7 +207,7 @@
 
 .horizontal-scroll {
 	width: 98%;
-	margin: 0 auto !important;
+	margin: 0 auto;
 	display: flex;
 	overflow-x: auto; /* Enables horizontal scrolling */
 	overflow-y: hidden; /* Prevent vertical scrolling */

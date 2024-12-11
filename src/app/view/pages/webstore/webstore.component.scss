@@ -27,6 +27,13 @@
 
 ::ng-deep webstore {
 	font-family: 'Almarai', 'Roboto';
+	button {
+		font-family: 'Almarai', 'Roboto';
+	}
+
+	.popup {
+		@apply fixed min-w-full min-h-full top-0 left-0 z-30;
+	}
 
 	.overlay {
 		@apply z-0;

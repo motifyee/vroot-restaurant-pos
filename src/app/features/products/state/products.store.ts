@@ -1,6 +1,6 @@
 import { signalStore, type, withComputed, withState } from '@ngrx/signals';
 import { storeType } from '@src/app/view/state/utils/utils';
-import { withGetCategoriesMethod } from './features/with-get-categories.method';
+import { withCategoriesMethod } from './features/with-categories.method';
 import {
 	entityConfig,
 	NamedEntityState,
@@ -10,6 +10,7 @@ import { withAddToCartMethod } from './features/with-add-to-cart.method';
 import { withRemoveFromCartMethod } from './features/with-remove-from-cart.method';
 import { withUpdateCartMethod } from './features/with-update-cart-cart.method';
 import { computed } from '@angular/core';
+import { withEmptyCartMethod } from './features/with-empty-cart.method';
 
 export type CartProductsConfig = NamedEntityState<CartProduct, 'cartProducts'>;
 
@@ -31,7 +32,7 @@ export const productStore = signalStore(
 	{ providedIn: 'root' },
 	withState(initialState),
 	withEntities(cartProductsConfig),
-	withGetCategoriesMethod(),
+	withCategoriesMethod(),
 
 	withComputed((store) => {
 		return {
@@ -46,6 +47,7 @@ export const productStore = signalStore(
 	withAddToCartMethod(),
 	withRemoveFromCartMethod(),
 	withUpdateCartMethod(),
+	withEmptyCartMethod(),
 );
 
 // #############################################################################

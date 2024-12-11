@@ -19,6 +19,7 @@ import { BannerComponent } from '../banner/banner.component';
 	imports: [CommonModule, FormsModule, BannerComponent],
 	templateUrl: './add-to-cart-modal.component.html',
 	styleUrls: ['./add-to-cart-modal.component.scss'],
+	host: { class: 'popup' },
 })
 export class AddToCartItemModalComponent implements OnInit {
 	productStore = inject(productStore);

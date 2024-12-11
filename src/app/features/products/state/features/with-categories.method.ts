@@ -19,7 +19,7 @@ const initialState: State = {
 	categoriesStatus: 'loading',
 };
 
-export const withGetCategoriesMethod = <_>() =>
+export const withCategoriesMethod = <_>() =>
 	signalStoreFeature(
 		withState(initialState),
 		withComputed((store) => {
@@ -43,8 +43,10 @@ export const withGetCategoriesMethod = <_>() =>
 			let usecase = inject(GetCategoriesUseCase);
 
 			return {
-				getCategories: (branchId: number) =>
-					usecase.execute({ branchId }).pipe(
+				getCategories: (branchId: number) => {
+					patchState(store, { categoriesStatus: 'loading' });
+
+					return usecase.execute({ branchId }).pipe(
 						tapResponse({
 							next: (categories) => {
 								patchState(store, {
@@ -59,7 +61,8 @@ export const withGetCategoriesMethod = <_>() =>
 								});
 							},
 						}),
-					),
+					);
+				},
 			};
 		}),
 	);

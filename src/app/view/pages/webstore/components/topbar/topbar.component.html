@@ -15,7 +15,7 @@
 
 			<div class="bg-white menu-bar">
 				<div
-					(click)="isOrderTypeVisible.set(true)"
+					(click)="isBranchOrderTypePickerVisible.set(true)"
 					id="menu-bar"
 					class="header-dropdown-container"
 				>
@@ -25,12 +25,14 @@
 						</div>
 						<div class="food-type">
 							<div>
-								<span class="food-type-1">استلام من</span>
+								<span class="food-type-1">
+									{{ deliveryTitle() }}
+								</span>
 							</div>
 							<div>
-								<span class="food-type-2"
-									>بوليفارد المحمدية</span
-								>
+								<span class="food-type-2">
+									{{ branchName() }}
+								</span>
 							</div>
 						</div>
 					</div>
@@ -42,10 +44,16 @@
 				</div>
 			</div>
 
-			@if (isOrderTypeVisible()) {
-				<order-type
+			@if (isBranchOrderTypePickerVisible()) {
+				<!-- <order-type
 					@scaleInOut
 					(onClose)="isOrderTypeVisible.set(false)"
+				/> -->
+
+				<branch-ordertype-picker
+					(onFinished)="isBranchOrderTypePickerVisible.set(false)"
+					(onCancel)="isBranchOrderTypePickerVisible.set(false)"
+					@scaleInOut
 				/>
 			}
 		</div>
