@@ -21,7 +21,14 @@
 				>
 					<div class="header-dropdown">
 						<div class="arrow-down">
-							<i class="fas fa-truck"></i>
+							<i
+								class="fas"
+								[class]="
+									settings.orderType() === 'delivery'
+										? 'fa-truck'
+										: 'fa-cart-shopping'
+								"
+							></i>
 						</div>
 						<div class="food-type">
 							<div>

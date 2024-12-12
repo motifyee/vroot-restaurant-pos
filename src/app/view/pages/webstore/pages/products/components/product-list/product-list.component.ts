@@ -52,7 +52,6 @@ export class ProductListComponent
 
 	ngOnInit() {
 		if (IS_DEVMODE && localStorage.getItem('test-products')) {
-			console.log(JSON.parse(localStorage.getItem('test-products')!));
 			return this.productStore.setCategories(
 				JSON.parse(localStorage.getItem('test-products')!),
 			);
