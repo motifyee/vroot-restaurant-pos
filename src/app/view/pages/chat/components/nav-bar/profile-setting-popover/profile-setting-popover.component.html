@@ -1,0 +1,68 @@
+<div class="dropdown-container">
+	<ul class="dropdown-menu">
+		<li class="list-item-disabled" aria-disabled="true">
+			<span>Set yourself as</span>
+		</li>
+		<li class="menu-item" tabindex="-1" aria-disabled="false">
+			<button class="button button-status">
+				<span class="button-content">
+					<div class="status-badge status-badge-online"></div>Online
+				</span>
+			</button>
+		</li>
+		<li class="menu-item" tabindex="-1" aria-disabled="false">
+			<button class="button button-clear button-status">
+				<span class="button-content">
+					<div class="status-badge status-badge-busy"></div>Busy
+				</span>
+			</button>
+		</li>
+		<li class="menu-item" tabindex="-1" aria-disabled="false">
+			<button class="button button-clear button-status">
+				<span class="button-content">
+					<div class="status-badge status-badge-offline"></div>Offline
+				</span>
+			</button>
+		</li>
+		<li class="list-item-divider" aria-disabled="true"></li>
+		<li class="menu-item-justify" tabindex="-1" aria-disabled="false">
+			<div class="flex-center">
+				<more-info-icon />
+				<span class="text-xs-medium">Mark offline automatically</span>
+			</div>
+			<button class="button-toggle" role="switch" aria-checked="true">
+				<span aria-hidden="true" class="active"></span>
+			</button>
+		</li>
+		<li class="list-item-divider" aria-disabled="true"></li>
+	</ul>
+	<ul class="dropdown-menu">
+		<li class="menu-item" tabindex="-1" aria-disabled="false">
+			<button class="button button-clear">
+				<keyboard-icon />
+				<span class="button-content">Keyboard Shortcuts</span>
+			</button>
+		</li>
+		<li class="menu-item" tabindex="-1" aria-disabled="false">
+			<a
+				href="/app/accounts/4/profile/settings"
+				class="h-8 bg-white button button-clear dark:bg-slate-800"
+			>
+				<user-icon />
+				<span class="button-content">Profile Settings</span>
+			</a>
+		</li>
+		<li class="menu-item" tabindex="-1" aria-disabled="false">
+			<button class="button button-clear">
+				<appearance-icon />
+				<span class="button-content">Change Appearance</span>
+			</button>
+		</li>
+		<li class="menu-item" tabindex="-1" aria-disabled="false">
+			<button class="button button-clear">
+				<power-icon />
+				<span class="button-content">Logout</span>
+			</button>
+		</li>
+	</ul>
+</div>

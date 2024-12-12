@@ -1,0 +1,188 @@
+.side-bar-wrapper {
+	@apply flex flex-col w-48 h-full px-2 pb-8 overflow-auto text-sm
+	     bg-white border-r dark:bg-slate-900 dark:border-slate-800/50 
+	       rtl:border-r-0 rtl:border-l border-slate-50;
+}
+
+.side-bar-wrapper ul {
+	@apply pt-2 mb-0 ml-0 list-none;
+}
+
+/* Common list item styling */
+.menu-item {
+	@apply mt-1;
+}
+
+/* Common link styling */
+.menu-link {
+	@apply flex items-center p-2 m-0 text-sm leading-4 rounded-lg
+	      text-slate-700 dark:text-slate-100 
+		  dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-100;
+}
+
+/* Additional styles for the active link */
+.active-link {
+	color: rgb(59 158 255 / 1);
+}
+
+/* General Menu Item Styling */
+.menu-item {
+	@apply mt-1;
+}
+
+/* General Section Header Styling */
+.section-header {
+	@apply flex justify-between;
+}
+
+.section-title {
+	@apply px-2 pt-1 my-2 text-sm font-semibold text-slate-700 dark:text-slate-200;
+}
+
+/* General List Styling */
+.common-list {
+	@apply mb-0 ml-0 list-none;
+}
+
+/* General Item Styling */
+.common-item {
+	@apply h-7 my-1 flex items-center px-2 rounded-md 
+		dark:hover:bg-slate-800 text-ellipsis overflow-hidden whitespace-nowrap max-w-full;
+}
+
+/* General Link Styling */
+.common-link {
+	@apply inline-flex text-left max-w-full w-full items-center;
+}
+
+/* General Content Styling */
+.common-content {
+	@apply items-center flex overflow-hidden whitespace-nowrap text-ellipsis w-full justify-between;
+}
+
+/* General Name Styling */
+.common-name {
+	@apply text-sm text-slate-700 dark:text-slate-100 text-ellipsis overflow-hidden whitespace-nowrap max-w-full;
+}
+
+/* Icon-Specific Styling */
+.icon {
+	@apply inline-flex items-center justify-center w-4 rounded-sm bg-slate-100 dark:bg-slate-700 p-0.5 
+		mr-1.5 rtl:mr-0 rtl:ml-1.5;
+}
+
+/* Label Icon Styling */
+.label-icon {
+	@apply inline-flex rounded-sm bg-slate-100 h-3 w-3.5 mr-1.5 rtl:mr-0 rtl:ml-1.5 border border-slate-50 dark:border-slate-900;
+}
+
+/* Button Styling */
+.common-button {
+	@apply text-xs font-medium px-2 py-1 bg-transparent border rounded;
+}
+
+.button-label {
+	@apply text-left rtl:text-right;
+}
+
+ul,
+ol,
+dl {
+	margin-bottom: 0.5rem;
+	list-style-position: outside;
+	list-style-type: disc;
+	line-height: 1.65;
+}
+ol,
+ul,
+menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+}
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+.button.tiny {
+	height: 1.5rem;
+	font-size: 10px;
+}
+
+.button:hover {
+	background-color: #5a6169;
+	color: #fff;
+}
+
+.button:is(.dark *) {
+	color: #fff;
+}
+button:is(.dark *) {
+	border-color: transparent;
+}
+
+.button {
+	display: inline-flex;
+	height: 2.5rem;
+	align-items: center;
+	gap: 0.5rem;
+	padding-left: 0.625rem;
+	padding-right: 0.625rem;
+	font-weight: 500;
+	color: #fff;
+	background-color: transparent;
+}
+.button,
+textarea,
+input:focus {
+	outline: none;
+}
+button {
+	font-family: inherit;
+	transition:
+		background-color 0.25s ease-out,
+		color 0.25s ease-out;
+	margin: 0;
+	display: inline-block;
+	cursor: pointer;
+	align-items: center;
+	border-radius: 0.3125rem;
+	border-width: 1px;
+	border-style: solid;
+	border-color: transparent;
+	padding: 0.25rem 0.625rem;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+}
+button {
+	cursor: pointer;
+}
+
+button,
+select {
+	text-transform: none;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: inherit;
+	font-feature-settings: inherit;
+	font-variation-settings: inherit;
+	font-size: 100%;
+	font-weight: inherit;
+	line-height: inherit;
+	letter-spacing: inherit;
+	color: inherit;
+	margin: 0;
+	padding: 0;
+}
