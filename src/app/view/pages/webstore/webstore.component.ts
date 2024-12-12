@@ -18,6 +18,7 @@ import { TopbarComponent } from './components/topbar/topbar.component';
 import { CommonModule } from '@angular/common';
 import { customersStore } from '@src/app/features';
 import { settingsStore } from '@src/app/features/settings';
+import { MessageService } from 'primeng/api';
 
 @Component({
 	selector: 'webstore',
@@ -33,6 +34,7 @@ import { settingsStore } from '@src/app/features/settings';
 		BranchOrderTypePickerComponent,
 		customersStore,
 		settingsStore,
+		MessageService,
 	],
 	animations: [scaleInOut],
 })

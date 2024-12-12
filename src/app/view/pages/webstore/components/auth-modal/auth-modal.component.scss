@@ -23,7 +23,7 @@
 	scrollbar-width: none;
 }
 
-.general-Modal-Header {
+.header {
 	display: flex;
 	flex-shrink: 0;
 	justify-content: space-between;
@@ -96,22 +96,21 @@
 		flex-shrink: 0;
 		display: flex;
 	}
-
-	input {
-		background-color: rgba(255, 255, 255, 1);
-		color: rgba(33, 37, 41, 1);
-		padding-top: 0;
-		padding-bottom: 0;
-		padding-right: 0.5rem;
-		padding-left: 0.5rem;
-		align-self: stretch;
-		flex-grow: 1;
-		border: 0;
-		margin: 0;
-		font-family: inherit;
-		font-size: inherit;
-		line-height: inherit;
-		outline: none;
-		scroll-behavior: smooth;
-	}
+}
+input {
+	background-color: rgba(255, 255, 255, 1);
+	color: rgba(33, 37, 41, 1);
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-right: 0.5rem;
+	padding-left: 0.5rem;
+	align-self: stretch;
+	flex-grow: 1;
+	border: 0;
+	margin: 0;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	outline: none;
+	scroll-behavior: smooth;
 }

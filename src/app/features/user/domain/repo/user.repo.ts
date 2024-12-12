@@ -1,16 +1,27 @@
 import { Observable } from 'rxjs';
-import { User } from '../models/user.model';
+
+export interface LoginParams {
+	countryCode: string;
+	phone: string;
+	password: string;
+	companyId: number;
+}
+export interface RegisterParams {
+	countryCode: string;
+	phone: string;
+	name: string;
+	companyId: number;
+	password: string;
+}
 
 export abstract class UserRepo {
-	abstract login(params: {
-		username: string;
-		password: string;
-	}): Observable<User>;
+	abstract login(params: LoginParams): Observable<User>;
 
-	abstract register(params: {
-		phoneNum: string;
-		password: string;
-	}): Observable<User>;
+	abstract checkPhone(params: {
+		countryCode: string;
+		phone: string;
+		companyId: number;
+	}): Observable<boolean>;
 
-	abstract getUserProfile(): Observable<User>;
+	abstract register(params: RegisterParams): Observable<User>;
 }

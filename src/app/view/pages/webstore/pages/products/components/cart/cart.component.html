@@ -58,7 +58,7 @@
 			<span class="total-price">{{ productStore.cartTotal() }} EGP</span>
 		</div>
 
-		<button class="execute-btn">تنفيذ الطلب</button>
+		<button (click)="checkout()" class="execute-btn">تنفيذ الطلب</button>
 	</div>
 </ng-template>
 
@@ -66,8 +66,8 @@
 	<div @float class="floating-cart">
 		<!-- <ng-container [ngTemplateOutlet]="_cartItems" /> -->
 
-		<div class="btn">
-			<div class="cart-icon" (click)="openCart()">
+		<div (click)="checkout()" class="btn">
+			<div class="cart-icon" (click)="expandCart()">
 				<span class="badge">{{ cartItems().length }}</span>
 				<cart-icon class="w-8 h-8" />
 			</div>
@@ -80,3 +80,11 @@
 		</div>
 	</div>
 </ng-template>
+
+@if (showAuth()) {
+	<auth-modal
+		(onDismissed)="showAuth.set(false)"
+		(onFinished)="showAuth.set(false)"
+		@scaleInOut
+	/>
+}

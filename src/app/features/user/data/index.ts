@@ -1,1 +1,1 @@
-export * from './repos/implementation/user-impl.repo';
+export * from './repos/user-impl.repo';
