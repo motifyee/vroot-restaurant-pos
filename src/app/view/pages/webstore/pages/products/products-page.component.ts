@@ -17,6 +17,7 @@ import { scaleInOut } from '../../animations/scaleInOut.animation';
 import { ScrollService } from '../../services/scroll.service';
 import { settingsStore } from '@src/app/features';
 import { BranchOrderTypePickerComponent } from '../../components/pick-branch-popup/pick-branch-popup.component';
+import { IS_DEVMODE } from '@src/app/core';
 
 @Component({
 	selector: 'products-page',
@@ -46,9 +47,8 @@ export class ProductsPageComponent implements OnInit {
 
 	chooseBranch = signal(false);
 
-	showAuth = signal(false);
-
 	ngOnInit(): void {
+		if (IS_DEVMODE && localStorage.getItem('test-branch-idx')) return;
 		if (!this.settings.selectedBranch?.() || !this.settings.orderType())
 			this.chooseBranch.set(true);
 	}

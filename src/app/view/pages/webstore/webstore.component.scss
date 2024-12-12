@@ -32,7 +32,7 @@
 	}
 
 	.popup {
-		@apply fixed min-w-full min-h-full top-0 left-0 z-30;
+		@apply fixed min-w-full min-h-full top-0 left-0 z-50;
 	}
 
 	.overlay {
@@ -88,6 +88,10 @@
 		}
 	}
 
+	.spinner-container {
+		@apply absolute w-full h-full grid place-items-center;
+		background: rgba(0, 0, 0, 0.5);
+	}
 	.spinner {
 		width: 65px;
 		height: 65px;
