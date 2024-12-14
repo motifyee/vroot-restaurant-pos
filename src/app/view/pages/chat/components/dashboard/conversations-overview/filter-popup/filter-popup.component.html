@@ -1,6 +1,10 @@
 <div class="modal-mask skip-context-menu" transition="modal">
 	<div class="modal-wrapper">
-		<button class="button dismiss-btn" type="submit">
+		<button
+			(click)="toggleFilterPopup()"
+			class="button dismiss-btn"
+			type="submit"
+		>
 			<dismiss-icon />
 		</button>
 		<div>
@@ -102,6 +106,7 @@
 				<div class="w-full">
 					<div class="action-btns">
 						<button
+							(click)="toggleFilterPopup()"
 							class="button primary button clear"
 							type="submit"
 						>

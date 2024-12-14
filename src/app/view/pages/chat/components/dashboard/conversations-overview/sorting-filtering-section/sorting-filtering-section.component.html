@@ -4,7 +4,7 @@
 		<span class="status-badge">Open</span>
 	</div>
 	<div class="right-section">
-		<button class="icon-button" type="submit">
+		<button (click)="toggleFilterPopup()" class="icon-button" type="submit">
 			<filter-icon />
 		</button>
 		<div class="relative flex">
@@ -15,5 +15,6 @@
 	</div>
 </div>
 
-
-<filter-popup/>
+@if (isFilterPopupVisible) {
+	<filter-popup />
+}
