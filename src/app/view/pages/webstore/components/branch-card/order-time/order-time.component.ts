@@ -11,9 +11,10 @@ import {
 @Component({
 	selector: 'order-time',
 	standalone: true,
-	imports: [NgClass, CommonModule],
+	imports: [CommonModule],
 	templateUrl: './order-time.component.html',
 	styleUrls: ['./order-time.component.scss'], // Note corrected property name to `styleUrls`
+	host: { class: 'popup' },
 })
 export class OrderTimeComponent implements OnInit {
 	@Input() isOrderTimeVisible!: Signal<boolean>;

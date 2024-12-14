@@ -1,6 +1,6 @@
 <div class="">
 	<div class="row">
-		<button class="icon-button" type="submit">
+		<button (click)="ExpandSidebar()" class="icon-button" type="submit">
 			<list-icon />
 		</button>
 		<a href="/app/accounts/4/search" class="search-link">
@@ -9,7 +9,7 @@
 			</div>
 			<p class="search-label">Search for messages in conversations</p>
 		</a>
-		<button (click)="toggleExpand()"  class="layout-button" type="submit">
+		<button (click)="toggleExpand()" class="layout-button" type="submit">
 			<arrow-right-icon />
 		</button>
 	</div>

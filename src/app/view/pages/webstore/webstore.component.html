@@ -1,39 +1,36 @@
 @switch (settings.companyInfoStatus()) {
+	@case ('loading') {
+		<div class="absolute w-full h-full flex justify-center items-center">
+			<div class="spinner"></div>
+		</div>
+	}
 
-@case ('loading') {
-<div class="absolute w-full h-full flex justify-center items-center">
-  <div class="spinner"></div>
-</div>
-}
+	@case ('error') {
+		<div class="absolute w-full h-full flex justify-center items-center">
+			Could not load company id
+		</div>
+	}
 
-@case ('error') {
-<div class="absolute w-full h-full flex justify-center items-center">
-  Could not load company id
-</div>
-}
-
-@case ('loaded') {
-<ng-container [ngTemplateOutlet]="loadedTemplate" />
-}
-
+	@case ('loaded') {
+		<ng-container [ngTemplateOutlet]="loadedTemplate" />
+	}
 }
 
 <ng-template #loadedTemplate>
-  @if(!settings.selectedBranch?.()){
+	<main dir="rtl" class="webstore-body">
+		<topbar
+			(toggleSideBarVisibility)="
+				isSideBarVisible.set(!isSideBarVisible())
+			"
+		/>
 
-  <pick-branch-popup @scaleInOut (onBranchSelected)="settings.selectBranch($event)" />
+		<section>
+			<router-outlet />
+		</section>
 
-  }@else {
-
-  <main dir="rtl" class="webstore-body">
-    <topbar (toggleSideBarVisibility)="isSideBarVisible.set(!isSideBarVisible())" />
-
-    <section>
-      <router-outlet />
-    </section>
-
-    <sidebar [isVisible]="isSideBarVisible" (hide)="isSideBarVisible.set(false)" />
-  </main>
-
-  }
+		<sidebar
+			[isVisible]="isSideBarVisible"
+			(hide)="isSideBarVisible.set(false)"
+		/>
+	</main>
 </ng-template>

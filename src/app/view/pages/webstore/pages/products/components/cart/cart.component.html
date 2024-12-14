@@ -1,69 +1,90 @@
-<aside class="cart-sidebar">
+<aside class="sticky mb-4 top-20">
 	@if (!cartItems().length) {
-		<!-- empty cart -->
-		<div id="cart-items" class="cart-area">
-			<div class="cart-empty">
-				<div class="icon">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 511 511"
-						xml:space="preserve"
-					>
-						<path
-							fill="#A39172"
-							d="M445.663 469.921L431.301 110.88A15.457 15.457 0 0 0 415.814 96H351v-.5C351 42.841 308.159 0 255.5 0S160 42.841 160 95.5v.5H95.187a15.459 15.459 0 0 0-15.488 14.88L65.337 469.921c-.434 10.842 3.468 21.122 10.985 28.946C83.84 506.691 93.956 511 104.806 511h301.389c10.851 0 20.966-4.309 28.484-12.133 7.516-7.825 11.418-18.104 10.984-28.946zM175 95.5c0-44.388 36.112-80.5 80.5-80.5S336 51.112 336 95.5v.5H175v-.5zm248.862 392.974c-4.663 4.853-10.938 7.526-17.667 7.526H104.806c-6.73 0-13.004-2.672-17.667-7.525-4.663-4.853-7.083-11.229-6.813-17.954L94.687 111.48c.011-.27.23-.48.5-.48H160v48.5a7.5 7.5 0 0 0 15 0V111h161v48.5a7.5 7.5 0 0 0 15 0V111h64.814c.269 0 .488.21.499.48l14.362 359.041c.269 6.724-2.151 13.1-6.813 17.953z"
-						></path>
-					</svg>
-				</div>
-				<span class="cart-message">أضف اصناف من القائمة</span>
-			</div>
-		</div>
+		@if (!scrollService.isNarrowScreen()) {
+			<ng-container [ngTemplateOutlet]="emptyCart" />
+		}
+	} @else if (scrollService.isNarrowScreen()) {
+		<ng-container [ngTemplateOutlet]="floatingCart" />
 	} @else {
-		<!-- cart contain items added to it -->
-		<div class="cart-container">
-			@for (item of cartItems(); track item.variant.id) {
-				<div class="cart-item">
-					<span class="item-title"
-						>{{ item.variant.product?.title }} -
-						{{ item.variant.title }}
-					</span>
-
-					<span class="price">
-						{{ item.variant.price }} <small>SAR</small></span
-					>
-				</div>
-
-				<div class="quantity">
-					<div>
-						<button
-							(click)="decrementCart(item)"
-							class="btn-decrease"
-						>
-							-
-						</button>
-						<span class="quantity-number">{{ item.quantity }}</span>
-						<button
-							(click)="incrementCart(item)"
-							class="btn-increase"
-						>
-							+
-						</button>
-					</div>
-					<button (click)="removeFromCart(item)" class="btn-delete">
-						<i class="far fa-trash-alt"></i>
-					</button>
-				</div>
-			}
-
-			<div class="total">
-				<span class="total-label">الاجمالي</span>
-				<span class="total-price"
-					>{{ productStore.cartTotal() }} EGP</span
-				>
-			</div>
-
-			<button class="execute-btn">تنفيذ الطلب</button>
-		</div>
-		<!-- ./cart contain items added to it -->
+		<ng-container [ngTemplateOutlet]="cart" />
 	}
 </aside>
+
+<ng-template #emptyCart>
+	<div class="empty-cart">
+		<cart-icon class="mb-2 w-16 h-16" />
+		<span class="empty-cart-message">أضف اصناف من القائمة</span>
+	</div>
+</ng-template>
+
+<ng-template #_cartItems>
+	@for (item of cartItems(); track item.variant.id) {
+		<div class="cart-items">
+			<div class="cart-item">
+				<span class="item-title">
+					{{ item.variant.product?.title }} - {{ item.variant.title }}
+				</span>
+
+				<span class="price">
+					{{ item.variant.price }}
+					<small>EGP</small>
+				</span>
+			</div>
+
+			<div class="quantity">
+				<div>
+					<button (click)="decrementCart(item)" class="btn-decrease">
+						-
+					</button>
+					<span class="quantity-number">{{ item.quantity }}</span>
+					<button (click)="incrementCart(item)" class="btn-increase">
+						+
+					</button>
+				</div>
+				<button (click)="removeFromCart(item)" class="btn-delete">
+					<i class="far fa-trash-alt"></i>
+				</button>
+			</div>
+		</div>
+	}
+</ng-template>
+
+<ng-template #cart>
+	<div class="cart">
+		<ng-container [ngTemplateOutlet]="_cartItems" />
+
+		<div class="total">
+			<span class="total-label">الاجمالي</span>
+			<span class="total-price">{{ productStore.cartTotal() }} EGP</span>
+		</div>
+
+		<button (click)="checkout()" class="execute-btn">تنفيذ الطلب</button>
+	</div>
+</ng-template>
+
+<ng-template #floatingCart>
+	<div @float class="floating-cart">
+		<!-- <ng-container [ngTemplateOutlet]="_cartItems" /> -->
+
+		<div (click)="checkout()" class="btn">
+			<div class="cart-icon" (click)="expandCart()">
+				<span class="badge">{{ cartItems().length }}</span>
+				<cart-icon class="w-8 h-8" />
+			</div>
+
+			<span class=""> تنفيذ الطلب </span>
+
+			<span class="total-price">
+				{{ productStore.cartTotal() }} EGP
+			</span>
+		</div>
+	</div>
+</ng-template>
+
+@if (showAuth()) {
+	<auth-modal
+		(onDismissed)="showAuth.set(false)"
+		(onFinished)="showAuth.set(false)"
+		@scaleInOut
+	/>
+}

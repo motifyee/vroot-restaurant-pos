@@ -1,18 +1,20 @@
-<banner />
+<banner class="py-10" />
 
 <div class="container">
 	<div class="main-section">
 		<div class="category">
 			<div class="category-section">
-				@if (isNarrowWidth()) {
-					<mobile-category-bar
-						class="mobile-category-list-container"
-					/>
-				} @else {
-					<category-bar class="category-list" />
-				}
+				@if (settings.selectedBranch?.()) {
+					@if (scrollService.isNarrowScreen()) {
+						<mobile-category-bar
+							class="w-full z-10 sticky top-[63px]"
+						/>
+					} @else {
+						<category-bar class="category-list" />
+					}
 
-				<product-list class="category-items" />
+					<product-list class="category-items" />
+				}
 			</div>
 		</div>
 
@@ -27,4 +29,12 @@
 		[variant]="selectedProduct()"
 		(closeModal)="productsPageStore.selectProduct()"
 	></div>
+}
+
+@if (chooseBranch()) {
+	<branch-ordertype-picker
+		(onCancel)="chooseBranch.set(false)"
+		(onFinished)="chooseBranch.set(false)"
+		@scaleInOut
+	/>
 }

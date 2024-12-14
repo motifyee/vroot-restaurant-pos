@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { settingsStore } from '@src/app/features';
 
 @Component({
 	selector: 'banner',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 	templateUrl: './banner.component.html',
 	styleUrl: './banner.component.scss',
 })
-export class BannerComponent {}
+export class BannerComponent {
+	settings = inject(settingsStore);
+
+	fontSize = input<number>(30);
+
+	companyInfo = this.settings.companyInfo;
+}

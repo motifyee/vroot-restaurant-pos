@@ -1,15 +1,84 @@
-<div class="overlay"></div>
+<div class="overlay" (click)="cancel()"></div>
 
 <div role="dialog" class="modal-wrapper">
-  <div class="general-Modal-Header">
-    <span class="d-block fw-bold">اختر الفرع التشغيلي</span>
-  </div>
-
-  <div class="modal-content">
-    @for(branch of settings.companyInfo().branchs; track branch.id) {
-    <button (click)="onBranchSelected.emit(branch)" class="tab-style">
-      {{ branch.name }}
-    </button>
-    }
-  </div>
+	@if (!choosedBranch()) {
+		@if (products.cartProductsEntities().length) {
+			<ng-container [ngTemplateOutlet]="confirmResetOrder"></ng-container>
+		} @else {
+			<ng-container [ngTemplateOutlet]="chooseBranch"></ng-container>
+		}
+	} @else if (!choosedOrderType()) {
+		<ng-container [ngTemplateOutlet]="chooseOrderType"></ng-container>
+	}
+	<!-- otherwise onFinish emits -->
 </div>
+
+<!-- ####################################################################### -->
+
+<ng-template #confirmResetOrder>
+	<div class="header">
+		<span>تأكيد</span>
+	</div>
+
+	<div class="modal-content">
+		<span>سيتم حذف المنتجات من السلة. هل أنت متأكد؟</span>
+
+		<div class="flex w-full justify-between">
+			<button
+				(click)="selectBranch(undefined)"
+				class="tab-style text-red-500"
+			>
+				حذف السلة
+			</button>
+
+			<button (click)="onCancel.emit()" class="tab-style">الغاء</button>
+		</div>
+	</div>
+</ng-template>
+
+<ng-template #chooseBranch>
+	<div class="header">
+		<span>اختر الفرع التشغيلي</span>
+
+		@if (settings.selectedBranch?.()) {
+			<p-button
+				icon="pi pi-times"
+				[rounded]="true"
+				severity="danger"
+				[outlined]="true"
+				(onClick)="cancel()"
+			/>
+		}
+	</div>
+
+	<div class="modal-content">
+		@for (branch of settings.companyInfo().branchs; track branch.id) {
+			<button (click)="selectBranch(branch)" class="tab-style">
+				{{ branch.name }}
+			</button>
+		}
+	</div>
+</ng-template>
+
+<ng-template #chooseOrderType>
+	<div class="header">
+		<span>اختر نوع الطلب</span>
+		<p-button
+			icon="pi pi-times"
+			[rounded]="true"
+			severity="danger"
+			[outlined]="true"
+			(onClick)="cancel()"
+		/>
+	</div>
+
+	<div @float class="modal-content">
+		<button (click)="selectOrderType('delivery')" class="tab-style">
+			توصيل
+		</button>
+
+		<button (click)="selectOrderType('pickup')" class="tab-style">
+			استلام من الفرع
+		</button>
+	</div>
+</ng-template>

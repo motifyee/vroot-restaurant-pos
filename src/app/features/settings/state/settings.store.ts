@@ -5,6 +5,7 @@ import { withLoading } from '../../base/state/with-loading.method';
 import { storeType } from '@src/app/view/state/utils/utils';
 import { withGetBranchesMethod } from './features/with-get-branches';
 import { withGetCompanyInfoMethod } from './features/with-get-company-info.method';
+import { withSelectOrderTypeMethod } from './features/with-select-order-type.method';
 
 export const classificationsConfig = entityConfig({
 	entity: type<ClassificationDTO>(),
@@ -24,6 +25,7 @@ export const settingsStore = signalStore(
 	withGetBranchesMethod(),
 	withMapEntityToCustomerMethod(),
 	withGetCompanyInfoMethod(),
+	withSelectOrderTypeMethod(),
 );
 
 let _s = storeType(settingsStore);

@@ -23,3 +23,10 @@ export function useTestCompany() {
 		console.log('test company is used:', company);
 	};
 }
+
+export function useTestBranch() {
+	(<any>window).useTestBranch = (branchId: number) => {
+		localStorage.setItem('test-branch-idx', branchId.toString());
+		console.log('test branch is used:', branchId);
+	};
+}

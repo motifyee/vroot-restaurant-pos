@@ -21,6 +21,7 @@ import { productsPageStore } from '../../products-page.store';
 import { SkeletonModule } from 'primeng/skeleton';
 import { settingsStore } from '@src/app/features/settings';
 import { IS_DEVMODE } from '@src/app/core';
+import { BannerComponent } from '../banner/banner.component';
 
 @Component({
 	selector: 'product-list',
@@ -29,7 +30,7 @@ import { IS_DEVMODE } from '@src/app/core';
 	styleUrls: ['./product-list.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [TopbarComponent],
-	imports: [SkeletonModule],
+	imports: [SkeletonModule, BannerComponent],
 })
 export class ProductListComponent
 	implements OnInit, AfterViewChecked, OnDestroy
@@ -50,16 +51,20 @@ export class ProductListComponent
 	menu = this.productStore.menu;
 
 	ngOnInit() {
-		if (IS_DEVMODE && localStorage.getItem('products'))
+		if (IS_DEVMODE && localStorage.getItem('test-products')) {
 			return this.productStore.setCategories(
-				JSON.parse(localStorage.getItem('products')!),
+				JSON.parse(localStorage.getItem('test-products')!),
 			);
+		}
 
 		let branchId = this.settings.selectedBranch?.()?.id ?? -1;
 		this.productStore
 			.getCategories(branchId)
-			.subscribe((m) =>
-				localStorage.setItem('products', JSON.stringify(m)),
+			.subscribe(
+				(m) =>
+					IS_DEVMODE &&
+					localStorage.getItem('test-branch-idx') &&
+					localStorage.setItem('test-products', JSON.stringify(m)),
 			);
 	}
 
@@ -106,6 +111,6 @@ export class ProductListComponent
 	// ###########################################################################
 
 	ngOnDestroy() {
-		this.scrollSubscription.unsubscribe(); // Cleanup subscription
+		this.scrollSubscription?.unsubscribe(); // Cleanup subscription
 	}
 }

@@ -1,7 +1,3 @@
 <div class="btn-wrapper">
 	<button type="button" class="btn-style">استلام من هذا الفرع</button>
 </div>
-
-@if (isAddPhoneVisible()) {
-	<add-phone-popup @scaleInOut (dismiss)="isAddPhoneVisible.set(false)" />
-}

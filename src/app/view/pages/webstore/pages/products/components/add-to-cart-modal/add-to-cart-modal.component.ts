@@ -11,13 +11,15 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { productStore } from '@src/app/features/products';
+import { BannerComponent } from '../banner/banner.component';
 
 @Component({
 	selector: 'add-to-cart-modal, [add-to-cart-modal]',
 	standalone: true,
-	imports: [CommonModule, FormsModule],
+	imports: [CommonModule, FormsModule, BannerComponent],
 	templateUrl: './add-to-cart-modal.component.html',
 	styleUrls: ['./add-to-cart-modal.component.scss'],
+	host: { class: 'popup' },
 })
 export class AddToCartItemModalComponent implements OnInit {
 	productStore = inject(productStore);

@@ -1,26 +1,3 @@
-#group-list {
-	display: flex;
-	align-items: flex-end;
-	justify-content: start;
-	overflow: auto;
-	margin: 0;
-	width: 100%;
-
-	li {
-		list-style: none;
-
-		a {
-			padding: 1rem;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			flex-direction: column;
-			border-radius: 8px;
-		}
-	}
-}
-
 .mobile-category-list {
 	display: flex;
 	overflow-x: auto;
@@ -48,6 +25,7 @@
 				color: #777777;
 				min-height: 35px;
 				white-space: nowrap;
+				cursor: pointer;
 
 				&.active {
 					background-color: var(--GreenBackground);

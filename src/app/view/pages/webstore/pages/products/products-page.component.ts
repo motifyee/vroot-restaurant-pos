@@ -1,8 +1,8 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
-	HostListener,
 	inject,
+	OnInit,
 	signal,
 } from '@angular/core';
 import { BannerComponent } from './components/banner/banner.component';
@@ -14,6 +14,10 @@ import { productsPageStore } from './products-page.store';
 import { AddToCartItemModalComponent } from './components/add-to-cart-modal/add-to-cart-modal.component';
 
 import { scaleInOut } from '../../animations/scaleInOut.animation';
+import { ScrollService } from '../../services/scroll.service';
+import { settingsStore } from '@src/app/features';
+import { BranchOrderTypePickerComponent } from '../../components/pick-branch-popup/pick-branch-popup.component';
+import { IS_DEVMODE } from '@src/app/core';
 
 @Component({
 	selector: 'products-page',
@@ -25,6 +29,7 @@ import { scaleInOut } from '../../animations/scaleInOut.animation';
 		ProductListComponent,
 		CartComponent,
 		AddToCartItemModalComponent,
+		BranchOrderTypePickerComponent,
 	],
 	templateUrl: './products-page.component.html',
 	styleUrl: './products-page.component.scss',
@@ -32,14 +37,19 @@ import { scaleInOut } from '../../animations/scaleInOut.animation';
 	providers: [productsPageStore],
 	animations: [scaleInOut],
 })
-export class ProductsPageComponent {
+export class ProductsPageComponent implements OnInit {
+	scrollService = inject(ScrollService);
+
 	productsPageStore = inject(productsPageStore);
 	selectedProduct = this.productsPageStore.selectedVariant;
 
-	isNarrowWidth = signal(window.innerWidth <= 1000);
+	settings = inject(settingsStore);
 
-	@HostListener('window:resize', ['$event'])
-	onResize(event: any) {
-		this.isNarrowWidth.set(event.target.innerWidth <= 1000);
+	chooseBranch = signal(false);
+
+	ngOnInit(): void {
+		if (IS_DEVMODE && localStorage.getItem('test-branch-idx')) return;
+		if (!this.settings.selectedBranch?.() || !this.settings.orderType())
+			this.chooseBranch.set(true);
 	}
 }

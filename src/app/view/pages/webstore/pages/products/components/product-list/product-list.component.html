@@ -30,16 +30,13 @@
 								<div class="card-content-price-2">
 									<div dir="ltr" class="card-content-price-3">
 										{{ variant.price }}
-										<small>SAR</small>
+										<small>EGP</small>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="card-img">
-							<img
-								src="https://media-files.tryordersystem.com/menu/saladfactory/11c14024-78aa-4bfb-bf55-46e61abbc18e/671f938fb6c1e.png"
-								[alt]="product.title"
-							/>
+							<banner [fontSize]="20" class="h-full" />
 						</div>
 					</div>
 				}
@@ -78,5 +75,13 @@
 		</div>
 	}
 } @else {
-	<div class="w-full text-center">Couldn't find any products</div>
+	<div class="w-full text-center flex flex-col items-center gap-5">
+		<img
+			src="/assets/webstore/images/no-products.png"
+			alt="no products"
+			class="w-40"
+		/>
+
+		No products found
+	</div>
 }

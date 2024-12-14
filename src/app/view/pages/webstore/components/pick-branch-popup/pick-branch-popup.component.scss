@@ -1,29 +1,27 @@
 .modal-wrapper {
-	overflow: hidden;
 	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
 	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+	overflow: hidden;
 	position: fixed;
 	top: 0;
 	bottom: 0;
-	bottom: 0;
 	left: 0;
 	right: 0;
-	flex-direction: column;
-	justify-content: space-between;
+
 	margin: auto;
 	border-radius: 0.5rem;
 	background-color: #fff;
-	// z-index: 99999;
 	width: 350px;
 	max-height: calc(100vh - 1rem);
 	max-width: calc(100vw - 1rem);
-	height: -moz-fit-content;
 	height: fit-content;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
 }
 
-.general-Modal-Header {
+.header {
 	display: flex;
 	flex-shrink: 0;
 	justify-content: space-between;
