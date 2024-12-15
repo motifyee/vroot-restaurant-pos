@@ -1,0 +1,13 @@
+// ::ng-deep user-addresses-modal modal {
+// 	.header {
+// 		@apply text-red-300;
+// 	}
+// }
+
+.address {
+	@apply p-2;
+
+	&:has(.address-title:hover) {
+		@apply cursor-pointer hover:bg-gray-300 active:bg-gray-400;
+	}
+}

@@ -3,6 +3,7 @@ import {
 	computed,
 	effect,
 	EventEmitter,
+	HostBinding,
 	inject,
 	OnInit,
 	Output,
@@ -13,6 +14,7 @@ import { customersStore, settingsStore, userStore } from '@src/app/features';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { scaleInOut } from '../../animations/scaleInOut.animation';
 
 @Component({
 	selector: 'auth-modal',
@@ -21,8 +23,11 @@ import { MessageService } from 'primeng/api';
 	templateUrl: './auth-modal.component.html',
 	styleUrls: ['./auth-modal.component.scss'],
 	host: { class: 'popup' },
+	animations: [scaleInOut],
 })
 export class AuthModalComponent implements OnInit {
+	@HostBinding('@scaleInOut') scaleInOut = true;
+
 	userStore = inject(userStore);
 	settings = inject(settingsStore);
 	msgService = inject(MessageService);
@@ -90,9 +95,15 @@ export class AuthModalComponent implements OnInit {
 	login() {
 		this.userStore.login({
 			countryCode: this.userStore.user().countryCode,
-			phone: '01097207563', //this.phone(),
+			phone: this.phone(),
 			companyId: this.settings.companyInfo().companyId,
 			password: this.password(),
 		});
+	}
+
+	dismiss() {
+		this.onDismissed.emit();
+		this.userStore.setRegistrationStep('check-phone');
+		this.userStore.removeUserData();
 	}
 }

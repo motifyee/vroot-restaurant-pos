@@ -14,6 +14,10 @@ export interface RegisterParams {
 	password: string;
 }
 
+export interface UpdateAddressParams extends Address {
+	userId: string;
+}
+
 export abstract class UserRepo {
 	abstract login(params: LoginParams): Observable<User>;
 
@@ -24,4 +28,14 @@ export abstract class UserRepo {
 	}): Observable<boolean>;
 
 	abstract register(params: RegisterParams): Observable<User>;
+
+	// ###########################################################################
+
+	abstract getAddresses(params: { userId: string }): Observable<Address[]>;
+	abstract createAddress(params: UpdateAddressParams): Observable<Address>;
+	abstract deleteAddress(params: {
+		userId: string;
+		id: number;
+	}): Observable<boolean>;
+	abstract updateAddress(params: UpdateAddressParams): Observable<Address>;
 }

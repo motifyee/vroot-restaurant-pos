@@ -6,14 +6,14 @@ import {
 	type,
 	withMethods,
 } from '@ngrx/signals';
-import { LoadingState } from '@src/app/features/base/state/with-loading.method';
+import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 
 export function withCheckPhoneMethod<_>() {
 	return signalStoreFeature(
-		{ state: type<UserStoreState & LoadingState>() },
+		{ state: type<UserStoreState>(), methods: type<LoadingMethod>() },
 		withMethods((store) => {
 			const userRepo = inject(UserRepo);
 
@@ -24,30 +24,33 @@ export function withCheckPhoneMethod<_>() {
 					companyId: number;
 				}>(
 					pipe(
-						tap((params) =>
+						tap((params) => {
+							store.setLoading(true);
+
 							patchState(store, {
-								isLoading: true,
 								user: { ...store.user(), ...params },
-							}),
-						),
+							});
+						}),
 						switchMap((params) =>
 							userRepo.checkPhone(params).pipe(
 								tapResponse({
-									next: (isRegistered) =>
+									next: (isRegistered) => {
+										store.setLoading(false);
+
 										patchState(store, {
-											isLoading: false,
 											registerationStep: isRegistered
 												? 'login'
 												: 'register',
-										}),
-									error: () =>
+										});
+									},
+									error: () => {
+										store.setLoading(false);
+
 										patchState(store, {
-											isLoading: false,
 											apiMsg: 'Something went wrong',
 											apiMsgConfirmed: false,
-											//
-											// registerationStep: 'login',
-										}),
+										});
+									},
 								}),
 							),
 						),
