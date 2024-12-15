@@ -1,4 +1,4 @@
-import { WritableSignal } from '@angular/core';
+import { effect, Injector, WritableSignal } from '@angular/core';
 
 // updates Objects
 export function updateObjSignal<T>(
@@ -36,4 +36,24 @@ export function signalUpdater<T>(signal: WritableSignal<T>) {
 export function mapSignalUpdater<K, V>(signal: WritableSignal<Map<K, V>>) {
 	return (value: { K: V } | [K, V][] | ((value: Map<K, V>) => Map<K, V>)) =>
 		updateMapSignal(signal, value);
+}
+
+export function singleCallEffect(params: {
+	injector: Injector;
+	predicate: () => boolean;
+	init?: () => void;
+	success: () => void;
+}) {
+	const { injector, predicate, init, success } = params;
+
+	if (!predicate()) init?.();
+
+	let x = effect(
+		() => {
+			if (!predicate()) return;
+			success();
+			x.destroy();
+		},
+		{ injector, allowSignalWrites: true },
+	);
 }
