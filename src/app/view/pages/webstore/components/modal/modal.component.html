@@ -1,0 +1,29 @@
+<p-toast position="top-right" className="z-50" />
+
+<div class="overlay" (click)="closable() && onDismissed.emit()"></div>
+
+<div class="modal relative">
+	<div class="header">
+		<span>{{ header() }}</span>
+
+		@if (closable()) {
+			<p-button
+				icon="pi pi-times"
+				[rounded]="true"
+				severity="danger"
+				[outlined]="true"
+				(onClick)="onDismissed.emit()"
+			/>
+		}
+	</div>
+
+	<div class="content">
+		<ng-content />
+	</div>
+
+	@if (isLoading()) {
+		<div class="spinner-container rounded-lg">
+			<div class="spinner"></div>
+		</div>
+	}
+</div>

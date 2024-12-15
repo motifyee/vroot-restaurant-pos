@@ -1,5 +1,5 @@
 <p-toast position="top-right" className="z-50" />
-<div class="overlay" (click)="onDismissed.emit()"></div>
+<div class="overlay" (click)="dismiss()"></div>
 
 <div role="dialog" class="modal-wrapper relative">
 	@if (userStore.isLoading()) {
@@ -10,11 +10,7 @@
 
 	<div class="header">
 		<span class="d-block fw-bold">{{ header() }}</span>
-		<button
-			type="button"
-			class="closeModalBtn"
-			(click)="onDismissed.emit()"
-		>
+		<button type="button" class="closeModalBtn" (click)="dismiss()">
 			<i class="fas fa-times"></i>
 		</button>
 	</div>

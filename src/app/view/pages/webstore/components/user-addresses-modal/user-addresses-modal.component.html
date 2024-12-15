@@ -1,0 +1,139 @@
+<modal
+	[header]="header$()"
+	[isLoading]="user.isLoading()"
+	(onDismissed)="onDismissed.emit()"
+	[closable]="false"
+>
+	@if (activeView() == 'list') {
+		<div @listIn class="min-w-[300px] flex flex-col justify-center gap-4">
+			@for (address of user.userAddressesEntities(); track address.id) {
+				<ng-container
+					[ngTemplateOutlet]="addressTemplate"
+					[ngTemplateOutletContext]="{ $implicit: address }"
+				/>
+			}
+
+			<p-button
+				class="mx-auto"
+				icon="pi pi-plus"
+				severity="success"
+				label="اضافة عنوان جديد"
+				(onClick)="startAddAddress()"
+			/>
+		</div>
+	} @else {
+		<div @formIn>
+			<ng-container
+				[ngTemplateOutlet]="addressFormTemplate"
+				[ngTemplateOutletContext]="{ $implicit: null }"
+			/>
+		</div>
+	}
+</modal>
+
+<ng-template #addressTemplate let-value>
+	<div @addressOut class="address flex justify-stretch items-center">
+		<p-button [rounded]="true" severity="secondary" [text]="true">
+			<i
+				[class]="
+					'pi pi-thumbtack transition-transform ' +
+					(value.isDefault ? 'text-red-400' : 'rotate-45')
+				"
+				(click)="user.setDefaultAddress(value)"
+			></i>
+		</p-button>
+
+		<span
+			(click)="onSelected.emit(value)"
+			class="address-title flex-1"
+			[ngClass]="{ 'font-bold': value.isDefault }"
+		>
+			{{ value.address }}
+			@if (value.isDefault) {
+				<small class="text-xs text-gray-400">(الافتراضي)</small>
+			}
+		</span>
+
+		<p-button
+			icon="pi pi-pencil"
+			[rounded]="true"
+			severity="primary"
+			[text]="true"
+			(onClick)="startEditAddress(value)"
+		/>
+		<p-button
+			icon="pi pi-trash"
+			[rounded]="true"
+			severity="danger"
+			[text]="true"
+			(onClick)="user.deleteAddress(value)"
+		/>
+	</div>
+</ng-template>
+
+<ng-template #addressFormTemplate let-value>
+	<form
+		(change)="(_form)"
+		#_form="ngForm"
+		(ngSubmit)="submitAddressForm(_form)"
+	>
+		<div class="flex flex-col gap-4">
+			<div class="input-wrapper">
+				<input
+					placeholder="حفظ باسم"
+					required
+					minlength="3"
+					[(ngModel)]="addressForm.title"
+					name="title"
+					class="border-0 px-2 py-0 flex-grow-1 align-self-stretch bg-white text-body"
+				/>
+			</div>
+			@if (invalidField('title')) {
+				<span class="text-red-400 text-sm">
+					الاسم يجب ان يكون على الاقل 3 حروف</span
+				>
+			}
+
+			<div class="input-wrapper">
+				<input
+					placeholder="العنوان"
+					required
+					minlength="6"
+					name="address"
+					[(ngModel)]="addressForm.address"
+					class="border-0 px-2 py-0 flex-grow-1 align-self-stretch bg-white text-body"
+				/>
+			</div>
+			@if (invalidField('address')) {
+				<span class="text-red-400 text-sm">
+					العنوان يجب ان يكون على الاقل 6 حروف
+				</span>
+			}
+
+			<span>
+				<p-checkbox
+					label=" افتراضي "
+					[(ngModel)]="addressForm.isDefault"
+					name="isDefault"
+					[binary]="true"
+				></p-checkbox>
+			</span>
+
+			<div class="flex justify-around">
+				<p-button
+					type="submit"
+					severity="success"
+					[label]="
+						activeView() == 'createForm' ? 'اضافة' : 'حفظ التعديلات'
+					"
+					[disabled]="!isSubmitEnabled"
+				/>
+				<p-button
+					(onClick)="activeView.set('list')"
+					severity="danger"
+					label="الغاء"
+				/>
+			</div>
+		</div>
+	</form>
+</ng-template>

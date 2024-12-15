@@ -1,20 +1,20 @@
-<aside class="sticky mb-4 top-20">
-	@if (!cartItems().length) {
-		@if (!scrollService.isNarrowScreen()) {
-			<ng-container [ngTemplateOutlet]="emptyCart" />
-		}
-	} @else if (scrollService.isNarrowScreen()) {
-		<ng-container [ngTemplateOutlet]="floatingCart" />
-	} @else {
-		<ng-container [ngTemplateOutlet]="cart" />
+@if (!cartItems().length) {
+	@if (!scrollService.isNarrowScreen()) {
+		<ng-container [ngTemplateOutlet]="emptyCart" />
 	}
-</aside>
+} @else if (scrollService.isNarrowScreen()) {
+	<ng-container [ngTemplateOutlet]="floatingCart" />
+} @else {
+	<ng-container [ngTemplateOutlet]="cart" />
+}
 
 <ng-template #emptyCart>
-	<div class="empty-cart">
-		<cart-icon class="mb-2 w-16 h-16" />
-		<span class="empty-cart-message">أضف اصناف من القائمة</span>
-	</div>
+	<aside class="sticky mb-4 top-20">
+		<div class="empty-cart">
+			<cart-icon class="mb-2 w-16 h-16" />
+			<span class="empty-cart-message">أضف اصناف من القائمة</span>
+		</div>
+	</aside>
 </ng-template>
 
 <ng-template #_cartItems>
@@ -50,20 +50,26 @@
 </ng-template>
 
 <ng-template #cart>
-	<div class="cart">
-		<ng-container [ngTemplateOutlet]="_cartItems" />
+	<aside class="sticky mb-4 top-20">
+		<div class="cart">
+			<ng-container [ngTemplateOutlet]="_cartItems" />
 
-		<div class="total">
-			<span class="total-label">الاجمالي</span>
-			<span class="total-price">{{ productStore.cartTotal() }} EGP</span>
+			<div class="total">
+				<span class="total-label">الاجمالي</span>
+				<span class="total-price"
+					>{{ productStore.cartTotal() }} EGP</span
+				>
+			</div>
+
+			<button (click)="checkout()" class="execute-btn">
+				تنفيذ الطلب
+			</button>
 		</div>
-
-		<button (click)="checkout()" class="execute-btn">تنفيذ الطلب</button>
-	</div>
+	</aside>
 </ng-template>
 
 <ng-template #floatingCart>
-	<div @float class="floating-cart">
+	<div @floatUp class="floating-cart">
 		<!-- <ng-container [ngTemplateOutlet]="_cartItems" /> -->
 
 		<div (click)="checkout()" class="btn">
@@ -85,6 +91,12 @@
 	<auth-modal
 		(onDismissed)="showAuth.set(false)"
 		(onFinished)="showAuth.set(false)"
-		@scaleInOut
+	/>
+}
+
+@if (showAddressModal()) {
+	<user-addresses-modal
+		(onSelected)="showAddressModal.set(false)"
+		(onDismissed)="showAddressModal.set(false)"
 	/>
 }

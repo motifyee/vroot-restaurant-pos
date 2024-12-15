@@ -51,7 +51,11 @@ export class ProductListComponent
 	menu = this.productStore.menu;
 
 	ngOnInit() {
-		if (IS_DEVMODE && localStorage.getItem('test-products')) {
+		if (
+			IS_DEVMODE &&
+			localStorage.getItem('test-branch-idx') &&
+			localStorage.getItem('test-products')
+		) {
 			return this.productStore.setCategories(
 				JSON.parse(localStorage.getItem('test-products')!),
 			);

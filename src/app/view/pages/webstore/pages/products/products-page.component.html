@@ -25,7 +25,6 @@
 @if (selectedProduct()) {
 	<div
 		add-to-cart-modal
-		@scaleInOut
 		[variant]="selectedProduct()"
 		(closeModal)="productsPageStore.selectProduct()"
 	></div>
@@ -35,6 +34,5 @@
 	<branch-ordertype-picker
 		(onCancel)="chooseBranch.set(false)"
 		(onFinished)="chooseBranch.set(false)"
-		@scaleInOut
 	/>
 }

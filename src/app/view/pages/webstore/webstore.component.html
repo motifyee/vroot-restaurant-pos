@@ -17,20 +17,11 @@
 }
 
 <ng-template #loadedTemplate>
-	<main dir="rtl" class="webstore-body">
-		<topbar
-			(toggleSideBarVisibility)="
-				isSideBarVisible.set(!isSideBarVisible())
-			"
-		/>
+	<main class="webstore-body">
+		<topbar />
 
 		<section>
 			<router-outlet />
 		</section>
-
-		<sidebar
-			[isVisible]="isSideBarVisible"
-			(hide)="isSideBarVisible.set(false)"
-		/>
 	</main>
 </ng-template>

@@ -2,6 +2,7 @@ import {
 	Component,
 	effect,
 	EventEmitter,
+	HostBinding,
 	inject,
 	input,
 	OnInit,
@@ -11,9 +12,10 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { settingsStore } from '@src/app/features/settings';
-import { float } from '../../animations/float.animation';
+import { floatUp } from '../../animations/float.animation';
 import { productStore } from '@src/app/features';
 import { ButtonModule } from 'primeng/button';
+import { scaleInOut } from '../../animations/scaleInOut.animation';
 
 @Component({
 	selector: 'branch-ordertype-picker',
@@ -21,10 +23,12 @@ import { ButtonModule } from 'primeng/button';
 	imports: [CommonModule, FormsModule, ButtonModule],
 	templateUrl: './pick-branch-popup.component.html',
 	styleUrls: ['./pick-branch-popup.component.scss'],
-	animations: [float],
+	animations: [floatUp, scaleInOut],
 	host: { class: 'popup' },
 })
 export class BranchOrderTypePickerComponent implements OnInit {
+	@HostBinding('@scaleInOut') scaleInOut = true;
+
 	target = input<'branch' | 'orderType' | 'all'>('all');
 
 	choosedBranch = signal(this.target() in ['branch', 'all']);

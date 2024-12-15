@@ -2,7 +2,7 @@
 	<nav class="nav-section">
 		<div class="container header-section">
 			<div
-				(click)="toggleSideBarVisibility.emit()"
+				(click)="isSideBarVisible.set(true)"
 				id="burger-menu"
 				class="menu-side-btn icon-menu"
 			>
@@ -52,17 +52,15 @@
 			</div>
 
 			@if (isBranchOrderTypePickerVisible()) {
-				<!-- <order-type
-					@scaleInOut
-					(onClose)="isOrderTypeVisible.set(false)"
-				/> -->
-
 				<branch-ordertype-picker
 					(onFinished)="isBranchOrderTypePickerVisible.set(false)"
 					(onCancel)="isBranchOrderTypePickerVisible.set(false)"
-					@scaleInOut
 				/>
 			}
 		</div>
 	</nav>
 </div>
+
+@if (isSideBarVisible()) {
+	<sidebar (onDismiss)="isSideBarVisible.set(false)" />
+}

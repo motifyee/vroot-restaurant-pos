@@ -6,7 +6,7 @@ import { chatMainRoute } from './view/pages/chat/routes';
 export const routes: Routes = [
 	{
 		path: '',
-		redirectTo: 'chat',
+		redirectTo: 'webstore',
 		pathMatch: 'full',
 	},
 	{ ...posMainRoute, path: 'pos' },

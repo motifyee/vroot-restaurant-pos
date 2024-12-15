@@ -3,18 +3,24 @@ import { Component, inject, signal } from '@angular/core';
 import { productStore } from '@src/app/features/products';
 import { CartIconComponent } from './icons/cart-icon.component';
 import { ScrollService } from '../../../../services/scroll.service';
-import { float } from '../../../../animations/float.animation';
+import { floatUp } from '../../../../animations/float.animation';
 import { AuthModalComponent } from '../../../../components/auth-modal/auth-modal.component';
 import { userStore } from '@src/app/features';
+import { UserAddressesModalComponent } from '../../../../components/user-addresses-modal/user-addresses-modal.component';
 import { scaleInOut } from '../../../../animations/scaleInOut.animation';
 
 @Component({
 	selector: 'cart',
 	standalone: true,
-	imports: [NgTemplateOutlet, CartIconComponent, AuthModalComponent],
+	imports: [
+		NgTemplateOutlet,
+		CartIconComponent,
+		AuthModalComponent,
+		UserAddressesModalComponent,
+	],
 	templateUrl: './cart.component.html',
 	styleUrl: './cart.component.scss',
-	animations: [float, scaleInOut],
+	animations: [floatUp, scaleInOut], // !TODO-FIX: why must be imported for auth-modal to animate :leave
 })
 export class CartComponent {
 	scrollService = inject(ScrollService);
@@ -25,6 +31,7 @@ export class CartComponent {
 	cartItemsMap = this.productStore.cartProductsEntityMap;
 
 	showAuth = signal(false);
+	showAddressModal = signal(false);
 
 	removeFromCart(product: CartProduct) {
 		this.productStore.removeFromCart(product);
@@ -63,5 +70,8 @@ export class CartComponent {
 			this.showAuth.set(true);
 			return;
 		}
+
+		if (!this.userStore.defaultAddress()) this.showAddressModal.set(true);
+		else this.showAddressModal.set(true);
 	}
 }

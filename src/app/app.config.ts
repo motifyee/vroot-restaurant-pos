@@ -8,7 +8,11 @@ import { provideRouter, RouterModule } from '@angular/router';
 
 import { routes } from './app.routes';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import {
+	HTTP_INTERCEPTORS,
+	provideHttpClient,
+	withInterceptorsFromDi,
+} from '@angular/common/http';
 import { LoggerModule, LogSeverity } from './core/services/logger';
 import { StorageModule } from './core/services/storage';
 import { AuthnModule } from './core/services/auth';
@@ -37,7 +41,7 @@ export const appConfig: ApplicationConfig = {
 			),
 			StorageModule.forLocalStorage(),
 		),
-		provideHttpClient(),
+		provideHttpClient(withInterceptorsFromDi()),
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(routes),
 		{

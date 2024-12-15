@@ -10,22 +10,22 @@ import {
 	ViewChild,
 } from '@angular/core';
 import { ScrollService } from '../../services/scroll.service';
-import { scaleInOut } from '../../animations/scaleInOut.animation';
 import { settingsStore } from '@src/app/features';
 import { BranchOrderTypePickerComponent } from '../pick-branch-popup/pick-branch-popup.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
 	selector: 'topbar',
 	standalone: true,
-	imports: [BranchOrderTypePickerComponent],
+	imports: [BranchOrderTypePickerComponent, SidebarComponent],
 	templateUrl: './topbar.component.html',
 	styleUrl: './topbar.component.scss',
-	animations: [scaleInOut],
 })
 export class TopbarComponent implements AfterViewInit {
 	@Output() toggleSideBarVisibility = new EventEmitter<void>();
 
 	scrollService = inject(ScrollService);
+	isSideBarVisible = signal(false);
 
 	ngAfterViewInit(): void {
 		if (!this.container) return;

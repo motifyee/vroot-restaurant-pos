@@ -4,7 +4,7 @@ declare interface User {
 	countryCode: string;
 	phone: string;
 	companyId: number;
-	password: string;
+	password?: string;
 	token?: string;
 
 	email?: string;

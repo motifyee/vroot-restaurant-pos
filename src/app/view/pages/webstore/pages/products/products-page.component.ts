@@ -13,7 +13,6 @@ import { CartComponent } from './components/cart/cart.component';
 import { productsPageStore } from './products-page.store';
 import { AddToCartItemModalComponent } from './components/add-to-cart-modal/add-to-cart-modal.component';
 
-import { scaleInOut } from '../../animations/scaleInOut.animation';
 import { ScrollService } from '../../services/scroll.service';
 import { settingsStore } from '@src/app/features';
 import { BranchOrderTypePickerComponent } from '../../components/pick-branch-popup/pick-branch-popup.component';
@@ -35,7 +34,6 @@ import { IS_DEVMODE } from '@src/app/core';
 	styleUrl: './products-page.component.scss',
 	changeDetection: ChangeDetectionStrategy.Default,
 	providers: [productsPageStore],
-	animations: [scaleInOut],
 })
 export class ProductsPageComponent implements OnInit {
 	scrollService = inject(ScrollService);
