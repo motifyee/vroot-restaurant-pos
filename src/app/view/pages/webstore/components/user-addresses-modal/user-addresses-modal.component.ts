@@ -90,8 +90,15 @@ export class UserAddressesModalComponent implements OnInit {
 	activeView = signal<'list' | 'editForm' | 'createForm'>('list');
 
 	ngOnInit(): void {
-		// this.user.getAddresses();
-		this.user.addDumbyAddresses();
+		this.user.getAddresses();
+		// this.user.addDumbyAddresses();
+	}
+
+	invalidField(field: string) {
+		return (
+			this.form?.controls[field]?.touched &&
+			this.form?.controls[field]?.invalid
+		);
 	}
 
 	startEditAddress(address: Address) {

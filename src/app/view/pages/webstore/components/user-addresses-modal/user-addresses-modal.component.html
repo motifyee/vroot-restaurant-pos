@@ -88,10 +88,7 @@
 					class="border-0 px-2 py-0 flex-grow-1 align-self-stretch bg-white text-body"
 				/>
 			</div>
-			@if (
-				_form.controls['title']?.touched &&
-				_form.controls['title']?.invalid
-			) {
+			@if (invalidField('title')) {
 				<span class="text-red-400 text-sm">
 					الاسم يجب ان يكون على الاقل 3 حروف</span
 				>
@@ -107,10 +104,7 @@
 					class="border-0 px-2 py-0 flex-grow-1 align-self-stretch bg-white text-body"
 				/>
 			</div>
-			@if (
-				_form.controls['address']?.touched &&
-				_form.controls['address']?.invalid
-			) {
+			@if (invalidField('address')) {
 				<span class="text-red-400 text-sm">
 					العنوان يجب ان يكون على الاقل 6 حروف
 				</span>
