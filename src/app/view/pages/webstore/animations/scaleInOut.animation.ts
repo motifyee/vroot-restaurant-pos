@@ -25,5 +25,5 @@ const _keyframes = keyframes([
 
 export const scaleInOut = trigger('scaleInOut', [
 	transition(':enter', [hidden, animate(timing, visible)]),
-	transition(':leave', [visible, animate(timing, hidden)]),
+	transition(':leave', [animate(timing, hidden)]),
 ]);

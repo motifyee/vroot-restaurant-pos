@@ -124,17 +124,17 @@ export class AuthInterceptor implements HttpInterceptor {
 
 		return next.handle(request).pipe(
 			tap(() => this.notifyAPILoading(request, 'loaded')),
-			retry({
-				count: 3,
-				delay: (err, retryCount) => {
-					if (IS_DEVMODE) return throwError(() => err);
+			// retry({
+			// 	count: 3,
+			// 	delay: (err, retryCount) => {
+			// 		if (IS_DEVMODE) return throwError(() => err);
 
-					if (err instanceof HttpErrorResponse && err.status === 0)
-						return timer(retryCount * 1000);
+			// 		if (err instanceof HttpErrorResponse && err.status === 0)
+			// 			return timer(retryCount * 1000);
 
-					return throwError(() => err);
-				},
-			}),
+			// 		return throwError(() => err);
+			// 	},
+			// }),
 			catchError(this.handleError(request)),
 		);
 	}

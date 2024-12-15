@@ -10,7 +10,6 @@ import {
 	ViewChild,
 } from '@angular/core';
 import { ScrollService } from '../../services/scroll.service';
-import { scaleInOut } from '../../animations/scaleInOut.animation';
 import { settingsStore } from '@src/app/features';
 import { BranchOrderTypePickerComponent } from '../pick-branch-popup/pick-branch-popup.component';
 
@@ -20,7 +19,6 @@ import { BranchOrderTypePickerComponent } from '../pick-branch-popup/pick-branch
 	imports: [BranchOrderTypePickerComponent],
 	templateUrl: './topbar.component.html',
 	styleUrl: './topbar.component.scss',
-	animations: [scaleInOut],
 })
 export class TopbarComponent implements AfterViewInit {
 	@Output() toggleSideBarVisibility = new EventEmitter<void>();

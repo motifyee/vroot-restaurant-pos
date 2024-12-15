@@ -52,15 +52,9 @@
 			</div>
 
 			@if (isBranchOrderTypePickerVisible()) {
-				<!-- <order-type
-					@scaleInOut
-					(onClose)="isOrderTypeVisible.set(false)"
-				/> -->
-
 				<branch-ordertype-picker
 					(onFinished)="isBranchOrderTypePickerVisible.set(false)"
 					(onCancel)="isBranchOrderTypePickerVisible.set(false)"
-					@scaleInOut
 				/>
 			}
 		</div>

@@ -12,7 +12,7 @@ import { withUpdateCartMethod } from './features/with-update-cart-cart.method';
 import { computed } from '@angular/core';
 import { withEmptyCartMethod } from './features/with-empty-cart.method';
 
-export type CartProductsConfig = NamedEntityState<CartProduct, 'cartProducts'>;
+export type CartProductsState = NamedEntityState<CartProduct, 'cartProducts'>;
 
 export const cartProductsConfig = entityConfig({
 	entity: type<CartProduct>(),

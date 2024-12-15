@@ -1,4 +1,3 @@
-import { NgClass, CommonModule } from '@angular/common';
 import {
 	Component,
 	OnInit,
@@ -8,20 +7,25 @@ import {
 	inject,
 	computed,
 	signal,
+	HostBinding,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { productStore } from '@src/app/features/products';
 import { BannerComponent } from '../banner/banner.component';
+import { scaleInOut } from '../../../../animations/scaleInOut.animation';
 
 @Component({
 	selector: 'add-to-cart-modal, [add-to-cart-modal]',
 	standalone: true,
-	imports: [CommonModule, FormsModule, BannerComponent],
+	imports: [FormsModule, BannerComponent],
 	templateUrl: './add-to-cart-modal.component.html',
 	styleUrls: ['./add-to-cart-modal.component.scss'],
 	host: { class: 'popup' },
+	animations: [scaleInOut],
 })
 export class AddToCartItemModalComponent implements OnInit {
+	@HostBinding('@scaleInOut') scaleInOutAnimation = true;
+
 	productStore = inject(productStore);
 
 	options = [
@@ -65,8 +69,6 @@ export class AddToCartItemModalComponent implements OnInit {
 			variant: { ...this.variant()!, note: this.note() },
 			quantity: this.quantity(),
 		};
-
-		console.log(cartProduct);
 
 		this.productStore.addToCart(cartProduct);
 

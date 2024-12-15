@@ -16,7 +16,7 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { CommonModule } from '@angular/common';
-import { customersStore } from '@src/app/features';
+import { customersStore, userStore } from '@src/app/features';
 import { settingsStore } from '@src/app/features/settings';
 import { MessageService } from 'primeng/api';
 
@@ -37,6 +37,9 @@ import { MessageService } from 'primeng/api';
 		MessageService,
 	],
 	animations: [scaleInOut],
+	host: {
+		'[attr.dir]': '"rtl"',
+	},
 })
 export class WebstoreComponent implements OnInit {
 	isSideBarVisible = signal(false);
@@ -52,6 +55,7 @@ export class WebstoreComponent implements OnInit {
 	tr = this.webstorePageStore.tr();
 
 	settings = inject(settingsStore);
+	user = inject(userStore);
 
 	constructor() {}
 	ngOnInit(): void {
@@ -59,6 +63,8 @@ export class WebstoreComponent implements OnInit {
 			if (info.branchs.length == 1)
 				this.settings.selectBranch(info.branchs[0]);
 		});
+
+		this.user.loadUserData();
 	}
 
 	@HostListener('window:resize', ['$event'])

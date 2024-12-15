@@ -5,11 +5,12 @@ import {
 	withMethods,
 } from '@ngrx/signals';
 import { addEntity, setEntity } from '@ngrx/signals/entities';
-import { CartProductsConfig, cartProductsConfig } from '../products.store';
+import { CartProductsState, cartProductsConfig } from '../products.store';
 
 export const withAddToCartMethod = <_>() =>
 	signalStoreFeature(
-		{ state: type<CartProductsConfig>() },
+		{ state: type<CartProductsState>() },
+
 		withMethods((store) => {
 			return {
 				addToCart: (product: CartProduct) => {
