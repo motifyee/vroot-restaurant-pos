@@ -77,9 +77,4 @@ export class WebstoreComponent implements OnInit {
 			.use(this.tr.currentLang === 'en' ? 'ar' : 'en')
 			.subscribe(() => console.log(this.tr.instant('body')));
 	}
-
-	// Toggle sidebar visibility
-	toggleChildTwoVisibility() {
-		this.isSideBarVisible.update((value) => !value);
-	}
 }

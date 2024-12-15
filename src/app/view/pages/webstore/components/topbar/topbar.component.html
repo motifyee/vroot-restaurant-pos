@@ -2,7 +2,7 @@
 	<nav class="nav-section">
 		<div class="container header-section">
 			<div
-				(click)="toggleSideBarVisibility.emit()"
+				(click)="isSideBarVisible.set(true)"
 				id="burger-menu"
 				class="menu-side-btn icon-menu"
 			>
@@ -60,3 +60,7 @@
 		</div>
 	</nav>
 </div>
+
+@if (isSideBarVisible()) {
+	<sidebar (onDismiss)="isSideBarVisible.set(false)" />
+}
