@@ -1,37 +1,25 @@
 <p-toast position="top-right" className="z-50" />
-<div class="overlay" (click)="dismiss()"></div>
 
-<div role="dialog" class="modal-wrapper relative">
-	@if (userStore.isLoading()) {
-		<div class="spinner-container">
-			<div class="spinner"></div>
-		</div>
-	}
-
-	<div class="header">
-		<span class="d-block fw-bold">{{ header() }}</span>
-		<button type="button" class="closeModalBtn" (click)="dismiss()">
-			<i class="fas fa-times"></i>
-		</button>
-	</div>
-
-	<div class="modal-content">
-		@switch (userStore.registerationStep()) {
-			@case ('check-phone') {
-				<ng-container [ngTemplateOutlet]="phoneForm" />
-			}
-			@case ('verify-otp') {
-				<ng-container [ngTemplateOutlet]="verificationForm" />
-			}
-			@case ('login') {
-				<ng-container [ngTemplateOutlet]="loginForm" />
-			}
-			@case ('register') {
-				<ng-container [ngTemplateOutlet]="registerationForm" />
-			}
+<modal
+	[header]="header()"
+	[isLoading]="userStore.isLoading()"
+	(onDismissed)="dismiss()"
+>
+	@switch (userStore.registerationStep()) {
+		@case ('check-phone') {
+			<ng-container [ngTemplateOutlet]="phoneForm" />
 		}
-	</div>
-</div>
+		@case ('verify-otp') {
+			<ng-container [ngTemplateOutlet]="verificationForm" />
+		}
+		@case ('login') {
+			<ng-container [ngTemplateOutlet]="loginForm" />
+		}
+		@case ('register') {
+			<ng-container [ngTemplateOutlet]="registerationForm" />
+		}
+	}
+</modal>
 
 <ng-template #phoneForm>
 	<div dir="ltr" class="phoneInput">

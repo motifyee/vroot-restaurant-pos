@@ -46,7 +46,7 @@ export function singleCallEffect(params: {
 }) {
 	const { injector, predicate, init, success } = params;
 
-	if (!predicate()) init?.();
+	init?.();
 
 	let x = effect(
 		() => {

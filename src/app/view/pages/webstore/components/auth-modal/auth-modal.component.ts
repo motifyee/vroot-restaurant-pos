@@ -15,11 +15,18 @@ import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { scaleInOut } from '../../animations/scaleInOut.animation';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
 	selector: 'auth-modal',
 	standalone: true,
-	imports: [CommonModule, FormsModule, NgTemplateOutlet, ToastModule],
+	imports: [
+		CommonModule,
+		FormsModule,
+		NgTemplateOutlet,
+		ToastModule,
+		ModalComponent,
+	],
 	templateUrl: './auth-modal.component.html',
 	styleUrls: ['./auth-modal.component.scss'],
 	host: { class: 'popup' },

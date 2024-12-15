@@ -19,7 +19,6 @@ import { AnimationEvent } from '@angular/animations';
 	templateUrl: './modal.component.html',
 	styleUrl: './modal.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	host: { class: 'popup' },
 })
 export class ModalComponent {
 	@Output() onDismissed = new EventEmitter<void>();
