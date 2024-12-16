@@ -7,7 +7,7 @@
 		"build": "ng build",
 		"build-webstore": "ng build --configuration webstore",
 		"postbuild-webstore": "post-build-webstore.cmd",
-		"build-local-webstore": "ng build --configuration webstore --baseHref /webstore/",
+		"build-local-webstore": "ng build --configuration webstore --base-href /webstore/",
 		"postbuild-local-webstore": "post-build-local-webstore.cmd",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
