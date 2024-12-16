@@ -63,13 +63,16 @@
 <ng-template #chooseOrderType>
 	<div class="header">
 		<span>اختر نوع الطلب</span>
-		<p-button
-			icon="pi pi-times"
-			[rounded]="true"
-			severity="danger"
-			[outlined]="true"
-			(onClick)="cancel()"
-		/>
+
+		@if (settings.orderType()) {
+			<p-button
+				icon="pi pi-times"
+				[rounded]="true"
+				severity="danger"
+				[outlined]="true"
+				(onClick)="cancel()"
+			/>
+		}
 	</div>
 
 	<div @floatUp class="modal-content">

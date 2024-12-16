@@ -69,6 +69,7 @@ export class BranchOrderTypePickerComponent implements OnInit {
 
 	cancel() {
 		if (!this.settings.selectedBranch?.()) return;
+		if (!this.settings.orderType()) return;
 
 		if (!this.settings.orderType()) this.settings.selectOrderType('pickup');
 
