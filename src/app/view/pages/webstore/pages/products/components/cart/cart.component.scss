@@ -118,7 +118,7 @@
 
 .floating-cart {
 	// border: 3px solid var(--GreenBackground);
-	@apply fixed right-4 bottom-4 left-4 z-10;
+	@apply fixed right-4 bottom-4 left-4 z-10 cursor-pointer;
 
 	.btn {
 		@apply rounded-lg

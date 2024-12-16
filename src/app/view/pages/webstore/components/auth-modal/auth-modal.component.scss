@@ -1,3 +1,7 @@
+:host::ng-deep modal .content {
+	@apply p-4 overflow-hidden;
+}
+
 .phoneInput {
 	height: 50px;
 	border-radius: 0.5rem;

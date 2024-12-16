@@ -1,8 +1,6 @@
-// ::ng-deep user-addresses-modal modal {
-// 	.header {
-// 		@apply text-red-300;
-// 	}
-// }
+:host::ng-deep modal .content {
+	@apply p-4 overflow-hidden;
+}
 
 .address {
 	@apply p-2;

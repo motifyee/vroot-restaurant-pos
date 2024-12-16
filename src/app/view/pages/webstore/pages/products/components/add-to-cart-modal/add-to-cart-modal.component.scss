@@ -22,10 +22,10 @@ textarea {
 	@apply p-4 flex items-stretch justify-between gap-3;
 
 	.qty {
-		@apply rounded-md w-40 flex items-center justify-between bg-[#f8f8f8];
+		@apply rounded-md w-40 p-2 px-3 flex items-center justify-between bg-[#f8f8f8];
 
 		button {
-			@apply w-12 cursor-pointer bg-transparent border-none;
+			@apply p-0 cursor-pointer bg-transparent border-none;
 
 			i {
 				@apply p-1.5 rounded-md;
