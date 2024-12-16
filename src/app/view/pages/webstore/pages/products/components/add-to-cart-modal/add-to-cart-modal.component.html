@@ -1,86 +1,57 @@
-<div id="menu-item-modal" class="menuItemModalWrapper">
-	<div class="productItem">
-		<div class="modalTopArea">
-			<div
-				(click)="closeModal.emit()"
-				id="menuItemModalWrapperIcon"
-				class="closeMenuItemModalBtn"
-			>
-				<i class="fas fa-times"></i>
-			</div>
-			<div class="image-container">
-				<banner class="w-full h-full" />
-			</div>
-			<div class="aboutItem d-flex flex-column gap-3 py-3 px-2">
-				<div
-					class="nameAndPrice d-flex align-items-center justify-content-between gap-2"
-				>
-					<div class="itemInfo flex-grow-1 fw-bold">
-						{{ variant()?.product?.title }} - {{ variant()?.title }}
-					</div>
-					<div class="itemPrice">
-						<div class="twoPrices">
-							<span dir="ltr" class="">
-								{{ variant()?.price }}
-								<small>SAR</small>
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="itemNote p-2">
-				<label class="mb-1 fw-bold">ملاحظات</label>
-				<textarea
-					rows="2"
-					cols="3"
-					placeholder="أكتب ملاحظتك"
-					maxlength=""
-					class="w-100 rounded-3 bg-transparent border p-2"
-					[(ngModel)]="note"
-				></textarea>
-			</div>
-		</div>
-		<div class="modalBottomArea">
-			<div class="qtyArea">
-				<button
-					(click)="incrementQuantity()"
-					type="button"
-					class="plusQty"
-				>
-					<i class="fas fa-plus"></i>
-				</button>
-				<input
-					[(ngModel)]="quantity"
-					type="number"
-					inputmode="numeric"
-					class=""
-				/>
-				<button
-					(click)="decrementQuantity()"
-					type="button"
-					class="minusQty"
-				>
-					<i class="fas fa-minus"></i>
-				</button>
-			</div>
-			<div class="addItemToCartBtn">
-				<button
-					(click)="addToCart()"
-					type="button"
-					id="add_to_cart"
-					class="btnStyle"
-				>
-					<span>إضافة</span>
-				</button>
-			</div>
-		</div>
-		<div class="timeTypeModal"></div>
+<modal
+	[floatingHeader]="true"
+	width="500px"
+	top="1rem"
+	(onDismissed)="closeModal.emit()"
+>
+	<div class="image-container">
+		<banner class="w-full h-full" />
 	</div>
-</div>
 
-<div
-	(click)="closeModal.emit()"
-	class="addtoCardOverlay active"
-	id="addtoCardOverlay"
-></div>
+	<div class="flex justify-between items-center gap-2 my-4 mx-2">
+		<div class="item-price flex-1 font-bold">
+			{{ variant()?.product?.title }} -
+			{{ variant()?.title }}
+		</div>
+
+		<span dir="ltr" class="text-sm font-medium">
+			{{ variant()?.price }} EGP
+		</span>
+	</div>
+
+	<div class="note px-2 pt-4">
+		<label class="mb-2 font-bold">ملاحظات</label>
+
+		<textarea
+			rows="2"
+			cols="3"
+			placeholder="أكتب ملاحظتك"
+			maxlength=""
+			class="w-100 rounded-3 bg-transparent border p-2"
+			[(ngModel)]="note"
+		></textarea>
+	</div>
+
+	<div class="bottom">
+		<div class="qty">
+			<button (click)="incrementQuantity()">
+				<i class="fas fa-plus"></i>
+			</button>
+
+			<input [(ngModel)]="quantity" inputmode="numeric" />
+
+			<button (click)="decrementQuantity()" [disabled]="quantity() <= 1">
+				<i class="fas fa-minus"></i>
+			</button>
+		</div>
+
+		<button
+			(click)="addToCart()"
+			type="button"
+			class="action-btn flex-1 text-sm"
+		>
+			<span>إضافة </span>
+			<span dir="ltr"> ( {{ totalPrice() }} EGP ) </span>
+		</button>
+	</div>
+</modal>

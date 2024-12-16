@@ -13,11 +13,12 @@ import { FormsModule } from '@angular/forms';
 import { productStore } from '@src/app/features/products';
 import { BannerComponent } from '../banner/banner.component';
 import { scaleInOut } from '../../../../animations/scaleInOut.animation';
+import { ModalComponent } from '../../../../components/modal/modal.component';
 
 @Component({
 	selector: 'add-to-cart-modal, [add-to-cart-modal]',
 	standalone: true,
-	imports: [FormsModule, BannerComponent],
+	imports: [FormsModule, BannerComponent, ModalComponent],
 	templateUrl: './add-to-cart-modal.component.html',
 	styleUrls: ['./add-to-cart-modal.component.scss'],
 	host: { class: 'popup' },
@@ -39,9 +40,8 @@ export class AddToCartItemModalComponent implements OnInit {
 	@Output() closeModal = new EventEmitter<void>();
 	variant = input<ProductVariant>();
 	quantity = signal(1);
+	totalPrice = computed(() => (this.variant()?.price ?? 0) * this.quantity());
 	note = signal('');
-
-	isVisible = computed(() => !!this.variant());
 
 	// New flag to control the initial render
 	hasRenderedOnce = false;

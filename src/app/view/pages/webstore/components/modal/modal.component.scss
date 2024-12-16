@@ -1,32 +1,18 @@
 .modal {
-	@apply flex flex-col justify-between;
+	@apply flex flex-col justify-between rounded-md;
 
 	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 	position: fixed;
-	top: 0;
-	bottom: 0;
-	bottom: 0;
 	left: 0;
 	right: 0;
 	margin: auto;
-	border-radius: 0.5rem;
+
 	background-color: #fff;
-	// z-index: 99999;
-	width: 350px;
-	max-height: calc(100vh - 1rem);
-	max-width: calc(100vw - 1rem);
-	height: -moz-fit-content;
-	height: fit-content;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
 }
 
 .header {
-	display: flex;
-	flex-shrink: 0;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem;
+	@apply flex justify-between items-center 
+  w-full p-4;
 
 	span {
 		font-weight: 700;
@@ -57,7 +43,6 @@
 	padding: 0;
 	outline: none;
 	scroll-behavior: smooth;
-	padding: 1rem;
 }
 
 ::ng-deep modal {
