@@ -6,7 +6,11 @@ import {
 } from '@angular/core';
 import { provideRouter, RouterModule } from '@angular/router';
 
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import {
+	HTTP_INTERCEPTORS,
+	provideHttpClient,
+	withInterceptorsFromDi,
+} from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideTranslateService } from '@ngx-translate/core';
@@ -34,13 +38,13 @@ export const webstoreConfig: ApplicationConfig = {
 			),
 			StorageModule.forLocalStorage(),
 		),
-		provideHttpClient(),
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(webstoreRoutes),
 		{
 			provide: ErrorHandler,
 			useClass: ErrorHandlerService,
 		},
+		provideHttpClient(withInterceptorsFromDi()),
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: AuthInterceptor,

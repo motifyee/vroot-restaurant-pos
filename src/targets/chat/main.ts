@@ -1,7 +1,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { Component } from '@angular/core';
-import { chatConfig } from './config';
+import { chatConfig } from './chat.config';
 
 @Component({
 	selector: 'root',

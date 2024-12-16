@@ -38,13 +38,13 @@ export const appConfig: ApplicationConfig = {
 			),
 			StorageModule.forLocalStorage(),
 		),
-		provideHttpClient(withInterceptorsFromDi()),
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(routes),
 		{
 			provide: ErrorHandler,
 			useClass: ErrorHandlerService,
 		},
+		provideHttpClient(withInterceptorsFromDi()),
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: AuthInterceptor,
