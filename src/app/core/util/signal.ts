@@ -51,7 +51,9 @@ export function singleCallEffect(params: {
 	let x = effect(
 		() => {
 			if (!predicate()) return;
-			success();
+			// setTimeout: to avoid Error NG0602 in case of sequential effect calls
+			// in other words avoid calling effect from within a reactive contect
+			setTimeout(success, 0);
 			x.destroy();
 		},
 		{ injector, allowSignalWrites: true },
