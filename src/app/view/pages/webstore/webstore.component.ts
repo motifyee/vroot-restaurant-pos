@@ -57,6 +57,8 @@ export class WebstoreComponent implements OnInit {
 		this.settings.getCompanyInfo().subscribe((info) => {
 			if (info.branchs.length == 1)
 				this.settings.selectBranch(info.branchs[0]);
+
+			document.title = `WebStore [ ${info.name} ]`; // `${info.name} - WebStore`;
 		});
 
 		this.user.loadUserData();

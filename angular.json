@@ -55,6 +55,7 @@
 						"webstore": {
 							"outputHashing": "all",
 							"outputPath": "dist/webstore",
+							"index": "src/targets/webstore/index.html",
 							"browser": "src/targets/webstore/main.ts",
 							"assets": [
 								{
