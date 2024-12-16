@@ -9,4 +9,4 @@ del /f %local_zip%
 %sz% a %local_zip% %local_dir%\*
 
 %scp% %local_zip% %remote%:/var/www/
-%ssh% %remote% "rm -r /var/www/webstore; unzip /var/www/webstore.zip -d /var/www/webstore; rm -f /var/www/webstore.zip; reboot"
+%ssh% %remote% "rm -r /var/www/html/webstore; unzip /var/www/webstore.zip -d /var/www/html/webstore; rm -f /var/www/webstore.zip"
