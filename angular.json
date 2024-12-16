@@ -56,6 +56,17 @@
 							"outputHashing": "all",
 							"outputPath": "dist/webstore",
 							"browser": "src/targets/webstore/main.ts",
+							"assets": [
+								{
+									"glob": "**/*",
+									"input": "src/assets/webstore",
+									"output": "assets/webstore"
+								},
+								{
+									"glob": "**/*",
+									"input": "public/webstore"
+								}
+							],
 							"fileReplacements": [
 								{
 									"replace": "src/app/core/environments/env.ts",
