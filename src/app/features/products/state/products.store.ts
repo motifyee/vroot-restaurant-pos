@@ -29,7 +29,6 @@ const initialState: ProductStoreState = {};
 // #############################################################################
 
 export const productStore = signalStore(
-	{ providedIn: 'root' },
 	withState(initialState),
 	withEntities(cartProductsConfig),
 	withCategoriesMethod(),

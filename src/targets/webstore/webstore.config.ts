@@ -10,16 +10,14 @@ import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideTranslateService } from '@ngx-translate/core';
-import { WebstoreFeaturesModule } from './features.module';
 import {
 	AuthInterceptor,
-	AuthnModule,
 	ErrorHandlerService,
 	LoggerModule,
 	LogSeverity,
 	StorageModule,
 } from '@src/app/core';
-import { webstoreRoutes } from '@src/app/view/pages/webstore/routes';
+import { webstoreRoutes } from '@src/app/view/pages/webstore/webstore.routes';
 
 export const webstoreConfig: ApplicationConfig = {
 	providers: [
@@ -28,9 +26,7 @@ export const webstoreConfig: ApplicationConfig = {
 		}),
 		provideAnimationsAsync(),
 		importProvidersFrom(
-			WebstoreFeaturesModule,
 			RouterModule,
-			AuthnModule,
 			LoggerModule.forAdaptive(
 				LogSeverity.info,
 				LogSeverity.info,

@@ -78,7 +78,6 @@ const initialState: UserStoreState = {
 // #############################################################################
 
 export const userStore = signalStore(
-	{ providedIn: 'root' },
 	withLoading(),
 	withState(initialState),
 	withEntities(userAddressesEntityConfig),

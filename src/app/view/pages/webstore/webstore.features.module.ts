@@ -4,6 +4,7 @@ import {
 	InvoiceDataModule,
 	UserDataModule,
 	SettingsDataModule,
+	CustomerDataModule,
 } from '@src/app/features';
 
 @NgModule({
@@ -13,6 +14,7 @@ import {
 			SettingsDataModule.forRoot(),
 			InvoiceDataModule.forRoot(),
 			UserDataModule.forRoot(),
+			CustomerDataModule.forRoot(),
 		),
 	],
 })

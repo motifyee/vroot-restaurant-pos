@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { posMainRoute } from './view/pages/pos/routes';
-import { webstoreMainRoute } from './view/pages/webstore/routes';
+import { webstoreMainRoute } from './view/pages/webstore/webstore.routes';
 import { chatMainRoute } from './view/pages/chat/routes';
 
 export const routes: Routes = [
