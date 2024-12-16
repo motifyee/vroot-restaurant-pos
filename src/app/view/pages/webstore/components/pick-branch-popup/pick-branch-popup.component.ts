@@ -97,7 +97,9 @@ export class BranchOrderTypePickerComponent {
 
 	pendingBranch = signal<Branch | undefined>(undefined);
 	selectBranch(branch: Branch) {
-		if (this.products.cartProductsEntities().length)
+		const changed = branch.id !== this.settings.selectedBranch?.()?.id;
+
+		if (changed && this.products.cartProductsEntities().length)
 			return this.pendingBranch.set(branch);
 
 		if (this.pendingBranch()) this.pendingBranch.set(undefined);
