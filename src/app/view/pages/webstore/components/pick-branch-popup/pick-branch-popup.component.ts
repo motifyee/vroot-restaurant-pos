@@ -1,48 +1,91 @@
 import {
 	Component,
+	computed,
 	effect,
 	EventEmitter,
 	HostBinding,
 	inject,
 	input,
-	OnInit,
 	Output,
 	signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { settingsStore } from '@src/app/features/settings';
-import { floatUp } from '../../animations/float.animation';
 import { productStore } from '@src/app/features';
 import { ButtonModule } from 'primeng/button';
 import { scaleInOut } from '../../animations/scaleInOut.animation';
+import { ModalComponent } from '../modal/modal.component';
+import { IS_DEVMODE } from '@src/app/core';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
 	selector: 'branch-ordertype-picker',
 	standalone: true,
-	imports: [CommonModule, FormsModule, ButtonModule],
+	imports: [CommonModule, FormsModule, ButtonModule, ModalComponent],
 	templateUrl: './pick-branch-popup.component.html',
 	styleUrls: ['./pick-branch-popup.component.scss'],
-	animations: [floatUp, scaleInOut],
+	animations: [
+		scaleInOut,
+		trigger('slideIn', [
+			transition(':enter', [
+				style({ transform: 'translateX(-100%)' }),
+				animate(
+					'300ms ease-in-out',
+					style({ transform: 'translateX(0)' }),
+				),
+			]),
+		]),
+	],
 	host: { class: 'popup' },
 })
-export class BranchOrderTypePickerComponent implements OnInit {
+export class BranchOrderTypePickerComponent {
 	@HostBinding('@scaleInOut') scaleInOut = true;
+
+	header = computed(() => {
+		if (!this.choosedBranch())
+			return this.pendingBranch() ? 'تأكيد' : 'اختر الفرع التشغيلي';
+
+		if (!this.choosedOrderType()) return 'اختر نوع الطلب';
+
+		return '';
+	});
+
+	isDismissable = computed(() => {
+		switch (this.target()) {
+			case 'all':
+				return !!(
+					this.settings.selectedBranch?.() &&
+					this.settings.orderType()
+				);
+			case 'branch':
+				return !!this.settings.selectedBranch?.();
+			case 'orderType':
+				return !!this.settings.orderType();
+		}
+	});
 
 	target = input<'branch' | 'orderType' | 'all'>('all');
 
-	choosedBranch = signal(this.target() in ['branch', 'all']);
-	choosedOrderType = signal(this.target() in ['orderType', 'all']);
-
+	choosedBranch = signal(false);
+	choosedOrderType = signal(false);
 	_ = effect(
+		() => {
+			// !TODO replace with angular 19 updatable computed
+			this.choosedBranch.set(!['branch', 'all'].includes(this.target()));
+			this.choosedOrderType.set(
+				!['orderType', 'all'].includes(this.target()),
+			);
+		},
+		{ allowSignalWrites: true },
+	);
+
+	__ = effect(
 		() =>
 			this.choosedBranch() &&
 			this.choosedOrderType() &&
 			this.onFinished.emit(),
 	);
-	ngOnInit(): void {
-		this.choosedBranch = signal(false);
-	}
 
 	settings = inject(settingsStore);
 	products = inject(productStore);
@@ -52,14 +95,24 @@ export class BranchOrderTypePickerComponent implements OnInit {
 
 	branch = signal<Branch | undefined>(undefined);
 
-	selectBranch(branch?: Branch) {
-		this.settings.selectBranch(branch);
+	pendingBranch = signal<Branch | undefined>(undefined);
+	selectBranch(branch: Branch) {
+		if (this.products.cartProductsEntities().length)
+			return this.pendingBranch.set(branch);
 
-		if (!branch) this.products.emptyCart();
-		else {
-			this.choosedBranch.set(true);
-			this.products.getCategories(branch.id).subscribe();
-		}
+		if (this.pendingBranch()) this.pendingBranch.set(undefined);
+
+		this.settings.selectBranch(branch);
+		this.choosedBranch.set(true);
+
+		this.products
+			.getCategories(branch.id)
+			.subscribe(
+				(m) =>
+					IS_DEVMODE &&
+					localStorage.getItem('test-branch-idx') &&
+					localStorage.setItem('test-products', JSON.stringify(m)),
+			);
 	}
 
 	selectOrderType(type: 'delivery' | 'pickup') {
@@ -67,12 +120,7 @@ export class BranchOrderTypePickerComponent implements OnInit {
 		this.choosedOrderType.set(true);
 	}
 
-	cancel() {
-		if (!this.settings.selectedBranch?.()) return;
-		if (!this.settings.orderType()) return;
-
-		if (!this.settings.orderType()) this.settings.selectOrderType('pickup');
-
-		this.onCancel.emit();
+	dismiss() {
+		this.isDismissable() && this.onCancel.emit();
 	}
 }

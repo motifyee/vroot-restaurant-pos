@@ -27,6 +27,8 @@ export class TopbarComponent implements AfterViewInit {
 	scrollService = inject(ScrollService);
 	isSideBarVisible = signal(false);
 
+	branchOrderTypeTarget = signal<'branch' | 'orderType'>('branch');
+
 	ngAfterViewInit(): void {
 		if (!this.container) return;
 

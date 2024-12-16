@@ -14,11 +14,7 @@
 			</div>
 
 			<div class="bg-white menu-bar">
-				<div
-					(click)="isBranchOrderTypePickerVisible.set(true)"
-					id="menu-bar"
-					class="header-dropdown-container"
-				>
+				<div id="menu-bar" class="header-dropdown-container">
 					<div class="header-dropdown">
 						<div class="arrow-down">
 							<i
@@ -31,15 +27,23 @@
 							></i>
 						</div>
 						<div class="food-type">
-							<div>
-								<span class="food-type-1">
-									{{ deliveryTitle() }}
-								</span>
+							<div
+								(click)="
+									branchOrderTypeTarget.set('orderType');
+									isBranchOrderTypePickerVisible.set(true)
+								"
+								class="food-type-1 mb-1"
+							>
+								{{ deliveryTitle() }}
 							</div>
-							<div>
-								<span class="food-type-2">
-									{{ branchName() }}
-								</span>
+							<div
+								(click)="
+									branchOrderTypeTarget.set('branch');
+									isBranchOrderTypePickerVisible.set(true)
+								"
+								class="food-type-2"
+							>
+								{{ branchName() }}
 							</div>
 						</div>
 					</div>
@@ -50,17 +54,18 @@
 					<span class="d-block fw-bold">الآن</span>
 				</div>
 			</div>
-
-			@if (isBranchOrderTypePickerVisible()) {
-				<branch-ordertype-picker
-					(onFinished)="isBranchOrderTypePickerVisible.set(false)"
-					(onCancel)="isBranchOrderTypePickerVisible.set(false)"
-				/>
-			}
 		</div>
 	</nav>
 </div>
 
 @if (isSideBarVisible()) {
 	<sidebar (onDismiss)="isSideBarVisible.set(false)" />
+}
+
+@if (isBranchOrderTypePickerVisible()) {
+	<branch-ordertype-picker
+		[target]="branchOrderTypeTarget()"
+		(onFinished)="isBranchOrderTypePickerVisible.set(false)"
+		(onCancel)="isBranchOrderTypePickerVisible.set(false)"
+	/>
 }
