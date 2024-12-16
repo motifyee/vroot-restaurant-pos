@@ -46,9 +46,9 @@ export class UserImplRepo implements UserRepo {
 
 	createAddress(params: UpdateAddressParams): Observable<Address> {
 		return this.http.post<Address>(
-			`${ENDPOINT}/api/store/customers/${params.userId}/addresses`,
+			`${ENDPOINT}/api/store/user/addresses`,
 			{
-				address: params.address,
+				details: params.details,
 				title: params.title,
 				isDefault: params.isDefault,
 			},
@@ -61,20 +61,18 @@ export class UserImplRepo implements UserRepo {
 	}
 
 	getAddresses(params: { userId: string }): Observable<Address[]> {
-		return this.http.get<Address[]>(
-			`${ENDPOINT}/api/store/customers/${params.userId}/addresses`,
-		);
+		return this.http.get<Address[]>(`${ENDPOINT}/api/store/user/addresses`);
 	}
 
 	deleteAddress(params: { userId: string; id: number }): Observable<boolean> {
 		return this.http.delete(
-			`${ENDPOINT}/api/store/customers/${params.userId}/addresses/${params.id}`,
+			`${ENDPOINT}/api/store/user/addresses/${params.id}`,
 		);
 	}
 
 	updateAddress(params: UpdateAddressParams): Observable<Address> {
-		return this.http.post<Address>(
-			`${ENDPOINT}/api/store/customers/${params.userId}/addresses`,
+		return this.http.put<Address>(
+			`${ENDPOINT}/api/store/user/addresses`,
 			params,
 		);
 	}

@@ -32,10 +32,10 @@ export abstract class UserRepo {
 	// ###########################################################################
 
 	abstract getAddresses(params: { userId: string }): Observable<Address[]>;
-	abstract createAddress(params: UpdateAddressParams): Observable<Address>;
+	abstract createAddress(params: Address): Observable<Address>;
 	abstract deleteAddress(params: {
 		userId: string;
 		id: number;
 	}): Observable<boolean>;
-	abstract updateAddress(params: UpdateAddressParams): Observable<Address>;
+	abstract updateAddress(params: Address): Observable<Address>;
 }

@@ -48,7 +48,7 @@
 			class="address-title flex-1"
 			[ngClass]="{ 'font-bold': value.isDefault }"
 		>
-			{{ value.address }}
+			{{ value.title }}
 			@if (value.isDefault) {
 				<small class="text-xs text-gray-400">(الافتراضي)</small>
 			}
@@ -100,7 +100,7 @@
 					required
 					minlength="6"
 					name="address"
-					[(ngModel)]="addressForm.address"
+					[(ngModel)]="addressForm.details"
 					class="border-0 px-2 py-0 flex-grow-1 align-self-stretch bg-white text-body"
 				/>
 			</div>

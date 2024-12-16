@@ -15,7 +15,7 @@ import {
 } from '@ngrx/signals';
 import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap, tap } from 'rxjs';
+import { pipe, switchMap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 import { setEntity } from '@ngrx/signals/entities';
 
@@ -49,8 +49,7 @@ export function withSetDefaultAddressMethod<_>() {
 								.updateAddress({
 									...address,
 									isDefault: true,
-									userId: store.user().id!,
-								})
+								} as Address)
 								.pipe(
 									tapResponse({
 										next: (_) => {

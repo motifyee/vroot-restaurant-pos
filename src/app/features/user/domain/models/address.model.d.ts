@@ -1,6 +1,6 @@
 declare interface Address {
 	id: number;
 	title: string;
-	address: string;
+	details: string;
 	isDefault: boolean;
 }

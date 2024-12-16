@@ -104,17 +104,17 @@ export const userStore = signalStore(
 					addEntities(
 						[
 							{
-								address: 'Cairo, Egypt',
+								details: 'Cairo, Egypt',
 								id: 1,
 								isDefault: true,
 							},
 							{
-								address: 'Alexandria, Egypt',
+								details: 'Alexandria, Egypt',
 								id: 2,
 								isDefault: false,
 							},
 							{
-								address: 'Giza, Egypt',
+								details: 'Giza, Egypt',
 								id: 3,
 								isDefault: false,
 							},

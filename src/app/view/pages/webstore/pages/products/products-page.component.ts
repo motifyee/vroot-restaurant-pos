@@ -46,7 +46,9 @@ export class ProductsPageComponent implements OnInit {
 	chooseBranch = signal(false);
 
 	ngOnInit(): void {
-		if (IS_DEVMODE && localStorage.getItem('test-branch-idx')) return;
+		if (IS_DEVMODE && localStorage.getItem('test-branch-idx'))
+			return this.settings.selectOrderType('delivery');
+
 		if (!this.settings.selectedBranch?.() || !this.settings.orderType())
 			this.chooseBranch.set(true);
 	}

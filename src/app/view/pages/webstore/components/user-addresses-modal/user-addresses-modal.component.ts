@@ -28,7 +28,7 @@ const timing = '300ms ease-in-out';
 declare interface AddressModel {
 	id?: number;
 	title?: string;
-	address?: string;
+	details?: string;
 	isDefault?: boolean;
 }
 

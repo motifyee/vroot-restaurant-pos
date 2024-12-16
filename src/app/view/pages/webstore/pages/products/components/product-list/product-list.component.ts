@@ -60,16 +60,6 @@ export class ProductListComponent
 				JSON.parse(localStorage.getItem('test-products')!),
 			);
 		}
-
-		let branchId = this.settings.selectedBranch?.()?.id ?? -1;
-		this.productStore
-			.getCategories(branchId)
-			.subscribe(
-				(m) =>
-					IS_DEVMODE &&
-					localStorage.getItem('test-branch-idx') &&
-					localStorage.setItem('test-products', JSON.stringify(m)),
-			);
 	}
 
 	// ###########################################################################
