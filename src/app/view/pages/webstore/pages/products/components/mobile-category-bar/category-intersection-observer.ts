@@ -30,8 +30,9 @@ export class CategoryIntersectionObserver {
 	private handleIntersection(entries: IntersectionObserverEntry[]) {
 		if (this.skipIntersections) return;
 
-		const entry = entries.find((entry) => entry.isIntersecting);
-		if (!entry) return;
+		let entry = entries.find((entry) => entry.isIntersecting);
+		if (!entry && this.intersectingCategoryId() >= 0) return;
+		entry = entry ?? entries[0];
 
 		const categoryId = +(entry.target.getAttribute('category-id') || -1);
 		this.intersectingCategoryId.set(categoryId);

@@ -45,7 +45,7 @@ export class MobilCategoryBarComponent implements AfterViewInit, OnDestroy {
 	_ = effect(() => {
 		if (!this.productsPageStore.categoriesViewHasInit()) return;
 
-		this.observer.initializeObserver('.category-section');
+		this.observer.initializeObserver('.category-section[category-id]');
 	});
 
 	ngOnDestroy(): void {
