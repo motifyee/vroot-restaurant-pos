@@ -5,25 +5,24 @@ import {
 	withMethods,
 } from '@ngrx/signals';
 import { addEntities, EntityState } from '@ngrx/signals/entities';
-import { Invoice } from '../../../domain/models/Invoice.model';
-import { InvoiceRepo } from '../../../domain';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { distinctUntilChanged, pipe, switchMap } from 'rxjs';
+import { pipe, switchMap } from 'rxjs';
 import { inject } from '@angular/core';
-import { InvoiceStoreState } from '../invoice-index.store';
 import { tapResponse } from '@ngrx/operators';
+import { Invoice } from '@src/app/features/invoices/domain/models/Invoice.model';
+import { CartRepo, InvoicesFilter } from '@webstore/features/cart/domain';
 
 export function withGetInvoicesMethod<_>() {
 	return signalStoreFeature(
-		{ state: type<EntityState<Invoice> & InvoiceStoreState>() },
+		{ state: type<EntityState<Invoice>>() },
 		withMethods((store) => {
-			let repo = inject(InvoiceRepo);
+			let repo = inject(CartRepo);
 
 			return {
-				getInvoices: rxMethod(
+				getInvoices: rxMethod<InvoicesFilter>(
 					pipe(
-						switchMap(() =>
-							repo.getInvoices(store.filters()).pipe(
+						switchMap((params) =>
+							repo.getInvoices(params).pipe(
 								tapResponse({
 									next: (invs) =>
 										patchState(store, addEntities(invs)),
