@@ -10,6 +10,9 @@ import { ExclamationIconComponent } from '../../icons/exclamation-icon.component
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactListComponent {
+	  // Array of tab names as a component property
+	  tabs = ['mine', 'unassigned', 'all'];
+	  
 	// Signal for active tab
 	activeTab = signal('mine'); // Default is 'mine'
 

@@ -1,42 +1,32 @@
 <!-- tabs -->
 <div class="tabs-container">
 	<ul class="tabs">
-		<li
-			class="tabs-title"
-			[class.is-active]="activeTab() === 'mine'"
-			(click)="setActiveTab('mine')"
-		>
-			<a>
-				Mine
-				<div class="badge">
-					<span>5</span>
-				</div>
-			</a>
-		</li>
-		<li
-			class="tabs-title"
-			[class.is-active]="activeTab() === 'unassigned'"
-			(click)="setActiveTab('unassigned')"
-		>
-			<a>
-				Unassigned
-				<div class="badge">
-					<span>0</span>
-				</div>
-			</a>
-		</li>
-		<li
-			class="tabs-title"
-			[class.is-active]="activeTab() === 'all'"
-			(click)="setActiveTab('all')"
-		>
-			<a>
-				All
-				<div class="badge">
-					<span>5</span>
-				</div>
-			</a>
-		</li>
+		@for (tab of tabs; track tab) {
+			<li
+				class="tabs-title"
+				[class.is-active]="activeTab() === tab"
+				(click)="setActiveTab(tab)"
+			>
+				<a>
+					@switch (tab) {
+						@case ('mine') {
+							Mine
+							<div class="badge"><span>5</span></div>
+						}
+
+						@case ('unassigned') {
+							Unassigned
+							<div class="badge"><span>0</span></div>
+						}
+
+						@case ('all') {
+							All
+							<div class="badge"><span>5</span></div>
+						}
+					}
+				</a>
+			</li>
+		}
 	</ul>
 </div>
 <!-- ./tabs -->
