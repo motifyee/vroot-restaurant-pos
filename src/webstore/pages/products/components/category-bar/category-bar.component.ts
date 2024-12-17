@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ScrollService } from '../../../../services/scroll.service';
-import { cartStore } from '@src/webstore/features/cart';
+import { menuStore } from '@webstore/state';
 import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
@@ -11,12 +11,12 @@ import { SkeletonModule } from 'primeng/skeleton';
 	styleUrls: ['./category-bar.component.scss'],
 })
 export class CategoryBarComponent {
-	private productStore = inject(cartStore);
+	private menuStore = inject(menuStore);
 	private scrollService = inject(ScrollService);
 
 	activeCategoryId: string | null = null;
 
-	menu = this.productStore.categories;
+	menu = this.menuStore.categories;
 
 	scrollToCategory(categoryIdx: string) {
 		this.activeCategoryId = categoryIdx; // Set active category

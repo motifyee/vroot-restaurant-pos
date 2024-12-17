@@ -10,7 +10,7 @@ import {
 	ViewChild,
 } from '@angular/core';
 import { ScrollService } from '../../services/scroll.service';
-import { settingsStore } from '@webstore/features';
+import { settingsStore } from '@webstore/state';
 import { BranchOrderTypePickerComponent } from '../pick-branch-modal/pick-branch-modal.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 

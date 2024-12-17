@@ -1,11 +1,10 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, computed, inject, Injector, signal } from '@angular/core';
-import { cartStore } from '@src/webstore/features/cart';
 import { CartIconComponent } from './icons/cart-icon.component';
 import { ScrollService } from '../../../../services/scroll.service';
 import { floatUp } from '../../../../animations/float-up.animation';
 import { AuthModalComponent } from '../../../../components/auth-modal/auth-modal.component';
-import { settingsStore, userStore } from '@webstore/features';
+import { settingsStore, userStore, cartStore } from '@webstore/state';
 import { UserAddressesModalComponent } from '../../../../components/user-addresses-modal/user-addresses-modal.component';
 import { scaleInOut } from '../../../../animations/scale-in-out.animation';
 import { singleCallEffect } from '@src/app/core';
@@ -29,8 +28,8 @@ export class CartComponent {
 	settings = inject(settingsStore);
 
 	productStore = inject(cartStore);
-	cartItems = this.productStore.cartProductsEntities;
-	cartItemsMap = this.productStore.cartProductsEntityMap;
+	cartItems = this.productStore.cartProductEntities;
+	cartItemsMap = this.productStore.cartProductEntityMap;
 
 	showAuth = signal(false);
 	showAddressModal = signal(false);

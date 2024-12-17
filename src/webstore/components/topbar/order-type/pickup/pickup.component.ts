@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { settingsStore } from '@src/webstore/features/settings';
+import { settingsStore } from '@webstore/state';
 import { SkeletonModule } from 'primeng/skeleton';
 import { BranchCardComponent } from '../../../branch-card/branch-card.component';
 

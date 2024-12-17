@@ -1,4 +1,4 @@
-import { defaultUserState, UserStoreState } from '@webstore/features';
+import { defaultUserState, UserStoreState } from '@webstore/state';
 import {
 	patchState,
 	signalStoreFeature,

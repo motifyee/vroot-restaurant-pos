@@ -1,11 +1,9 @@
 import { inject } from '@angular/core';
 import {
-	UpdateAddressParams,
 	userAddressesEntityConfig,
 	UserAddressesEntityState,
-	UserRepo,
 	UserStoreState,
-} from '@webstore/features';
+} from '@webstore/state';
 import {
 	patchState,
 	signalStoreFeature,
@@ -14,9 +12,10 @@ import {
 } from '@ngrx/signals';
 import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
 import { catchError, of, switchMap, tap, throwError } from 'rxjs';
-import { addEntity } from '@ngrx/signals/entities';
+import { updateEntity } from '@ngrx/signals/entities';
+import { UserRepo } from '@webstore/features';
 
-export function withCreateAddressMethod<_>() {
+export function withUpdateAddressMethod<_>() {
 	return signalStoreFeature(
 		{
 			state: type<UserStoreState & UserAddressesEntityState>(),
@@ -27,19 +26,22 @@ export function withCreateAddressMethod<_>() {
 			const userRepo = inject(UserRepo);
 
 			return {
-				createAddress: (params: Address) =>
+				updateAddress: (params: Address) =>
 					of(params).pipe(
 						tap(() => store.setLoading(true)),
 
-						switchMap((params) =>
-							userRepo.createAddress(params).pipe(
-								tap((address) => {
+						switchMap((address) =>
+							userRepo.updateAddress(address).pipe(
+								tap(() => {
 									store.setLoading(false);
 
 									patchState(
 										store,
-										addEntity(
-											address,
+										updateEntity(
+											{
+												id: address.id,
+												changes: address,
+											},
 											userAddressesEntityConfig,
 										),
 									);

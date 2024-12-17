@@ -10,7 +10,7 @@ import {
 	signal,
 } from '@angular/core';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
-import { settingsStore, userStore } from '@webstore/features';
+import { settingsStore, userStore } from '@webstore/state';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';

@@ -3,9 +3,8 @@ import {
 	UserAddressesEntityComputed,
 	userAddressesEntityConfig,
 	UserAddressesEntityState,
-	UserRepo,
 	UserStoreState,
-} from '@webstore/features';
+} from '@webstore/state';
 import {
 	patchState,
 	signalStoreFeature,
@@ -18,6 +17,7 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 import { setEntity } from '@ngrx/signals/entities';
+import { UserRepo } from '@webstore/features';
 
 export function withSetDefaultAddressMethod<_>() {
 	return signalStoreFeature(

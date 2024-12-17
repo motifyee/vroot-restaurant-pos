@@ -4,17 +4,18 @@ import {
 	type,
 	withMethods,
 } from '@ngrx/signals';
-import { EntityState, removeEntity } from '@ngrx/signals/entities';
+import { removeEntity } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { distinctUntilChanged, pipe, switchMap } from 'rxjs';
 import { inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import { CartRepo } from '@webstore/features/cart/domain';
 import { Invoice } from '@src/app/features/invoices/domain/models/Invoice.model';
+import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
 
 export const withDeleteInvoiceMethod = <_>() =>
 	signalStoreFeature(
-		{ state: type<EntityState<Invoice>>() },
+		{ state: type<InvoiceEntityState>() },
 		withMethods((state) => {
 			let repo = inject(CartRepo);
 
@@ -26,7 +27,13 @@ export const withDeleteInvoiceMethod = <_>() =>
 							repo.deleteInvoice(inv).pipe(
 								tapResponse({
 									next: (inv) =>
-										patchState(state, removeEntity(inv.id)),
+										patchState(
+											state,
+											removeEntity(
+												inv.id,
+												invoiceEntityConfig,
+											),
+										),
 									error: console.error,
 								}),
 							),

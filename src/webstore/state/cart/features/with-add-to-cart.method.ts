@@ -5,22 +5,25 @@ import {
 	withMethods,
 } from '@ngrx/signals';
 import { addEntity, setEntity } from '@ngrx/signals/entities';
-import { CartProductsState, cartProductsConfig } from '../../cart.store';
+import {
+	CartProductEntityState,
+	cartProductsEntityConfig,
+} from '../cart.store';
 
 export const withAddToCartMethod = <_>() =>
 	signalStoreFeature(
-		{ state: type<CartProductsState>() },
+		{ state: type<CartProductEntityState>() },
 
 		withMethods((store) => {
 			return {
 				addToCart: (product: CartProduct) => {
 					let existing =
-						store.cartProductsEntityMap()[product.variant.id];
+						store.cartProductEntityMap()[product.variant.id];
 
 					if (!existing)
 						patchState(
 							store,
-							addEntity(product, cartProductsConfig),
+							addEntity(product, cartProductsEntityConfig),
 						);
 					else
 						patchState(
@@ -31,7 +34,7 @@ export const withAddToCartMethod = <_>() =>
 									quantity:
 										existing.quantity + product.quantity,
 								},
-								cartProductsConfig,
+								cartProductsEntityConfig,
 							),
 						);
 				},

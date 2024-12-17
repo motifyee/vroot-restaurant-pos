@@ -1,10 +1,9 @@
 import { inject } from '@angular/core';
 import {
-	UserAddressesEntityState,
 	userAddressesEntityConfig,
-	UserRepo,
+	UserAddressesEntityState,
 	UserStoreState,
-} from '@webstore/features';
+} from '@webstore/state';
 import {
 	patchState,
 	signalStoreFeature,
@@ -15,9 +14,10 @@ import { LoadingMethod } from '@src/app/features/base/state/with-loading.method'
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
-import { removeEntity } from '@ngrx/signals/entities';
+import { setAllEntities } from '@ngrx/signals/entities';
+import { UserRepo } from '@webstore/features';
 
-export function withDeleteAddressMethod<_>() {
+export function withGetAddressesMethod<_>() {
 	return signalStoreFeature(
 		{
 			state: type<UserStoreState & UserAddressesEntityState>(),
@@ -28,25 +28,22 @@ export function withDeleteAddressMethod<_>() {
 			const userRepo = inject(UserRepo);
 
 			return {
-				deleteAddress: rxMethod<Address>(
+				getAddresses: rxMethod<void>(
 					pipe(
 						tap(() => store.setLoading(true)),
 
-						switchMap((params) =>
+						switchMap(() =>
 							userRepo
-								.deleteAddress({
-									userId: store.user().id!,
-									id: params.id,
-								})
+								.getAddresses({ userId: store.user().id! })
 								.pipe(
 									tapResponse({
-										next: () => {
+										next: (addresses) => {
 											store.setLoading(false);
 
 											patchState(
 												store,
-												removeEntity(
-													params.id,
+												setAllEntities(
+													addresses,
 													userAddressesEntityConfig,
 												),
 											);

@@ -14,8 +14,7 @@ import { scaleInOut } from './animations/scale-in-out.animation';
 import { RouterOutlet } from '@angular/router';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { CommonModule } from '@angular/common';
-import { userStore } from '@webstore/features';
-import { settingsStore } from '@src/webstore/features/settings';
+import { userStore, settingsStore } from '@webstore/state';
 import { MessageService } from 'primeng/api';
 
 @Component({

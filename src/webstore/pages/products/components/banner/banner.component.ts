@@ -1,5 +1,5 @@
 import { Component, inject, input } from '@angular/core';
-import { settingsStore } from '@webstore/features';
+import { settingsStore } from '@webstore/state';
 
 @Component({
 	selector: 'banner',

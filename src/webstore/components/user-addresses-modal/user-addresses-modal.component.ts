@@ -11,7 +11,7 @@ import {
 	signal,
 	ViewChild,
 } from '@angular/core';
-import { userStore } from '@webstore/features';
+import { userStore } from '@webstore/state';
 import { ModalComponent } from '../modal/modal.component';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { ButtonModule } from 'primeng/button';

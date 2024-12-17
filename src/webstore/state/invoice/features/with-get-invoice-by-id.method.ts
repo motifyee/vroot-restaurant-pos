@@ -11,11 +11,12 @@ import { inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import { Invoice } from '@src/app/features/invoices/domain/models/Invoice.model';
 import { CartRepo } from '@webstore/features/cart/domain';
+import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
 
 export const withGetInvoiceByIdMethod = <_>() =>
 	signalStoreFeature(
 		{
-			state: type<EntityState<Invoice>>(),
+			state: type<InvoiceEntityState>(),
 		},
 		withMethods((store) => {
 			let repo = inject(CartRepo);
@@ -29,7 +30,10 @@ export const withGetInvoiceByIdMethod = <_>() =>
 							repo.getInvoiceById(params).pipe(
 								tapResponse({
 									next: (inv) =>
-										patchState(store, addEntity(inv)),
+										patchState(
+											store,
+											addEntity(inv, invoiceEntityConfig),
+										),
 									error: console.error,
 								}),
 							),

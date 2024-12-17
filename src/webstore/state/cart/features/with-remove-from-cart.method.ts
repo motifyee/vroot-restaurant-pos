@@ -5,17 +5,23 @@ import {
 	withMethods,
 } from '@ngrx/signals';
 import { removeEntity } from '@ngrx/signals/entities';
-import { cartProductsConfig, CartProductsState } from '../../cart.store';
+import {
+	cartProductsEntityConfig,
+	CartProductEntityState,
+} from '../cart.store';
 
 export const withRemoveFromCartMethod = <_>() =>
 	signalStoreFeature(
-		{ state: type<CartProductsState>() },
+		{ state: type<CartProductEntityState>() },
 		withMethods((store) => {
 			return {
 				removeFromCart: (product: CartProduct) =>
 					patchState(
 						store,
-						removeEntity(product.variant.id, cartProductsConfig),
+						removeEntity(
+							product.variant.id,
+							cartProductsEntityConfig,
+						),
 					),
 			};
 		}),

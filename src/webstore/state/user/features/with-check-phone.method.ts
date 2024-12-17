@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { UserRepo, UserStoreState } from '@webstore/features';
+import { UserRepo } from '@webstore/features';
 import {
 	patchState,
 	signalStoreFeature,
@@ -10,6 +10,7 @@ import { LoadingMethod } from '@src/app/features/base/state/with-loading.method'
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
+import { UserStoreState } from '../user.store';
 
 export function withCheckPhoneMethod<_>() {
 	return signalStoreFeature(

@@ -10,7 +10,7 @@ import {
 	HostBinding,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { cartStore } from '@src/webstore/features/cart';
+import { cartStore } from '@webstore/state';
 import { BannerComponent } from '../banner/banner.component';
 import { scaleInOut } from '../../../../animations/scale-in-out.animation';
 import { ModalComponent } from '../../../../components/modal/modal.component';

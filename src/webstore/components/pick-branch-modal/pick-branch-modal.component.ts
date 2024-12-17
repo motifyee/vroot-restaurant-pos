@@ -11,8 +11,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { settingsStore } from '@src/webstore/features/settings';
-import { cartStore } from '@webstore/features';
+import { cartStore, menuStore, settingsStore } from '@webstore/state';
 import { ButtonModule } from 'primeng/button';
 import { scaleInOut } from '../../animations/scale-in-out.animation';
 import { ModalComponent } from '../modal/modal.component';
@@ -88,7 +87,8 @@ export class BranchOrderTypePickerComponent {
 	);
 
 	settings = inject(settingsStore);
-	products = inject(cartStore);
+	cart = inject(cartStore);
+	menu = inject(menuStore);
 
 	@Output() onCancel = new EventEmitter();
 	@Output() onFinished = new EventEmitter();
@@ -99,7 +99,7 @@ export class BranchOrderTypePickerComponent {
 	selectBranch(branch: Branch) {
 		const changed = branch.id !== this.settings.selectedBranch?.()?.id;
 
-		if (changed && this.products.cartProductsEntities().length)
+		if (changed && this.cart.cartProductEntities().length)
 			return this.pendingBranch.set(branch);
 
 		if (this.pendingBranch()) this.pendingBranch.set(undefined);
@@ -107,7 +107,7 @@ export class BranchOrderTypePickerComponent {
 		this.settings.selectBranch(branch);
 		this.choosedBranch.set(true);
 
-		this.products
+		this.menu
 			.getMenu(branch.id)
 			.subscribe(
 				(m) =>

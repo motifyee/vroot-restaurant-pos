@@ -15,11 +15,10 @@ import {
 } from '@angular/core';
 import { ScrollService } from '../../../../services/scroll.service'; // Import your scroll service
 import { Subscription } from 'rxjs';
-import { cartStore } from '@src/webstore/features/cart';
 import { TopbarComponent } from '../../../../components/topbar/topbar.component';
 import { productsPageStore } from '../../products-page.store';
 import { SkeletonModule } from 'primeng/skeleton';
-import { settingsStore } from '@src/webstore/features/settings';
+import { settingsStore, menuStore } from '@webstore/state';
 import { IS_DEVMODE } from '@src/app/core';
 import { BannerComponent } from '../banner/banner.component';
 
@@ -39,7 +38,7 @@ export class ProductListComponent
 	private scrollSubscription!: Subscription;
 	private scrollService = inject(ScrollService);
 	settings = inject(settingsStore);
-	productStore = inject(cartStore);
+	menuStore = inject(menuStore);
 	productsPageStore = inject(productsPageStore);
 
 	scrollHookTop = this.scrollService.scrollHookTop;
@@ -48,7 +47,7 @@ export class ProductListComponent
 		ElementRef<HTMLElement>
 	>;
 
-	menu = this.productStore.menu;
+	menu = this.menuStore.menu;
 
 	ngOnInit() {
 		if (
@@ -56,7 +55,7 @@ export class ProductListComponent
 			localStorage.getItem('test-branch-idx') &&
 			localStorage.getItem('test-products')
 		) {
-			return this.productStore.setMenu(
+			return this.menuStore.setMenu(
 				JSON.parse(localStorage.getItem('test-products')!),
 			);
 		}

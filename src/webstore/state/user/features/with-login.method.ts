@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { LoginParams, UserRepo, UserStoreState } from '@webstore/features';
+import { LoginParams, UserRepo } from '@webstore/features';
 import {
 	patchState,
 	signalStoreFeature,
@@ -11,6 +11,7 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 import { UserDataMethodsType } from './with-user-data.methods';
+import { UserStoreState } from '../user.store';
 
 export function withLoginMethod<_>() {
 	return signalStoreFeature(

@@ -1,6 +1,12 @@
 import { importProvidersFrom } from '@angular/core';
 import { Route, Routes } from '@angular/router';
-import { cartStore, settingsStore, userStore } from '@webstore/features';
+import {
+	cartStore,
+	invoiceStore,
+	menuStore,
+	settingsStore,
+	userStore,
+} from '@webstore/state';
 import { WebstoreFeaturesModule } from '@src/webstore/webstore.features.module';
 
 export const webstoreMainRoute: Route = {
@@ -12,6 +18,8 @@ export const webstoreMainRoute: Route = {
 		userStore,
 		cartStore,
 		settingsStore,
+		menuStore,
+		invoiceStore,
 		importProvidersFrom(WebstoreFeaturesModule),
 	],
 	loadChildren: () => [

@@ -44,7 +44,7 @@
 		</div>
 	}
 	<!-- skeleton -->
-} @else if (productStore.menuStatus() === 'loading') {
+} @else if (menuStore.menuStatus() === 'loading') {
 	@for (category of [1]; track category) {
 		<div #category class="category-section" [id]="'category-' + category">
 			<div class="category-name">

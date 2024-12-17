@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { ScrollService } from '../../../../services/scroll.service';
 import { CategoryIntersectionObserver } from './category-intersection-observer';
-import { cartStore } from '@src/webstore/features/cart';
+import { menuStore } from '@webstore/state';
 import { productsPageStore } from '../../products-page.store';
 
 @Component({
@@ -21,10 +21,10 @@ import { productsPageStore } from '../../products-page.store';
 })
 export class MobilCategoryBarComponent implements AfterViewInit, OnDestroy {
 	scrollService = inject(ScrollService);
-	productStore = inject(cartStore);
+	menuStore = inject(menuStore);
 	productsPageStore = inject(productsPageStore);
 
-	menu = this.productStore.categories;
+	menu = this.menuStore.categories;
 
 	observer = new CategoryIntersectionObserver();
 

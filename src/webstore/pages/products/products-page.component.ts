@@ -14,7 +14,7 @@ import { productsPageStore } from './products-page.store';
 import { AddToCartItemModalComponent } from './components/add-to-cart-modal/add-to-cart-modal.component';
 
 import { ScrollService } from '../../services/scroll.service';
-import { settingsStore } from '@webstore/features';
+import { settingsStore } from '@webstore/state';
 import { BranchOrderTypePickerComponent } from '../../components/pick-branch-modal/pick-branch-modal.component';
 import { IS_DEVMODE } from '@src/app/core';
 
