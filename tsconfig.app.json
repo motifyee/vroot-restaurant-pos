@@ -9,7 +9,7 @@
   "files": [
     "src/main.ts",
     "src/targets/chat/main.ts",
-    "src/targets/webstore/main.ts"
+    "src/webstore/target/main.ts"
   ],
   "include": [
     "src/**/*.d.ts"

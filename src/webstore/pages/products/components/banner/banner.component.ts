@@ -1,0 +1,17 @@
+import { Component, inject, input } from '@angular/core';
+import { settingsStore } from '@webstore/features';
+
+@Component({
+	selector: 'banner',
+	standalone: true,
+	imports: [],
+	templateUrl: './banner.component.html',
+	styleUrl: './banner.component.scss',
+})
+export class BannerComponent {
+	settings = inject(settingsStore);
+
+	fontSize = input<number>(30);
+
+	companyInfo = this.settings.companyInfo;
+}
