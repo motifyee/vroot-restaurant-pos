@@ -27,7 +27,7 @@ export function withCreateAddressMethod<_>() {
 			const userRepo = inject(UserRepo);
 
 			return {
-				createAddress: (params: UpdateAddressParams) =>
+				createAddress: (params: Address) =>
 					of(params).pipe(
 						tap(() => store.setLoading(true)),
 

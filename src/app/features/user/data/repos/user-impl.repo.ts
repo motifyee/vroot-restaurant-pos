@@ -72,7 +72,7 @@ export class UserImplRepo implements UserRepo {
 
 	updateAddress(params: UpdateAddressParams): Observable<Address> {
 		return this.http.put<Address>(
-			`${ENDPOINT}/api/store/user/addresses`,
+			`${ENDPOINT}/api/store/user/addresses/${params.id}`,
 			params,
 		);
 	}

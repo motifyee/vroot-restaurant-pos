@@ -11,7 +11,7 @@ import {
 	signal,
 	ViewChild,
 } from '@angular/core';
-import { UpdateAddressParams, userStore } from '@src/app/features';
+import { userStore } from '@src/app/features';
 import { ModalComponent } from '../modal/modal.component';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -124,10 +124,7 @@ export class UserAddressesModalComponent implements OnInit {
 	submitAddressForm(form: NgForm) {
 		if (form.invalid) return;
 
-		let params = {
-			...this.addressForm,
-			userId: this.user.user().id,
-		} as UpdateAddressParams;
+		let params = this.addressForm as Address;
 
 		const obs =
 			this.activeView() == 'createForm'
