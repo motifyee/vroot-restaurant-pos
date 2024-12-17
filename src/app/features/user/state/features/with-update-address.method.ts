@@ -27,7 +27,7 @@ export function withUpdateAddressMethod<_>() {
 			const userRepo = inject(UserRepo);
 
 			return {
-				updateAddress: (params: UpdateAddressParams) =>
+				updateAddress: (params: Address) =>
 					of(params).pipe(
 						tap(() => store.setLoading(true)),
 

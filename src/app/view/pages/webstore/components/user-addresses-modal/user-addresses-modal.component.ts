@@ -11,7 +11,7 @@ import {
 	signal,
 	ViewChild,
 } from '@angular/core';
-import { UpdateAddressParams, userStore } from '@src/app/features';
+import { userStore } from '@src/app/features';
 import { ModalComponent } from '../modal/modal.component';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -24,13 +24,6 @@ const left = style({ transform: 'translateX(-100%)' });
 const right = style({ transform: 'translateX(100%)' });
 const visible = style({ transform: 'translateX(0)' });
 const timing = '300ms ease-in-out';
-
-declare interface AddressModel {
-	id?: number;
-	title?: string;
-	details?: string;
-	isDefault?: boolean;
-}
 
 @Component({
 	selector: 'user-addresses-modal',
@@ -84,8 +77,8 @@ export class UserAddressesModalComponent implements OnInit {
 
 	user = inject(userStore);
 
-	protected addressForm: AddressModel = {};
-	protected initialFormValue: AddressModel = {};
+	protected addressForm: Partial<Address> = {};
+	protected initialFormValue: Partial<Address> = {};
 
 	activeView = signal<'list' | 'editForm' | 'createForm'>('list');
 
@@ -124,10 +117,7 @@ export class UserAddressesModalComponent implements OnInit {
 	submitAddressForm(form: NgForm) {
 		if (form.invalid) return;
 
-		let params = {
-			...this.addressForm,
-			userId: this.user.user().id,
-		} as UpdateAddressParams;
+		let params = this.addressForm as Address;
 
 		const obs =
 			this.activeView() == 'createForm'
