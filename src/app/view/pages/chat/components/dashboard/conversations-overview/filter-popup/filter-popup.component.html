@@ -22,56 +22,23 @@
 						<div class="filter-container">
 							<div class="flex-container">
 								<select class="select-box">
-									<optgroup label="Standard filters">
-										<option selected value="status">
-											Status
-										</option>
-										<option selected value="assignee_id">
-											Assignee name
-										</option>
-										<option selected value="inbox_id">
-											Inbox name
-										</option>
-										<option selected value="team_id">
-											Team name
-										</option>
-										<option selected value="display_id">
-											Conversation identifier
-										</option>
-										<option selected value="campaign_id">
-											Campaign name
-										</option>
-										<option selected value="labels">
-											Labels
-										</option>
-										<option selected value="created_at">
-											Created at
-										</option>
-										<option
-											selected
-											value="last_activity_at"
-										>
-											Last activity
-										</option>
-									</optgroup>
-									<optgroup label="Additional filters">
-										<option
-											selected
-											value="browser_language"
-										>
-											Browser language
-										</option>
-										<option selected value="country_code">
-											Country name
-										</option>
-										<option selected value="referer">
-											Referer link
-										</option>
-									</optgroup>
-									<optgroup
-										label="Custom attributes"
-									></optgroup>
+									@for (
+										group of dropdownOptions;
+										track group
+									) {
+										<optgroup [label]="group.label">
+											@for (
+												option of group.options;
+												track option
+											) {
+												<option [value]="option.value">
+													{{ option.text }}
+												</option>
+											}
+										</optgroup>
+									}
 								</select>
+
 								<select class="select-box-larger">
 									<option value="equal_to">Equal to</option>
 									<option value="not_equal_to">
