@@ -3,8 +3,37 @@
 	class="scroll-hook"
 	[style]="{ top: scrollHookTop() + 'px' }"
 ></div>
+@if (menuStore.menuStatus() === 'loading') {
+	@for (category of [1]; track category) {
+		<div #category class="category-section" [id]="'category-' + category">
+			<div class="category-name">
+				<span><p-skeleton width="10rem" /></span>
+			</div>
 
-@if (menu().length > 0) {
+			@for (product of [1]; track product) {
+				@for (variant of [1, 2, 3, 4, 5]; track variant) {
+					<div class="item-card">
+						<div class="card-content">
+							<div class="card-content-name">
+								<p-skeleton width="10rem" styleClass="my-2" />
+							</div>
+							<div class="card-content-price">
+								<div class="card-content-price-2">
+									<div dir="ltr" class="card-content-price-3">
+										<p-skeleton size="1rem" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-img">
+							<p-skeleton height="100%" borderRadius=".5rem" />
+						</div>
+					</div>
+				}
+			}
+		</div>
+	}
+} @else if (menu().length > 0) {
 	@for (category of menu(); track category.id) {
 		<div
 			#category
@@ -44,36 +73,6 @@
 		</div>
 	}
 	<!-- skeleton -->
-} @else if (menuStore.menuStatus() === 'loading') {
-	@for (category of [1]; track category) {
-		<div #category class="category-section" [id]="'category-' + category">
-			<div class="category-name">
-				<span><p-skeleton width="10rem" /></span>
-			</div>
-
-			@for (product of [1]; track product) {
-				@for (variant of [1, 2, 3, 4, 5]; track variant) {
-					<div class="item-card">
-						<div class="card-content">
-							<div class="card-content-name">
-								<p-skeleton width="10rem" styleClass="my-2" />
-							</div>
-							<div class="card-content-price">
-								<div class="card-content-price-2">
-									<div dir="ltr" class="card-content-price-3">
-										<p-skeleton size="1rem" />
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="card-img">
-							<p-skeleton height="100%" borderRadius=".5rem" />
-						</div>
-					</div>
-				}
-			}
-		</div>
-	}
 } @else {
 	<div class="w-full text-center flex flex-col items-center gap-5">
 		<img
