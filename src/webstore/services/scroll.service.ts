@@ -24,5 +24,7 @@ export class ScrollService {
 
 	// ###########################################################################
 
-	isNarrowScreen = signal(window.innerWidth <= 1000);
+	isMobileView = signal(window.innerWidth <= 750);
+	isTabletView = signal(window.innerWidth <= 1000 && window.innerWidth > 750);
+	isWideScreen = signal(window.innerWidth > 1000);
 }

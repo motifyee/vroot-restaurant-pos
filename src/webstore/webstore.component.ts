@@ -65,7 +65,11 @@ export class WebstoreComponent implements OnInit {
 
 	@HostListener('window:resize', ['$event'])
 	onResize(event: any) {
-		this.scrollService.isNarrowScreen.set(event.target.innerWidth <= 1000);
+		this.scrollService.isMobileView.set(window.innerWidth <= 750);
+		this.scrollService.isTabletView.set(
+			window.innerWidth <= 1000 && window.innerWidth > 750,
+		);
+		this.scrollService.isWideScreen.set(event.target.innerWidth > 1000);
 	}
 
 	async toggleLang() {

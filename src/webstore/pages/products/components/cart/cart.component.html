@@ -1,8 +1,8 @@
 @if (!cartItems().length) {
-	@if (!scrollService.isNarrowScreen()) {
+	@if (!scrollService.isMobileView()) {
 		<ng-container [ngTemplateOutlet]="emptyCart" />
 	}
-} @else if (scrollService.isNarrowScreen()) {
+} @else if (scrollService.isMobileView()) {
 	<ng-container [ngTemplateOutlet]="floatingCart" />
 } @else {
 	<ng-container [ngTemplateOutlet]="cart" />
