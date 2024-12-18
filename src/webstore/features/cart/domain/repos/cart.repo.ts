@@ -1,4 +1,3 @@
-import { Invoice } from '@src/app/features/invoices/domain/models/Invoice.model';
 import { Observable } from 'rxjs';
 
 export type InvoicesFilter = {
@@ -17,25 +16,25 @@ export abstract class CartRepo {
 	abstract getInvoiceById(
 		params: { id: number },
 		config?: Config,
-	): Observable<Invoice>;
+	): Observable<WebstoreInvoice>;
 
 	abstract getInvoices(
 		params: InvoicesFilter,
 		config?: Config,
-	): Observable<Invoice[]>;
+	): Observable<WebstoreInvoice[]>;
 
 	abstract createInvoice(
-		params: { invoice: Invoice; creationToken: string },
+		params: { invoice: WebstoreInvoice; creationToken: string },
 		config?: Config,
-	): Observable<Invoice>;
+	): Observable<WebstoreInvoice>;
 
 	abstract updateInvoice(
-		params: Invoice,
+		params: WebstoreInvoice,
 		config?: Config,
-	): Observable<Invoice>;
+	): Observable<WebstoreInvoice>;
 
 	abstract deleteInvoice(
-		params: Invoice,
+		params: WebstoreInvoice,
 		config?: Config,
-	): Observable<Invoice>;
+	): Observable<WebstoreInvoice>;
 }

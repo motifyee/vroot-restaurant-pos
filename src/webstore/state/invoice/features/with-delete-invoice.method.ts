@@ -10,7 +10,6 @@ import { distinctUntilChanged, pipe, switchMap } from 'rxjs';
 import { inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import { CartRepo } from '@webstore/features/cart/domain';
-import { Invoice } from '@src/app/features/invoices/domain/models/Invoice.model';
 import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
 
 export const withDeleteInvoiceMethod = <_>() =>
@@ -20,7 +19,7 @@ export const withDeleteInvoiceMethod = <_>() =>
 			let repo = inject(CartRepo);
 
 			return {
-				deleteInvoice: rxMethod<Invoice>(
+				deleteInvoice: rxMethod<WebstoreInvoice>(
 					pipe(
 						distinctUntilChanged(),
 						switchMap((inv) =>
@@ -30,7 +29,7 @@ export const withDeleteInvoiceMethod = <_>() =>
 										patchState(
 											state,
 											removeEntity(
-												inv.id,
+												inv.id!,
 												invoiceEntityConfig,
 											),
 										),

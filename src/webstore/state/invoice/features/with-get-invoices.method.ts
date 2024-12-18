@@ -4,13 +4,12 @@ import {
 	type,
 	withMethods,
 } from '@ngrx/signals';
-import { addEntities, EntityState } from '@ngrx/signals/entities';
+import { addEntities } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap } from 'rxjs';
 import { inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
-import { Invoice } from '@src/app/features/invoices/domain/models/Invoice.model';
-import { CartRepo, InvoicesFilter } from '@webstore/features/cart/domain';
+import { CartRepo, InvoicesFilter } from '@webstore/features';
 import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
 
 export function withGetInvoicesMethod<_>() {

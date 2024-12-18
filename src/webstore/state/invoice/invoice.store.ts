@@ -11,15 +11,18 @@ import { withDeleteInvoiceMethod } from './features/with-delete-invoice.method';
 import { withGetInvoiceByIdMethod } from './features/with-get-invoice-by-id.method';
 import { withGetInvoicesMethod } from './features/with-get-invoices.method';
 import { withUpdateInvoiceMethod } from './features/with-update-invoice.method';
-import { Invoice } from '@src/app/features/invoices/domain/models/Invoice.model';
 
-export type InvoiceEntityState = NamedEntityState<Invoice, 'invoice'>;
+export type InvoiceEntityState = NamedEntityState<WebstoreInvoice, 'invoice'>;
 
-export type InvoiceEntityComputed = NamedEntityComputed<Invoice, 'invoice'>;
+export type InvoiceEntityComputed = NamedEntityComputed<
+	WebstoreInvoice,
+	'invoice'
+>;
 
 export const invoiceEntityConfig = entityConfig({
-	entity: type<Invoice>(),
+	entity: type<WebstoreInvoice>(),
 	collection: 'invoice',
+	selectId: (c: WebstoreInvoice) => c.id!,
 });
 
 // #############################################################################

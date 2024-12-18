@@ -65,9 +65,11 @@ export class AddToCartItemModalComponent implements OnInit {
 	addToCart() {
 		if (!this.variant()) return;
 
-		let cartProduct = {
-			variant: { ...this.variant()!, note: this.note() },
+		let cartProduct: CartProduct = {
+			variant: this.variant()!,
 			quantity: this.quantity(),
+			totalPrice: this.totalPrice(),
+			note: this.note(),
 		};
 
 		this.productStore.addToCart(cartProduct);

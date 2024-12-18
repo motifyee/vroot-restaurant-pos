@@ -30,6 +30,7 @@ interface Invoice {
 
 	deliveryAreaPrice: decimal;
 	deliveryCostPrice: decimal;
+	shippingAddressId: number;
 
 	servicePrice: decimal;
 

@@ -4,10 +4,16 @@ import { CartIconComponent } from './icons/cart-icon.component';
 import { ScrollService } from '../../../../services/scroll.service';
 import { floatUp } from '../../../../animations/float-up.animation';
 import { AuthModalComponent } from '../../../../components/auth-modal/auth-modal.component';
-import { settingsStore, userStore, cartStore } from '@webstore/state';
+import {
+	settingsStore,
+	userStore,
+	cartStore,
+	invoiceStore,
+} from '@webstore/state';
 import { UserAddressesModalComponent } from '../../../../components/user-addresses-modal/user-addresses-modal.component';
 import { scaleInOut } from '../../../../animations/scale-in-out.animation';
 import { singleCallEffect } from '@src/app/core';
+import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
 
 @Component({
 	selector: 'cart',
@@ -26,6 +32,8 @@ export class CartComponent {
 	scrollService = inject(ScrollService);
 	userStore = inject(userStore);
 	settings = inject(settingsStore);
+	invoiceStore = inject(invoiceStore);
+	cart = inject(cartStore);
 
 	productStore = inject(cartStore);
 	cartItems = this.productStore.cartProductEntities;
@@ -71,6 +79,7 @@ export class CartComponent {
 	}
 
 	injector = inject(Injector);
+	creationToken = uuidv4();
 	checkout() {
 		if (!this.userStore.isLoggedIn())
 			return singleCallEffect({
@@ -86,6 +95,18 @@ export class CartComponent {
 				predicate: () => !this.showAddressModal(),
 				init: () => this.showAddressModal.set(true),
 				success: () => !!this.#selectedAddress() && this.checkout(),
+			});
+
+		this.invoiceStore
+			.createInvoiceFromCartProducts({
+				creationToken: this.creationToken,
+				products: this.cart.cartProductEntities(),
+				shippingAddressId: this.#selectedAddress()!.id,
+				salesInvoiceType: this.settings.orderTypeId()!,
+			})
+			.subscribe(() => {
+				this.cart.emptyCart();
+				this.creationToken = uuidv4();
 			});
 	}
 }

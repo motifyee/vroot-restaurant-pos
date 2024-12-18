@@ -2,7 +2,6 @@ import { map, Observable } from 'rxjs';
 import { inject } from '@angular/core';
 import { CartRepo } from '../../../domain';
 import { ENDPOINT, HttpService } from '@src/app/core';
-import { Invoice } from '@src/app/features/invoices/domain/models/Invoice.model';
 
 export class CartImplRepo implements CartRepo {
 	http = inject(HttpService);
@@ -20,8 +19,8 @@ export class CartImplRepo implements CartRepo {
 	getInvoiceById(
 		params: { id: number },
 		config?: Config,
-	): Observable<Invoice> {
-		return this.http.get<Invoice>(
+	): Observable<WebstoreInvoice> {
+		return this.http.get<WebstoreInvoice>(
 			`${ENDPOINT}/api/store/invoices/${params.id}`,
 			undefined,
 			config,
@@ -49,8 +48,8 @@ export class CartImplRepo implements CartRepo {
 			isClosed: boolean;
 		},
 		config?: Config,
-	): Observable<Invoice[]> {
-		return this.http.get<Invoice[]>(
+	): Observable<WebstoreInvoice[]> {
+		return this.http.get<WebstoreInvoice[]>(
 			`${ENDPOINT}/api/store/invoices`,
 			{
 				params: {
@@ -69,9 +68,9 @@ export class CartImplRepo implements CartRepo {
 	}
 
 	createInvoice(
-		params: { invoice: Invoice; creationToken: string },
+		params: { invoice: WebstoreInvoice; creationToken: string },
 		config?: Config,
-	): Observable<Invoice> {
+	): Observable<WebstoreInvoice> {
 		return this.http
 			.post<{
 				id: number;
@@ -81,10 +80,21 @@ export class CartImplRepo implements CartRepo {
 				{ headers: { creationToken: params.creationToken } },
 				config,
 			)
-			.pipe(map((res) => ({ ...params.invoice, id: res.id }) as Invoice));
+			.pipe(
+				map(
+					(res) =>
+						({
+							id: res.id,
+							...params.invoice,
+						}) as WebstoreInvoice,
+				),
+			);
 	}
 
-	updateInvoice(params: Invoice, config?: Config): Observable<Invoice> {
+	updateInvoice(
+		params: WebstoreInvoice,
+		config?: Config,
+	): Observable<WebstoreInvoice> {
 		return this.http
 			.put<{
 				id: number;
@@ -97,7 +107,10 @@ export class CartImplRepo implements CartRepo {
 			.pipe(map((res) => params));
 	}
 
-	deleteInvoice(params: Invoice, config?: Config): Observable<Invoice> {
+	deleteInvoice(
+		params: WebstoreInvoice,
+		config?: Config,
+	): Observable<WebstoreInvoice> {
 		return this.http
 			.delete(
 				`${ENDPOINT}/api/store/invoices/${params.id}`,

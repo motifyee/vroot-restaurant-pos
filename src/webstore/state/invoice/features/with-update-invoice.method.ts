@@ -4,10 +4,9 @@ import {
 	type,
 	withMethods,
 } from '@ngrx/signals';
-import { distinctUntilChanged, of, switchMap, tap, timeout } from 'rxjs';
+import { distinctUntilChanged, of, switchMap, tap } from 'rxjs';
 import { inject } from '@angular/core';
 import { updateEntity } from '@ngrx/signals/entities';
-import { Invoice } from '@src/app/features/invoices/domain/models/Invoice.model';
 import { CartRepo } from '@webstore/features/cart/domain';
 import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
 
@@ -18,7 +17,7 @@ export function withUpdateInvoiceMethod<_>() {
 			let repo = inject(CartRepo);
 
 			return {
-				updateInvoice: (inv: Invoice) =>
+				updateInvoice: (inv: WebstoreInvoice) =>
 					of(inv).pipe(
 						distinctUntilChanged(),
 						switchMap((inv) =>
@@ -28,7 +27,7 @@ export function withUpdateInvoiceMethod<_>() {
 										store,
 										updateEntity(
 											{
-												id: inv.id,
+												id: inv.id!,
 												changes: inv,
 											},
 											invoiceEntityConfig,

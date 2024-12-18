@@ -7,10 +7,9 @@ import {
 import { distinctUntilChanged, of, switchMap } from 'rxjs';
 import { inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
-import { addEntity, EntityState } from '@ngrx/signals/entities';
 import { CartRepo } from '@webstore/features/cart/domain';
-import { Invoice } from '@src/app/features/invoices/domain/models/Invoice.model';
 import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
+import { addEntity } from '@ngrx/signals/entities';
 
 export const withCreateInvoiceMethod = <_>() =>
 	signalStoreFeature(
@@ -20,7 +19,7 @@ export const withCreateInvoiceMethod = <_>() =>
 
 			return {
 				createInvoice: (params: {
-					invoice: Invoice;
+					invoice: WebstoreInvoice;
 					creationToken: string;
 				}) =>
 					of(params).pipe(
@@ -28,16 +27,48 @@ export const withCreateInvoiceMethod = <_>() =>
 						switchMap((inv) =>
 							repo.createInvoice(inv).pipe(
 								tapResponse({
-									next: (inv) =>
+									next: (inv) => {
 										patchState(
 											store,
 											addEntity(inv, invoiceEntityConfig),
-										),
+										);
+									},
 									error: console.error,
 								}),
 							),
 						),
 					),
+			};
+		}),
+
+		withMethods((store) => {
+			return {
+				createInvoiceFromCartProducts: (params: {
+					products: CartProduct[];
+					shippingAddressId: number;
+					salesInvoiceType: number;
+					creationToken: string;
+				}) => {
+					const products: InvoiceProduct[] = params.products.map(
+						(p) =>
+							({
+								productVariantId: p.variant.id,
+								quantity: p.quantity,
+								note: p.note,
+							}) as InvoiceProduct,
+					);
+
+					const invoice: WebstoreInvoice = {
+						products,
+						shippingAddressId: params.shippingAddressId,
+						salesInvoiceType: params.salesInvoiceType,
+					};
+
+					return store.createInvoice({
+						invoice,
+						creationToken: params.creationToken,
+					});
+				},
 			};
 		}),
 	);

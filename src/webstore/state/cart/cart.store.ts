@@ -1,6 +1,5 @@
 import { signalStore, type, withState } from '@ngrx/signals';
 import { storeType } from '@src/app/view/state/utils/utils';
-import { withMenuMethods } from '../menu/with-menu.methods';
 import {
 	entityConfig,
 	NamedEntityComputed,
@@ -42,8 +41,6 @@ export const cartStore = signalStore(
 	withEntities(cartProductsEntityConfig),
 
 	withCartTotalComputed(),
-
-	// withMenuMethods(),
 
 	withAddToCartMethod(),
 	withRemoveFromCartMethod(),

@@ -3,4 +3,5 @@ declare interface Address {
 	title: string;
 	details: string;
 	isDefault: boolean;
+	areaId?: number;
 }
