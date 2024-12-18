@@ -1,0 +1,89 @@
+<div class="modal-mask skip-context-menu" transition="modal">
+	<div class="modal-wrapper">
+		<button
+			(click)="toggleFilterPopup()"
+			class="button dismiss-btn"
+			type="submit"
+		>
+			<dismiss-icon />
+		</button>
+		<div>
+			<div class="modal-header-container">
+				<h2 class="modal-header-title">Filter conversations</h2>
+				<p class="modal-description">
+					Add your filters below and hit 'Apply filters' to cut
+					through the chat clutter.
+				</p>
+			</div>
+			<div class="p-8">
+				<div class="main-section">
+					<div>
+						<!--  -->
+						<div class="filter-container">
+							<div class="flex-container">
+								<select class="select-box">
+									@for (
+										group of dropdownOptions;
+										track group
+									) {
+										<optgroup [label]="group.label">
+											@for (
+												option of group.options;
+												track option
+											) {
+												<option [value]="option.value">
+													{{ option.text }}
+												</option>
+											}
+										</optgroup>
+									}
+								</select>
+
+								<select class="select-box-larger">
+									<option value="equal_to">Equal to</option>
+									<option value="not_equal_to">
+										Not equal to
+									</option>
+								</select>
+								<!-- filter-answer-wrapper multi-select dropdown -->
+								<button class="clear-button" type="submit">
+									<dismiss-icon />
+								</button>
+							</div>
+						</div>
+
+						<div class="divider-container">
+							<hr class="divider-line" />
+							<select class="divider-select">
+								<option value="and">AND</option>
+								<option value="or">OR</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="mt-4">
+						<button class="add-filter-btn" type="submit">
+							<dismiss-icon />
+
+							<span class="">Add filter</span>
+						</button>
+					</div>
+				</div>
+
+				<div class="w-full">
+					<div class="action-btns">
+						<button
+							(click)="toggleFilterPopup()"
+							class="button primary button clear"
+							type="submit"
+						>
+							<span class="cancel-btn">Cancel</span></button
+						><button class="button primary" type="submit">
+							<span class="apply-filter-btn">Apply filters</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
