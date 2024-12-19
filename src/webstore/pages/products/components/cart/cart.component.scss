@@ -117,22 +117,33 @@
 // #############################################################################
 
 .floating-cart {
-	// border: 3px solid var(--GreenBackground);
-	@apply fixed right-4 bottom-4 left-4 z-10 cursor-pointer;
+	@apply fixed right-4 bottom-4 left-4;
+
+	.items {
+		@apply p-3 max-h-[60vh] min-h-40
+    overflow-y-scroll w-full rounded-t-3xl;
+		margin-bottom: -6px;
+		border: 6px solid var(--GreenBackground);
+		background-color: var(--cardsBG);
+	}
 
 	.btn {
-		@apply rounded-lg
-  text-white font-bold
-    flex justify-between items-center p-4;
+		@apply rounded-lg select-none
+  text-white font-bold 
+    flex justify-between items-center;
 		background-color: var(--GreenBackground);
 
+		&.expanded {
+			@apply rounded-t-none;
+		}
+
 		.cart-icon {
-			@apply relative;
+			@apply h-full p-4 bg-[#617c4c] rounded-r-lg cursor-pointer;
 
 			.badge {
-				@apply absolute -top-1 -right-1 w-5 h-5 rounded-full
-      font-normal text-sm
-      grid place-items-center;
+				@apply absolute -top-1 -right-1 w-5 h-5 
+        font-normal text-sm rounded-full
+        grid place-items-center;
 				color: var(--GreenBackground);
 				background-color: white;
 			}

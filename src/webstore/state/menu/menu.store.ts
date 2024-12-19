@@ -13,12 +13,12 @@ import { tapResponse } from '@ngrx/operators';
 
 type MenuState = {
 	categories: Category[];
-	menuStatus: 'loading' | 'loaded' | 'error';
+	menuStatus: 'idle' | 'loading' | 'loaded' | 'error';
 };
 
 const initialState: MenuState = {
 	categories: [],
-	menuStatus: 'loading',
+	menuStatus: 'idle',
 };
 // #############################################################################
 

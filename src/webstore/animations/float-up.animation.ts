@@ -8,3 +8,12 @@ export const floatUp = trigger('floatUp', [
 	transition(':enter', [hidden, animate(timing, visible)]),
 	transition(':leave', [animate(timing, hidden)]),
 ]);
+
+const expandVisible = style({ opacity: 1, 'max-height': '60vh' });
+const expandHidden = style({ opacity: 0.8, 'max-height': 0 });
+const expandTiming = '300ms ease-in';
+
+export const cartExpandUp = trigger('expandUp', [
+	transition(':enter', [expandHidden, animate(expandTiming, expandVisible)]),
+	transition(':leave', [animate(expandTiming, expandHidden)]),
+]);

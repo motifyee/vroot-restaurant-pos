@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs';
 import { TopbarComponent } from '../../../../components/topbar/topbar.component';
 import { productsPageStore } from '../../products-page.store';
 import { SkeletonModule } from 'primeng/skeleton';
-import { settingsStore, menuStore } from '@webstore/state';
+import { settingsStore, menuStore, cartStore } from '@webstore/state';
 import { IS_DEVMODE } from '@src/app/core';
 import { BannerComponent } from '../banner/banner.component';
 
@@ -39,6 +39,7 @@ export class ProductListComponent
 	private scrollService = inject(ScrollService);
 	settings = inject(settingsStore);
 	menuStore = inject(menuStore);
+	cart = inject(cartStore);
 	productsPageStore = inject(productsPageStore);
 
 	scrollHookTop = this.scrollService.scrollHookTop;
@@ -50,14 +51,29 @@ export class ProductListComponent
 	menu = this.menuStore.menu;
 
 	ngOnInit() {
-		if (
-			IS_DEVMODE &&
-			localStorage.getItem('test-branch-idx') &&
-			localStorage.getItem('test-products')
-		) {
-			return this.menuStore.setMenu(
-				JSON.parse(localStorage.getItem('test-products')!),
-			);
+		if (IS_DEVMODE) {
+			if (
+				localStorage.getItem('test-branch-idx') &&
+				localStorage.getItem('test-products')
+			)
+				this.menuStore.setMenu(
+					JSON.parse(localStorage.getItem('test-products')!),
+				);
+			else
+				localStorage.getItem('test-branch-idx') &&
+					this.menuStore
+						.getMenu(+localStorage.getItem('test-branch-idx')!)
+						.subscribe();
+
+			this.menu()
+				.slice(0, 30)
+				.forEach((c) =>
+					this.cart.addToCart({
+						variant: c.variants[0]!,
+						quantity: 1,
+						totalPrice: c.variants[0]!.price,
+					}),
+				);
 		}
 	}
 

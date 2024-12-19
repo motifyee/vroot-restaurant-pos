@@ -2,7 +2,10 @@ import { NgTemplateOutlet } from '@angular/common';
 import { Component, computed, inject, Injector, signal } from '@angular/core';
 import { CartIconComponent } from './icons/cart-icon.component';
 import { ScrollService } from '../../../../services/scroll.service';
-import { floatUp } from '../../../../animations/float-up.animation';
+import {
+	cartExpandUp,
+	floatUp,
+} from '../../../../animations/float-up.animation';
 import { AuthModalComponent } from '../../../../components/auth-modal/auth-modal.component';
 import {
 	settingsStore,
@@ -26,7 +29,7 @@ import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
 	],
 	templateUrl: './cart.component.html',
 	styleUrl: './cart.component.scss',
-	animations: [floatUp, scaleInOut], // !TODO-FIX: why must be imported for auth-modal to animate :leave
+	animations: [floatUp, cartExpandUp, scaleInOut], // !TODO-FIX: why must be imported for auth-modal to animate :leave
 })
 export class CartComponent {
 	scrollService = inject(ScrollService);
@@ -45,6 +48,8 @@ export class CartComponent {
 	#selectedAddress = computed(
 		() => this.selectedAddress() || this.userStore.defaultAddress(),
 	);
+
+	floatingCartExpanded = signal(false);
 
 	removeFromCart(product: CartProduct) {
 		this.productStore.removeFromCart(product);
@@ -74,8 +79,8 @@ export class CartComponent {
 		});
 	}
 
-	expandCart() {
-		throw new Error('Method not implemented.');
+	toggleFloatCartExpanded() {
+		this.floatingCartExpanded.update((v) => !v);
 	}
 
 	injector = inject(Injector);

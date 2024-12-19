@@ -70,19 +70,30 @@
 
 <ng-template #floatingCart>
 	<div @floatUp class="floating-cart">
-		<!-- <ng-container [ngTemplateOutlet]="_cartItems" /> -->
-
-		<div (click)="checkout()" class="btn">
-			<div class="cart-icon" (click)="expandCart()">
-				<span class="badge">{{ cartItems().length }}</span>
-				<cart-icon class="w-8 h-8" />
+		@if (floatingCartExpanded()) {
+			<div @expandUp class="items">
+				<ng-container [ngTemplateOutlet]="_cartItems" />
 			</div>
+		}
 
-			<span class=""> تنفيذ الطلب </span>
+		<div class="btn cursor-pointer" (click)="checkout()">
+			<span
+				class="cart-icon"
+				(click)="$event.stopPropagation(); toggleFloatCartExpanded()"
+			>
+				<div class="relative">
+					<span class="badge">{{ cartItems().length }}</span>
+					<cart-icon class="w-8 h-8" />
+				</div>
+			</span>
 
-			<span class="total-price">
+			<!-- <div class="action"> -->
+			<span class="flex-1 text-center p-4"> تنفيذ الطلب </span>
+
+			<span class="total-price p-4">
 				{{ productStore.cartTotal() }} EGP
 			</span>
+			<!-- </div> -->
 		</div>
 	</div>
 </ng-template>
