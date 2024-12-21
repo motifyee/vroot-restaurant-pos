@@ -1,0 +1,83 @@
+* {
+	box-sizing: border-box;
+}
+p {
+	text-rendering: optimizeLegibility;
+	margin-bottom: 0.5rem;
+	font-size: 0.875rem;
+	line-height: 1.65;
+}
+
+a {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+}
+
+ol,
+ul,
+menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+ol,
+dl {
+	margin-bottom: 0.5rem;
+	list-style-position: outside;
+	list-style-type: disc;
+	line-height: 1.65;
+}
+
+a {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+}
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: inherit;
+	font-feature-settings: inherit;
+	font-variation-settings: inherit;
+	font-size: 100%;
+	font-weight: inherit;
+	line-height: inherit;
+	letter-spacing: inherit;
+	color: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+	background: transparent;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	font: inherit;
+	margin: 0;
+	padding: 0;
+	color: inherit;
+}
+
+.icon {
+	padding: 0;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

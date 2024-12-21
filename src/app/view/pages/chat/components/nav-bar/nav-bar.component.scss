@@ -52,11 +52,6 @@
 	@apply relative flex-center bg-transparent border-0 w-10 h-10 p-0 my-2 rounded-lg text-slate-600 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-600 dark:hover:text-slate-100;
 }
 
-/* User button */
-.user-button {
-	@apply flex items-center rounded-full border-0;
-}
-
 /* User thumbnail box */
 .user-thumbnail {
 	@apply h-full w-full;
