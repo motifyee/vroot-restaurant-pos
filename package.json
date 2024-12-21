@@ -20,7 +20,8 @@
 		"build:webstore": "ng build webstore",
 		"postbuild:webstore": "scripts\\post-build-webstore.cmd",
 		"build:local-webstore": "ng build webstore --base-href /webstore/",
-		"postbuild:local-webstore": "scripts\\post-build-local-webstore.cmd"
+		"postbuild:local-webstore": "scripts\\post-build-local-webstore.cmd",
+		"build:all-webstore": "clear; git pull; npm run build:webstore; npm run build:local-webstore"
 	},
 	"private": true,
 	"dependencies": {
