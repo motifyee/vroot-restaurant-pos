@@ -17,9 +17,9 @@
 		"//5": "webstore",
 		"//6": "########",
 		"serve-webstore": "ng serve webstore --configuration development",
-		"build:webstore": "ng build --configuration webstore",
+		"build:webstore": "ng build webstore",
 		"postbuild:webstore": "scripts\\post-build-webstore.cmd",
-		"build:local-webstore": "ng build --configuration webstore --base-href /webstore/",
+		"build:local-webstore": "ng build webstore --base-href /webstore/",
 		"postbuild:local-webstore": "scripts\\post-build-local-webstore.cmd"
 	},
 	"private": true,
