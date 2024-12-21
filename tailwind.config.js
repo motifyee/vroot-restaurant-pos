@@ -4,6 +4,7 @@ module.exports = {
 		'*.{html, ts}',
 		'./src/**/*.{html, ts, scss}',
 		'./src/**/*.component.{html, ts, scss}',
+		'./webstore/**/*.{html, ts, scss}',
 	],
 	corePlugins: {
 		preflight: false,

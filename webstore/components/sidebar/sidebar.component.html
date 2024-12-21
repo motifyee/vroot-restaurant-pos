@@ -1,0 +1,23 @@
+<div (click)="onDismiss.emit()" class="overlay"></div>
+
+<div class="side-nav" id="side-nav">
+	<div (click)="onDismiss.emit()" class="cursor-pointer p-4">
+		<i class="text-white text-2xl pi pi-angle-right"></i>
+	</div>
+
+	<div class="p-4">
+		<ul class="m-0 p-0 list-none">
+			@for (link of menuLinks(); track link.label) {
+				<li>
+					<a
+						class="py-4 text-white text-right no-underline"
+						[title]="link.label"
+						(click)="onLinkClick(link)"
+					>
+						{{ link.label }}
+					</a>
+				</li>
+			}
+		</ul>
+	</div>
+</div>

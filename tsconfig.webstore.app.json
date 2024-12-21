@@ -7,12 +7,10 @@
     "types": [],
   },
   "files": [
-    "src/main.ts",
-    "src/targets/chat/main.ts",
-    "webstore/main.ts",
+    "webstore/main.ts"
   ],
   "include": [
     "src/**/*.d.ts",
-    "webstore/**/*.d.ts",
-  ]
+    "webstore/**/*.d.ts"
+  ],
 }

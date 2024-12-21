@@ -1,0 +1,15 @@
+p-button.w-full button {
+	width: 100%;
+}
+
+.p-button:not(.p-button-text):not(.p-button-outlined) {
+	background-color: var(--GreenBackground);
+	border-color: var(--GreenBackground);
+	min-height: 50px;
+	font-weight: 700;
+
+	&:not(:disabled):hover {
+		background-color: var(--GreenBGHover);
+		border-color: var(--GreenBGHover);
+	}
+}

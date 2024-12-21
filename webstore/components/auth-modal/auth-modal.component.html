@@ -1,0 +1,95 @@
+<p-toast position="top-right" className="z-50" />
+
+<modal
+	[header]="header()"
+	[isLoading]="userStore.isLoading()"
+	(onDismissed)="dismiss()"
+>
+	@switch (userStore.registerationStep()) {
+		@case ('check-phone') {
+			<ng-container [ngTemplateOutlet]="phoneForm" />
+		}
+		@case ('verify-otp') {
+			<ng-container [ngTemplateOutlet]="verificationForm" />
+		}
+		@case ('login') {
+			<ng-container [ngTemplateOutlet]="loginForm" />
+		}
+		@case ('register') {
+			<ng-container [ngTemplateOutlet]="registerationForm" />
+		}
+	}
+</modal>
+
+<ng-template #phoneForm>
+	<div dir="ltr" class="phoneInput">
+		<span>+20</span>
+		<input
+			type="tel"
+			inputmode="numeric"
+			maxlength="11"
+			placeholder="01XXXXXXXXX"
+			class="border-0 px-2 py-0 flex-grow-1 align-self-stretch bg-white text-body"
+			[(ngModel)]="phone"
+		/>
+	</div>
+	<p-button
+		(click)="checkPhone()"
+		type="submit"
+		class="w-full"
+		label="التالي"
+	/>
+</ng-template>
+
+<ng-template #verificationForm>verify</ng-template>
+
+<ng-template #registerationForm>
+	<div class="flex flex-col justify-stretch gap-2">
+		<div class="phoneInput">
+			<input
+				placeholder="اسم المستخدم"
+				class="border-0 px-2 py-0 flex-grow-1 align-self-stretch bg-white text-body"
+				[(ngModel)]="name"
+			/>
+		</div>
+
+		<div class="phoneInput">
+			<input
+				placeholder="كلمة السر"
+				type="password"
+				class="border-0 px-2 py-0 flex-grow-1 align-self-stretch bg-white text-body"
+				[(ngModel)]="password"
+			/>
+		</div>
+
+		<div class="phoneInput">
+			<input
+				placeholder="تأكيد كلمة السر"
+				type="password"
+				class="border-0 px-2 py-0 flex-grow-1 align-self-stretch bg-white text-body"
+				[(ngModel)]="confirmPassword"
+			/>
+		</div>
+	</div>
+	<p-button (click)="register()" class="w-full" type="submit" label="تسجيل" />
+</ng-template>
+
+<ng-template #loginForm>
+	<div class="flex flex-col justify-stretch gap-2">
+		<div class="phoneInput">
+			<input
+				placeholder="كلمة السر"
+				type="password"
+				class="border-0 px-2 py-0 flex-grow-1 align-self-stretch bg-white text-body"
+				[(ngModel)]="password"
+			/>
+		</div>
+	</div>
+
+	<p-button
+		(click)="login()"
+		type="submit"
+		class="w-full"
+		label="تسجيل الدخول"
+	/>
+</ng-template>
