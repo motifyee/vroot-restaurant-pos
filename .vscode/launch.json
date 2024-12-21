@@ -1,29 +1,29 @@
 {
-	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"name": "mrt",
-			"type": "chrome",
-			"request": "launch",
-			"preLaunchTask": "npm: mrt",
-			"url": "http://localhost:3000",
-			"webRoot": "${workspaceFolder}"
-		},
-		{
-			"name": "yusuf",
-			"type": "chrome",
-			"request": "launch",
-			"preLaunchTask": "npm: yusuf",
-			"url": "http://localhost:3100",
-			"webRoot": "${workspaceFolder}"
-		},
-		{
-			"name": "ng test",
-			"type": "chrome",
-			"request": "launch",
-			"preLaunchTask": "npm: test",
-			"url": "http://localhost:9876/debug.html"
-		}
-	]
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "serve",
+      "type": "chrome",
+      "request": "launch",
+      // "preLaunchTask": "npm: serve-webstore",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "yusuf",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: yusuf",
+      "url": "http://localhost:3100",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "ng test",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: test",
+      "url": "http://localhost:9876/debug.html"
+    }
+  ]
 }

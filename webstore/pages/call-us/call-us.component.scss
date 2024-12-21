@@ -1,0 +1,7 @@
+.field {
+	@apply flex flex-col gap-2;
+}
+
+.invalid {
+	@apply text-red-600;
+}

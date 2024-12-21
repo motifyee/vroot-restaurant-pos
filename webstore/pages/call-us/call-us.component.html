@@ -1,0 +1,45 @@
+<form action="" [formGroup]="contactUsForm" class="p-4 flex flex-col gap-8">
+	<div class="field">
+		<label for="name">الاسم</label>
+		<input pInputText id="name" formControlName="name" />
+		@if (isInvalidField('name')) {
+			<small class="invalid">حقل اسم العميل مطلوب</small>
+		}
+	</div>
+
+	<div class="field">
+		<label for="phone">رقم الهاتف</label>
+		<input pInputText id="phone" formControlName="phone" />
+		@if (isInvalidField('phone')) {
+			<small class="invalid">حقل رقم الهاتف مطلوب</small>
+		}
+	</div>
+
+	<div class="field">
+		<label for="email">البريد الالكتروني</label>
+		<input pInputText id="email" formControlName="email" />
+		@if (isInvalidField('email')) {
+			<small class="invalid">حقل البريد الالكتروني مطلوب</small>
+		}
+	</div>
+
+	<div class="field">
+		<label for="branch">اختر فرع</label>
+		<input pInputText id="branch" formControlName="branch" />
+	</div>
+
+	<div class="field">
+		<label for="message">رسالتك</label>
+		<textarea
+			pInputTextarea
+			id="message"
+			class="h-[120px]"
+			formControlName="message"
+		></textarea>
+		@if (isInvalidField('message')) {
+			<small class="invalid">حقل الرسالة مطلوب</small>
+		}
+	</div>
+
+	<button pButton class="h-[50px]" label="ارسال" type="submit"></button>
+</form>

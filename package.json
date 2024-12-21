@@ -1,20 +1,26 @@
 {
-	"name": "restaurant-pos",
+	"name": "vroot",
 	"version": "0.0.0",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
 		"build": "ng build",
-		"build-webstore": "ng build --configuration webstore",
-		"postbuild-webstore": "scripts\\post-build-webstore.cmd",
-		"build-local-webstore": "ng build --configuration webstore --base-href /webstore/",
-		"postbuild-local-webstore": "scripts\\post-build-local-webstore.cmd",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
 		"pretty": "prettier --write \"./**/*.{ts,scss,css,html,json}\"",
 		"extract-i18n": "ngx-translate-extract  -i ./src -o ./public/i18n/en.json -o ./public/i18n/ar.json -f namespaced-json",
-		"mrt": "ng serve --port 3000",
-		"yusuf": "ng serve --port 3100"
+		"//1": "###################################################################",
+		"//2": "vroot",
+		"//3": "########",
+		"vroot": "ng serve vroot",
+		"//4": "###################################################################",
+		"//5": "webstore",
+		"//6": "########",
+		"serve-webstore": "ng serve webstore --configuration development",
+		"build:webstore": "ng build --configuration webstore",
+		"postbuild:webstore": "scripts\\post-build-webstore.cmd",
+		"build:local-webstore": "ng build --configuration webstore --base-href /webstore/",
+		"postbuild:local-webstore": "scripts\\post-build-local-webstore.cmd"
 	},
 	"private": true,
 	"dependencies": {

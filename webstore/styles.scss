@@ -1,0 +1,24 @@
+@import 'primeng/resources/themes/aura-light-blue/theme.css';
+@import 'primeng/resources/primeng.css';
+@import 'primeicons/primeicons.css';
+
+@layer primeng, tailwind-base, tailwind-utilities;
+
+@layer tailwind-base {
+	@tailwind base;
+}
+
+@layer tailwind-utilities {
+	@tailwind components;
+	@tailwind utilities;
+}
+
+html {
+	@apply h-full;
+}
+
+body {
+	@apply m-0 p-0 h-full;
+}
+
+@import './styles/index.scss';

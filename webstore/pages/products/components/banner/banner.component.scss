@@ -1,0 +1,19 @@
+@font-face {
+	font-family: marhey;
+	src: url(/assets/fonts/Marhey/Marhey-VariableFont_wght.ttf);
+}
+
+:host {
+	display: grid;
+	place-items: center;
+}
+
+a {
+	font-family: 'marhey';
+	line-height: 2.5rem;
+	text-align: center;
+
+	color: rgb(31, 82, 16);
+	cursor: pointer;
+	text-decoration: none;
+}
