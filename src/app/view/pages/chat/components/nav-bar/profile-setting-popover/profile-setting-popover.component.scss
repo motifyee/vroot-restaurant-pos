@@ -1,82 +1,4 @@
-ul, ol, dl {
-    margin-bottom: .5rem;
-    list-style-position: outside;
-    list-style-type: disc;
-    line-height: 1.65;
-}
-ol, ul, menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-
-button, [role=button] {
-    cursor: pointer;
-}
-button, input:where([type=button]), input:where([type=reset]),
-input:where([type=submit]) {
-    background-color: transparent;
-    background-image: none;
-}
-
-
-
-.toggle-button.small {
-    width: 22px;
-    height: 14px;
-}
-.toggle-button.active {
-    background-color: var(--w-500);
-}
-
-
-.button.smooth:is(.dark *) {
-    --tw-bg-opacity: 1;
-    // background-color: #104d87;
-    --tw-text-opacity: 1;
-    color: #c2e5ff;
-}
-.dropdown-menu__item a, .dropdown-menu__item.button {
-    display: inline-flex
-;
-    width: 100%;
-    white-space: nowrap;
-    text-align: left;
-}
-.button.small {
-    height: 2rem;
-    padding-bottom: .25rem;
-    padding-top: .25rem;
-}
-
-.button.smooth {
-    background-color: #e6f4fe;
-    color: #2870bd;
-}
-.button.small {
-    height: 2rem;
-    font-size: .75rem;
-    line-height: 1rem;
-}
-
-.button:is(.dark *) {
-    color: #fff;
-}
-button:is(.dark *) {
-    border-color: transparent;
-}
-
-
-
-.button .button__content {
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.status-badge__online{
+.status-badge__online {
 	background-color: rgb(51 176 116 / 1);
 }
 
@@ -87,8 +9,6 @@ button:is(.dark *) {
 .status-badge__offline {
 	background-color: rgb(119 123 132 / 1);
 }
-
-
 
 /* Dropdown Container */
 .dropdown-container {
@@ -125,19 +45,8 @@ button:is(.dark *) {
 
 /* Button Styling */
 
-
-
 .button-toggle {
-	@apply toggle-button p-0 active small mx-1 mt-px mb-0;
-}
-
-/* Button Content */
-.button{
-
-	@apply inline-flex h-10 gap-2 font-medium text-white  transition ease-out duration-200;
-	@apply m-0 cursor-pointer items-center rounded-md border border-transparent;
-	@apply px-2 py-1.5 text-center align-middle text-xs leading-4;
-
+	@apply p-0 mx-1 mt-px mb-0;
 }
 
 /* Status Badge */

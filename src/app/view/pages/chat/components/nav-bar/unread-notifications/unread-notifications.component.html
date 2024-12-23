@@ -5,15 +5,18 @@
 				<span>Unread Notifications</span>
 			</div>
 			<div class="header-actions">
-				<button class="button icon tiny" type="submit">
-					<gear-icon/>
+				<button
+					class="button smooth button--only-icon tiny secondary"
+					type="submit"
+				>
+					<gear-icon />
 				</button>
 				<button
 					(click)="closePopup()"
-					class="button icon clear tiny"
+					class="button clear link button--only-icon tiny secondary"
 					type="submit"
 				>
-					<dismiss-icon/>
+					<dismiss-icon />
 				</button>
 			</div>
 		</div>
@@ -21,8 +24,8 @@
 			<div class="empty-state">
 				<h3>You have no unread notifications</h3>
 			</div>
-			<button class="button expanded primary mt-3" type="submit">
-				<span>View all notifications</span>
+			<button class="button clear expanded primary mt-3" type="submit">
+				<span class="button__content">View all notifications</span>
 			</button>
 		</div>
 		<div></div>
