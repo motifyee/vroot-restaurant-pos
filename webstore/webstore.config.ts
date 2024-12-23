@@ -22,6 +22,8 @@ import {
 	StorageModule,
 } from '@src/app/core';
 import { webstoreRoutes } from './webstore.routes';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 
 export const webstoreConfig: ApplicationConfig = {
 	providers: [
@@ -29,6 +31,15 @@ export const webstoreConfig: ApplicationConfig = {
 			defaultLanguage: localStorage.getItem('lang') || 'en',
 		}),
 		provideAnimationsAsync(),
+		providePrimeNG({
+			theme: {
+				preset: Aura,
+				options: {
+					darkModeSelector: 'light',
+					ripple: true,
+				},
+			},
+		}),
 		importProvidersFrom(
 			RouterModule,
 			LoggerModule.forAdaptive(

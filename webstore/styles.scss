@@ -1,6 +1,5 @@
-@import 'primeng/resources/themes/aura-light-blue/theme.css';
-@import 'primeng/resources/primeng.css';
-@import 'primeicons/primeicons.css';
+@use 'primeicons/primeicons.css';
+@use './styles/index.scss';
 
 @layer primeng, tailwind-base, tailwind-utilities;
 
@@ -20,5 +19,3 @@ html {
 body {
 	@apply m-0 p-0 h-full;
 }
-
-@import './styles/index.scss';

@@ -1,10 +1,10 @@
 import { signalStoreFeature, type, withComputed } from '@ngrx/signals';
-import { CartProductEntityComputed } from '../cart.store';
+import { CartProductEntityProps } from '../cart.store';
 import { computed } from '@angular/core';
 
 export const withCartTotalComputed = <_>() =>
 	signalStoreFeature(
-		{ computed: type<CartProductEntityComputed>() },
+		{ props: type<CartProductEntityProps>() },
 
 		withComputed((store) => {
 			return {

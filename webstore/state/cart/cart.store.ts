@@ -2,7 +2,7 @@ import { signalStore, type, withState } from '@ngrx/signals';
 import { storeType } from '@src/app/view/state/utils/utils';
 import {
 	entityConfig,
-	NamedEntityComputed,
+	NamedEntityProps,
 	NamedEntityState,
 	withEntities,
 } from '@ngrx/signals/entities';
@@ -17,7 +17,7 @@ export type CartProductEntityState = NamedEntityState<
 	'cartProduct'
 >;
 
-export type CartProductEntityComputed = NamedEntityComputed<
+export type CartProductEntityProps = NamedEntityProps<
 	CartProduct,
 	'cartProduct'
 >;

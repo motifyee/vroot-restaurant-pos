@@ -65,22 +65,19 @@ export class MobilCategoryBarComponent implements AfterViewInit, OnDestroy {
 
 	// Scrolls active category-tab into view
 	// on category-section intersection
-	__ = effect(
-		() => {
-			const categoryId = this.observer.intersectingCategoryId(),
-				tabId = `category-tab-${categoryId}`,
-				activeTab = document.getElementById(tabId);
+	__ = effect(() => {
+		const categoryId = this.observer.intersectingCategoryId(),
+			tabId = `category-tab-${categoryId}`,
+			activeTab = document.getElementById(tabId);
 
-			if (!activeTab) return;
+		if (!activeTab) return;
 
-			this.activeCategoryId.set(categoryId);
+		this.activeCategoryId.set(categoryId);
 
-			activeTab.scrollIntoView({
-				behavior: 'smooth',
-				block: 'nearest',
-				inline: 'center',
-			});
-		},
-		{ allowSignalWrites: true },
-	);
+		activeTab.scrollIntoView({
+			behavior: 'smooth',
+			block: 'nearest',
+			inline: 'center',
+		});
+	});
 }

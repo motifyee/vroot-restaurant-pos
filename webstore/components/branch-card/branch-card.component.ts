@@ -10,7 +10,6 @@ import { scaleInOut } from '../../animations/scale-in-out.animation';
 
 @Component({
 	selector: 'branch-card',
-	standalone: true,
 	imports: [SkeletonModule, OrderTimeComponent],
 	templateUrl: './branch-card.component.html',
 	styleUrl: './branch-card.component.scss',

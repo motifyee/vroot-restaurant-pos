@@ -2,11 +2,10 @@ import { Component, inject, input } from '@angular/core';
 import { settingsStore } from '@webstore/state';
 
 @Component({
-	selector: 'banner',
-	standalone: true,
-	imports: [],
-	templateUrl: './banner.component.html',
-	styleUrl: './banner.component.scss',
+    selector: 'banner',
+    imports: [],
+    templateUrl: './banner.component.html',
+    styleUrl: './banner.component.scss'
 })
 export class BannerComponent {
 	settings = inject(settingsStore);

@@ -10,19 +10,18 @@ import { TagModule } from 'primeng/tag';
 import { TableModule } from 'primeng/table';
 
 @Component({
-	selector: 'invoice-list-panel',
-	standalone: true,
-	imports: [
-		JsonPipe,
-		TableModule,
-		InputTextModule,
-		IconFieldModule,
-		InputIconModule,
-		TagModule,
-	],
-	templateUrl: './invoice-list-panel.component.html',
-	styleUrl: './invoice-list-panel.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'invoice-list-panel',
+    imports: [
+        JsonPipe,
+        TableModule,
+        InputTextModule,
+        IconFieldModule,
+        InputIconModule,
+        TagModule,
+    ],
+    templateUrl: './invoice-list-panel.component.html',
+    styleUrl: './invoice-list-panel.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InvoiceListPanelComponent {
 	invoices: Partial<Invoice>[] = [

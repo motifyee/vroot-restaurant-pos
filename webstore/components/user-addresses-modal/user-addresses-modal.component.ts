@@ -26,30 +26,29 @@ const visible = style({ transform: 'translateX(0)' });
 const timing = '300ms ease-in-out';
 
 @Component({
-	selector: 'user-addresses-modal',
-	standalone: true,
-	imports: [
-		ModalComponent,
-		NgTemplateOutlet,
-		ButtonModule,
-		NgClass,
-		FormsModule,
-		CheckboxModule,
-	],
-	templateUrl: './user-addresses-modal.component.html',
-	styleUrl: './user-addresses-modal.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	host: { class: 'popup' },
-	animations: [
-		scaleInOut,
-		trigger('formIn', [
-			transition(':enter', [left, animate(timing, visible)]),
-		]),
-		trigger('listIn', [
-			transition(':enter', [right, animate(timing, visible)]),
-		]),
-		trigger('addressOut', [transition(':leave', [animate(timing, right)])]),
-	],
+    selector: 'user-addresses-modal',
+    imports: [
+        ModalComponent,
+        NgTemplateOutlet,
+        ButtonModule,
+        NgClass,
+        FormsModule,
+        CheckboxModule,
+    ],
+    templateUrl: './user-addresses-modal.component.html',
+    styleUrl: './user-addresses-modal.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { class: 'popup' },
+    animations: [
+        scaleInOut,
+        trigger('formIn', [
+            transition(':enter', [left, animate(timing, visible)]),
+        ]),
+        trigger('listIn', [
+            transition(':enter', [right, animate(timing, visible)]),
+        ]),
+        trigger('addressOut', [transition(':leave', [animate(timing, right)])]),
+    ]
 })
 export class UserAddressesModalComponent implements OnInit {
 	@HostBinding('@scaleInOut') scaleInOut = true;

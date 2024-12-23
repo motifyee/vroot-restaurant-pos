@@ -5,11 +5,10 @@ import { InvoicePanelComponent } from '../shared/invoice-panel/invoice-panel.com
 import { invoiceIndexStore } from '@src/app/features';
 
 @Component({
-	selector: 'invoice-list-tab',
-	standalone: true,
-	imports: [InvoiceListPanelComponent, InvoicePanelComponent],
-	templateUrl: './invoice-list-tab.component.html',
-	styleUrl: './invoice-list-tab.component.scss',
+    selector: 'invoice-list-tab',
+    imports: [InvoiceListPanelComponent, InvoicePanelComponent],
+    templateUrl: './invoice-list-tab.component.html',
+    styleUrl: './invoice-list-tab.component.scss'
 })
 export class InvoiceListTabComponent {
 	tab = input.required<Tab>();

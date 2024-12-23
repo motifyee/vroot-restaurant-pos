@@ -2,7 +2,7 @@ import { signalStore, type, withState } from '@ngrx/signals';
 import { storeType } from '@src/app/view/state/utils/utils';
 import {
 	entityConfig,
-	NamedEntityComputed,
+	NamedEntityProps,
 	NamedEntityState,
 	withEntities,
 } from '@ngrx/signals/entities';
@@ -14,10 +14,7 @@ import { withUpdateInvoiceMethod } from './features/with-update-invoice.method';
 
 export type InvoiceEntityState = NamedEntityState<WebstoreInvoice, 'invoice'>;
 
-export type InvoiceEntityComputed = NamedEntityComputed<
-	WebstoreInvoice,
-	'invoice'
->;
+export type InvoiceEntityProps = NamedEntityProps<WebstoreInvoice, 'invoice'>;
 
 export const invoiceEntityConfig = entityConfig({
 	entity: type<WebstoreInvoice>(),

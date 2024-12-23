@@ -20,7 +20,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
 	selector: 'branch-ordertype-picker',
-	standalone: true,
 	imports: [CommonModule, FormsModule, ButtonModule, ModalComponent],
 	templateUrl: './pick-branch-modal.component.html',
 	styleUrls: ['./pick-branch-modal.component.scss'],
@@ -68,16 +67,13 @@ export class BranchOrderTypePickerComponent {
 
 	choosedBranch = signal(false);
 	choosedOrderType = signal(false);
-	_ = effect(
-		() => {
-			// !TODO replace with angular 19 updatable computed
-			this.choosedBranch.set(!['branch', 'all'].includes(this.target()));
-			this.choosedOrderType.set(
-				!['orderType', 'all'].includes(this.target()),
-			);
-		},
-		{ allowSignalWrites: true },
-	);
+	_ = effect(() => {
+		// !TODO replace with angular 19 updatable computed
+		this.choosedBranch.set(!['branch', 'all'].includes(this.target()));
+		this.choosedOrderType.set(
+			!['orderType', 'all'].includes(this.target()),
+		);
+	});
 
 	__ = effect(
 		() =>

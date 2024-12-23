@@ -18,22 +18,21 @@ import { userStore, settingsStore } from '@webstore/state';
 import { MessageService } from 'primeng/api';
 
 @Component({
-	selector: 'webstore',
-	standalone: true,
-	imports: [RouterOutlet, TopbarComponent, CommonModule],
-	templateUrl: './webstore.component.html',
-	styleUrls: ['./webstore.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	providers: [
-		ScrollService,
-		productsPageStore,
-		webstorePageStore,
-		MessageService,
-	],
-	animations: [scaleInOut],
-	host: {
-		'[attr.dir]': '"rtl"',
-	},
+    selector: 'webstore',
+    imports: [RouterOutlet, TopbarComponent, CommonModule],
+    templateUrl: './webstore.component.html',
+    styleUrls: ['./webstore.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        ScrollService,
+        productsPageStore,
+        webstorePageStore,
+        MessageService,
+    ],
+    animations: [scaleInOut],
+    host: {
+        '[attr.dir]': '"rtl"',
+    }
 })
 export class WebstoreComponent implements OnInit {
 	isSideBarVisible = signal(false);

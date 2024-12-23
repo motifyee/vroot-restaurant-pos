@@ -9,17 +9,16 @@ import { ConversationExpandCollapsService } from '../../services/dashboard/conve
 import { converastionSideBarExpandCollapsService } from '../../services/dashboard/converastion-side-bar-expand-collaps.service';
 
 @Component({
-	selector: 'dashboard',
-	standalone: true,
-	imports: [
-		CommonModule,
-		ConversationsOverviewComponent,
-		ConversationDetailsComponent,
-		SideBarComponent,
-	],
-	templateUrl: './dashboard.component.html',
-	styleUrls: ['./dashboard.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'dashboard',
+    imports: [
+        CommonModule,
+        ConversationsOverviewComponent,
+        ConversationDetailsComponent,
+        SideBarComponent,
+    ],
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
 	// (side-bar)  Inject the scoped service

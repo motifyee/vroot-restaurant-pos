@@ -6,12 +6,11 @@ import { FilterPopupComponent } from '../filter-popup/filter-popup.component';
 import { FilterPopupToggleViabilityService } from '../../../../services/dashboard/filter-popup-toggle-viability.service';
 
 @Component({
-	selector: 'sorting-filtering-section',
-	standalone: true,
-	imports: [SortIconComponent, FilterIconComponent, FilterPopupComponent],
-	templateUrl: './sorting-filtering-section.component.html',
-	styleUrl: './sorting-filtering-section.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'sorting-filtering-section',
+    imports: [SortIconComponent, FilterIconComponent, FilterPopupComponent],
+    templateUrl: './sorting-filtering-section.component.html',
+    styleUrl: './sorting-filtering-section.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SortingFilteringSectionComponent {
 	// Inject the scoped service for filter popup

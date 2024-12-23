@@ -10,12 +10,11 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
-	selector: 'modal',
-	standalone: true,
-	imports: [ToastModule, ButtonModule, NgClass],
-	templateUrl: './modal.component.html',
-	styleUrl: './modal.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'modal',
+    imports: [ToastModule, ButtonModule, NgClass],
+    templateUrl: './modal.component.html',
+    styleUrl: './modal.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ModalComponent {
 	@Output() onDismissed = new EventEmitter<void>();

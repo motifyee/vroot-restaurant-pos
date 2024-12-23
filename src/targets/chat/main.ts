@@ -4,10 +4,9 @@ import { Component } from '@angular/core';
 import { chatConfig } from './chat.config';
 
 @Component({
-	selector: 'root',
-	standalone: true,
-	imports: [RouterOutlet],
-	template: `<router-outlet />`,
+    selector: 'root',
+    imports: [RouterOutlet],
+    template: `<router-outlet />`
 })
 export class AppComponent {}
 

@@ -1,6 +1,6 @@
 import { computed, inject } from '@angular/core';
 import {
-	UserAddressesEntityComputed,
+	UserAddressesEntityProps,
 	userAddressesEntityConfig,
 	UserAddressesEntityState,
 	UserStoreState,
@@ -23,7 +23,7 @@ export function withSetDefaultAddressMethod<_>() {
 	return signalStoreFeature(
 		{
 			state: type<UserStoreState & UserAddressesEntityState>(),
-			computed: type<UserAddressesEntityComputed>(),
+			props: type<UserAddressesEntityProps>(),
 			methods: type<LoadingMethod>(),
 		},
 

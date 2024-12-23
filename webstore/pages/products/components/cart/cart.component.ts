@@ -20,7 +20,6 @@ import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
 
 @Component({
 	selector: 'cart',
-	standalone: true,
 	imports: [
 		NgTemplateOutlet,
 		CartIconComponent,
@@ -29,7 +28,7 @@ import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
 	],
 	templateUrl: './cart.component.html',
 	styleUrl: './cart.component.scss',
-	animations: [floatUp, cartExpandUp, scaleInOut], // !TODO-FIX: why must be imported for auth-modal to animate :leave
+	animations: [floatUp, cartExpandUp, scaleInOut],
 })
 export class CartComponent {
 	scrollService = inject(ScrollService);

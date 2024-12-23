@@ -6,12 +6,11 @@ import { Tab } from '../../../state/app/models/tab.model';
 import { InvoiceTab } from '../../../state/app/models/invoice-tab.model';
 
 @Component({
-	selector: 'invoice-tab',
-	standalone: true,
-	imports: [ProductsPanelComponent, InvoicePanelComponent],
-	templateUrl: './invoice-tab.component.html',
-	styleUrl: './invoice-tab.component.scss',
-	providers: [invoiceStore],
+    selector: 'invoice-tab',
+    imports: [ProductsPanelComponent, InvoicePanelComponent],
+    templateUrl: './invoice-tab.component.html',
+    styleUrl: './invoice-tab.component.scss',
+    providers: [invoiceStore]
 })
 export class InvoiceTabComponent {
 	tab = input.required<Tab>();

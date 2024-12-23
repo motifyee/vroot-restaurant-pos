@@ -24,26 +24,25 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-	selector: 'root',
-	standalone: true,
-	imports: [
-		RouterOutlet,
-		ButtonModule,
-		JsonPipe,
-		MenubarComponent,
-		InvoicePanelComponent,
-		ProductsPanelComponent,
-		InvoiceListPanelComponent,
-		InvoiceTabComponent,
-		InvoiceListTabComponent,
-		TabViewModule,
-		ToggleButtonModule,
-		FormsModule,
-	],
-	providers: [customersStore],
-	templateUrl: './pos.component.html',
-	styleUrl: './pos.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'root',
+    imports: [
+        RouterOutlet,
+        ButtonModule,
+        JsonPipe,
+        MenubarComponent,
+        InvoicePanelComponent,
+        ProductsPanelComponent,
+        InvoiceListPanelComponent,
+        InvoiceTabComponent,
+        InvoiceListTabComponent,
+        TabViewModule,
+        ToggleButtonModule,
+        FormsModule,
+    ],
+    providers: [customersStore],
+    templateUrl: './pos.component.html',
+    styleUrl: './pos.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class POSComponent implements OnInit {
 	msgService = inject(MessageService);

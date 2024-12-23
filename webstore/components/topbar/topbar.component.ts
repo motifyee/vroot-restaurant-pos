@@ -15,11 +15,10 @@ import { BranchOrderTypePickerComponent } from '../pick-branch-modal/pick-branch
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
-	selector: 'topbar',
-	standalone: true,
-	imports: [BranchOrderTypePickerComponent, SidebarComponent],
-	templateUrl: './topbar.component.html',
-	styleUrl: './topbar.component.scss',
+    selector: 'topbar',
+    imports: [BranchOrderTypePickerComponent, SidebarComponent],
+    templateUrl: './topbar.component.html',
+    styleUrl: './topbar.component.scss'
 })
 export class TopbarComponent implements AfterViewInit {
 	@Output() toggleSideBarVisibility = new EventEmitter<void>();

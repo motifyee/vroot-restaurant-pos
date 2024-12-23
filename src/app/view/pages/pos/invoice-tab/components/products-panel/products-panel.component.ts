@@ -19,12 +19,11 @@ import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
-	selector: 'products-panel',
-	standalone: true,
-	imports: [DividerModule, ButtonModule, InputTextModule],
-	templateUrl: './products-panel.component.html',
-	styleUrl: './products-panel.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'products-panel',
+    imports: [DividerModule, ButtonModule, InputTextModule],
+    templateUrl: './products-panel.component.html',
+    styleUrl: './products-panel.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsPanelComponent {
 	// invoiceStore = inject(invoiceStore);

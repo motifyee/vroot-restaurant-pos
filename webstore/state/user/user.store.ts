@@ -14,7 +14,7 @@ import { withUserDataMethods } from './features/with-user-data.methods';
 import {
 	addEntities,
 	entityConfig,
-	NamedEntityComputed,
+	NamedEntityProps,
 	NamedEntityState,
 	withEntities,
 } from '@ngrx/signals/entities';
@@ -24,11 +24,12 @@ import { withDeleteAddressMethod } from './features/with-delete-address.method';
 import { withGetAddressesMethod } from './features/with-get-addresses.method';
 import { withSetDefaultAddressMethod } from './features/with-set-default-address.method';
 
+// TODO: never depend on interanl api types
 export type UserAddressesEntityState = NamedEntityState<
 	Address,
 	'userAddresses'
 >;
-export type UserAddressesEntityComputed = NamedEntityComputed<
+export type UserAddressesEntityProps = NamedEntityProps<
 	Address,
 	'userAddresses'
 >;

@@ -20,7 +20,6 @@ import { ButtonModule } from 'primeng/button';
 
 @Component({
 	selector: 'auth-modal',
-	standalone: true,
 	imports: [
 		CommonModule,
 		FormsModule,
@@ -60,20 +59,17 @@ export class AuthModalComponent implements OnInit {
 	password = signal('');
 	confirmPassword: any;
 
-	__showAPIMsg = effect(
-		() => {
-			if (this.userStore.apiMsgConfirmed()) return;
+	__showAPIMsg = effect(() => {
+		if (this.userStore.apiMsgConfirmed()) return;
 
-			this.msgService.add({
-				severity: 'error',
-				summary: 'خطأ',
-				detail: this.userStore.apiMsg(),
-			});
+		this.msgService.add({
+			severity: 'error',
+			summary: 'خطأ',
+			detail: this.userStore.apiMsg(),
+		});
 
-			this.userStore.confirmApiMsg();
-		},
-		{ allowSignalWrites: true },
-	);
+		this.userStore.confirmApiMsg();
+	});
 
 	__finished = effect(() => {
 		if (this.userStore.registerationStep() === 'done')

@@ -17,13 +17,12 @@ import { ModalComponent } from '../../../../components/modal/modal.component';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
-	selector: 'add-to-cart-modal, [add-to-cart-modal]',
-	standalone: true,
-	imports: [FormsModule, BannerComponent, ModalComponent, ButtonModule],
-	templateUrl: './add-to-cart-modal.component.html',
-	styleUrls: ['./add-to-cart-modal.component.scss'],
-	host: { class: 'popup' },
-	animations: [scaleInOut],
+    selector: 'add-to-cart-modal, [add-to-cart-modal]',
+    imports: [FormsModule, BannerComponent, ModalComponent, ButtonModule],
+    templateUrl: './add-to-cart-modal.component.html',
+    styleUrls: ['./add-to-cart-modal.component.scss'],
+    host: { class: 'popup' },
+    animations: [scaleInOut]
 })
 export class AddToCartItemModalComponent implements OnInit {
 	@HostBinding('@scaleInOut') scaleInOutAnimation = true;

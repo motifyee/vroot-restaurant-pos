@@ -4,11 +4,10 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { BranchCardComponent } from '../../../branch-card/branch-card.component';
 
 @Component({
-	selector: 'app-pickup',
-	standalone: true,
-	imports: [SkeletonModule, BranchCardComponent],
-	templateUrl: './pickup.component.html',
-	styleUrl: './pickup.component.scss',
+    selector: 'app-pickup',
+    imports: [SkeletonModule, BranchCardComponent],
+    templateUrl: './pickup.component.html',
+    styleUrl: './pickup.component.scss'
 })
 export class PickupComponent implements OnInit {
 	#settings = inject(settingsStore);

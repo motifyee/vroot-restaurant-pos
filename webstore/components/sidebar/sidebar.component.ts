@@ -8,7 +8,7 @@ import {
 	Output,
 	signal,
 } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { slideInOut } from '@webstore/animations/slide-in-out.animation';
 import { userStore } from '@webstore/state';
 import { webstorePaths } from '@webstore/webstore.routes';
@@ -21,8 +21,7 @@ interface MenuLink {
 }
 @Component({
 	selector: 'sidebar',
-	standalone: true,
-	imports: [CommonModule, RouterLink],
+	imports: [CommonModule],
 	templateUrl: './sidebar.component.html',
 	styleUrl: './sidebar.component.scss',
 	host: { class: 'popup' },

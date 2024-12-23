@@ -19,21 +19,20 @@ import { BranchOrderTypePickerComponent } from '../../components/pick-branch-mod
 import { IS_DEVMODE } from '@src/app/core';
 
 @Component({
-	selector: 'products-page',
-	standalone: true,
-	imports: [
-		BannerComponent,
-		CategoryBarComponent,
-		MobilCategoryBarComponent,
-		ProductListComponent,
-		CartComponent,
-		AddToCartItemModalComponent,
-		BranchOrderTypePickerComponent,
-	],
-	templateUrl: './products-page.component.html',
-	styleUrl: './products-page.component.scss',
-	changeDetection: ChangeDetectionStrategy.Default,
-	providers: [productsPageStore],
+    selector: 'products-page',
+    imports: [
+        BannerComponent,
+        CategoryBarComponent,
+        MobilCategoryBarComponent,
+        ProductListComponent,
+        CartComponent,
+        AddToCartItemModalComponent,
+        BranchOrderTypePickerComponent,
+    ],
+    templateUrl: './products-page.component.html',
+    styleUrl: './products-page.component.scss',
+    changeDetection: ChangeDetectionStrategy.Default,
+    providers: [productsPageStore]
 })
 export class ProductsPageComponent implements OnInit {
 	scrollService = inject(ScrollService);

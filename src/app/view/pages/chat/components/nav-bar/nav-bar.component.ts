@@ -16,26 +16,25 @@ import { UnreadNotificationsComponent } from './unread-notifications/unread-noti
 import { ProfileSettingPopoverComponent } from './profile-setting-popover/profile-setting-popover.component';
 
 @Component({
-	selector: 'nav-bar',
-	standalone: true,
-	imports: [
-		CommonModule,
-		InboxIconComponent,
-		ConversationIconComponent,
-		CampaignIconComponent,
-		CaptainIconComponent,
-		ContactsIconComponent,
-		NotificationIconComponent,
-		PortalsIconComponent,
-		ReportsIconComponent,
-		SettingsIconComponent,
-		MessageIconComponent,
-		UnreadNotificationsComponent,
-		ProfileSettingPopoverComponent,
-	],
-	templateUrl: './nav-bar.component.html',
-	styleUrl: './nav-bar.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'nav-bar',
+    imports: [
+        CommonModule,
+        InboxIconComponent,
+        ConversationIconComponent,
+        CampaignIconComponent,
+        CaptainIconComponent,
+        ContactsIconComponent,
+        NotificationIconComponent,
+        PortalsIconComponent,
+        ReportsIconComponent,
+        SettingsIconComponent,
+        MessageIconComponent,
+        UnreadNotificationsComponent,
+        ProfileSettingPopoverComponent,
+    ],
+    templateUrl: './nav-bar.component.html',
+    styleUrl: './nav-bar.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavBarComponent {
 	constructor(private elementRef: ElementRef) {}

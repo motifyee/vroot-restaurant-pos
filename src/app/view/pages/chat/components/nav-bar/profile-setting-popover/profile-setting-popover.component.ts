@@ -6,12 +6,11 @@ import { AppearanceIconComponent } from "../icons/appearance-icon.component";
 import { PowerIconComponent } from "../icons/power-icon.component";
 
 @Component({
-  selector: 'profile-setting-popover',
-  standalone: true,
-  imports: [MoreInfoIconComponent, KeyboardIconComponent, userIconComponent, AppearanceIconComponent, PowerIconComponent],
-  templateUrl: './profile-setting-popover.component.html',
-  styleUrl: './profile-setting-popover.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'profile-setting-popover',
+    imports: [MoreInfoIconComponent, KeyboardIconComponent, userIconComponent, AppearanceIconComponent, PowerIconComponent],
+    templateUrl: './profile-setting-popover.component.html',
+    styleUrl: './profile-setting-popover.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileSettingPopoverComponent {
 

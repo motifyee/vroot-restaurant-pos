@@ -23,13 +23,12 @@ import { IS_DEVMODE } from '@src/app/core';
 import { BannerComponent } from '../banner/banner.component';
 
 @Component({
-	selector: 'product-list',
-	standalone: true,
-	templateUrl: './product-list.component.html',
-	styleUrls: ['./product-list.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	providers: [TopbarComponent],
-	imports: [SkeletonModule, BannerComponent],
+    selector: 'product-list',
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [TopbarComponent],
+    imports: [SkeletonModule, BannerComponent]
 })
 export class ProductListComponent
 	implements OnInit, AfterViewChecked, OnDestroy

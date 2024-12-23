@@ -13,7 +13,6 @@ import { productsPageStore } from '../../products-page.store';
 
 @Component({
 	selector: 'category-bar',
-	standalone: true,
 	imports: [SkeletonModule],
 	templateUrl: './category-bar.component.html',
 	styleUrls: ['./category-bar.component.scss'],
@@ -55,22 +54,19 @@ export class CategoryBarComponent {
 
 	// Scrolls active category-tab into view
 	// on category-section intersection
-	__ = effect(
-		() => {
-			const categoryId = this.observer.intersectingCategoryId(),
-				tabId = `category-tab-${categoryId}`,
-				activeTab = document.getElementById(tabId);
+	__ = effect(() => {
+		const categoryId = this.observer.intersectingCategoryId(),
+			tabId = `category-tab-${categoryId}`,
+			activeTab = document.getElementById(tabId);
 
-			if (!activeTab) return;
+		if (!activeTab) return;
 
-			this.activeCategoryId.set(categoryId);
+		this.activeCategoryId.set(categoryId);
 
-			// activeTab.scrollIntoView({
-			// 	behavior: 'smooth',
-			// 	block: 'nearest',
-			// 	inline: 'center',
-			// });
-		},
-		{ allowSignalWrites: true },
-	);
+		// activeTab.scrollIntoView({
+		// 	behavior: 'smooth',
+		// 	block: 'nearest',
+		// 	inline: 'center',
+		// });
+	});
 }
