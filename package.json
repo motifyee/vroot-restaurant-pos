@@ -36,10 +36,10 @@
 		"@ngrx/operators": "^18.0.2",
 		"@ngrx/signals": "^18.0.2",
 		"@ngx-translate/core": "^16.0.3",
+		"@primeng/themes": "^19.0.1",
 		"@types/google-one-tap": "^1.2.6",
 		"google-one-tap": "^1.0.6",
 		"primeicons": "^7.0.0",
-		"primeng": "^17.18.9",
 		"rxjs": "~7.8.0",
 		"tslib": "^2.3.0",
 		"zone.js": "~0.14.10"
