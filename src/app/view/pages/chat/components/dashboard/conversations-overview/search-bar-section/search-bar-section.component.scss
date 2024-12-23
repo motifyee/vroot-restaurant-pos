@@ -7,7 +7,7 @@
 }
 
 .list-icon-button {
-	@apply -ml-3 text-black-900 dark:text-slate-300 relative top-0 ltr:-ml-1.5 rtl:-mr-1.5;
+	@apply text-black-900 dark:text-slate-300 relative top-0 ltr:-ml-1.5 rtl:-mr-1.5;
 }
 
 .search-link {
@@ -15,5 +15,5 @@
 }
 
 .search-label {
-	@apply mb-0 overflow-hidden text-sm whitespace-nowrap text-ellipsis text-slate-800 dark:text-slate-200;
+	@apply my-0 overflow-hidden text-sm  whitespace-nowrap text-ellipsis text-slate-800 dark:text-slate-200;
 }

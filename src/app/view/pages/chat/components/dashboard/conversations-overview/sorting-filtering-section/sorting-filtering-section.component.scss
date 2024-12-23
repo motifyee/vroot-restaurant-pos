@@ -11,10 +11,13 @@
 }
 
 .status-badge {
-	@apply p-1 my-0.5 mx-1 rounded-md capitalize bg-slate-50 dark:bg-slate-800
-	  text-slate-600 dark:text-slate-300;
+	@apply p-1 my-0.5 mx-1 rounded-md capitalize bg-slate-50 dark:bg-slate-800 text-xxs text-slate-600 dark:text-slate-300;
 }
 
 .right-section {
 	@apply flex items-center gap-1;
+}
+
+.text-xxs {
+	font-size: 0.625rem;
 }
