@@ -7,16 +7,20 @@
 			"enabled": true
 		}
 	},
+	"schematics": {
+		"@schematics/angular:application": {
+			"standalone": true,
+			"style": "scss"
+		},
+		"@schematics/angular:component": {
+			"style": "scss",
+			"standalone": true,
+			"changeDetection": "OnPush"
+		}
+	},
 	"projects": {
-		"restaurant-pos": {
+		"vroot": {
 			"projectType": "application",
-			"schematics": {
-				"@schematics/angular:component": {
-					"style": "scss",
-					"standalone": true,
-					"changeDetection": "OnPush"
-				}
-			},
 			"root": "",
 			"sourceRoot": "src",
 			"prefix": "",
@@ -56,12 +60,12 @@
 							"outputHashing": "all",
 							"outputPath": "dist/webstore",
 							"index": "src/webstore/target/index.html",
-							"browser": "src/webstore/target/main.ts",
+							"styles": ["src/webstore/styles/styles.scss"],
 							"assets": [
 								{
 									"glob": "**/*",
-									"input": "src/assets/webstore",
-									"output": "assets/webstore"
+									"input": "src/webstore/assets",
+									"output": "assets"
 								},
 								{
 									"glob": "**/*",
@@ -72,6 +76,27 @@
 								{
 									"replace": "src/app/core/environments/env.ts",
 									"with": "src/app/core/environments/env.prod.ts"
+								}
+							]
+						},
+						"webstore-development": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"budgets": [],
+
+							"outputPath": "dist/webstore",
+							"index": "src/webstore/target/index.html",
+							"styles": ["src/webstore/styles/styles.scss"],
+							"assets": [
+								{
+									"glob": "**/*",
+									"input": "src/webstore/assets",
+									"output": "assets"
+								},
+								{
+									"glob": "**/*",
+									"input": "public/webstore"
 								}
 							]
 						},
@@ -88,7 +113,7 @@
 						},
 						"production": {
 							"outputHashing": "all",
-							"outputPath": "dist/restaurant-pos",
+							"outputPath": "dist/vroot",
 							"fileReplacements": [
 								{
 									"replace": "src/app/core/environments/env.ts",
@@ -97,7 +122,7 @@
 							]
 						},
 						"development": {
-							"outputPath": "dist/restaurant-pos",
+							"outputPath": "dist/vroot",
 							"optimization": false,
 							"extractLicenses": false,
 							"sourceMap": true,
@@ -114,10 +139,13 @@
 					},
 					"configurations": {
 						"production": {
-							"buildTarget": "restaurant-pos:build:production"
+							"buildTarget": "vroot:build:production"
 						},
 						"development": {
-							"buildTarget": "restaurant-pos:build:development"
+							"buildTarget": "vroot:build:development"
+						},
+						"webstore": {
+							"buildTarget": "vroot:build:webstore-development"
 						}
 					},
 					"defaultConfiguration": "development"
@@ -146,6 +174,78 @@
 							}
 						]
 					}
+				}
+			}
+		},
+		"webstore": {
+			"projectType": "application",
+			"root": "",
+			"sourceRoot": "webstore",
+			"prefix": "",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:application",
+					"options": {
+						"outputPath": "dist/webstore",
+						"index": "webstore/index.html",
+						"browser": "webstore/main.ts",
+						"polyfills": ["zone.js"],
+						"tsConfig": "tsconfig.webstore.app.json",
+						"styles": ["webstore/styles.scss"],
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "webstore/assets",
+								"output": "assets"
+							},
+							{
+								"glob": "**/*",
+								"input": "webstore/public"
+							}
+						]
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kb",
+									"maximumError": "1mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kb",
+									"maximumError": "44kb"
+								}
+							],
+							"fileReplacements": [
+								{
+									"replace": "src/app/core/environments/env.ts",
+									"with": "src/app/core/environments/env.prod.ts"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"configurations": {
+						"production": {
+							"buildTarget": "webstore:build:production"
+						},
+						"development": {
+							"buildTarget": "webstore:build:development"
+						}
+					},
+					"defaultConfiguration": "development"
 				}
 			}
 		}

@@ -17,20 +17,19 @@ import { TableModule } from 'primeng/table';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
 @Component({
-	selector: 'add-customer-popup',
-	standalone: true,
-	imports: [
-		DialogModule,
-		ToggleButtonModule,
-		ButtonModule,
-		FormsModule,
-		InputTextModule,
-		TableModule,
-		DropdownModule,
-	],
-	templateUrl: './customer-popup.component.html',
-	styleUrl: './customer-popup.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'add-customer-popup',
+    imports: [
+        DialogModule,
+        ToggleButtonModule,
+        ButtonModule,
+        FormsModule,
+        InputTextModule,
+        TableModule,
+        DropdownModule,
+    ],
+    templateUrl: './customer-popup.component.html',
+    styleUrl: './customer-popup.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddCustomerPopupComponent {
 	@Output() addCustomer = new EventEmitter<Customer>();

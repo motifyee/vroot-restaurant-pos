@@ -1,0 +1,21 @@
+@use 'primeicons/primeicons.css';
+@use './styles/index.scss';
+
+@layer primeng, tailwind-base, tailwind-utilities;
+
+@layer tailwind-base {
+	@tailwind base;
+}
+
+@layer tailwind-utilities {
+	@tailwind components;
+	@tailwind utilities;
+}
+
+html {
+	@apply h-full;
+}
+
+body {
+	@apply m-0 p-0 h-full;
+}

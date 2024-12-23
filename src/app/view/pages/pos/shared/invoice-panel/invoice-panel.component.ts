@@ -35,26 +35,25 @@ import { AddCustomerPopupComponent } from './customer-popup/customer-popup.compo
 import { EditProductPopupComponent } from './edit-product-popup/edit-product-popup.component';
 
 @Component({
-	selector: 'invoice-panel',
-	standalone: true,
-	imports: [
-		CardModule,
-		DividerModule,
-		TableModule,
-		ButtonModule,
-		DialogModule,
-		InputTextModule,
-		DropdownModule,
-		FormsModule,
-		SkeletonModule,
-		ListboxModule,
-		ToggleButtonModule,
-		AddCustomerPopupComponent,
-		EditProductPopupComponent,
-	],
-	templateUrl: './invoice-panel.component.html',
-	styleUrl: './invoice-panel.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'invoice-panel',
+    imports: [
+        CardModule,
+        DividerModule,
+        TableModule,
+        ButtonModule,
+        DialogModule,
+        InputTextModule,
+        DropdownModule,
+        FormsModule,
+        SkeletonModule,
+        ListboxModule,
+        ToggleButtonModule,
+        AddCustomerPopupComponent,
+        EditProductPopupComponent,
+    ],
+    templateUrl: './invoice-panel.component.html',
+    styleUrl: './invoice-panel.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InvoicePanelComponent implements OnInit {
 	productPopupVisible = false;

@@ -9,12 +9,13 @@ export function storeType<T>(value: ProviderToken<T>): T {
 
 type MethodsDictionary = Record<string, (...args: any[]) => any>;
 
+// TODO: never depend on interanl api types
 export function featureMethodsType<T extends MethodsDictionary>(
 	_: <_>() => SignalStoreFeature<
 		any,
 		{
 			state: {};
-			computed: {};
+			props: {};
 			methods: T;
 		}
 	>,
@@ -24,7 +25,8 @@ export function featureMethodsType<T extends MethodsDictionary>(
 
 // #############################################################################
 
-export function featureType<T extends { state: {}; computed: {}; methods: {} }>(
+// TODO: never depend on interanl api types
+export function featureType<T extends { state: {}; props: {}; methods: {} }>(
 	_: <_>() => SignalStoreFeature<any, T>,
 ) {
 	return undefined as never as T;

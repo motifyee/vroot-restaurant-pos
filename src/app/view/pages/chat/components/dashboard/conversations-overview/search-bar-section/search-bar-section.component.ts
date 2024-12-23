@@ -7,12 +7,11 @@ import { ConversationExpandCollapsService } from '../../../../services/dashboard
 import { converastionSideBarExpandCollapsService } from '../../../../services/dashboard/converastion-side-bar-expand-collaps.service';
 
 @Component({
-	selector: 'search-bar-section',
-	standalone: true,
-	imports: [ListIconComponent, ArrowRightIconComponent, SearchIconComponent],
-	templateUrl: './search-bar-section.component.html',
-	styleUrls: ['./search-bar-section.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'search-bar-section',
+    imports: [ListIconComponent, ArrowRightIconComponent, SearchIconComponent],
+    templateUrl: './search-bar-section.component.html',
+    styleUrls: ['./search-bar-section.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchBarSectionComponent {
 	// toggle expand conversation overview

@@ -9,21 +9,20 @@ import { SearchBarSectionComponent } from '../search-bar-section/search-bar-sect
 import { SortingFilteringSectionComponent } from '../sorting-filtering-section/sorting-filtering-section.component';
 
 @Component({
-	selector: 'conversations-overview',
-	standalone: true,
-	imports: [
-	  ContactListComponent,
-	  ListIconComponent,
-	  ArrowRightIconComponent,
-	  SearchIconComponent,
-	  SortIconComponent,
-	  FilterIconComponent,
-	  SearchBarSectionComponent,
-	  SortingFilteringSectionComponent
-	],
-	templateUrl: './conversations-overview.component.html',
-	styleUrls: ['./conversations-overview.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush,
-  })
+    selector: 'conversations-overview',
+    imports: [
+        ContactListComponent,
+        ListIconComponent,
+        ArrowRightIconComponent,
+        SearchIconComponent,
+        SortIconComponent,
+        FilterIconComponent,
+        SearchBarSectionComponent,
+        SortingFilteringSectionComponent
+    ],
+    templateUrl: './conversations-overview.component.html',
+    styleUrls: ['./conversations-overview.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
   export class ConversationsOverviewComponent {}
   

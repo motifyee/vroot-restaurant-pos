@@ -1,5 +1,5 @@
 import { importProvidersFrom, NgModule } from '@angular/core';
-import { CartDataModule } from '@webstore/features';
+// import { CartDataModule } from '@webstore/features';
 import {
 	CustomerDataModule,
 	InvoiceDataModule,
@@ -10,7 +10,7 @@ import {
 @NgModule({
 	providers: [
 		importProvidersFrom(
-			CartDataModule.forRoot(),
+			// CartDataModule.forRoot(),
 			ShiftDataModule.forRoot(),
 			CustomerDataModule.forRoot(),
 			PrintersDataModule.forRoot(),

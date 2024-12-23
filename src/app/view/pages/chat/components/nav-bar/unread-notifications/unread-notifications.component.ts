@@ -11,12 +11,11 @@ import { GearIconComponent } from '../icons/gear-icon.component';
 import { DismissIconComponent } from '../icons/dismiss-icon.component';
 
 @Component({
-	selector: 'unread-notifications',
-	standalone: true,
-	imports: [CommonModule, GearIconComponent, DismissIconComponent],
-	templateUrl: './unread-notifications.component.html',
-	styleUrl: './unread-notifications.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'unread-notifications',
+    imports: [CommonModule, GearIconComponent, DismissIconComponent],
+    templateUrl: './unread-notifications.component.html',
+    styleUrl: './unread-notifications.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UnreadNotificationsComponent {
 	@Input() isVisible: boolean = false;

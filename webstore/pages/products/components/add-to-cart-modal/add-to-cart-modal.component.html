@@ -1,0 +1,59 @@
+<modal
+	[floatingHeader]="true"
+	width="500px"
+	top="1rem"
+	(onDismissed)="closeModal.emit()"
+>
+	<div class="image-container">
+		<banner class="w-full h-full" />
+	</div>
+
+	<div class="flex justify-between items-center gap-2 my-4 mx-2">
+		<div class="item-price flex-1 font-bold">
+			{{ variant()?.product?.title }} -
+			{{ variant()?.title }}
+		</div>
+
+		<span dir="ltr" class="text-sm font-medium">
+			{{ variant()?.price }} EGP
+		</span>
+	</div>
+
+	<div class="note px-2 pt-4">
+		<label class="mb-2 font-bold">ملاحظات</label>
+
+		<textarea
+			rows="2"
+			cols="3"
+			placeholder="أكتب ملاحظتك"
+			maxlength=""
+			class="w-100 rounded-3 bg-transparent border p-2"
+			[(ngModel)]="note"
+		></textarea>
+	</div>
+
+	<div class="bottom">
+		<div class="qty">
+			<button (click)="incrementQuantity()">
+				<i class="fas fa-plus"></i>
+			</button>
+
+			<input [(ngModel)]="quantity" inputmode="numeric" />
+
+			<button (click)="decrementQuantity()" [disabled]="quantity() <= 1">
+				<i class="fas fa-minus"></i>
+			</button>
+		</div>
+
+		<button
+			pButton
+			(click)="addToCart()"
+			type="button"
+			class="flex-1 text-sm flex flex-nowrap justify-center"
+		>
+			<span>إضافة</span>
+			&nbsp;
+			<span dir="ltr"> ( {{ totalPrice() }} EGP ) </span>
+		</button>
+	</div>
+</modal>

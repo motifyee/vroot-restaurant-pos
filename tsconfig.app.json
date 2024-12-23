@@ -4,14 +4,15 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
   },
   "files": [
     "src/main.ts",
     "src/targets/chat/main.ts",
-    "src/webstore/target/main.ts"
+    "webstore/main.ts",
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "webstore/**/*.d.ts",
   ]
 }

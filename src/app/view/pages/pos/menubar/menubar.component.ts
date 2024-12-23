@@ -24,28 +24,27 @@ import { Tab } from '@src/app/view/state/app/models/tab.model';
 import { BadgeModule } from 'primeng/badge';
 
 @Component({
-	selector: 'menubar',
-	standalone: true,
-	imports: [
-		MenubarModule,
-		ToastModule,
-		ButtonModule,
-		ButtonGroupModule,
-		CardModule,
-		DividerModule,
-		MenuModule,
-		OverlayPanelModule,
-		InputGroupModule,
-		InputGroupAddonModule,
-		ChipsModule,
-		DialogModule,
-		TabMenuModule,
-		BadgeModule,
-	],
-	providers: [MessageService],
-	templateUrl: './menubar.component.html',
-	styleUrl: './menubar.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'menubar',
+    imports: [
+        MenubarModule,
+        ToastModule,
+        ButtonModule,
+        ButtonGroupModule,
+        CardModule,
+        DividerModule,
+        MenuModule,
+        OverlayPanelModule,
+        InputGroupModule,
+        InputGroupAddonModule,
+        ChipsModule,
+        DialogModule,
+        TabMenuModule,
+        BadgeModule,
+    ],
+    providers: [MessageService],
+    templateUrl: './menubar.component.html',
+    styleUrl: './menubar.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenubarComponent implements OnInit {
 	constructor() {}

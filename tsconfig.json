@@ -25,7 +25,7 @@
     ],
     "paths": {
       "@webstore/*": [
-        "./src/webstore/*"
+        "./webstore/*"
       ],
       "@src/*": [
         "./src/*"
