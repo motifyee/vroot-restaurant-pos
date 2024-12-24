@@ -19,64 +19,6 @@
 	max-width: 80%;
 }
 
-button,
-input[type='button'],
-input[type='reset'],
-input[type='submit'] {
-	-webkit-appearance: button;
-	background: transparent;
-}
-
-button,
-select {
-	text-transform: none;
-}
-
-.button {
-	margin-bottom: 0;
-	display: inline-flex;
-	height: 2.5rem;
-	align-items: center;
-	gap: 0.5rem;
-	padding: 0 0.625rem;
-	font-weight: 500;
-	color: #fff;
-	outline: none;
-}
-
-button {
-	font-family: inherit;
-	transition:
-		background-color 0.25s ease-out,
-		color 0.25s ease-out;
-	display: inline-block;
-	cursor: pointer;
-	align-items: center;
-	border-radius: 0.3125rem;
-	border: 1px solid transparent;
-	padding: 0.25rem 0.625rem;
-	text-align: center;
-	vertical-align: middle;
-	font-size: 0.875rem;
-	line-height: 1.25rem;
-}
-
-button,
-[role='button'] {
-	cursor: pointer;
-}
-
-button,
-input,
-optgroup,
-select,
-textarea {
-	font: inherit;
-	margin: 0;
-	padding: 0;
-	color: inherit;
-}
-
 .multiselect {
 	min-height: 2.5rem;
 	border-radius: 5px;

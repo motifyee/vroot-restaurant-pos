@@ -33,27 +33,3 @@
 .overlay {
 	@apply fixed left-0 top-0  h-full w-full bg-black/40;
 }
-
-.button {
-	@apply inline-flex items-center justify-center gap-2 font-medium border border-transparent text-white rounded-md transition-all;
-}
-
-.button.icon {
-	@apply w-6 h-6 justify-center;
-}
-
-.button.tiny {
-	@apply h-6 text-xs;
-}
-
-.button.expanded {
-	@apply w-full justify-center;
-}
-
-.button.primary {
-	@apply bg-blue-600 hover:bg-blue-700;
-}
-
-.button.clear {
-	@apply bg-transparent text-blue-600 hover:bg-blue-100;
-}

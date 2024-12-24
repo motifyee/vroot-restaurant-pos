@@ -2,7 +2,7 @@
 	<div class="modal-wrapper">
 		<button
 			(click)="toggleFilterPopup()"
-			class="button dismiss-btn"
+			class="button clear button--only-icon secondary dismiss-btn"
 			type="submit"
 		>
 			<dismiss-icon />
@@ -46,7 +46,10 @@
 									</option>
 								</select>
 								<!-- filter-answer-wrapper multi-select dropdown -->
-								<button class="clear-button" type="submit">
+								<button
+									class="button clear button--only-icon secondary"
+									type="submit"
+								>
 									<dismiss-icon />
 								</button>
 							</div>
@@ -62,7 +65,10 @@
 					</div>
 
 					<div class="mt-4">
-						<button class="add-filter-btn" type="submit">
+						<button
+							class="button smooth small success"
+							type="submit"
+						>
 							<dismiss-icon />
 
 							<span class="">Add filter</span>
