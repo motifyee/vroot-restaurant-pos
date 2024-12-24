@@ -1,6 +1,7 @@
-@import 'primeng/resources/themes/aura-light-blue/theme.css';
-@import 'primeng/resources/primeng.css';
-@import 'primeicons/primeicons.css';
+@use 'primeicons/primeicons.css';
+
+@use './styles/theme';
+@use './styles/prime_overrides/index';
 
 @layer primeng, tailwind-base, tailwind-utilities;
 
@@ -12,9 +13,6 @@
 	@tailwind components;
 	@tailwind utilities;
 }
-
-@import './styles/theme';
-@import './styles/prime_overrides/index';
 
 html {
 	@apply h-full;

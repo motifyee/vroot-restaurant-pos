@@ -8,11 +8,11 @@ import {
 import { MenuItem, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { ChipsModule } from 'primeng/chips';
+import { ChipModule } from 'primeng/chip';
 import { DividerModule } from 'primeng/divider';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-import { Menu, MenuModule } from 'primeng/menu';
+import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ToastModule } from 'primeng/toast';
@@ -22,29 +22,31 @@ import { DialogModule } from 'primeng/dialog';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { Tab } from '@src/app/view/state/app/models/tab.model';
 import { BadgeModule } from 'primeng/badge';
+import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'menubar',
-    imports: [
-        MenubarModule,
-        ToastModule,
-        ButtonModule,
-        ButtonGroupModule,
-        CardModule,
-        DividerModule,
-        MenuModule,
-        OverlayPanelModule,
-        InputGroupModule,
-        InputGroupAddonModule,
-        ChipsModule,
-        DialogModule,
-        TabMenuModule,
-        BadgeModule,
-    ],
-    providers: [MessageService],
-    templateUrl: './menubar.component.html',
-    styleUrl: './menubar.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'menubar',
+	imports: [
+		MenubarModule,
+		ToastModule,
+		ButtonModule,
+		ButtonGroupModule,
+		CardModule,
+		DividerModule,
+		MenuModule,
+		OverlayPanelModule,
+		InputGroupModule,
+		InputGroupAddonModule,
+		ChipModule,
+		DialogModule,
+		TabMenuModule,
+		BadgeModule,
+		RouterLink,
+	],
+	providers: [MessageService],
+	templateUrl: './menubar.component.html',
+	styleUrl: './menubar.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenubarComponent implements OnInit {
 	constructor() {}

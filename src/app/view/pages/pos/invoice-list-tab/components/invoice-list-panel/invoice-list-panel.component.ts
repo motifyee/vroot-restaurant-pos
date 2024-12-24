@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { invoiceIndexStore } from '@src/app/features';
 import { Invoice } from '@src/app/features/invoices/domain/models/Invoice.model';
@@ -10,18 +9,17 @@ import { TagModule } from 'primeng/tag';
 import { TableModule } from 'primeng/table';
 
 @Component({
-    selector: 'invoice-list-panel',
-    imports: [
-        JsonPipe,
-        TableModule,
-        InputTextModule,
-        IconFieldModule,
-        InputIconModule,
-        TagModule,
-    ],
-    templateUrl: './invoice-list-panel.component.html',
-    styleUrl: './invoice-list-panel.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'invoice-list-panel',
+	imports: [
+		TableModule,
+		InputTextModule,
+		IconFieldModule,
+		InputIconModule,
+		TagModule,
+	],
+	templateUrl: './invoice-list-panel.component.html',
+	styleUrl: './invoice-list-panel.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvoiceListPanelComponent {
 	invoices: Partial<Invoice>[] = [

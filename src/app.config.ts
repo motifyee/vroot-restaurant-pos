@@ -21,6 +21,8 @@ import { AuthInterceptor } from './app/core/interceptors/api.interceptor';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideTranslateService } from '@ngx-translate/core';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -29,6 +31,15 @@ export const appConfig: ApplicationConfig = {
 			defaultLanguage: localStorage.getItem('lang') || 'en',
 		}),
 		provideAnimationsAsync(),
+		providePrimeNG({
+			theme: {
+				preset: Aura,
+				options: {
+					darkModeSelector: 'light',
+					ripple: true,
+				},
+			},
+		}),
 		importProvidersFrom(
 			RouterModule,
 			LoggerModule.forAdaptive(
