@@ -1,34 +1,10 @@
 :host {
 	@apply sticky z-20; // z-50;
 }
+
 .header-container {
 	background-color: var(--GreenBackground);
-	padding: 10px 0;
-
-	&.header-content {
-		position: fixed;
-		top: 0px;
-		width: 100%;
-		z-index: 2;
-	}
-}
-
-.container {
-	margin: 0 auto;
-	width: 69%;
-}
-
-@media (max-width: 768px) {
-	.container {
-		width: 100%;
-	}
-}
-
-.header-section {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0 calc(1.5rem * 0.5);
+	@apply py-2 fixed top-0 w-full z-20;
 }
 
 .menu-side-btn {
@@ -81,89 +57,8 @@
 	}
 }
 
-.menu-bar {
-	flex-grow: 1;
-	display: flex;
-	align-items: center;
-	background-color: transparent;
-	border-radius: 5px;
-	padding: 4px 8px;
-	direction: ltr;
-	cursor: pointer;
-}
-
-@media (max-width: 768px) {
-	.menu-bar {
-		padding: 0;
-	}
-}
-
-.header-dropdown-container {
-	display: flex;
-	flex-grow: 1;
-	justify-content: space-between;
-	align-items: center;
-
-	.header-dropdown {
-		display: flex;
-		align-items: center;
-		gap: 0.25rem;
-
-		.arrow-down {
-			font-size: 16px;
-			cursor: pointer;
-			width: 35px;
-			text-align: center;
-			color: #fff;
-		}
-
-		.food-type {
-			@apply flex flex-col gap-1;
-
-			> div {
-				text-align: left;
-			}
-
-			.food-type-1 {
-				font-size: 11px;
-				color: #fff;
-			}
-
-			.food-type-2 {
-				font-size: 13px;
-				color: #fff;
-				font-weight: 700 !important;
-			}
-
-			:nth-child(2) {
-				transform: translateY(-1px);
-			}
-		}
-	}
-}
-
-.time-type-btn {
-	margin-left: 10px;
-	min-width: 140px;
-	color: #f3f3ed;
-	border-radius: 5px;
-	cursor: pointer;
-	padding: 0 0.5rem;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: center;
-	flex-shrink: 0;
-
-	small {
-		font-size: 11px;
-		margin-bottom: 6px;
-		line-height: 1;
-	}
-
-	span {
-		font-size: 13px;
-		line-height: 1;
-		color: #fff !important;
-	}
+.order-type {
+	@apply flex gap-2 items-center
+  p-3 ml-3 text-sm
+  cursor-pointer text-white;
 }

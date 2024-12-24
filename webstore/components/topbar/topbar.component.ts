@@ -5,6 +5,7 @@ import {
 	ElementRef,
 	EventEmitter,
 	inject,
+	output,
 	Output,
 	signal,
 	ViewChild,
@@ -13,15 +14,16 @@ import { ScrollService } from '../../services/scroll.service';
 import { settingsStore } from '@webstore/state';
 import { BranchOrderTypePickerComponent } from '../pick-branch-modal/pick-branch-modal.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'topbar',
-    imports: [BranchOrderTypePickerComponent, SidebarComponent],
-    templateUrl: './topbar.component.html',
-    styleUrl: './topbar.component.scss'
+	selector: 'topbar',
+	imports: [BranchOrderTypePickerComponent, SidebarComponent, NgClass],
+	templateUrl: './topbar.component.html',
+	styleUrl: './topbar.component.scss',
 })
 export class TopbarComponent implements AfterViewInit {
-	@Output() toggleSideBarVisibility = new EventEmitter<void>();
+	toggleSideBarVisibility = output<void>();
 
 	scrollService = inject(ScrollService);
 	isSideBarVisible = signal(false);
@@ -38,8 +40,8 @@ export class TopbarComponent implements AfterViewInit {
 
 	deliveryTitle = computed(() => {
 		if (!this.settings.selectedBranch?.()) return '';
-		if (this.settings.orderType() == 'delivery') return 'توصيل من';
-		if (this.settings.orderType() == 'pickup') return 'استلام من';
+		if (this.settings.orderType() == 'delivery') return 'ديليفري';
+		if (this.settings.orderType() == 'pickup') return 'استلام من الفرع';
 		return '';
 	});
 
