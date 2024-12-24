@@ -15,24 +15,18 @@ import { RouterOutlet } from '@angular/router';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { CommonModule } from '@angular/common';
 import { userStore, settingsStore } from '@webstore/state';
-import { MessageService } from 'primeng/api';
 
 @Component({
-    selector: 'webstore',
-    imports: [RouterOutlet, TopbarComponent, CommonModule],
-    templateUrl: './webstore.component.html',
-    styleUrls: ['./webstore.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        ScrollService,
-        productsPageStore,
-        webstorePageStore,
-        MessageService,
-    ],
-    animations: [scaleInOut],
-    host: {
-        '[attr.dir]': '"rtl"',
-    }
+	selector: 'webstore',
+	imports: [RouterOutlet, TopbarComponent, CommonModule],
+	templateUrl: './webstore.component.html',
+	styleUrls: ['./webstore.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	providers: [ScrollService, productsPageStore, webstorePageStore],
+	animations: [scaleInOut],
+	host: {
+		'[attr.dir]': '"rtl"',
+	},
 })
 export class WebstoreComponent implements OnInit {
 	isSideBarVisible = signal(false);
