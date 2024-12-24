@@ -42,7 +42,7 @@ export class BranchOrderTypePickerComponent {
 
 	header = computed(() => {
 		if (!this.choosedBranch())
-			return this.pendingBranch() ? 'تأكيد' : 'اختر الفرع التشغيلي';
+			return this.pendingBranch() ? 'تأكيد' : 'برجاء اختيار الفرع';
 
 		if (!this.choosedOrderType()) return 'اختر نوع الطلب';
 

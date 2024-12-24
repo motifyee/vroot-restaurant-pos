@@ -1,5 +1,3 @@
-<p-toast position="top-right" className="z-50" />
-
 <modal
 	[header]="header()"
 	[isLoading]="userStore.isLoading()"
@@ -21,6 +19,18 @@
 	}
 </modal>
 
+<ng-template #message>
+	@if (error()) {
+		<p-message
+			severity="error"
+			closable
+			icon="pi pi-exclamation-circle"
+			[text]="error()"
+			(onClose)="error.set('')"
+		/>
+	}
+</ng-template>
+
 <ng-template #phoneForm>
 	<div dir="ltr" class="phoneInput">
 		<span>+20</span>
@@ -33,6 +43,9 @@
 			[(ngModel)]="phone"
 		/>
 	</div>
+
+	<ng-container [ngTemplateOutlet]="message" />
+
 	<p-button
 		(click)="checkPhone()"
 		type="submit"
@@ -71,6 +84,9 @@
 			/>
 		</div>
 	</div>
+
+	<ng-container [ngTemplateOutlet]="message" />
+
 	<p-button (click)="register()" class="w-full" type="submit" label="تسجيل" />
 </ng-template>
 
@@ -85,6 +101,8 @@
 			/>
 		</div>
 	</div>
+
+	<ng-container [ngTemplateOutlet]="message" />
 
 	<p-button
 		(click)="login()"

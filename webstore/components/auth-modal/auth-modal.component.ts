@@ -13,10 +13,10 @@ import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { settingsStore, userStore } from '@webstore/state';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 import { scaleInOut } from '../../animations/scale-in-out.animation';
 import { ModalComponent } from '../modal/modal.component';
 import { ButtonModule } from 'primeng/button';
+import { MessageModule } from 'primeng/message';
 
 @Component({
 	selector: 'auth-modal',
@@ -27,6 +27,7 @@ import { ButtonModule } from 'primeng/button';
 		ToastModule,
 		ModalComponent,
 		ButtonModule,
+		MessageModule,
 	],
 	templateUrl: './auth-modal.component.html',
 	styleUrls: ['./auth-modal.component.scss'],
@@ -38,7 +39,6 @@ export class AuthModalComponent implements OnInit {
 
 	userStore = inject(userStore);
 	settings = inject(settingsStore);
-	msgService = inject(MessageService);
 
 	@Output() onDismissed = new EventEmitter<void>();
 	@Output() onFinished = new EventEmitter<void>();
@@ -59,14 +59,11 @@ export class AuthModalComponent implements OnInit {
 	password = signal('');
 	confirmPassword: any;
 
+	error = signal('');
 	__showAPIMsg = effect(() => {
 		if (this.userStore.apiMsgConfirmed()) return;
 
-		this.msgService.add({
-			severity: 'error',
-			summary: 'خطأ',
-			detail: this.userStore.apiMsg(),
-		});
+		this.error.set(this.userStore.apiMsg());
 
 		this.userStore.confirmApiMsg();
 	});

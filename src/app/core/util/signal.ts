@@ -56,6 +56,6 @@ export function singleCallEffect(params: {
 			setTimeout(success, 0);
 			x.destroy();
 		},
-		{ injector, allowSignalWrites: true },
+		{ injector },
 	);
 }

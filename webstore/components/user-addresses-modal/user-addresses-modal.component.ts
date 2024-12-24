@@ -2,6 +2,7 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	computed,
+	effect,
 	EventEmitter,
 	HostBinding,
 	inject,
@@ -19,6 +20,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
 import { scaleInOut } from '../../animations/scale-in-out.animation';
+import { MessageModule } from 'primeng/message';
 
 const left = style({ transform: 'translateX(-100%)' });
 const right = style({ transform: 'translateX(100%)' });
@@ -26,29 +28,30 @@ const visible = style({ transform: 'translateX(0)' });
 const timing = '300ms ease-in-out';
 
 @Component({
-    selector: 'user-addresses-modal',
-    imports: [
-        ModalComponent,
-        NgTemplateOutlet,
-        ButtonModule,
-        NgClass,
-        FormsModule,
-        CheckboxModule,
-    ],
-    templateUrl: './user-addresses-modal.component.html',
-    styleUrl: './user-addresses-modal.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { class: 'popup' },
-    animations: [
-        scaleInOut,
-        trigger('formIn', [
-            transition(':enter', [left, animate(timing, visible)]),
-        ]),
-        trigger('listIn', [
-            transition(':enter', [right, animate(timing, visible)]),
-        ]),
-        trigger('addressOut', [transition(':leave', [animate(timing, right)])]),
-    ]
+	selector: 'user-addresses-modal',
+	imports: [
+		ModalComponent,
+		NgTemplateOutlet,
+		ButtonModule,
+		NgClass,
+		FormsModule,
+		CheckboxModule,
+		MessageModule,
+	],
+	templateUrl: './user-addresses-modal.component.html',
+	styleUrl: './user-addresses-modal.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	host: { class: 'popup' },
+	animations: [
+		scaleInOut,
+		trigger('formIn', [
+			transition(':enter', [left, animate(timing, visible)]),
+		]),
+		trigger('listIn', [
+			transition(':enter', [right, animate(timing, visible)]),
+		]),
+		trigger('addressOut', [transition(':leave', [animate(timing, right)])]),
+	],
 })
 export class UserAddressesModalComponent implements OnInit {
 	@HostBinding('@scaleInOut') scaleInOut = true;
@@ -113,6 +116,15 @@ export class UserAddressesModalComponent implements OnInit {
 		);
 	}
 
+	error = signal('');
+	__showAPIMsg = effect(() => {
+		if (this.user.apiMsgConfirmed()) return;
+
+		this.error.set(this.user.apiMsg());
+
+		this.user.confirmApiMsg();
+	});
+
 	submitAddressForm(form: NgForm) {
 		if (form.invalid) return;
 
@@ -122,6 +134,7 @@ export class UserAddressesModalComponent implements OnInit {
 			this.activeView() == 'createForm'
 				? this.user.createAddress(params)
 				: this.user.updateAddress(params);
+
 		obs.subscribe(() => {
 			this.user.getAddresses();
 			this.activeView.set('list');

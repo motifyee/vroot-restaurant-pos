@@ -79,7 +79,7 @@
 		<div class="flex flex-col gap-4">
 			<div class="input-wrapper">
 				<input
-					placeholder="حفظ باسم"
+					placeholder="حفظ باسم مثال: المنزل , العمل , الجامعة..."
 					required
 					minlength="3"
 					[(ngModel)]="addressForm.title"
@@ -117,6 +117,16 @@
 					[binary]="true"
 				></p-checkbox>
 			</span>
+
+			@if (error()) {
+				<p-message
+					severity="error"
+					closable
+					icon="pi pi-exclamation-circle"
+					[text]="error()"
+					(onClose)="error.set('')"
+				/>
+			}
 
 			<div class="flex justify-around">
 				<p-button
