@@ -45,7 +45,8 @@ export class SidebarComponent implements OnInit {
 		{ label: 'طلبك كالعادة', url: webstorePaths.usuals, auth: true },
 		{ label: 'اتصل بنا', url: webstorePaths.callUs },
 		{ label: 'عناويني', action: () => {} },
-		{ label: 'English', action: () => {} },
+		// { label: 'English', action: () => {} },
+		{ label: 'تسجيل الخروج', action: this.logout.bind(this), auth: true },
 	]);
 
 	onLinkClick(link: MenuLink) {
@@ -60,5 +61,10 @@ export class SidebarComponent implements OnInit {
 		if (this.user.isLoggedIn()) return;
 
 		this.menuLinks.update((links) => links.filter((l) => !l.auth));
+	}
+
+	logout() {
+		this.user.removeUserData();
+		this.router.navigate([webstorePaths.home]);
 	}
 }
