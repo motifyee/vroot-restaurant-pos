@@ -13,6 +13,7 @@
 		</button>
 		<div class="relative flex">
 			<button
+				(click)="op.toggle($event)"
 				class="button smooth button--only-icon tiny secondary"
 				type="submit"
 			>
@@ -25,3 +26,58 @@
 @if (isFilterPopupVisible) {
 	<filter-popup />
 }
+
+<p-popover #op>
+	<div class="right-0 mt-1 dropdown-pane dropdown-pane--open basic-filter">
+		<div class="flex items-center justify-between gap-3">
+			<span class="text-xs font-medium text-slate-800">Status</span>
+			<p-select
+				[options]="cities"
+				[(ngModel)]="selectedCity"
+				optionLabel="name"
+				placeholder="Select a City"
+				size="small"
+				class="p-select"
+			/>
+		</div>
+
+		<div class="flex items-center justify-between gap-3 mt-4">
+			<span class="text-xs font-medium text-slate-800">Status</span>
+			<p-select
+				[options]="cities"
+				[(ngModel)]="selectedCity"
+				optionLabel="name"
+				placeholder="Select a City"
+				size="small"
+				class="p-select"
+			/>
+		</div>
+		<!-- <div class="flex items-center justify-between last:mt-4">
+			<span class="text-xs font-medium text-slate-800 dark:text-slate-100"
+				>Order by</span
+			><select
+				class="bg-slate-25 dark:bg-slate-700 text-xs h-6 my-0 mx-1 py-0 pr-6 pl-2 w-32 border border-solid border-slate-75 dark:border-slate-600 text-slate-800 dark:text-slate-100"
+				jf-ext-cache-id="82"
+			>
+				<option value="last_activity_at_asc">
+					Last activity: Oldest first
+				</option>
+				<option value="last_activity_at_desc">
+					Last activity: Newest first
+				</option>
+				<option value="created_at_desc">
+					Created at: Newest first
+				</option>
+				<option value="created_at_asc">Created at: Oldest first</option>
+				<option value="priority_desc">Priority: Highest first</option>
+				<option value="priority_asc">Priority: Lowest first</option>
+				<option value="waiting_since_asc">
+					Pending Response: Longest first
+				</option>
+				<option value="waiting_since_desc">
+					Pending Response: Shortest first
+				</option>
+			</select>
+		</div> -->
+	</div>
+</p-popover>
