@@ -62,3 +62,9 @@
   p-3 ml-3 text-sm
   cursor-pointer text-white;
 }
+
+.branch-name {
+	@apply text-sm font-bold
+  text-white cursor-pointer p-3 
+    w-fit flex gap-2 items-center justify-end;
+}

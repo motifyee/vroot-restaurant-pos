@@ -23,25 +23,24 @@
 				{{ deliveryTitle() }}
 			</div>
 
-			<i
-				class="fas"
-				[ngClass]="{
-					'fa-truck': settings.orderType() === 'delivery',
-					'fa-cart-shopping': settings.orderType() === 'pickup',
-				}"
-			>
-			</i>
+			@if (settings.orderType()) {
+				<bg-img
+					[url]="'/assets/icons/' + settings.orderType() + '.svg'"
+				/>
+			}
 		</div>
 
-		<div class="flex-1 text-left">
+		<div class="flex-1 ml-3 flex items-center justify-end">
 			<span
 				(click)="
 					branchOrderTypeTarget.set('branch');
 					isBranchOrderTypePickerVisible.set(true)
 				"
-				class="text-sm text-white font-bold cursor-pointer p-3 ml-3"
+				class="branch-name"
 			>
 				{{ branchName() }}
+
+				<bg-img url="/assets/icons/branch.svg" />
 			</span>
 		</div>
 	</div>
