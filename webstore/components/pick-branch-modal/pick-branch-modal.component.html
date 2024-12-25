@@ -2,6 +2,7 @@
 	[header]="header()"
 	[closable]="isDismissable()"
 	(onDismissed)="dismiss()"
+	[headerIconUrl]="headerIconUrl()"
 >
 	@if (!choosedBranch()) {
 		@if (pendingBranch()) {

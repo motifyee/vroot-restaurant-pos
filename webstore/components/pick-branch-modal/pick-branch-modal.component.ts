@@ -49,6 +49,11 @@ export class BranchOrderTypePickerComponent {
 		return '';
 	});
 
+	headerIconUrl = computed(() => {
+		if (this.choosedBranch()) return '';
+		return this.pendingBranch() ? '' : 'assets/icons/branch.svg';
+	});
+
 	isDismissable = computed(() => {
 		switch (this.target()) {
 			case 'all':
