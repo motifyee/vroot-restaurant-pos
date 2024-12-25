@@ -2,26 +2,27 @@ import { NgClass } from '@angular/common';
 import {
 	ChangeDetectionStrategy,
 	Component,
-	EventEmitter,
 	input,
-	Output,
+	output,
 } from '@angular/core';
+import { BgImageComponent } from '@webstore/app/components/bg-image/bg-image.component';
 import { ButtonModule } from 'primeng/button';
-import { ToastModule } from 'primeng/toast';
 
 @Component({
-    selector: 'modal',
-    imports: [ToastModule, ButtonModule, NgClass],
-    templateUrl: './modal.component.html',
-    styleUrl: './modal.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'modal',
+	imports: [ButtonModule, NgClass, BgImageComponent],
+	templateUrl: './modal.component.html',
+	styleUrl: './modal.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent {
-	@Output() onDismissed = new EventEmitter<void>();
+	onDismissed = output<void>();
+
 	isLoading = input(false);
 	closable = input(true);
 	header = input<string>('');
 	floatingHeader = input<boolean>(false);
+	headerIconUrl = input<string>('');
 
 	top = input<string | undefined>(undefined);
 

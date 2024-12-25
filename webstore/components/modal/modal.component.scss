@@ -14,11 +14,6 @@
 	@apply flex justify-between items-center 
   w-full p-4;
 
-	span {
-		font-weight: 700;
-		display: block;
-	}
-
 	.close-btn {
 		@apply w-8 h-8 rounded-full;
 		background-color: hsla(0, 0%, 100%, 0.64);
