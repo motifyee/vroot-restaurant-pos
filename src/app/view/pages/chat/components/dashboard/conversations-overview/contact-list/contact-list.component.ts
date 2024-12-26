@@ -1,17 +1,23 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ArrowLeftIconComponent } from '../../icons/arrow-left-icon.component';
 import { ExclamationIconComponent } from '../../icons/exclamation-icon.component';
+import { ConversationBulkActionComponent } from '../conversation-bulk-action/conversation-bulk-action.component';
+
 @Component({
-    selector: 'contact-list',
-    imports: [ArrowLeftIconComponent, ExclamationIconComponent],
-    templateUrl: './contact-list.component.html',
-    styleUrl: './contact-list.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'contact-list',
+	imports: [
+		ArrowLeftIconComponent,
+		ExclamationIconComponent,
+		ConversationBulkActionComponent,
+	],
+	templateUrl: './contact-list.component.html',
+	styleUrl: './contact-list.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactListComponent {
-	  // Array of tab names as a component property
-	  tabs = ['mine', 'unassigned', 'all'];
-	  
+	// Array of tab names as a component property
+	tabs = ['mine', 'unassigned', 'all'];
+
 	// Signal for active tab
 	activeTab = signal('mine'); // Default is 'mine'
 
