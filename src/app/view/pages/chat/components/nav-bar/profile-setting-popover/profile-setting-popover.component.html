@@ -47,11 +47,12 @@
 	</ul>
 	<ul class="dropdown-menu">
 		<li class="menu-item" tabindex="-1" aria-disabled="false">
-			<button class="button clear small secondary">
+			<button (click)="showDialog()" class="button clear small secondary">
 				<keyboard-icon />
 				<span class="button-content">Keyboard Shortcuts</span>
 			</button>
 		</li>
+
 		<li class="menu-item" tabindex="-1" aria-disabled="false">
 			<a
 				href="/app/accounts/4/profile/settings"
@@ -75,3 +76,12 @@
 		</li>
 	</ul>
 </div>
+
+<p-dialog
+	appendTo="body"
+	header="Keyboard Shortcuts"
+	[modal]="true"
+	[(visible)]="visible"
+>
+	<keyboard-shortcuts-popover />
+</p-dialog>

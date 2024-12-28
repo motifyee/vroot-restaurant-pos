@@ -14,7 +14,7 @@ import { AddNewLabelPopupComponent } from './components/add-new-label-popup/add-
 		PlusIconComponent,
 		UnattendedIconComponent,
 		CloudIconComponent,
-		AddNewLabelPopupComponent,
+		// AddNewLabelPopupComponent,
 	],
 	templateUrl: './side-bar.component.html',
 	styleUrl: './side-bar.component.scss',
