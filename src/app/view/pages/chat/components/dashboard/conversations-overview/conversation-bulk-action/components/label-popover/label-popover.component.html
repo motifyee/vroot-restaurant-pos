@@ -1,1 +1,23 @@
-<p>label-popover works!</p>
+<div class="p-2.5 flex gap-1 items-center justify-between">
+	<span class="head-text"> Assign label </span
+	><button
+		class="button clear button--only-icon tiny secondary"
+		type="submit"
+	>
+		<i class="pi pi-times text-xxs"></i>
+	</button>
+</div>
+
+<div class="card flex justify-center">
+	<p-treeselect
+		class="w-full md:w-56"
+		containerStyleClass="w-full"
+		[(ngModel)]="selectedNodes"
+		[options]="nodes"
+		display="chip"
+		size="small"
+		[metaKeySelection]="false"
+		selectionMode="checkbox"
+		placeholder="Select Item"
+	/>
+</div>
