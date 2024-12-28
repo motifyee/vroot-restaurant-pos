@@ -1,1 +1,36 @@
-<p>team-popover works!</p>
+<div class="flex items-center justify-between header">
+	<span>Select team</span
+	><button
+		class="button clear button--only-icon tiny secondary"
+		type="submit"
+	>
+		<i class="pi pi-times text-xxs"></i>
+	</button>
+</div>
+
+<div class="card flex justify-center mt-2">
+	<p-select
+		[options]="teams"
+		[(ngModel)]="selectedTeam"
+		optionLabel="name"
+		[filter]="true"
+		size="small"
+		filterBy="name"
+		[showClear]="true"
+		placeholder="Select a Team"
+		class="w-full md:w-56"
+	>
+		<ng-template #selectedItem let-selectedOption>
+			<div class="flex items-center gap-2">
+				<!-- thumbnail -->
+				<div>{{ selectedOption.name }}</div>
+			</div>
+		</ng-template>
+		<ng-template let-team #item>
+			<div class="flex items-center gap-2">
+				<!-- thumbnail -->
+				<div>{{ team.name }}</div>
+			</div>
+		</ng-template>
+	</p-select>
+</div>
