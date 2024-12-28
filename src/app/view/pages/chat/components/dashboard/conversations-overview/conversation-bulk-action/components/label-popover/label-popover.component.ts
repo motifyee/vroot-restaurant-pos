@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TreeSelect } from 'primeng/treeselect';
+import { PopoverHeaderComponent } from '../popover-header/popover-header.component';
 
 @Component({
 	selector: 'label-popover',
-	imports: [FormsModule, TreeSelect],
+	imports: [FormsModule, TreeSelect, PopoverHeaderComponent],
 	templateUrl: './label-popover.component.html',
 	styleUrl: './label-popover.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,13 +1,4 @@
-<div class="flex items-center justify-between header">
-	<span>Select agent</span
-	><button
-		class="button clear button--only-icon tiny secondary"
-		type="submit"
-	>
-		<i class="pi pi-times text-xxs"></i>
-	</button>
-</div>
-
+<popover-header [title]="'Select agent'" />
 <div class="card flex justify-center mt-2">
 	<p-select
 		[options]="agents"

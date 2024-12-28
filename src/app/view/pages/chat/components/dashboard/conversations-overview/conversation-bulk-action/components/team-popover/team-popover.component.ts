@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
+import { PopoverHeaderComponent } from '../popover-header/popover-header.component';
+
 @Component({
 	selector: 'team-popover',
-	imports: [FormsModule, SelectModule],
+	imports: [FormsModule, SelectModule, PopoverHeaderComponent],
 	templateUrl: './team-popover.component.html',
 	styleUrl: './team-popover.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
