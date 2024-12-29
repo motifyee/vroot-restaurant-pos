@@ -4,39 +4,37 @@ import {
 	type,
 	withMethods,
 } from '@ngrx/signals';
-import { addEntity, setEntity } from '@ngrx/signals/entities';
-import {
-	CartProductEntityState,
-	cartProductsEntityConfig,
-} from '../cart.store';
+import { CartStoreState } from '../cart.store';
+import { WithGetProductIdxMethodType } from './with-get-product-idx.method';
 
 export const withAddToCartMethod = <_>() =>
 	signalStoreFeature(
-		{ state: type<CartProductEntityState>() },
+		{
+			methods: type<WithGetProductIdxMethodType>(),
+			state: type<CartStoreState>(),
+		},
 
 		withMethods((store) => {
 			return {
-				addToCart: (product: CartProduct) => {
-					let existing =
-						store.cartProductEntityMap()[product.variant.id];
+				addToCart: (product: CartVariant) => {
+					const existingIdx = store.getProductIdx(product);
 
-					if (!existing)
-						patchState(
-							store,
-							addEntity(product, cartProductsEntityConfig),
-						);
+					if (existingIdx < 0)
+						patchState(store, {
+							products: [...store.products(), product],
+						});
 					else
-						patchState(
-							store,
-							setEntity(
-								{
-									...existing,
-									quantity:
-										existing.quantity + product.quantity,
-								},
-								cartProductsEntityConfig,
+						patchState(store, {
+							products: store.products().map((p, i) =>
+								i === existingIdx
+									? {
+											...p,
+											quantity:
+												p.quantity + product.quantity,
+										}
+									: p,
 							),
-						);
+						});
 				},
 			};
 		}),

@@ -4,22 +4,14 @@ import {
 	type,
 	withMethods,
 } from '@ngrx/signals';
-import { removeEntities } from '@ngrx/signals/entities';
-import {
-	cartProductsEntityConfig,
-	CartProductEntityState,
-} from '../cart.store';
+import { CartStoreState } from '../cart.store';
 
 export const withEmptyCartMethod = <_>() =>
 	signalStoreFeature(
-		{ state: type<CartProductEntityState>() },
+		{ state: type<CartStoreState>() },
 		withMethods((store) => {
 			return {
-				emptyCart: () =>
-					patchState(
-						store,
-						removeEntities(() => true, cartProductsEntityConfig),
-					),
+				emptyCart: () => patchState(store, { products: [] }),
 			};
 		}),
 	);

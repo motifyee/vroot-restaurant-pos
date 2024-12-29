@@ -1,47 +1,31 @@
-import { signalStore, type, withState } from '@ngrx/signals';
+import { signalStore, withState } from '@ngrx/signals';
 import { storeType } from '@src/app/view/state/utils/utils';
-import {
-	entityConfig,
-	NamedEntityProps,
-	NamedEntityState,
-	withEntities,
-} from '@ngrx/signals/entities';
 import { withAddToCartMethod } from './features/with-add-to-cart.method';
 import { withRemoveFromCartMethod } from './features/with-remove-from-cart.method';
 import { withUpdateCartMethod } from './features/with-update-cart-cart.method';
 import { withEmptyCartMethod } from './features/with-empty-cart.method';
 import { withCartTotalComputed } from './features/with-cart-total.computed';
+import { withGetProductIdxMethod } from './features/with-get-product-idx.method';
+import { withIncrementIdxMethods } from './features/with-increment-idx.methods';
 
-export type CartProductEntityState = NamedEntityState<
-	CartProduct,
-	'cartProduct'
->;
+export type CartStoreState = {
+	products: CartVariant[];
+};
 
-export type CartProductEntityProps = NamedEntityProps<
-	CartProduct,
-	'cartProduct'
->;
-
-export const cartProductsEntityConfig = entityConfig({
-	entity: type<CartProduct>(),
-	collection: 'cartProduct',
-	selectId: (c: CartProduct) => c.variant.id,
-});
-
-// #############################################################################
-
-export type CartStoreState = {};
-
-const initialState: CartStoreState = {};
+const initialState: CartStoreState = {
+	products: [],
+};
 
 // #############################################################################
 
 export const cartStore = signalStore(
 	withState(initialState),
-	withEntities(cartProductsEntityConfig),
 
 	withCartTotalComputed(),
 
+	withGetProductIdxMethod(),
+
+	withIncrementIdxMethods(),
 	withAddToCartMethod(),
 	withRemoveFromCartMethod(),
 	withUpdateCartMethod(),

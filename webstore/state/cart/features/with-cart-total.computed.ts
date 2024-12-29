@@ -1,18 +1,20 @@
 import { signalStoreFeature, type, withComputed } from '@ngrx/signals';
-import { CartProductEntityProps } from '../cart.store';
-import { computed } from '@angular/core';
+import { CartStoreState } from '../cart.store';
+import { computed, inject } from '@angular/core';
+import { CalcCartTotalPriceUseCase } from '@webstore/features';
 
 export const withCartTotalComputed = <_>() =>
 	signalStoreFeature(
-		{ props: type<CartProductEntityProps>() },
+		{ state: type<CartStoreState>() },
 
 		withComputed((store) => {
+			const cartTotal = inject(CalcCartTotalPriceUseCase);
+
 			return {
-				cartTotal: computed(() =>
-					store
-						.cartProductEntities()
-						.reduce((a, b) => a + b.variant.price * b.quantity, 0),
-				),
+				cartTotal: computed(() => {
+					const products = store.products();
+					return cartTotal.execute({ products });
+				}),
 			};
 		}),
 	);
