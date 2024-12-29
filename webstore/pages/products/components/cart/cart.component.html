@@ -5,7 +5,7 @@
 } @else if (scrollService.isMobileView()) {
 	<ng-container [ngTemplateOutlet]="floatingCart" />
 } @else {
-	<ng-container [ngTemplateOutlet]="cart" />
+	<ng-container [ngTemplateOutlet]="fullCart" />
 }
 
 <ng-template #emptyCart>
@@ -18,47 +18,17 @@
 </ng-template>
 
 <ng-template #_cartItems>
-	@for (item of cartItems(); track item.variant.id) {
-		<div class="cart-items">
-			<div class="cart-item">
-				<span class="item-title">
-					{{ item.variant.product?.title }} - {{ item.variant.title }}
-				</span>
-
-				<span class="price">
-					{{ item.variant.price }}
-					<small>EGP</small>
-				</span>
-			</div>
-
-			<div class="quantity">
-				<div>
-					<button (click)="decrementCart(item)" class="btn-decrease">
-						-
-					</button>
-					<span class="quantity-number">{{ item.quantity }}</span>
-					<button (click)="incrementCart(item)" class="btn-increase">
-						+
-					</button>
-				</div>
-				<button (click)="removeFromCart(item)" class="btn-delete">
-					<i class="far fa-trash-alt"></i>
-				</button>
-			</div>
-		</div>
-	}
+	<cart-items />
 </ng-template>
 
-<ng-template #cart>
+<ng-template #fullCart>
 	<aside class="sticky mb-4 top-20">
 		<div class="cart">
 			<ng-container [ngTemplateOutlet]="_cartItems" />
 
 			<div class="total">
 				<span class="total-label">الاجمالي</span>
-				<span class="total-price"
-					>{{ productStore.cartTotal() }} EGP</span
-				>
+				<span class="total-price">{{ cart.cartTotal() }} EGP</span>
 			</div>
 
 			<button (click)="checkout()" class="execute-btn">
@@ -96,9 +66,7 @@
 			<!-- <div class="action"> -->
 			<span class="flex-1 text-center p-4"> تنفيذ الطلب </span>
 
-			<span class="total-price p-4">
-				{{ productStore.cartTotal() }} EGP
-			</span>
+			<span class="total-price p-4"> {{ cart.cartTotal() }} EGP </span>
 			<!-- </div> -->
 		</div>
 	</div>

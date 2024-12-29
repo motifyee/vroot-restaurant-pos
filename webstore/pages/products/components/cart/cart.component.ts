@@ -17,6 +17,8 @@ import { UserAddressesModalComponent } from '../../../../components/user-address
 import { scaleInOut } from '../../../../animations/scale-in-out.animation';
 import { singleCallEffect } from '@src/app/core';
 import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
+import { CartItemsComponent } from '@webstore/components/cart-items/cart-items.component';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'cart',
@@ -25,21 +27,22 @@ import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
 		CartIconComponent,
 		AuthModalComponent,
 		UserAddressesModalComponent,
+		CartItemsComponent,
 	],
 	templateUrl: './cart.component.html',
 	styleUrl: './cart.component.scss',
 	animations: [floatUp, cartExpandUp, scaleInOut],
 })
 export class CartComponent {
+	router = inject(Router);
+
 	scrollService = inject(ScrollService);
 	userStore = inject(userStore);
 	settings = inject(settingsStore);
 	invoiceStore = inject(invoiceStore);
-	cart = inject(cartStore);
 
-	productStore = inject(cartStore);
-	cartItems = this.productStore.cartProductEntities;
-	cartItemsMap = this.productStore.cartProductEntityMap;
+	cart = inject(cartStore);
+	cartItems = this.cart.products;
 
 	showAuth = signal(false);
 	showAddressModal = signal(false);
@@ -50,67 +53,28 @@ export class CartComponent {
 
 	floatingCartExpanded = signal(false);
 
-	removeFromCart(product: CartProduct) {
-		this.productStore.removeFromCart(product);
-	}
-
-	incrementCart(product: CartProduct) {
-		let existing = this.cartItemsMap()[product.variant.id];
-
-		if (!existing) return;
-
-		this.productStore.updateCart({
-			...existing,
-			quantity: existing.quantity + 1,
-		});
-	}
-
-	decrementCart(product: CartProduct) {
-		let existing = this.cartItemsMap()[product.variant.id];
-
-		if (!existing) return;
-
-		if (existing.quantity == 1) return;
-
-		this.productStore.updateCart({
-			...existing,
-			quantity: existing.quantity - 1,
-		});
-	}
-
 	toggleFloatCartExpanded() {
 		this.floatingCartExpanded.update((v) => !v);
 	}
 
 	injector = inject(Injector);
-	creationToken = uuidv4();
 	checkout() {
 		if (!this.userStore.isLoggedIn())
 			return singleCallEffect({
 				injector: this.injector,
-				predicate: () => !this.showAuth(),
 				init: () => this.showAuth.set(true),
+				predicate: () => !this.showAuth(),
 				success: () => this.userStore.isLoggedIn() && this.checkout(),
 			});
 
 		if (this.settings.orderType() == 'delivery' && !this.#selectedAddress())
 			return singleCallEffect({
 				injector: this.injector,
-				predicate: () => !this.showAddressModal(),
 				init: () => this.showAddressModal.set(true),
+				predicate: () => !this.showAddressModal(),
 				success: () => !!this.#selectedAddress() && this.checkout(),
 			});
 
-		this.invoiceStore
-			.createInvoiceFromCartProducts({
-				creationToken: this.creationToken,
-				products: this.cart.cartProductEntities(),
-				shippingAddressId: this.#selectedAddress()!.id,
-				salesInvoiceType: this.settings.orderTypeId()!,
-			})
-			.subscribe(() => {
-				this.cart.emptyCart();
-				this.creationToken = uuidv4();
-			});
+		this.router.navigate(['/checkout']);
 	}
 }

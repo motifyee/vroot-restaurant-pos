@@ -1,0 +1,49 @@
+@for (item of cartItems(); track item.variant.id; let idx = $index) {
+	<div class="cart-items">
+		<div class="cart-item">
+			<span class="item-title">
+				@if (!showControls()) {
+					<span class="quantity-number">
+						x{{ item.quantity }} &nbsp;
+					</span>
+				}
+
+				{{ item.variant.product?.title }} - {{ item.variant.title }}
+			</span>
+
+			<span class="price">
+				{{ calcPrice(item) }}
+				<small>EGP</small>
+			</span>
+		</div>
+
+		@if (showControls()) {
+			<div class="quantity">
+				<div>
+					<button
+						(click)="cart.decrementAtIdx(idx)"
+						class="btn-decrease"
+					>
+						-
+					</button>
+
+					<span class="quantity-number">{{ item.quantity }}</span>
+
+					<button
+						(click)="cart.incrementAtIdx(idx)"
+						class="btn-increase"
+					>
+						+
+					</button>
+				</div>
+
+				<button
+					(click)="cart.removeIdxFromCart(idx)"
+					class="btn-delete"
+				>
+					<i class="far fa-trash-alt"></i>
+				</button>
+			</div>
+		}
+	</div>
+}

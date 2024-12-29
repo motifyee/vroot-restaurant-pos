@@ -55,67 +55,6 @@
 
 //  ##########################################################################
 
-.cart-items {
-	.cart-item {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 10px;
-
-		.item-title {
-			font-size: 16px;
-			font-weight: normal;
-		}
-
-		.price {
-			color: #d0a328;
-			font-size: 16px;
-		}
-	}
-
-	.quantity {
-		display: flex;
-		justify-content: end;
-		align-items: center;
-		margin-bottom: 10px;
-		gap: 11px;
-		padding: 8px 0;
-
-		//  ##########################################################################
-
-		.btn-delete {
-			background-color: rgba(220, 53, 69, 1);
-			border: none;
-			color: white;
-			font-size: 18px;
-			padding: 2px 7px;
-			cursor: pointer;
-			border-radius: 5px;
-
-			i {
-				color: #fff;
-				font-size: 12px;
-			}
-		}
-
-		.btn-decrease,
-		.btn-increase {
-			background-color: var(--GreenBackground);
-			border: none;
-			color: white;
-			font-size: 18px;
-			padding: 2px 7px;
-			cursor: pointer;
-			border-radius: 5px;
-		}
-
-		.quantity-number {
-			padding: 0 10px;
-			font-size: 16px;
-		}
-	}
-}
-// #############################################################################
-
 .floating-cart {
 	@apply fixed right-4 bottom-4 left-4;
 
