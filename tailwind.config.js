@@ -32,6 +32,7 @@ module.exports = {
 				'slate-200': '#E2E8F0',
 				'slate-300': '#CBD5E1',
 				'slate-500': '#64748B',
+				'slate-600': '#5f636b',
 				'black-900': '#000000',
 				'slate-7000': '#10151a',
 				'woot-500 ': '#3b9eff',

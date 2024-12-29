@@ -1,0 +1,20 @@
+.select-label {
+	@apply text-xs font-medium text-slate-800;
+}
+
+.select-row {
+	@apply flex items-center justify-between gap-3 w-full;
+}
+
+//could be generalized
+.p-select {
+	@apply text-xs h-6 w-32;
+}
+
+.p-select-dropdown {
+	@apply w-6;
+}
+
+.p-select > span {
+	@apply text-xs px-4 flex items-center;
+}

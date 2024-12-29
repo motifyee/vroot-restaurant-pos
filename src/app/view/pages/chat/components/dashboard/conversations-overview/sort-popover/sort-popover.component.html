@@ -1,0 +1,25 @@
+<div class="w-52">
+	<div class="select-row">
+		<span class="select-label">Status</span>
+		<p-select
+			[options]="status"
+			[(ngModel)]="selectedStatus"
+			optionLabel="name"
+			placeholder="Open"
+			size="small"
+			class="p-select"
+		/>
+	</div>
+
+	<div class="select-row mt-4">
+		<span class="select-label">Order by</span>
+		<p-select
+			[options]="options"
+			[(ngModel)]="selectedOptions"
+			optionLabel="name"
+			placeholder="Last activity: Oldest first"
+			size="small"
+			class="p-select"
+		/>
+	</div>
+</div>

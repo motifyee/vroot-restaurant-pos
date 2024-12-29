@@ -1,0 +1,68 @@
+<div class="modal-mask bg-slate-800" transition="modal">
+	<div class="modal-container skip-context-menu">
+		<button
+			class="button clear button--only-icon secondary button-secondary"
+			type="submit"
+			(click)="toggleLabelDialogVisibility()"
+		>
+			<dismiss-icon />
+		</button>
+		<div class="flex flex-col h-auto overflow-auto">
+			<div class="flex-col-items-start">
+				<h2 class="modal-header">Add label</h2>
+				<p class="modal-description">
+					Labels let you group the conversations together.
+				</p>
+			</div>
+			<form class="flex-form">
+				<label class="input-container w-full label-name--input">
+					<span>Label Name</span>
+					<input type="text" placeholder="Label name" value="" />
+				</label>
+				<label class="input-container w-full">
+					<span>Description</span>
+					<input
+						class=""
+						type="text"
+						placeholder="Label Description"
+						value=""
+					/>
+				</label>
+				<div class="w-full">
+					<label>
+						Color
+						<div class="colorpicker">
+							<p-colorpicker [(ngModel)]="color" />
+						</div>
+					</label>
+				</div>
+				<div class="flex items-center w-full gap-2">
+					<input type="checkbox" value="true" />
+					<label for="conversation_creation"
+						>Show label on sidebar</label
+					>
+				</div>
+				<div class="flex-footer-buttons">
+					<button
+						class="button primary disabled"
+						type="submit"
+						disabled=""
+					>
+						<span class="button__content text-left rtl:text-right"
+							>Create</span
+						>
+					</button>
+					<button
+						(click)="toggleLabelDialogVisibility()"
+						class="button primary button clear"
+						type="submit"
+					>
+						<span class="button__content text-left rtl:text-right"
+							>Cancel</span
+						>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
