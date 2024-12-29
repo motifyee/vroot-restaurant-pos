@@ -15,5 +15,5 @@ import { InputTextModule } from 'primeng/inputtext';
 export class AddNewLabelPopupComponent {
 	color: string | undefined;
 
-	@Input() toggleLabelDialogVisibility!: () => void;
+	@Input() model?: { toggleVisibility: () => void };
 }

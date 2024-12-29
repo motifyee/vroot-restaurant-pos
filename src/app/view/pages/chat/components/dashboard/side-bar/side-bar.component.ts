@@ -29,7 +29,12 @@ import { InputTextModule } from 'primeng/inputtext';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideBarComponent {
-	isLabelDialogVisible = signal(false); //manage label dialog visibility
+	isLabelDialogVisible = signal(false); // Manage label dialog visibility
+
+	constructor() {
+		this.toggleLabelDialogVisibility =
+			this.toggleLabelDialogVisibility.bind(this);
+	}
 
 	toggleLabelDialogVisibility() {
 		this.isLabelDialogVisible.set(!this.isLabelDialogVisible());

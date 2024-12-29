@@ -4,26 +4,14 @@
 		@for (tab of tabs; track tab) {
 			<li
 				class="tabs-title"
-				[class.is-active]="activeTab() === tab"
-				(click)="setActiveTab(tab)"
+				[class.is-active]="activeTab() === tab.title"
+				(click)="setActiveTab(tab.title)"
 			>
 				<a>
-					@switch (tab) {
-						@case ('mine') {
-							Mine
-							<div class="badge"><span>5</span></div>
-						}
-
-						@case ('unassigned') {
-							Unassigned
-							<div class="badge"><span>0</span></div>
-						}
-
-						@case ('all') {
-							All
-							<div class="badge"><span>5</span></div>
-						}
-					}
+					{{ tab.title }}
+					<div class="badge">
+						<span>{{ tab.value }}</span>
+					</div>
 				</a>
 			</li>
 		}

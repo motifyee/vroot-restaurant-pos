@@ -15,11 +15,14 @@ import { ConversationBulkActionComponent } from '../conversation-bulk-action/con
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactListComponent {
-	// Array of tab names as a component property
-	tabs = ['mine', 'unassigned', 'all'];
+	tabs = [
+		{ title: 'mine', value: 5 },
+		{ title: 'unassigned', value: 0 },
+		{ title: 'all', value: 5 },
+	];
 
 	// Signal for active tab
-	activeTab = signal('mine'); // Default is 'mine'
+	activeTab = signal(this.tabs[0].title);
 
 	// Method to change the active tab
 	setActiveTab(tab: string) {

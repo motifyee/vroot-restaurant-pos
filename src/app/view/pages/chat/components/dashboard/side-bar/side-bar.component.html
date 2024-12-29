@@ -148,9 +148,9 @@
 		class="add-new-label w-full bg-slate-500"
 	>
 		<add-new-label-popup
-			[toggleLabelDialogVisibility]="
-				toggleLabelDialogVisibility.bind(this)
-			"
+			[model]="{
+				toggleVisibility: toggleLabelDialogVisibility,
+			}"
 		/>
 	</p-dialog>
 </div>

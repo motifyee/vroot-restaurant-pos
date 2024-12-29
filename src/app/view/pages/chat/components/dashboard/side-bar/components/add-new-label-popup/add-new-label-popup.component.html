@@ -3,7 +3,7 @@
 		<button
 			class="button clear button--only-icon secondary button-secondary"
 			type="submit"
-			(click)="toggleLabelDialogVisibility()"
+			(click)="model?.toggleVisibility()"
 		>
 			<dismiss-icon />
 		</button>
@@ -53,7 +53,7 @@
 						>
 					</button>
 					<button
-						(click)="toggleLabelDialogVisibility()"
+						(click)="model?.toggleVisibility()"
 						class="button primary button clear"
 						type="submit"
 					>
