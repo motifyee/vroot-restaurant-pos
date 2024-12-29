@@ -1,0 +1,27 @@
+<popover-header [title]="'Select agent'" />
+<div class="card flex justify-center mt-2">
+	<p-select
+		[options]="agents"
+		[(ngModel)]="selectedAgent"
+		optionLabel="name"
+		[filter]="true"
+		size="small"
+		filterBy="name"
+		[showClear]="true"
+		placeholder="Select an Agent"
+		class="w-full md:w-56"
+	>
+		<ng-template #selectedItem let-selectedOption>
+			<div class="flex items-center gap-2">
+				<!-- thumbnail -->
+				<div>{{ selectedOption.name }}</div>
+			</div>
+		</ng-template>
+		<ng-template let-agent #item>
+			<div class="flex items-center gap-2">
+				<!-- thumbnail -->
+				<div>{{ agent.name }}</div>
+			</div>
+		</ng-template>
+	</p-select>
+</div>

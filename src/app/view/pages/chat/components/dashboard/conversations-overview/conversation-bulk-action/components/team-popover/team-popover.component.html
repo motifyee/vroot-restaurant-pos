@@ -1,0 +1,28 @@
+<popover-header [title]="'Select Team'" />
+
+<div class="card flex justify-center mt-2">
+	<p-select
+		[options]="teams"
+		[(ngModel)]="selectedTeam"
+		optionLabel="name"
+		[filter]="true"
+		size="small"
+		filterBy="name"
+		[showClear]="true"
+		placeholder="Select a Team"
+		class="w-full md:w-56"
+	>
+		<ng-template #selectedItem let-selectedOption>
+			<div class="flex items-center gap-2">
+				<!-- thumbnail -->
+				<div>{{ selectedOption.name }}</div>
+			</div>
+		</ng-template>
+		<ng-template let-team #item>
+			<div class="flex items-center gap-2">
+				<!-- thumbnail -->
+				<div>{{ team.name }}</div>
+			</div>
+		</ng-template>
+	</p-select>
+</div>

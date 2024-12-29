@@ -1,0 +1,15 @@
+<popover-header [title]="'Assign label'" />
+
+<div class="card flex justify-center">
+	<p-treeselect
+		class="w-full md:w-56"
+		containerStyleClass="w-full"
+		[(ngModel)]="selectedNodes"
+		[options]="nodes"
+		display="chip"
+		size="small"
+		[metaKeySelection]="false"
+		selectionMode="checkbox"
+		placeholder="Select Item"
+	/>
+</div>
