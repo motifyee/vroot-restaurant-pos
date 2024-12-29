@@ -122,16 +122,16 @@
 				</li>
 				<div>
 					<li class="new-common-item">
-						<a href="settings/labels">
-							<button
-								class="button clear tiny secondary"
-								type="submit"
-								data-testid="sidebar-new-label-button"
-							>
-								<plus-icon />
-								<span class="button-label">New label</span>
-							</button>
-						</a>
+						<!-- <a href="#"> -->
+						<button
+							class="button clear tiny secondary"
+							type="submit"
+							(click)="toggleLabelDialogVisibility()"
+						>
+							<plus-icon />
+							<span class="button-label">New label</span>
+						</button>
+						<!-- </a> -->
 					</li>
 				</div>
 			</ul>
@@ -139,4 +139,18 @@
 	</ul>
 </div>
 
-<add-new-label-popup />
+<!-- Add New Label Dialog -->
+<div class="label-dialog">
+	<p-dialog
+		[modal]="true"
+		[header]="'Add Label'"
+		[(visible)]="isLabelDialogVisible"
+		class="add-new-label w-full bg-slate-500"
+	>
+		<add-new-label-popup
+			[toggleLabelDialogVisibility]="
+				toggleLabelDialogVisibility.bind(this)
+			"
+		/>
+	</p-dialog>
+</div>
