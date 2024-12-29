@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	Output,
+	EventEmitter,
+} from '@angular/core';
 import { DismissIconComponent } from '../../../../nav-bar/icons/dismiss-icon.component';
 import { ColorPicker } from 'primeng/colorpicker';
 import { FormsModule } from '@angular/forms';
@@ -15,5 +20,9 @@ import { InputTextModule } from 'primeng/inputtext';
 export class AddNewLabelPopupComponent {
 	color: string | undefined;
 
-	@Input() model?: { toggleVisibility: () => void };
+	@Output() toggleVisibility = new EventEmitter<void>();
+
+	onToggleVisibility() {
+		this.toggleVisibility.emit();
+	}
 }

@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	signal,
+	Output,
+	EventEmitter,
+} from '@angular/core';
 import { AllConversationsIconComponent } from '../icons/all-conversations-icon.component';
 import { MentionsIconComponent } from '../icons/Mentions-icon.component';
 import { PlusIconComponent } from '../icons/plus-icon.component';
@@ -29,12 +35,7 @@ import { InputTextModule } from 'primeng/inputtext';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideBarComponent {
-	isLabelDialogVisible = signal(false); // Manage label dialog visibility
-
-	constructor() {
-		this.toggleLabelDialogVisibility =
-			this.toggleLabelDialogVisibility.bind(this);
-	}
+	isLabelDialogVisible = signal(false);
 
 	toggleLabelDialogVisibility() {
 		this.isLabelDialogVisible.set(!this.isLabelDialogVisible());
