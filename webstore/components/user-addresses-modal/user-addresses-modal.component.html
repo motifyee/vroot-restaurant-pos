@@ -14,7 +14,7 @@
 			}
 
 			<p-button
-				class="mx-auto"
+				class="mx-auto custom active"
 				icon="pi pi-plus"
 				label="اضافة عنوان جديد"
 				(onClick)="startAddAddress()"
@@ -136,10 +136,12 @@
 						activeView() == 'createForm' ? 'اضافة' : 'حفظ التعديلات'
 					"
 					[disabled]="!isSubmitEnabled"
+					class="custom active"
 				/>
 				<p-button
 					(onClick)="activeView.set('list')"
 					severity="danger"
+					class="custom"
 					label="الغاء"
 				/>
 			</div>

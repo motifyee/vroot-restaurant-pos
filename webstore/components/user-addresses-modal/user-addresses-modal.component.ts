@@ -128,7 +128,10 @@ export class UserAddressesModalComponent implements OnInit {
 	submitAddressForm(form: NgForm) {
 		if (form.invalid) return;
 
-		let params = this.addressForm as Address;
+		let params = {
+			...this.addressForm,
+			areaId: '0158e1c1-5d76-45dc-953d-144a2b0dfe32',
+		} as Address;
 
 		const obs =
 			this.activeView() == 'createForm'
