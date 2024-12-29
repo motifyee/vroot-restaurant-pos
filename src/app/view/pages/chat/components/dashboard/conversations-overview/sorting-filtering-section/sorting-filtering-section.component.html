@@ -13,6 +13,7 @@
 		</button>
 		<div class="relative flex">
 			<button
+				(click)="op.toggle($event)"
 				class="button smooth button--only-icon tiny secondary"
 				type="submit"
 			>
@@ -25,3 +26,7 @@
 @if (isFilterPopupVisible) {
 	<filter-popup />
 }
+
+<p-popover #op>
+	<sort-popover />
+</p-popover>
