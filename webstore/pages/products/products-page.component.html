@@ -25,7 +25,7 @@
 @if (selectedProduct()) {
 	<div
 		add-to-cart-modal
-		[variant]="selectedProduct()"
+		[variant]="selectedProduct()!"
 		(closeModal)="productsPageStore.selectProduct()"
 	></div>
 }

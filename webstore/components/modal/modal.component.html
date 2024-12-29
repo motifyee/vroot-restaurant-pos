@@ -1,7 +1,7 @@
 <div class="overlay" (click)="closable() && onDismissed.emit()"></div>
 
 <div
-	class="modal relative"
+	class="modal relative overflow-hidden"
 	[style]="{
 		top: top() || '0',
 		bottom: top() ? undefined : '0',

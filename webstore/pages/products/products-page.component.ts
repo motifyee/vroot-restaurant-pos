@@ -19,20 +19,20 @@ import { BranchOrderTypePickerComponent } from '../../components/pick-branch-mod
 import { IS_DEVMODE } from '@src/app/core';
 
 @Component({
-    selector: 'products-page',
-    imports: [
-        BannerComponent,
-        CategoryBarComponent,
-        MobilCategoryBarComponent,
-        ProductListComponent,
-        CartComponent,
-        AddToCartItemModalComponent,
-        BranchOrderTypePickerComponent,
-    ],
-    templateUrl: './products-page.component.html',
-    styleUrl: './products-page.component.scss',
-    changeDetection: ChangeDetectionStrategy.Default,
-    providers: [productsPageStore]
+	selector: 'products-page',
+	imports: [
+		BannerComponent,
+		CategoryBarComponent,
+		MobilCategoryBarComponent,
+		ProductListComponent,
+		CartComponent,
+		AddToCartItemModalComponent,
+		BranchOrderTypePickerComponent,
+	],
+	templateUrl: './products-page.component.html',
+	styleUrl: './products-page.component.scss',
+	changeDetection: ChangeDetectionStrategy.Default,
+	providers: [productsPageStore],
 })
 export class ProductsPageComponent implements OnInit {
 	scrollService = inject(ScrollService);
@@ -45,8 +45,12 @@ export class ProductsPageComponent implements OnInit {
 	chooseBranch = signal(false);
 
 	ngOnInit(): void {
-		if (IS_DEVMODE && localStorage.getItem('test-branch-idx'))
-			return this.settings.selectOrderType('delivery');
+		if (IS_DEVMODE && localStorage.getItem('test-branch-idx')) {
+			this.settings.selectOrderType('delivery');
+			this.settings.selectBranchById(
+				+localStorage.getItem('test-branch-idx')!,
+			);
+		}
 
 		if (!this.settings.selectedBranch?.() || !this.settings.orderType())
 			this.chooseBranch.set(true);

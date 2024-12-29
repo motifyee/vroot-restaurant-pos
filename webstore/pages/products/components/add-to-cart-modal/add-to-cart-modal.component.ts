@@ -2,12 +2,11 @@ import {
 	Component,
 	OnInit,
 	input,
-	Output,
-	EventEmitter,
 	inject,
-	computed,
 	signal,
 	HostBinding,
+	output,
+	effect,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { cartStore } from '@webstore/state';
@@ -15,64 +14,56 @@ import { BannerComponent } from '../banner/banner.component';
 import { scaleInOut } from '../../../../animations/scale-in-out.animation';
 import { ModalComponent } from '../../../../components/modal/modal.component';
 import { ButtonModule } from 'primeng/button';
+import { NgTemplateOutlet } from '@angular/common';
+import { TooltipModule } from 'primeng/tooltip';
+import { ScrollService } from '@webstore/services/scroll.service';
+import { addToCartStore } from './state/add-to-cart.store';
 
 @Component({
-    selector: 'add-to-cart-modal, [add-to-cart-modal]',
-    imports: [FormsModule, BannerComponent, ModalComponent, ButtonModule],
-    templateUrl: './add-to-cart-modal.component.html',
-    styleUrls: ['./add-to-cart-modal.component.scss'],
-    host: { class: 'popup' },
-    animations: [scaleInOut]
+	selector: 'add-to-cart-modal, [add-to-cart-modal]',
+	imports: [
+		FormsModule,
+		BannerComponent,
+		ModalComponent,
+		ButtonModule,
+		NgTemplateOutlet,
+		ButtonModule,
+		TooltipModule,
+	],
+	providers: [ScrollService, addToCartStore],
+	templateUrl: './add-to-cart-modal.component.html',
+	styleUrls: ['./add-to-cart-modal.component.scss'],
+	host: { class: 'popup' },
+	animations: [scaleInOut],
 })
 export class AddToCartItemModalComponent implements OnInit {
 	@HostBinding('@scaleInOut') scaleInOutAnimation = true;
 
+	store = inject(addToCartStore);
+
 	productStore = inject(cartStore);
+	scrollService = inject(ScrollService);
 
-	options = [
-		{ name: 'سلطة ورق عنب', price: 29, checked: false },
-		{ name: 'سيزر', price: 24, checked: false },
-		{ name: 'جرجير', price: 23, checked: false },
-		{ name: 'فتوش', price: 21, checked: false },
-		{ name: 'يونانية', price: 23, checked: false },
-	];
+	closeModal = output<void>();
+	variant = input.required<ProductVariant>();
 
-	@Output() closeModal = new EventEmitter<void>();
-	variant = input<ProductVariant>();
-	quantity = signal(1);
-	totalPrice = computed(() => (this.variant()?.price ?? 0) * this.quantity());
 	note = signal('');
+	_syncNote = effect(() => this.store.setNote(this.note()));
 
-	// New flag to control the initial render
-	hasRenderedOnce = false;
+	setQty($event: Event) {
+		const value = +(<HTMLInputElement>$event.currentTarget).value;
+		this.store.setQty(value);
+	}
+
+	// ###########################################################################
 
 	ngOnInit(): void {
-		setTimeout(() => {
-			this.hasRenderedOnce = true;
-		}, 0); // This sets the flag after the initial render cycle
+		this.store.setVariant(this.variant());
 	}
-
-	incrementQuantity() {
-		this.quantity.update((quantity) => quantity + 1);
-	}
-
-	decrementQuantity() {
-		if (this.quantity() > 1) {
-			this.quantity.update((quantity) => quantity - 1);
-		}
-	}
+	// ###########################################################################
 
 	addToCart() {
-		if (!this.variant()) return;
-
-		let cartProduct: CartProduct = {
-			variant: this.variant()!,
-			quantity: this.quantity(),
-			totalPrice: this.totalPrice(),
-			note: this.note(),
-		};
-
-		this.productStore.addToCart(cartProduct);
+		this.productStore.addToCart(this.store.cartProduct());
 
 		this.closeModal.emit();
 	}

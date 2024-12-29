@@ -1,12 +1,32 @@
 p-button.w-full button {
 	width: 100%;
 }
+p-button.w-fill button {
+	width: 100%;
+}
 
-.p-button:not(.p-button-text):not(.p-button-outlined) {
+button.custom[pbutton],
+p-button.custom .p-button {
+	min-height: 50px;
+	@apply font-bold min-w-20;
+}
+
+button.active[pbutton]:not(.p-button-text):not(.p-button-outlined),
+p-button.active .p-button:not(.p-button-text):not(.p-button-outlined) {
 	background-color: var(--GreenBackground);
 	border-color: var(--GreenBackground);
-	min-height: 50px;
-	font-weight: 700;
+
+	&:not(:disabled):hover {
+		background-color: var(--GreenBGHover);
+		border-color: var(--GreenBGHover);
+	}
+}
+
+button.danger[pbutton]:not(.p-button-text):not(.p-button-outlined),
+p-button.danger .p-button:not(.p-button-text):not(.p-button-outlined) {
+	background-color: var(--GreenBackground);
+	border-color: var(--GreenBackground);
+	color: #870707;
 
 	&:not(:disabled):hover {
 		background-color: var(--GreenBGHover);

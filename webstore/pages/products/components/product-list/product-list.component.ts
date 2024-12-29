@@ -23,12 +23,12 @@ import { IS_DEVMODE } from '@src/app/core';
 import { BannerComponent } from '../banner/banner.component';
 
 @Component({
-    selector: 'product-list',
-    templateUrl: './product-list.component.html',
-    styleUrls: ['./product-list.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [TopbarComponent],
-    imports: [SkeletonModule, BannerComponent]
+	selector: 'product-list',
+	templateUrl: './product-list.component.html',
+	styleUrls: ['./product-list.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	providers: [TopbarComponent],
+	imports: [SkeletonModule, BannerComponent],
 })
 export class ProductListComponent
 	implements OnInit, AfterViewChecked, OnDestroy
@@ -50,7 +50,6 @@ export class ProductListComponent
 	menu = this.menuStore.menu;
 
 	ngOnInit() {
-		console.log('ProductListComponent.ngOnInit');
 		if (IS_DEVMODE) {
 			if (
 				localStorage.getItem('test-branch-idx') &&
@@ -63,17 +62,23 @@ export class ProductListComponent
 				localStorage.getItem('test-branch-idx') &&
 					this.menuStore
 						.getMenu(+localStorage.getItem('test-branch-idx')!)
-						.subscribe();
-
-			this.menu()
-				.slice(0, 30)
-				.forEach((c) =>
-					this.cart.addToCart({
-						variant: c.variants[0]!,
-						quantity: 1,
-						totalPrice: c.variants[0]!.price,
-					}),
-				);
+						.subscribe((m) => {
+							localStorage.setItem(
+								'test-products',
+								JSON.stringify(
+									m.map((c) => ({
+										...c,
+										products: c.products?.map((p) => ({
+											...p,
+											variants: p.variants?.map((v) => ({
+												...v,
+												product: null,
+											})),
+										})),
+									})),
+								),
+							);
+						});
 		}
 	}
 

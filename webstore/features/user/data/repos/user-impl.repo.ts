@@ -51,6 +51,7 @@ export class UserImplRepo implements UserRepo {
 				details: params.details,
 				title: params.title,
 				isDefault: params.isDefault,
+				areaId: params.areaId,
 			},
 			{
 				headers: {

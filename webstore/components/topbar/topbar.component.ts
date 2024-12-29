@@ -12,7 +12,6 @@ import { ScrollService } from '../../services/scroll.service';
 import { settingsStore } from '@webstore/state';
 import { BranchOrderTypePickerComponent } from '../pick-branch-modal/pick-branch-modal.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { NgClass } from '@angular/common';
 import { BgImageComponent } from '@webstore/app/components/bg-image/bg-image.component';
 
 @Component({
@@ -20,7 +19,6 @@ import { BgImageComponent } from '@webstore/app/components/bg-image/bg-image.com
 	imports: [
 		BranchOrderTypePickerComponent,
 		SidebarComponent,
-		NgClass,
 		BgImageComponent,
 	],
 	templateUrl: './topbar.component.html',

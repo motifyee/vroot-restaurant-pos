@@ -4,21 +4,126 @@
 	top="1rem"
 	(onDismissed)="closeModal.emit()"
 >
-	<div class="image-container">
-		<banner class="w-full h-full" />
-	</div>
+	<div class="flex flex-col max-h-[calc(85vh_-_3rem)]">
+		<div class="flex-1 overflow-y-auto">
+			<div class="image-container">
+				<banner class="w-full h-full" />
+			</div>
 
+			<ng-container *ngTemplateOutlet="productInfo" />
+
+			@if (variant().additions.length > 0) {
+				<ng-container *ngTemplateOutlet="productAdditions" />
+			}
+
+			<ng-container *ngTemplateOutlet="productNote" />
+		</div>
+
+		<ng-container *ngTemplateOutlet="actionButtons" />
+	</div>
+</modal>
+
+<!-- ####################################################################### -->
+
+<ng-template #productInfo>
 	<div class="flex justify-between items-center gap-2 my-4 mx-2">
 		<div class="item-price flex-1 font-bold">
-			{{ variant()?.product?.title }} -
-			{{ variant()?.title }}
+			{{ variant().product?.title }} -
+			{{ variant().title }}
 		</div>
 
 		<span dir="ltr" class="text-sm font-medium">
-			{{ variant()?.price }} EGP
+			{{ variant().price }} EGP
 		</span>
 	</div>
+</ng-template>
 
+<ng-template #productAdditions>
+	<label class="p-2 font-bold">إضافات</label>
+
+	<div class="p-2 flex flex-wrap gap-2">
+		<p-button
+			label="مع"
+			severity="secondary"
+			class="w-fill custom w-24"
+			icon="pi pi-info-circle"
+			pTooltip="إضافات مع الطلب"
+			tooltipPosition="top"
+			[tooltipOptions]="{
+				tooltipEvent: scrollService.isTouchDevice() ? 'focus' : 'hover',
+			}"
+		/>
+
+		@for (addition of variant().additions; track addition.id) {
+			@if (addition.with) {
+				<p-button
+					[label]="addition.name + ' (EGP ' + addition.price + ')'"
+					class="custom active"
+					[icon]="
+						store.additionsEntityMap()[addition.id]
+							? 'pi pi-check'
+							: ''
+					"
+					[outlined]="!store.additionsEntityMap()[addition.id]"
+					severity="success"
+					(click)="store.toggleAddition(addition)"
+				>
+					<div (click)="$event.stopPropagation()" class="qty-btns">
+						<button (click)="store.incrementAddition(addition)">
+							<i class="fas fa-plus"></i>
+						</button>
+
+						<input
+							[ngModel]="
+								store.additionsEntityMap()[addition.id]
+									?.quantity
+							"
+							(ngModel)="setQty($event)"
+							inputmode="numeric"
+						/>
+
+						<button (click)="store.decrementAddition(addition)">
+							<i class="fas fa-minus"></i>
+						</button>
+					</div>
+				</p-button>
+			}
+		}
+	</div>
+
+	<div class="p-2 flex flex-wrap gap-2">
+		<p-button
+			label="بدون"
+			severity="secondary"
+			class="w-fill custom w-24"
+			icon="pi pi-info-circle"
+			pTooltip="ازالة إضافات تأتي مع الطلب"
+			tooltipPosition="top"
+			[tooltipOptions]="{
+				tooltipEvent: scrollService.isTouchDevice() ? 'focus' : 'hover',
+			}"
+		/>
+
+		@for (addition of variant().additions; track addition.id) {
+			@if (addition.without) {
+				<p-button
+					[label]="addition.name"
+					class="custom danger"
+					[icon]="
+						store.removedAdditionsEntityMap()[addition.id]
+							? 'pi pi-times'
+							: ''
+					"
+					[outlined]="!store.removedAdditionsEntityMap()[addition.id]"
+					severity="danger"
+					(click)="store.toggleRemovedAddition(addition)"
+				/>
+			}
+		}
+	</div>
+</ng-template>
+
+<ng-template #productNote>
 	<div class="note px-2 pt-4">
 		<label class="mb-2 font-bold">ملاحظات</label>
 
@@ -31,16 +136,25 @@
 			[(ngModel)]="note"
 		></textarea>
 	</div>
+</ng-template>
 
+<ng-template #actionButtons>
 	<div class="bottom">
-		<div class="qty">
-			<button (click)="incrementQuantity()">
+		<div class="qty-btns">
+			<button (click)="store.incrementQty()">
 				<i class="fas fa-plus"></i>
 			</button>
 
-			<input [(ngModel)]="quantity" inputmode="numeric" />
+			<input
+				[ngModel]="store.quantity()"
+				(ngModel)="setQty($event)"
+				inputmode="numeric"
+			/>
 
-			<button (click)="decrementQuantity()" [disabled]="quantity() <= 1">
+			<button
+				(click)="store.decrementQty()"
+				[disabled]="store.quantity() <= 1"
+			>
 				<i class="fas fa-minus"></i>
 			</button>
 		</div>
@@ -49,11 +163,13 @@
 			pButton
 			(click)="addToCart()"
 			type="button"
-			class="flex-1 text-sm flex flex-nowrap justify-center"
+			class="custom active flex-1 text-sm flex flex-nowrap justify-center"
 		>
 			<span>إضافة</span>
 			&nbsp;
-			<span dir="ltr"> ( {{ totalPrice() }} EGP ) </span>
+			<span dir="ltr">
+				( {{ store.cartProduct().totalPrice }} EGP )
+			</span>
 		</button>
 	</div>
-</modal>
+</ng-template>

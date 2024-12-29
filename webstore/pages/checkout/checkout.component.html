@@ -1,1 +1,140 @@
-<p>checkout works!</p>
+<div class="p-4 flex flex-col gap-4">
+	<div class="title flex gap-2 items-center">
+		<button
+			pButton
+			icon="pi pi-chevron-right"
+			class="active w-10 h-10"
+			routerLink="/"
+		></button>
+
+		<span class="font-bold text-xl">مراجعة الطلب</span>
+	</div>
+
+	<ng-container [ngTemplateOutlet]="_userInfo" />
+
+	<ng-container [ngTemplateOutlet]="_orderType" />
+
+	<ng-container [ngTemplateOutlet]="_orderItems" />
+
+	<ng-container [ngTemplateOutlet]="_orderNotes" />
+
+	<ng-container [ngTemplateOutlet]="_paymentDetails" />
+</div>
+
+<ng-template #_userInfo>
+	<div class="card flex justify-stretch gap-2 flex-wrap">
+		<p-inputgroup class="flex-1 w-2">
+			<p-inputgroup-addon>
+				<i class="pi pi-user"></i>
+			</p-inputgroup-addon>
+
+			<input
+				pInputText
+				disabled
+				[value]="user.user().name"
+				placeholder="الاسم"
+			/>
+		</p-inputgroup>
+
+		<p-inputgroup class="flex-1 w-2">
+			<p-inputgroup-addon>
+				<i class="pi pi-phone"></i>
+			</p-inputgroup-addon>
+
+			<input
+				pInputText
+				[dir]="user.user().phone ? 'ltr' : 'rtl'"
+				disabled
+				[value]="user.user().phone"
+				placeholder="رقم الموبايل"
+			/>
+		</p-inputgroup>
+
+		<p-inputgroup class="flex-[0_0_100%] sm:flex-1">
+			<p-inputgroup-addon>
+				<i class="pi pi-envelope"></i>
+			</p-inputgroup-addon>
+
+			<input
+				pInputText
+				[dir]="user.user().email ? 'ltr' : 'rtl'"
+				disabled
+				[value]="user.user().email"
+				placeholder="الايميل"
+			/>
+		</p-inputgroup>
+	</div>
+</ng-template>
+
+<ng-template #_orderType>
+	<div class="card flex items-center gap-4">
+		@if (settings.orderType()) {
+			<bg-img [url]="'/assets/icons/' + settings.orderType() + '.svg'" />
+		}
+
+		<span class="flex-1">
+			{{ deliveryTitle() }} - {{ settings.selectedBranch?.()?.name }}
+		</span>
+
+		<i class="pi pi-map-marker"></i>
+	</div>
+</ng-template>
+
+<ng-template #_orderItems>
+	<div class="card">
+		<div class="text-xl mb-2 flex justify-between">
+			<span> تفاصيل الطلب </span>
+
+			<span class="text-sm cursor-pointer text-highlight" routerLink="/">
+				اطلب المزيد
+				<i class="pi pi-plus-circle"></i>
+			</span>
+		</div>
+
+		<cart-items />
+	</div>
+</ng-template>
+
+<ng-template #_orderNotes>
+	<div class="card">
+		<div class="text-xl mb-2">ملاحظات</div>
+
+		<textarea
+			class="w-full min-h-16"
+			p-inputtextarea
+			[(ngModel)]="orderNote"
+			placeholder="هل لك ملاحظات خاصة علي الطلب؟"
+		></textarea>
+	</div>
+</ng-template>
+
+<ng-template #_paymentDetails>
+	<div class="card">
+		<div class="text-xl mb-2">تفاصيل الدفع</div>
+
+		<div class="flex justify-between text-highlight border-b py-4">
+			<span>المجموع الفرعي</span>
+			<span>{{ cart.cartTotal() }}</span>
+		</div>
+
+		<div class="flex justify-between py-4">
+			<span>المجموع الكلي</span>
+			<span>{{ cart.cartTotal() }}</span>
+		</div>
+
+		<small class="text-highlight">شامل ضريبة القيمة المضافة*</small>
+
+		<div
+			class="flex flex-col gap-2 items-center justify-center py-4 text-highlight"
+		>
+			<span>الرقم الضريبي: 523532</span>
+			<a class="underline cursor-pointer">عرض الشهادة</a>
+		</div>
+	</div>
+
+	<p-button
+		[label]="'ارسال الطلب - ' + deliveryTitle()"
+		class="w-full custom active"
+		(onClick)="checkout()"
+	/>
+</ng-template>

@@ -1,0 +1,7 @@
+.card {
+	@apply p-4;
+}
+
+.border-b {
+	border-bottom: 1px solid var(--cardBorderColor);
+}

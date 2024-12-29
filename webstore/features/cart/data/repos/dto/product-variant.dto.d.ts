@@ -2,6 +2,6 @@ declare interface ProductVariant {
 	id: number;
 	title: string;
 	price: number;
-	note?: string;
+	additions: Addition[];
 	product?: Product;
 }

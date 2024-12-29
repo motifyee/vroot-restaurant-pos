@@ -46,6 +46,12 @@ export function withGetCompanyInfoMethod<_>() {
 				selectBranch: (branch?: Branch) => {
 					patchState(store, { selectedBranch: branch });
 				},
+				selectBranchById: (branchId: number) => {
+					const branch = store
+						.companyInfo()
+						.branchs.find((branch) => branch.id === branchId);
+					patchState(store, { selectedBranch: branch });
+				},
 			};
 		}),
 	);

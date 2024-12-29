@@ -27,4 +27,12 @@ export class ScrollService {
 	isMobileView = signal(window.innerWidth <= 750);
 	isTabletView = signal(window.innerWidth <= 1000 && window.innerWidth > 750);
 	isWideScreen = signal(window.innerWidth > 1000);
+
+	isTouchDevice() {
+		if ('ontouchstart' in window) return true;
+		if ((navigator.maxTouchPoints ?? 0) > 0) return true;
+		if (((<any>navigator)['msMaxTouchPoints'] ?? 0) > 0) return true;
+
+		return false;
+	}
 }

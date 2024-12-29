@@ -100,7 +100,7 @@ export class BranchOrderTypePickerComponent {
 	selectBranch(branch: Branch) {
 		const changed = branch.id !== this.settings.selectedBranch?.()?.id;
 
-		if (changed && this.cart.cartProductEntities().length)
+		if (changed && this.cart.products().length)
 			return this.pendingBranch.set(branch);
 
 		if (this.pendingBranch()) this.pendingBranch.set(undefined);

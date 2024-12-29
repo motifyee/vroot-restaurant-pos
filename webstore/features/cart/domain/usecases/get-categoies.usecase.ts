@@ -28,13 +28,12 @@ export class GetCategoriesUseCase
 
 // refrence the product to its variants
 function referenceProduct(product: Product): Product {
-	return {
-		...product,
-		variants: product.variants?.map((v) => ({
-			...v,
-			product,
-		})),
-	};
+	product.variants = product.variants?.map((v) => ({
+		...v,
+		product,
+	}));
+
+	return product;
 }
 
 export const GetCategoriesUseCaseProvider = {

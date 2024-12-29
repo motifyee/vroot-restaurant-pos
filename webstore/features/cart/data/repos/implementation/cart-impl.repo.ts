@@ -11,7 +11,20 @@ export class CartImplRepo implements CartRepo {
 			.get<
 				Category[]
 			>(`${ENDPOINT}/api/store/${branchId}/menu`, undefined, config)
-			.pipe(map((res) => res));
+			.pipe(
+				map((res) =>
+					res.map((c) => ({
+						...c,
+						products: c.products.map((p) => ({
+							...p,
+							variants: p.variants?.map((v) => ({
+								...v,
+								additions: (<any>v).note ?? [],
+							})),
+						})),
+					})),
+				),
+			);
 	}
 
 	// ###########################################################################

@@ -8,6 +8,7 @@ import {
 	userStore,
 } from '@webstore/state';
 import { WebstoreFeaturesModule } from './webstore.features.module';
+import { checkoutPageGuard } from './guards/checkout.guard';
 
 export const webstorePaths = {
 	home: '',
@@ -81,6 +82,7 @@ export const webstoreMainRoute: Route = {
 		},
 		{
 			path: webstorePaths.checkout,
+			canActivate: [checkoutPageGuard()],
 			loadComponent: () =>
 				import('./pages/checkout/checkout.component').then(
 					(m) => m.CheckoutComponent,
@@ -96,4 +98,11 @@ export const webstoreMainRoute: Route = {
 	],
 };
 
-export const webstoreRoutes: Routes = [webstoreMainRoute];
+export const webstoreRoutes: Routes = [
+	webstoreMainRoute,
+	{
+		// path for 404 page
+		path: '**',
+		redirectTo: '',
+	},
+];

@@ -23,6 +23,12 @@
 
 	--btnBorderRadius: 5px;
 	--btnHeight: 50px;
+
+	--cardBg: #fff;
+	--cardBorderColor: #ededed;
+	--cardColor: #000;
+	--cardBorderRadius: 10px;
+	--cardBoxShadow: rgba(0, 0, 0, 0) 0 0 8px 1px;
 }
 
 ::ng-deep webstore {
@@ -31,12 +37,23 @@
 
 	font-family: 'Almarai', 'Roboto';
 	button,
-	input {
+	input,
+	textarea {
 		font-family: 'Almarai', 'Roboto';
+	}
+
+	textarea {
+		border: 1px solid var(--cardBorderColor);
+		border-radius: var(--cardBorderRadius);
+		padding: 0.5rem;
 	}
 
 	.popup {
 		@apply fixed min-w-full min-h-full top-0 left-0 z-50;
+	}
+
+	.text-highlight {
+		@apply text-blue-500;
 	}
 
 	.overlay {
@@ -55,6 +72,14 @@
 		transition: all 0.4s ease-in-out;
 	}
 
+	.card {
+		background-color: var(--cardBg);
+		border: 1px solid var(--cardBorderColor);
+		color: var(--cardColor);
+		border-radius: var(--cardBorderRadius);
+		box-shadow: var(--cardBoxShadow);
+	}
+
 	.tab-style {
 		cursor: pointer;
 		font-weight: 700;
@@ -65,10 +90,16 @@
 		box-shadow: rgba(0, 0, 0, 0.3) 0 0 15 0;
 		color: var(--Greentextcolor);
 		height: 50px;
-		// color: var(--tabsText);
+
+		@apply grid place-items-center;
 
 		&:hover {
 			background-color: var(--GreenBGHover);
+			color: white;
+		}
+
+		&.active {
+			background-color: var(--GreenBackground);
 			color: white;
 		}
 	}

@@ -10,19 +10,23 @@ import { tapResponse } from '@ngrx/operators';
 import { CartRepo } from '@webstore/features';
 import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
 import { addEntity } from '@ngrx/signals/entities';
+import { settingsStore } from '@webstore/state/settings';
 
 export const withCreateInvoiceMethod = <_>() =>
 	signalStoreFeature(
 		{ state: type<InvoiceEntityState>() },
 		withMethods((store) => {
-			let repo = inject(CartRepo);
+			const repo = inject(CartRepo),
+				settings = inject(settingsStore);
 
 			return {
 				createInvoice: (params: {
 					invoice: WebstoreInvoice;
 					creationToken: string;
-				}) =>
-					of(params).pipe(
+				}) => {
+					params.invoice.toBranchId = settings.selectedBranch?.()?.id;
+
+					return of(params).pipe(
 						distinctUntilChanged(),
 						switchMap((inv) =>
 							repo.createInvoice(inv).pipe(
@@ -37,31 +41,41 @@ export const withCreateInvoiceMethod = <_>() =>
 								}),
 							),
 						),
-					),
+					);
+				},
 			};
 		}),
 
 		withMethods((store) => {
 			return {
 				createInvoiceFromCartProducts: (params: {
-					products: CartProduct[];
+					products: CartVariant[];
 					shippingAddressId: number;
 					salesInvoiceType: number;
 					creationToken: string;
+					isUsualOrder: boolean;
+					note?: string;
 				}) => {
 					const products: InvoiceProduct[] = params.products.map(
-						(p) =>
-							({
+						(p) => {
+							const product: InvoiceProduct = {
 								productVariantId: p.variant.id,
 								quantity: p.quantity,
-								note: p.note,
-							}) as InvoiceProduct,
+							};
+
+							if (p.note) product.note = p.note;
+							if (p.additions) product.additions = p.additions;
+
+							return product;
+						},
 					);
 
 					const invoice: WebstoreInvoice = {
 						products,
 						shippingAddressId: params.shippingAddressId,
 						salesInvoiceType: params.salesInvoiceType,
+						is_usual_order: params.isUsualOrder,
+						note: params.note,
 					};
 
 					return store.createInvoice({
