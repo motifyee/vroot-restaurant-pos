@@ -1,8 +1,9 @@
-<div class="modal-mask" transition="modal">
+<div class="modal-mask bg-slate-800" transition="modal">
 	<div class="modal-container skip-context-menu">
 		<button
 			class="button clear button--only-icon secondary button-secondary"
 			type="submit"
+			(click)="toggleLabelDialogVisibility()"
 		>
 			<dismiss-icon />
 		</button>
@@ -31,10 +32,7 @@
 					<label>
 						Color
 						<div class="colorpicker">
-							<div
-								class="colorpicker--selected"
-								style="background-color: rgb(227, 137, 126)"
-							></div>
+							<p-colorpicker [(ngModel)]="color" />
 						</div>
 					</label>
 				</div>
@@ -54,7 +52,11 @@
 							>Create</span
 						>
 					</button>
-					<button class="button primary button clear" type="submit">
+					<button
+						(click)="toggleLabelDialogVisibility()"
+						class="button primary button clear"
+						type="submit"
+					>
 						<span class="button__content text-left rtl:text-right"
 							>Cancel</span
 						>

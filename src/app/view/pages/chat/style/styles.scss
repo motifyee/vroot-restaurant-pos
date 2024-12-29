@@ -91,6 +91,21 @@
 			min-width: 1rem;
 		}
 	}
+
+	// customizing label dialog by removing the built-in primeNG dialog styles
+	side-bar .label-dialog {
+		.p-dialog-header {
+			display: none;
+		}
+
+		.p-dialog-content {
+			padding: 0;
+		}
+
+		.p-dialog {
+			overflow: hidden;
+		}
+	}
 }
 
 .text-xxs {
