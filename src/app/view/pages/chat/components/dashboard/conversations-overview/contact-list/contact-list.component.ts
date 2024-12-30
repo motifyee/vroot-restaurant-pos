@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { ArrowLeftIconComponent } from '../../icons/arrow-left-icon.component';
-import { ExclamationIconComponent } from '../../icons/exclamation-icon.component';
 import { ConversationBulkActionComponent } from '../conversation-bulk-action/conversation-bulk-action.component';
+import { CommonModule } from '@angular/common';
+import { ContactsPerChatTypeComponent } from '../contacts-per-chat-type/contacts-per-chat-type.component';
 
 @Component({
 	selector: 'contact-list',
 	imports: [
-		ArrowLeftIconComponent,
-		ExclamationIconComponent,
 		ConversationBulkActionComponent,
+		CommonModule,
+		ContactsPerChatTypeComponent,
 	],
 	templateUrl: './contact-list.component.html',
 	styleUrl: './contact-list.component.scss',

@@ -1,0 +1,114 @@
+.conversations-container {
+	@apply w-full h-full min-h-[419px]
+	       overflow-auto;
+}
+.conversation {
+	@apply relative flex items-start flex-grow-0 flex-shrink-0 w-auto max-w-full
+	       px-4 py-0
+	       border-l-2 border-transparent
+	       cursor-pointer;
+}
+
+.conversation.hovered {
+	@apply bg-slate-800;
+}
+
+.user-thumbnail-box {
+	@apply flex items-center justify-center rounded-full
+	       mt-4 h-10 w-10;
+}
+
+.user-thumbnail {
+	@apply hidden rounded-full;
+}
+
+.avatar-container {
+	@apply flex items-center justify-center rounded-full
+	       h-10 w-10
+	       bg-slate-50 dark:bg-slate-700;
+}
+
+/* Message Box */
+.message-box {
+	@apply flex-1
+	       px-0 py-3
+	       border-b border-slate-50 dark:border-slate-800/75;
+}
+
+.message-header {
+	@apply flex justify-between;
+}
+
+.gap-box {
+	@apply flex
+	       gap-2 ml-2 rtl:mr-2 rtl:ml-0;
+}
+
+.icon-box {
+	@apply shrink-0 inline-flex rounded-sm
+	       w-3.5 h-3.5
+	       bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-200;
+}
+
+/* Conversation Title */
+.conversation-title {
+	@apply text-sm font-medium capitalize overflow-hidden whitespace-nowrap
+	       mt-0 mx-2 mb-0 pt-0.5
+	       text-slate-900 dark:text-slate-100;
+	width: calc(100% - 70px); /* Custom style */
+}
+
+.conversation-message {
+	@apply text-sm leading-6 overflow-hidden text-ellipsis whitespace-nowrap
+	       mt-0 mx-2
+	       text-slate-700 dark:text-slate-200;
+}
+
+/* Meta Info */
+.meta-container {
+	@apply absolute flex flex-col
+	       right-4 top-4;
+}
+
+.meta-text {
+	@apply text-[0.625rem] leading-4
+	       ml-auto
+	       text-slate-500 dark:text-slate-500
+	       hover:text-slate-900 dark:hover:text-slate-100;
+}
+
+.unread {
+	@apply hidden rounded-full shadow-lg
+	       h-4 ml-auto mt-1 min-w-[1rem] px-1
+	       font-semibold text-center leading-4
+	       text-white bg-green-400;
+}
+
+/* Label Styles */
+.label-wrapper {
+	@apply inline-flex items-center gap-1
+	       ltr:mr-1 rtl:ml-1 mb-1 max-w-[calc(100%-0.5rem)] h-5 px-1
+	       text-xs font-medium leading-4
+	       border border-[#5a6169] rounded;
+}
+
+.label-color-dot {
+	@apply shrink-0 rounded-sm
+	       h-2 w-2;
+}
+
+.label-text {
+	@apply text-xs overflow-hidden text-ellipsis whitespace-nowrap;
+}
+
+/* Checkbox Wrapper */
+.checkbox-wrapper {
+	@apply flex items-center justify-center rounded-full
+	       mt-4 h-10 w-10
+	       text-sm font-medium leading-7
+	       cursor-pointer;
+
+	&:hover {
+		@apply bg-[#104d87];
+	}
+}

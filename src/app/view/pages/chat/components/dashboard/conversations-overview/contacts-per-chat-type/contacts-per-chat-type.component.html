@@ -1,0 +1,66 @@
+<div class="conversations-container">
+	@for (conversation of conversations; track conversation.id) {
+		<div
+			class="conversation"
+			[class.hovered]="conversation.hovered || conversation.checked"
+			(mouseenter)="setHoverState(conversation, true)"
+			(mouseleave)="setHoverState(conversation, false)"
+		>
+			@if (conversation.checked || conversation.hovered) {
+				<label class="checkbox-wrapper">
+					<input
+						class="checkbox"
+						type="checkbox"
+						[checked]="conversation.checked"
+						(change)="toggleCheckbox(conversation)"
+					/>
+				</label>
+			} @else {
+				<div class="user-thumbnail-box">
+					<img
+						src=""
+						draggable="false"
+						class="user-thumbnail"
+						style="display: none"
+					/>
+					<div class="avatar-container" style="font-size: 16px">
+						{{ conversation.avatar }}
+					</div>
+				</div>
+			}
+			<div class="message-box">
+				<div class="message-header">
+					<div class="gap-box">
+						<span class="icon-box">
+							<exclamation-icon />
+						</span>
+					</div>
+				</div>
+				<h4 class="conversation-title">
+					{{ conversation.name }}
+				</h4>
+				<div class="conversation-message">
+					<arrow-left-icon />
+					<span>{{ conversation.message }}</span>
+				</div>
+				<div class="meta-container">
+					<span>
+						<div class="meta-text">
+							<span>{{ conversation.meta }}</span>
+						</div>
+					</span>
+					<span class="unread" *ngIf="conversation.unread > 0">
+						{{ conversation.unread }}
+					</span>
+				</div>
+				<div class="label-wrapper" [title]="conversation.label">
+					<span
+						class="label-color-dot"
+						[style.background]="conversation.labelColor"
+					></span>
+					<span class="label-text">{{ conversation.label }}</span>
+				</div>
+			</div>
+		</div>
+	}
+</div>
