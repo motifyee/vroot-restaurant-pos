@@ -1,4 +1,4 @@
-@for (item of cartItems(); track item.variant.id; let idx = $index) {
+@for (item of items(); track item.productVariantId; let idx = $index) {
 	<div class="cart-items">
 		<div class="cart-item">
 			<span class="item-title">
@@ -8,7 +8,7 @@
 					</span>
 				}
 
-				{{ item.variant.product?.title }} - {{ item.variant.title }}
+				{{ item.title }}
 			</span>
 
 			<span class="price">
@@ -22,8 +22,7 @@
 				<div>
 					<button
 						(click)="cart.decrementAtIdx(idx)"
-						class="btn-decrease"
-					>
+						class="btn-decrease">
 						-
 					</button>
 
@@ -31,16 +30,14 @@
 
 					<button
 						(click)="cart.incrementAtIdx(idx)"
-						class="btn-increase"
-					>
+						class="btn-increase">
 						+
 					</button>
 				</div>
 
 				<button
 					(click)="cart.removeIdxFromCart(idx)"
-					class="btn-delete"
-				>
+					class="btn-delete">
 					<i class="far fa-trash-alt"></i>
 				</button>
 			</div>

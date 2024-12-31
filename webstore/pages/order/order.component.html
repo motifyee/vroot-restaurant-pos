@@ -1,1 +1,142 @@
-<p>order works!</p>
+<div class="p-4 flex flex-col gap-4">
+	<ng-container [ngTemplateOutlet]="pageTitle" />
+
+	<ng-container [ngTemplateOutlet]="ratingCard" />
+
+	<div class="card p-4 text-xl text-center" (click)="favoriteOrder()">
+		احفظ هذا الطلب في قائمة
+		<span class="font-bold">(الطلبات المفضلة)</span>
+	</div>
+
+	<ng-container [ngTemplateOutlet]="whatsappCard" />
+
+	<ng-container [ngTemplateOutlet]="orderTypeCard" />
+
+	<ng-container [ngTemplateOutlet]="orderDetailsCard" />
+
+	<ng-container [ngTemplateOutlet]="paymentDetailsCard" />
+</div>
+
+<ng-template #pageTitle>
+	<div class="title flex gap-2 items-center">
+		<button
+			pButton
+			icon="pi pi-chevron-right"
+			class="active w-10 h-10"
+			routerLink="/"></button>
+
+		<div class="flex flex-col">
+			<span class="font-bold text-xl">تفاصيل الطلب {{ order().id }}</span>
+			<span class="text-sm text-highlight">
+				تاريخ الطلب: {{ order().createdAt }}
+			</span>
+		</div>
+	</div>
+</ng-template>
+
+<ng-template #ratingCard>
+	<div class="card p-4 flex flex-col items-center gap-3 text-2xl">
+		<span>قيّم تجربتك</span>
+
+		<p-rating
+			[ngModel]="order().rating"
+			[stars]="5"
+			(onRate)="rateOrder($event)">
+			<ng-template #onicon>
+				<i class="pi pi-star-fill"></i>
+			</ng-template>
+			<ng-template #officon>
+				<i class="pi pi-star"></i>
+			</ng-template>
+		</p-rating>
+	</div>
+</ng-template>
+
+<ng-template #whatsappCard>
+	<div class="card p-4 text-xl text-center" (click)="whatsappLink.click()">
+		<span>إرسال تفاصيل الطلب</span>
+
+		<span class="font-bold">
+			بالواتساب
+			<i
+				class="pi pi-whatsapp text-green-500"
+				style="font-size: 1.5rem"></i>
+		</span>
+
+		<a
+			#whatsappLink
+			class="hidden"
+			[href]="'whatsapp://send?text=' + whatsappMsg()"></a>
+	</div>
+</ng-template>
+
+<ng-template #orderTypeCard>
+	<div class="card pl-4 flex items-center text-xl">
+		<div class="flex-1 flex flex-col">
+			<div class="flex items-center gap-4 p-4">
+				<bg-img [url]="'/assets/icons/' + orderType() + '.svg'" />
+
+				<span>
+					@if (orderType() === 'pickup') {
+						استلام فرع
+					} @else {
+						توصيل فرع
+					}
+					<span class="font-bold">{{ branchName() }}</span>
+				</span>
+			</div>
+
+			<span>
+				<a
+					[href]="'tel:' + settings.companyInfo().phone"
+					class="flex items-center gap-4 p-4 no-underline visited:text-inherit w-fit">
+					<i
+						class="pi pi-phone text-gray-500"
+						style="font-size: xx-large"></i>
+
+					<span>
+						{{ settings.companyInfo().phone }}
+					</span>
+				</a>
+			</span>
+		</div>
+
+		<div>
+			<i
+				class="pi pi-map-marker text-gray-500"
+				style="font-size: xx-large"></i>
+		</div>
+	</div>
+</ng-template>
+
+<ng-template #orderDetailsCard>
+	<div class="card p-4">
+		<div class="text-xl font-bold mb-4">تفاصيل الطلب</div>
+
+		<cart-items [showControls]="false" [products]="order().products" />
+	</div>
+</ng-template>
+
+<ng-template #paymentDetailsCard>
+	<div class="card p-4">
+		<div class="text-xl mb-2 font-bold">تفاصيل الدفع</div>
+
+		<div class="flex justify-between text-highlight border-b py-4">
+			<span>المجموع الفرعي</span>
+			<span>{{ order().totalPrice }}</span>
+		</div>
+
+		<div class="flex justify-between py-4">
+			<span>المجموع الكلي</span>
+			<span>{{ order().totalPrice }}</span>
+		</div>
+
+		<small class="text-highlight">شامل ضريبة القيمة المضافة*</small>
+
+		<div
+			class="flex flex-col gap-2 items-center justify-center py-4 text-highlight">
+			<span>الرقم الضريبي: 523532</span>
+			<a class="underline cursor-pointer">عرض الشهادة</a>
+		</div>
+	</div>
+</ng-template>

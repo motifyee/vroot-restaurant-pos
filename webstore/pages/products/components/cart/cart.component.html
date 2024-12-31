@@ -17,14 +17,10 @@
 	</aside>
 </ng-template>
 
-<ng-template #_cartItems>
-	<cart-items />
-</ng-template>
-
 <ng-template #fullCart>
 	<aside class="sticky mb-4 top-20">
 		<div class="cart">
-			<ng-container [ngTemplateOutlet]="_cartItems" />
+			<cart-items [showControls]="true" />
 
 			<div class="total">
 				<span class="total-label">الاجمالي</span>
@@ -42,7 +38,7 @@
 	<div @floatUp class="floating-cart">
 		@if (floatingCartExpanded()) {
 			<div @expandUp class="items">
-				<ng-container [ngTemplateOutlet]="_cartItems" />
+				<cart-items />
 			</div>
 		}
 
@@ -51,12 +47,10 @@
 				'btn cursor-pointer' +
 				(floatingCartExpanded() ? ' expanded' : '')
 			"
-			(click)="checkout()"
-		>
+			(click)="checkout()">
 			<span
 				class="cart-icon"
-				(click)="$event.stopPropagation(); toggleFloatCartExpanded()"
-			>
+				(click)="$event.stopPropagation(); toggleFloatCartExpanded()">
 				<div class="relative">
 					<span class="badge">{{ cartItems().length }}</span>
 					<cart-icon class="w-8 h-8" />
@@ -64,9 +58,9 @@
 			</span>
 
 			<!-- <div class="action"> -->
-			<span class="flex-1 text-center p-4"> تنفيذ الطلب </span>
+			<span class="flex-1 text-center p-4">تنفيذ الطلب</span>
 
-			<span class="total-price p-4"> {{ cart.cartTotal() }} EGP </span>
+			<span class="total-price p-4">{{ cart.cartTotal() }} EGP</span>
 			<!-- </div> -->
 		</div>
 	</div>
@@ -75,13 +69,11 @@
 @if (showAuth()) {
 	<auth-modal
 		(onDismissed)="showAuth.set(false)"
-		(onFinished)="showAuth.set(false)"
-	/>
+		(onFinished)="showAuth.set(false)" />
 }
 
 @if (showAddressModal()) {
 	<user-addresses-modal
 		(onSelected)="showAddressModal.set(false); selectedAddress.set($event)"
-		(onDismissed)="showAddressModal.set(false)"
-	/>
+		(onDismissed)="showAddressModal.set(false)" />
 }

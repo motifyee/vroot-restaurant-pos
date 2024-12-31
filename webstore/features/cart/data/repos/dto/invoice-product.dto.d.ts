@@ -1,5 +1,7 @@
 declare interface InvoiceProduct {
 	productVariantId: number;
+	title?: string;
+
 	quantity: number;
 	price?: number;
 	totalPrice?: number;

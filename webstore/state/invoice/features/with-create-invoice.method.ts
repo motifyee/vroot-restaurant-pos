@@ -74,7 +74,7 @@ export const withCreateInvoiceMethod = <_>() =>
 						products,
 						shippingAddressId: params.shippingAddressId,
 						salesInvoiceType: params.salesInvoiceType,
-						is_usual_order: params.isUsualOrder,
+						isUsualOrder: params.isUsualOrder,
 						note: params.note,
 					};
 

@@ -5,6 +5,11 @@ declare interface WebstoreInvoice {
 	salesInvoiceType: number; // invoiceStatus: number; // delivery|takeaway|indoor
 	note?: string;
 
+	totalPrice?: number;
+
 	toBranchId?: number;
-	is_usual_order: boolean;
+	isUsualOrder: boolean;
+
+	createdAt?: string;
+	rating?: number;
 }

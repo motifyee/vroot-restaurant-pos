@@ -1,4 +1,4 @@
-import { computed } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import {
 	patchState,
 	signalStoreFeature,
@@ -6,9 +6,10 @@ import {
 	withMethods,
 	withState,
 } from '@ngrx/signals';
+import { GetOrderTypeIdUseCase } from '@webstore/features/settings/domain/usecases/get-order-type-id.usecase';
 
 type State = {
-	orderType: null | 'pickup' | 'delivery';
+	orderType: null | OrderType;
 };
 
 const initialState: State = {
@@ -19,15 +20,13 @@ export function withSelectOrderTypeMethod<_>() {
 	return signalStoreFeature(
 		withState(initialState),
 		withComputed((store) => {
+			const getOrderTypeId = inject(GetOrderTypeIdUseCase);
+
 			return {
 				orderTypeId: computed(
 					() =>
 						store.orderType() &&
-						{
-							pickup: 3,
-							delivery: 4,
-							indoor: 5,
-						}[store.orderType()!],
+						getOrderTypeId.execute(store.orderType()!),
 				),
 			};
 		}),

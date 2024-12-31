@@ -1,0 +1,12 @@
+.pi-star,
+.pi-star-fill {
+	@apply text-3xl text-yellow-400;
+}
+
+.pi-map-marker {
+	@apply text-4xl text-gray-500;
+}
+
+.border-b {
+	border-bottom: 1px solid var(--cardBorderColor);
+}

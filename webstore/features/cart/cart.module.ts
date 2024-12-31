@@ -1,8 +1,11 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import {
-	CalcCartProductPriceUseCase,
-	CalcCartTotalPriceUseCase,
+	CalcCartProductPriceUseCaseProvider,
+	CalcCartTotalPriceUseCaseProvider,
+	CalcInvoiceProductPriceUseCaseProvider,
+	CartProductToInvoiceProductUseCaseProvider,
 	CartRepo,
+	InvoiceProductToCartProductUseCaseProvider,
 } from '@webstore/features/cart/domain';
 import { CartImplRepo } from './data';
 import { GetCategoriesUseCaseProvider } from './domain';
@@ -14,8 +17,13 @@ export class CartDataModule {
 			ngModule: CartDataModule,
 			providers: [
 				GetCategoriesUseCaseProvider,
-				CalcCartProductPriceUseCase,
-				CalcCartTotalPriceUseCase,
+
+				CalcCartProductPriceUseCaseProvider,
+				CalcCartTotalPriceUseCaseProvider,
+				CalcInvoiceProductPriceUseCaseProvider,
+
+				CartProductToInvoiceProductUseCaseProvider,
+				InvoiceProductToCartProductUseCaseProvider,
 				{
 					provide: CartRepo,
 					useClass: CartImplRepo,
