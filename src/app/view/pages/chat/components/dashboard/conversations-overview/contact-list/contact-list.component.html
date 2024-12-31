@@ -4,26 +4,14 @@
 		@for (tab of tabs; track tab) {
 			<li
 				class="tabs-title"
-				[class.is-active]="activeTab() === tab"
-				(click)="setActiveTab(tab)"
+				[class.is-active]="activeTab() === tab.title"
+				(click)="setActiveTab(tab.title)"
 			>
 				<a>
-					@switch (tab) {
-						@case ('mine') {
-							Mine
-							<div class="badge"><span>5</span></div>
-						}
-
-						@case ('unassigned') {
-							Unassigned
-							<div class="badge"><span>0</span></div>
-						}
-
-						@case ('all') {
-							All
-							<div class="badge"><span>5</span></div>
-						}
-					}
+					{{ tab.title }}
+					<div class="badge">
+						<span>{{ tab.value }}</span>
+					</div>
 				</a>
 			</li>
 		}
@@ -34,61 +22,18 @@
 <conversation-bulk-action />
 
 <!-- contact list -->
-@if (activeTab() === 'mine') {
-	<div class="contact-list">
-		<div class="inner-container">
-			<div class="min-height">
-				<div class="conversation">
-					<div class="user-thumbnail-box">
-						<img
-							src=""
-							draggable="false"
-							class="user-thumbnail"
-							style="display: none"
-						/>
-						<div class="avatar-container" style="font-size: 16px">
-							MA
-						</div>
-					</div>
-					<div class="message-box">
-						<div class="message-header">
-							<div class="gap-box">
-								<span class="icon-box">
-									<exclamation-icon />
-								</span>
-							</div>
-						</div>
-						<h4 class="conversation-title">mohamed abdo</h4>
-						<div class="conversation-message">
-							<arrow-left-icon />
-							<span>testing</span>
-						</div>
-						<div class="meta-container">
-							<span>
-								<div class="meta-text">
-									<span>9d • 5d</span>
-								</div>
-							</span>
-							<span class="unread">0</span>
-						</div>
-						<div class="label-wrapper" title="first one">
-							<span
-								class="label-color-dot"
-								style="background: rgb(70, 121, 130)"
-							></span>
-							<span class="label-text">first</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div>
-				<p class="footer">All conversations loaded 🎉</p>
-			</div>
-		</div>
-	</div>
-} @else if (activeTab() === 'unassigned') {
-	<p>Content for Unassigned tab</p>
-} @else {
-	<p>Content for All tab</p>
+@switch (activeTab()) {
+	@case ('mine') {
+		<contacts-per-chat-type />
+	}
+	@case ('unassigned') {
+		<contacts-per-chat-type />
+	}
+	@default {
+		<contacts-per-chat-type />
+	}
 }
-<!-- ./contact list -->
+
+<div>
+	<p class="contact-list-footer">All conversations loaded 🎉</p>
+</div>

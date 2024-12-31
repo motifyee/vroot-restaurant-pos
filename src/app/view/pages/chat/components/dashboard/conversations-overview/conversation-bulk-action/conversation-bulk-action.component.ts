@@ -19,12 +19,12 @@ import { AgentPopoverComponent } from './components/agent-popover/agent-popover.
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConversationBulkActionComponent {
-	@ViewChild('changeStatusPopover') changeStatusPopover!: Popover;
+	@ViewChild('changeStatusPopover') changeStatusPopover?: Popover;
 
 	// Method to hide the popover
 	hidePopover() {
 		if (this.changeStatusPopover) {
-			this.changeStatusPopover.hide(); // Ensure this method is defined in the Popover API
+			this.changeStatusPopover.hide();
 		}
 	}
 }
