@@ -1,0 +1,21 @@
+<div class="flex flex-col h-auto overflow-auto">
+	<div class="flex flex-col items-start px-8 pt-8 pb-0">
+		<h2 class="shortcuts-header">Keyboard Shortcuts</h2>
+	</div>
+	<div class="grid grid-cols-2 px-8 pt-0 pb-8 gap-x-5 gap-y-3">
+		@for (shortcut of shortcuts; track shortcut) {
+			<div class="flex justify-between items-center min-w-[25rem]">
+				<h5 class="text-sm text-slate-800 dark:text-slate-100">
+					{{ shortcut.description }}
+				</h5>
+				<div class="flex items-center gap-2 mb-1 ml-2">
+					@for (key of shortcut.keys; track key) {
+						<kbd class="hotkey min-w-[36px] normal-case">{{
+							key
+						}}</kbd>
+					}
+				</div>
+			</div>
+		}
+	</div>
+</div>
