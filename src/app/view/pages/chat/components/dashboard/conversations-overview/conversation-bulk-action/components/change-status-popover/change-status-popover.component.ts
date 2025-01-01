@@ -16,9 +16,9 @@ import { PopoverHeaderComponent } from '../popover-header/popover-header.compone
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChangeStatusPopoverComponent {
-	// @Output() hide = new EventEmitter<void>();
-	// // Method to emit the hide event
-	// requestToggle() {
-	// 	this.hide.emit();
-	// }
+	// for hiding the popover
+	@Output() closePopover = new EventEmitter<void>();
+	onClosePopover(): void {
+		this.closePopover.emit();
+	}
 }

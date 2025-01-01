@@ -1,5 +1,5 @@
-<popover-header [title]="'Select agent'" />
-<div class="card flex justify-center mt-2">
+<popover-header [title]="'Select agent'" (close)="onClosePopover()" />
+<div class="card flex justify-center mt-2 p-2">
 	<p-select
 		[options]="agents"
 		[(ngModel)]="selectedAgent"
@@ -9,8 +9,7 @@
 		filterBy="name"
 		[showClear]="true"
 		placeholder="Select an Agent"
-		class="w-full md:w-56"
-	>
+		class="w-full md:w-56">
 		<ng-template #selectedItem let-selectedOption>
 			<div class="flex items-center gap-2">
 				<!-- thumbnail -->
@@ -25,3 +24,9 @@
 		</ng-template>
 	</p-select>
 </div>
+
+<!-- 
+     go to prime ng web and look for how to use method for hide the popover when x icon get clicked
+     apply it to bulk actions section
+  
+-->

@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	EventEmitter,
+	OnInit,
+	Output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
 import { PopoverHeaderComponent } from '../popover-header/popover-header.component';
@@ -22,5 +28,11 @@ export class AgentPopoverComponent implements OnInit {
 			{ name: 'Emily Davis', id: 'A4' },
 			{ name: 'Chris Wilson', id: 'A5' },
 		];
+	}
+
+	// for hiding the popover
+	@Output() closePopover = new EventEmitter<void>();
+	onClosePopover(): void {
+		this.closePopover.emit();
 	}
 }
