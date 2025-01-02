@@ -19,6 +19,7 @@ module.exports = {
 			backgroundColor: {
 				white: '#ffffff',
 				transparent: 'transparent',
+				'slate-50': '#f0f0f2',
 				'green-500': '#22C55E',
 				'slate-700': '#5a6169',
 				'slate-800': '#292b2e',
@@ -46,14 +47,14 @@ module.exports = {
 			},
 			spacing: {
 				0.5: '0.125rem',
-				8: '2rem',
-				6: '1.5rem',
+				1.5: '0.375rem',
 			},
 			minWidth: {
 				'1rem': '1rem',
 			},
 			fontSize: {
 				sm: '0.875rem',
+				xxs: '0.625rem',
 			},
 			fontWeight: {
 				medium: '500',

@@ -22,12 +22,6 @@
 	@apply hidden rounded-full;
 }
 
-.avatar-container {
-	@apply flex items-center justify-center rounded-full
-	       h-10 w-10
-	       bg-slate-50 dark:bg-slate-700;
-}
-
 /* Message Box */
 .message-box {
 	@apply flex-1

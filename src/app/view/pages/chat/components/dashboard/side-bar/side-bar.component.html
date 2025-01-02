@@ -29,9 +29,9 @@
 				<li class="common-item">
 					<a href="team/5" class="common-link">
 						<div class="common-content">
-							<span class="common-name" title="sales team"
-								>sales team</span
-							>
+							<span class="common-name" title="sales team">
+								sales team
+							</span>
 						</div>
 					</a>
 				</li>
@@ -40,8 +40,7 @@
 						<a href="settings/teams/new">
 							<button
 								class="button clear tiny secondary"
-								type="submit"
-							>
+								type="submit">
 								<plus-icon />
 								<span class="button-label">New team</span>
 							</button>
@@ -71,8 +70,7 @@
 						<a href="settings/inboxes/new">
 							<button
 								class="button clear tiny secondary"
-								type="submit"
-							>
+								type="submit">
 								<plus-icon />
 								<span class="button-label">New inbox</span>
 							</button>
@@ -91,8 +89,7 @@
 					<a href="label/as" class="common-link">
 						<span
 							class="label-icon"
-							style="background-color: rgb(22, 124, 80)"
-						></span>
+							style="background-color: rgb(22, 124, 80)"></span>
 						<div class="common-content">
 							<span class="label-name" title="as">as</span>
 						</div>
@@ -102,8 +99,7 @@
 					<a href="label/dddd" class="common-link">
 						<span
 							class="label-icon"
-							style="background-color: rgb(0, 79, 241)"
-						></span>
+							style="background-color: rgb(0, 79, 241)"></span>
 						<div class="common-content">
 							<span class="label-name" title="dddd">dddd</span>
 						</div>
@@ -113,8 +109,7 @@
 					<a href="label/first" class="common-link">
 						<span
 							class="label-icon"
-							style="background-color: rgb(70, 121, 130)"
-						></span>
+							style="background-color: rgb(70, 121, 130)"></span>
 						<div class="common-content">
 							<span class="label-name" title="first">first</span>
 						</div>
@@ -126,8 +121,7 @@
 						<button
 							class="button clear tiny secondary"
 							type="submit"
-							(click)="toggleLabelDialogVisibility()"
-						>
+							(click)="toggleLabelDialogVisibility()">
 							<plus-icon />
 							<span class="button-label">New label</span>
 						</button>
@@ -145,10 +139,8 @@
 		[modal]="true"
 		[header]="'Add Label'"
 		[(visible)]="isLabelDialogVisible"
-		class="add-new-label w-full bg-slate-500"
-	>
+		class="add-new-label w-full bg-slate-500">
 		<add-new-label-popup
-			(toggleVisibility)="toggleLabelDialogVisibility()"
-		/>
+			(toggleVisibility)="toggleLabelDialogVisibility()" />
 	</p-dialog>
 </div>
