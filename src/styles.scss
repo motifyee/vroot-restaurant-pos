@@ -2,6 +2,7 @@
 
 @use './styles/theme';
 @use './styles/prime_overrides/index';
+@use './styles/prime_overrides/chat/buttons.scss';
 
 @layer primeng, tailwind-base, tailwind-utilities;
 

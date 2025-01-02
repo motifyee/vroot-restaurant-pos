@@ -7,11 +7,7 @@ import { RouterOutlet } from '@angular/router';
 	standalone: true,
 	imports: [NavBarComponent, RouterOutlet],
 	templateUrl: './chat.component.html',
-	styleUrls: [
-		'./chat.component.scss',
-		'./style/styles.scss',
-		'./style/buttons.scss',
-	],
+	styleUrls: ['./chat.component.scss', './style/styles.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatComponent {}
