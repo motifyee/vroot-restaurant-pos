@@ -19,8 +19,8 @@ kbd.hotkey {
 }
 
 .hot-key-description {
-	@apply text-sm text-slate-800 min-w-[36px] dark:text-slate-100;
+	@apply text-sm !text-slate-800 min-w-[36px] dark:text-slate-100;
 }
 .shortcuts-header {
-	@apply text-base font-semibold leading-6 text-slate-800 dark:text-slate-50;
+	@apply text-base font-semibold leading-6 !text-slate-800 dark:text-slate-50;
 }

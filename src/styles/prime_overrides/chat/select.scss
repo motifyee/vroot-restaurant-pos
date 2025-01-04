@@ -1,0 +1,132 @@
+popover-header {
+	color: var(--font-color);
+}
+// ! basic select
+
+// body of the popover's content
+.p-popover-content {
+	background-color: var(--main-color);
+	border: 1px solid var(--border);
+	border-radius: 6px;
+}
+// select component
+.p-select.p-component {
+	background-color: var(--secondary-color);
+	border: 1px solid var(--border);
+}
+// select component when it gets open
+p-select:not(.p-disabled).p-focus {
+	border-color: var(--border) !important;
+	box-shadow: var(--border) !important;
+	outline: var(--border) !important;
+	outline-offset: var(--border) !important;
+}
+
+// placeholder inside the select after the selection
+p-select > span.p-select-label {
+	color: var(--font-color);
+	font-size: 11px !important;
+	padding: 5px 11px !important;
+}
+
+// placeholder inside the select
+p-select > span.p-select-label.p-placeholder {
+	color: var(--font-color);
+}
+
+// the tip of the popover
+.p-popover.p-component.ng-star-inserted:after {
+	border-bottom-color: var(--main-color);
+}
+
+// the tip's border of the popover
+.p-popover.p-component.ng-star-inserted::before {
+	// border-bottom-color: rgba(169, 162, 162, 0.865);
+}
+
+// body of the option menu
+ul.p-select-list {
+	background-color: var(--main-color);
+	border: var(--border);
+	// border-radius: 6px;
+}
+//
+.p-select-list-container {
+	border-radius: 6px;
+}
+
+//border of the option menu's body
+.p-select-overlay {
+	border: 1px solid var(--border);
+}
+
+// options menu of the select dropdown
+p-selectitem li.p-select-option {
+	background-color: #000;
+	color: var(--font-color);
+}
+
+// previously selected option
+p-selectitem .p-select-option.p-select-option-selected.p-focus {
+	background-color: var(--secondary-color);
+	color: var(--font-color);
+}
+
+// selected option when you hover outside it (inside the select options menu)
+p-selectitem .p-select-option.p-select-option-selected {
+	background-color: var(--secondary-color);
+	color: var(--font-color);
+}
+
+// selected option when you hover on it
+p-selectitem .p-select-option.p-select-option-selected:hover {
+	background-color: var(--secondary-color);
+	color: var(--font-color);
+}
+
+//! filter select
+// header of select with filter
+.p-select-header.ng-star-inserted {
+	background: var(--main-color);
+	border-radius: 6px 6px 0 0;
+}
+
+.p-select-overlay.p-component {
+	background-color: var(--main-color);
+}
+
+// input
+.p-inputtext.p-component.p-select-filter {
+	background-color: #000000;
+}
+
+.p-inputtext:enabled:focus {
+	border-color: var(--border) !important;
+}
+
+// ! multiselect options
+
+// select
+.p-treeselect.p-component {
+	background-color: var(--main-color);
+}
+// option menu
+.p-tree.p-component.p-tree-selectable {
+	background-color: var(--main-color);
+	border: 1px solid var(--border);
+	border-radius: 6px;
+}
+
+// label color
+.p-tree-node-label {
+	color: var(--font-color);
+}
+
+// border of the checkBOX
+.p-checkbox-checked .p-checkbox-box {
+	border-color: var(--border) !important;
+}
+//  color of the checkBOX
+.p-checkbox-checked.p-variant-filled .p-checkbox-box {
+	background-color: var(--secondary-color) !important;
+}

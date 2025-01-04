@@ -19,6 +19,7 @@ module.exports = {
 			backgroundColor: {
 				white: '#ffffff',
 				transparent: 'transparent',
+				'slate-25': '#f7f7fa',
 				'slate-50': '#f0f0f2',
 				'green-500': '#22C55E',
 				'slate-700': '#5a6169',
@@ -40,6 +41,7 @@ module.exports = {
 			},
 			borderColor: {
 				'slate-50': '#F8FAFC',
+				'slate-75': '#e8e9ed',
 				'gray-300': '#D1D5DB',
 				transparent: 'transparent',
 				'slate-300': '#D1D5DB',

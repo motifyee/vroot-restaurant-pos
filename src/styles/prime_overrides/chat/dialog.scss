@@ -1,0 +1,11 @@
+.p-dialog {
+	background: var(--main-color) !important;
+}
+
+.p-dialog-title {
+	color: var(--font-color);
+}
+
+.p-dialog-header.ng-star-inserted > div > p-button > button {
+	border-radius: 5px !important;
+}
