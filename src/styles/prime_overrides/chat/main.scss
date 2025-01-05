@@ -1,6 +1,18 @@
+.p-dialog,
+.p-popover {
+	font-family:
+		ui-sans-serif,
+		system-ui,
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji',
+		Segoe UI Symbol,
+		'Noto Color Emoji' !important;
+}
 :root {
-	--main-color: #0f0f12;
+	--main-color: #282b2e;
 	--secondary-color: #5b626b;
-	--font-color: #e0e1e6;
-	--border: rgb(30 41 59 / 0.75);
+	// --font-color: #e0e1e6;
+	--font-color: rgb(224 225 230 / 1);
+	--border: rgb(90 97 105 / 1);
 }

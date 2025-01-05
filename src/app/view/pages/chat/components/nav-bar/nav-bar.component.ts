@@ -14,27 +14,29 @@ import { ReportsIconComponent } from '@src/app/view/pages/chat/components/nav-ba
 import { SettingsIconComponent } from '@src/app/view/pages/chat/components/nav-bar/icons/settings-icon.component';
 import { UnreadNotificationsComponent } from './unread-notifications/unread-notifications.component';
 import { ProfileSettingPopoverComponent } from './profile-setting-popover/profile-setting-popover.component';
+// import { Popover } from 'primeng/popover';
 
 @Component({
-    selector: 'nav-bar',
-    imports: [
-        CommonModule,
-        InboxIconComponent,
-        ConversationIconComponent,
-        CampaignIconComponent,
-        CaptainIconComponent,
-        ContactsIconComponent,
-        NotificationIconComponent,
-        PortalsIconComponent,
-        ReportsIconComponent,
-        SettingsIconComponent,
-        MessageIconComponent,
-        UnreadNotificationsComponent,
-        ProfileSettingPopoverComponent,
-    ],
-    templateUrl: './nav-bar.component.html',
-    styleUrl: './nav-bar.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'nav-bar',
+	imports: [
+		CommonModule,
+		InboxIconComponent,
+		ConversationIconComponent,
+		CampaignIconComponent,
+		CaptainIconComponent,
+		ContactsIconComponent,
+		NotificationIconComponent,
+		PortalsIconComponent,
+		ReportsIconComponent,
+		SettingsIconComponent,
+		MessageIconComponent,
+		UnreadNotificationsComponent,
+		ProfileSettingPopoverComponent,
+		// Popover,
+	],
+	templateUrl: './nav-bar.component.html',
+	styleUrl: './nav-bar.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavBarComponent {
 	constructor(private elementRef: ElementRef) {}

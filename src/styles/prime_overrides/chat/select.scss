@@ -1,13 +1,16 @@
 popover-header {
 	color: var(--font-color);
 }
+.p-popover {
+	border-color: var(--border) !important;
+}
 // ! basic select
 
 // body of the popover's content
 .p-popover-content {
 	background-color: var(--main-color);
-	border: 1px solid var(--border);
-	border-radius: 6px;
+	// border: 1px solid var(--border);
+	border-radius: 5px;
 }
 // select component
 .p-select.p-component {
@@ -39,30 +42,42 @@ p-select > span.p-select-label.p-placeholder {
 	border-bottom-color: var(--main-color);
 }
 
+// remove the tip of the popover (profile-settings-popover)
+.p-popover.p-component.ng-star-inserted:has(.dropdown-container)::before,
+.p-popover.p-component.ng-star-inserted:has(.dropdown-container)::after {
+	visibility: hidden;
+}
+
+// remove the tip of the popover (sort-popover)
+.p-popover.p-component.ng-star-inserted:has(.sort-container)::before,
+.p-popover.p-component.ng-star-inserted:has(.sort-container)::after {
+	visibility: hidden;
+}
+
 // the tip's border of the popover
 .p-popover.p-component.ng-star-inserted::before {
-	// border-bottom-color: rgba(169, 162, 162, 0.865);
+	border-bottom-color: var(--border);
 }
 
 // body of the option menu
 ul.p-select-list {
 	background-color: var(--main-color);
 	border: var(--border);
-	// border-radius: 6px;
+	// border-radius: 5px;
 }
 //
 .p-select-list-container {
-	border-radius: 6px;
+	border-radius: 5px;
 }
 
 //border of the option menu's body
 .p-select-overlay {
-	border: 1px solid var(--border);
+	border-color: var(--border) !important;
 }
 
 // options menu of the select dropdown
 p-selectitem li.p-select-option {
-	background-color: #000;
+	background-color: var(--main-color);
 	color: var(--font-color);
 }
 
@@ -107,14 +122,23 @@ p-selectitem .p-select-option.p-select-option-selected:hover {
 // ! multiselect options
 
 // select
+.p-treeselect-overlay {
+	border-color: var(--border) !important;
+}
+
 .p-treeselect.p-component {
 	background-color: var(--main-color);
+	border-color: var(--border);
+}
+// placeholder
+.p-treeselect-label.p-placeholder {
+	color: var(--font-color);
 }
 // option menu
 .p-tree.p-component.p-tree-selectable {
 	background-color: var(--main-color);
 	border: 1px solid var(--border);
-	border-radius: 6px;
+	border-radius: 5px;
 }
 
 // label color

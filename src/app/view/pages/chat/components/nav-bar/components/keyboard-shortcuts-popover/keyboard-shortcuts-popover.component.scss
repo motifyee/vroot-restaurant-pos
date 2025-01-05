@@ -1,26 +1,33 @@
-kbd.hotkey {
-	display: inline-flex;
-	flex-shrink: 0;
-	user-select: none;
-	align-items: center;
-	justify-content: center;
-	border-radius: 0.25rem;
-	letter-spacing: 0.025em;
-	border-bottom-width: 2px;
-	border-color: #cdced6;
-	background-color: #e8e8ec;
-	padding: 0.5rem 0.625rem;
-	font-size: 0.75rem;
-	font-weight: 600;
-	color: #5a6169;
-	box-shadow:
-		0 1px 3px 0 rgb(0 0 0 / 0.1),
-		0 1px 2px -1px rgb(0 0 0 / 0.1);
-}
+::ng-deep keyboard-shortcuts-popover {
+	kbd.hotkey {
+		display: inline-flex;
+		flex-shrink: 0;
+		user-select: none;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0.25rem;
+		letter-spacing: 0.025em;
+		border-bottom-width: 2px;
+		background-color: #e8e8ec;
+		padding: 0.5rem 0.625rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: #5a6169;
+		box-shadow:
+			0 1px 3px 0 rgb(0 0 0 / 0.1),
+			0 1px 2px -1px rgb(0 0 0 / 0.1);
+		border-color: #ffffff !important;
+		background-color: #111113;
+		color: #e0e1e6;
+	}
+	kbd.hotkey:where([dir='ltr'], [dir='ltr'] *) {
+		border-right-width: 2px;
+	}
 
-.hot-key-description {
-	@apply text-sm !text-slate-800 min-w-[36px] dark:text-slate-100;
-}
-.shortcuts-header {
-	@apply text-base font-semibold leading-6 !text-slate-800 dark:text-slate-50;
+	.hot-key-description {
+		@apply text-sm !text-slate-800 min-w-[36px] dark:text-slate-100;
+	}
+	.shortcuts-header {
+		@apply text-base font-semibold leading-6 !text-slate-800 dark:text-slate-50;
+	}
 }

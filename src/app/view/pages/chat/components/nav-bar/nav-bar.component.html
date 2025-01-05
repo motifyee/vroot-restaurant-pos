@@ -5,8 +5,7 @@
 				<a
 					href="/dashboard"
 					class="router-link-active router-link-exact-active"
-					aria-current="page"
-				>
+					aria-current="page">
 					<message-icon class="w-8 h-8" />
 				</a>
 			</div>
@@ -15,8 +14,7 @@
 			</a>
 			<a
 				href="dashboard"
-				class="menu-link bg-woot-50 dark:bg-slate-800 text-woot-500 hover:bg-woot-50"
-			>
+				class="menu-link bg-woot-50 dark:bg-slate-800 text-woot-500 hover:bg-woot-50">
 				<conversation-icon />
 			</a>
 			<a href="captain" class="menu-link">
@@ -43,26 +41,24 @@
 			<div class="mb-4">
 				<button
 					(click)="toggleUnreadNotifications()"
-					class="notification-btn"
-				>
+					class="notification-btn">
 					<notification-icon />
 				</button>
 			</div>
+
+			<!-- (click)="op.toggle($event)" -->
 			<button
 				(click)="togglePopover()"
-				class="button clear link primary flex items-center rounded-full"
-			>
+				class="button clear link primary flex items-center rounded-full">
 				<span class="cursor-pointer text-start">
 					<div class="user-thumbnail-box" title="">
 						<div
 							class="avatar-container user-thumbnail"
-							aria-hidden="true"
-						>
+							aria-hidden="true">
 							YD
 						</div>
 						<div
-							class="source-badge user-online-status--online"
-						></div>
+							class="source-badge user-online-status--online"></div>
 					</div>
 				</span>
 			</button>
@@ -72,8 +68,12 @@
 
 <unread-notifications
 	[isVisible]="showUnreadNotifications()"
-	(close)="handleUnreadNotificationsClose()"
->
-</unread-notifications>
+	(close)="handleUnreadNotificationsClose()"></unread-notifications>
 
-<profile-setting-popover *ngIf="isPopoverVisible" />
+@if (isPopoverVisible) {
+	<profile-setting-popover />
+}
+
+<!-- <p-popover #op>
+	<profile-setting-popover />
+</p-popover> -->

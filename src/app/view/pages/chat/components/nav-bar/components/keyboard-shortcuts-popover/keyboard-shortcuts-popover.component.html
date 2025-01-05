@@ -5,12 +5,13 @@
 	<div class="grid grid-cols-2 px-8 pt-0 pb-8 gap-x-5 gap-y-3">
 		@for (shortcut of shortcuts; track shortcut) {
 			<div class="flex justify-between items-center min-w-[25rem]">
-				<h5 class="text-sm text-slate-800 dark:text-slate-100">
+				<h5
+					class="text-sm font-extralight my-4 text-slate-800 dark:text-slate-100">
 					{{ shortcut.description }}
 				</h5>
 				<div class="flex items-center gap-2 mb-1 ml-2">
 					@for (key of shortcut.keys; track key) {
-						<kbd class="hotkey min-w-[36px] normal-case">
+						<kbd class="hotkey min-w-[36px]">
 							{{ key }}
 						</kbd>
 					}
