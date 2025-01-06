@@ -53,8 +53,8 @@ export function singleCallEffect(params: {
 			if (!predicate()) return;
 			// setTimeout: to avoid Error NG0602 in case of sequential effect calls
 			// in other words avoid calling effect from within a reactive contect
-			success();
-			// setTimeout(success, 0);
+			// success();
+			setTimeout(success, 0);
 			x.destroy();
 		},
 		{ injector },

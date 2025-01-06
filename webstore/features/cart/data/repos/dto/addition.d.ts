@@ -1,12 +1,22 @@
 declare interface Addition {
 	id: string;
-	name?: string;
-	price?: number;
+	name: string;
+	price: number;
 
-	with?: boolean;
-	without?: boolean;
+	with: boolean;
+	without: boolean;
 
-	quantity?: number;
 	maxQuantity?: number;
-	totalPrice?: number;
+}
+
+// used inside cart || retrieved inside invoice
+declare interface CartAddition extends Addition {
+	quantity: number;
+	totalPrice: number;
+}
+
+declare interface CreateInvoiceAddition {
+	id: string;
+	with: boolean;
+	quantity: number;
 }

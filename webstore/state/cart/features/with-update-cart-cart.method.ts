@@ -15,7 +15,7 @@ export const withUpdateCartMethod = <_>() =>
 		},
 		withMethods((store) => {
 			return {
-				updateCartProduct: (product: CartVariant) => {
+				updateCartProduct: (product: InvoiceProduct) => {
 					const existingIdx = store.getProductIdx(product);
 					if (existingIdx < 0) return;
 

@@ -45,7 +45,7 @@ export class AddToCartItemModalComponent implements OnInit {
 	scrollService = inject(ScrollService);
 
 	closeModal = output<void>();
-	variant = input.required<ProductVariant>();
+	product = input.required<InvoiceProduct>();
 
 	note = signal('');
 	_syncNote = effect(() => this.store.setNote(this.note()));
@@ -58,12 +58,12 @@ export class AddToCartItemModalComponent implements OnInit {
 	// ###########################################################################
 
 	ngOnInit(): void {
-		this.store.setVariant(this.variant());
+		this.store.setVariant(this.product());
 	}
 	// ###########################################################################
 
 	addToCart() {
-		this.productStore.addToCart(this.store.cartProduct());
+		this.productStore.addToCart(this.store.product());
 
 		this.closeModal.emit();
 	}

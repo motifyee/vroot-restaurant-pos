@@ -4,12 +4,12 @@ import { storeType } from '@src/app/view/state/utils/utils';
 interface ProductsPageState {
 	//  `product-list.component` is responsible detecting this
 	categoriesViewHasInit: boolean;
-	selectedVariant: ProductVariant | undefined;
+	selectedProduct: InvoiceProduct | undefined;
 }
 
 const intialState: ProductsPageState = {
 	categoriesViewHasInit: false,
-	selectedVariant: undefined,
+	selectedProduct: undefined,
 };
 
 export const productsPageStore = signalStore(
@@ -18,8 +18,8 @@ export const productsPageStore = signalStore(
 		return {
 			setCategoriesViewInit: () =>
 				patchState(store, { categoriesViewHasInit: true }),
-			selectProduct: (selectedVariant?: ProductVariant) =>
-				patchState(store, { selectedVariant }),
+			selectProduct: (selectedProduct?: InvoiceProduct) =>
+				patchState(store, { selectedProduct }),
 		};
 	}),
 );

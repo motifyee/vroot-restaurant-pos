@@ -2,28 +2,26 @@ import { map, Observable } from 'rxjs';
 import { inject } from '@angular/core';
 import { CartRepo } from '../../../domain';
 import { ENDPOINT, HttpService } from '@src/app/core';
+import { CategoryProductMapper } from '../mappers/product.mapper';
 
 export class CartImplRepo implements CartRepo {
 	http = inject(HttpService);
+	productMapper = new CategoryProductMapper();
 
 	getCategories(branchId: number, config?: Config): Observable<Category[]> {
 		return this.http
 			.get<
-				Category[]
+				CategoryDTO[]
 			>(`${ENDPOINT}/api/store/${branchId}/menu`, undefined, config)
 			.pipe(
-				map((res) =>
-					res.map((c) => ({
+				map((res) => {
+					return res.map((c) => ({
 						...c,
-						products: c.products.map((p) => ({
-							...p,
-							variants: p.variants?.map((v) => ({
-								...v,
-								additions: (<any>v).note ?? [],
-							})),
-						})),
-					})),
-				),
+						products: c.products
+							.map((p) => this.productMapper.mapFrom(p))
+							.flat(),
+					}));
+				}),
 			);
 	}
 

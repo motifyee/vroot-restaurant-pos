@@ -30,11 +30,10 @@ import { userStore, settingsStore } from '@webstore/state';
 })
 export class WebstoreComponent implements OnInit {
 	isSideBarVisible = signal(false);
-	isOrderDetailsVisible = signal<Product | undefined>(undefined);
 	scrollService = inject(ScrollService);
 
 	productsPageStore = inject(productsPageStore);
-	selectedProduct = this.productsPageStore.selectedVariant;
+	selectedProduct = this.productsPageStore.selectedProduct;
 
 	categoriesViewInit = signal(false);
 

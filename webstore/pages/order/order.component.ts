@@ -45,6 +45,7 @@ export class OrderComponent {
 						id: '123',
 						name: 'addition name',
 						with: true,
+						without: false,
 						price: 123,
 						quantity: 1,
 						totalPrice: 123,

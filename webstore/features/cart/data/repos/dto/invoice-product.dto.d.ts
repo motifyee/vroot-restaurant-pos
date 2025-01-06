@@ -1,13 +1,20 @@
+// used in menu
 declare interface InvoiceProduct {
 	productVariantId: number;
-	title?: string;
+	title: string;
 
 	quantity: number;
-	price?: number;
-	totalPrice?: number;
+	price: number;
 	note?: string;
 
-	additions?: Addition[];
+	totalPrice: number;
+	additions?: CartAddition[];
+}
+
+// used to create invoice
+declare interface CreateInvoiceProduct
+	extends Pick<InvoiceProduct, 'productVariantId' | 'quantity' | 'note'> {
+	additions?: CreateInvoiceAddition[];
 }
 
 interface CreateUpdateInvoice {

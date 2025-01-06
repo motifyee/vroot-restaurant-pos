@@ -9,7 +9,7 @@ import { withGetProductIdxMethod } from './features/with-get-product-idx.method'
 import { withIncrementIdxMethods } from './features/with-increment-idx.methods';
 
 export type CartStoreState = {
-	products: CartVariant[];
+	products: InvoiceProduct[];
 };
 
 const initialState: CartStoreState = {

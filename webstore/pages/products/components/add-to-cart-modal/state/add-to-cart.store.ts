@@ -18,47 +18,49 @@ import { CalcCartProductPriceUseCase } from '@webstore/features';
 import { withQtyMethods } from './features/qty.methods';
 import { withAdditionMethods } from './features/addition.methods';
 
-export type AdditionsEntityState = NamedEntityState<Addition, 'additions'>;
+export type AdditionsEntityState = NamedEntityState<CartAddition, 'additions'>;
 
-export type AdditionsEntityProps = NamedEntityProps<Addition, 'additions'>;
+export type AdditionsEntityProps = NamedEntityProps<CartAddition, 'additions'>;
 
 export const additionsEntityConfig = entityConfig({
-	entity: type<Addition>(),
+	entity: type<CartAddition>(),
 	collection: 'additions',
-	selectId: (a: Addition) => a.id,
+	selectId: (a: CartAddition) => a.id,
 });
 
 // #############################################################################
 
 export type RemovedAdditionsEntityState = NamedEntityState<
-	Addition,
+	CartAddition,
 	'removedAdditions'
 >;
 
 export type RemovedAdditionsEntityProps = NamedEntityProps<
-	Addition,
+	CartAddition,
 	'removedAdditions'
 >;
 
 export const removedAdditionsEntityConfig = entityConfig({
-	entity: type<Addition>(),
+	entity: type<CartAddition>(),
 	collection: 'removedAdditions',
-	selectId: (a: Addition) => a.id,
+	selectId: (a: CartAddition) => a.id,
 });
 
 // #############################################################################
 
 export type AddToCartStoreState = {
-	productVariant: ProductVariant;
+	product: InvoiceProduct;
 	quantity: number;
 	note: string;
 };
 
 const initialState: AddToCartStoreState = {
-	productVariant: {
-		id: 0,
+	product: {
+		productVariantId: 0,
 		title: '',
 		price: 0,
+		quantity: 0,
+		totalPrice: 0,
 		additions: [],
 	},
 	quantity: 1,
@@ -73,8 +75,8 @@ export const addToCartStore = signalStore(
 	withEntities(removedAdditionsEntityConfig),
 	withMethods((store) => {
 		return {
-			setVariant: (productVariant: ProductVariant) => {
-				patchState(store, { productVariant });
+			setVariant: (product: InvoiceProduct) => {
+				patchState(store, { product });
 			},
 			setNote: (note: string) => {
 				patchState(store, { note });
@@ -87,8 +89,8 @@ export const addToCartStore = signalStore(
 		const calcProductPrice = inject(CalcCartProductPriceUseCase);
 
 		return {
-			cartProduct: computed<CartVariant>(() => {
-				const additions: Addition[] = Object.values(
+			computedProduct: computed<InvoiceProduct>(() => {
+				const additions: CartAddition[] = Object.values(
 					store.additionsEntityMap(),
 				).map((a) => ({
 					...a,
@@ -97,7 +99,7 @@ export const addToCartStore = signalStore(
 					quantity: a.quantity ?? 1,
 				}));
 
-				const removedAdditions: Addition[] = Object.values(
+				const removedAdditions: CartAddition[] = Object.values(
 					store.removedAdditionsEntityMap(),
 				).map((a) => ({
 					...a,
@@ -106,8 +108,8 @@ export const addToCartStore = signalStore(
 					quantity: 0,
 				}));
 
-				const product: CartVariant = {
-					variant: store.productVariant(),
+				const product: InvoiceProduct = {
+					...store.product(),
 					quantity: store.quantity(),
 					additions: [...additions, ...removedAdditions],
 				};

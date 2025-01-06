@@ -30,14 +30,17 @@ export const withAdditionMethods = <_>() =>
 
 		withMethods((store) => {
 			return {
-				toggleAddition: (addition: Addition) => {
+				toggleAddition: (addition: CartAddition) => {
 					if (store.additionsEntityMap()[addition.id])
 						patchState(
 							store,
 							removeEntity(addition.id, additionsEntityConfig),
 						);
 					else {
-						const _additon: Addition = { ...addition, quantity: 1 };
+						const _additon: CartAddition = {
+							...addition,
+							quantity: 1,
+						};
 
 						patchState(
 							store,
@@ -56,7 +59,7 @@ export const withAdditionMethods = <_>() =>
 					}
 				},
 
-				toggleRemovedAddition: (addition: Addition) => {
+				toggleRemovedAddition: (addition: CartAddition) => {
 					if (store.removedAdditionsEntityMap()[addition.id])
 						patchState(
 							store,
@@ -84,7 +87,7 @@ export const withAdditionMethods = <_>() =>
 
 		withMethods((store) => {
 			return {
-				incrementAddition: (addition: Addition) => {
+				incrementAddition: (addition: CartAddition) => {
 					if (!addition.id) return;
 					if (!store.additionsEntityMap()[addition.id])
 						return store.toggleAddition(addition);
@@ -104,7 +107,7 @@ export const withAdditionMethods = <_>() =>
 					);
 				},
 
-				decrementAddition: (addition: Addition) => {
+				decrementAddition: (addition: CartAddition) => {
 					if (!addition.id) return;
 					if (!store.additionsEntityMap()[addition.id]) return;
 

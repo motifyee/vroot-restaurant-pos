@@ -9,8 +9,7 @@
 						<category-bar class="category-list" />
 					} @else {
 						<mobile-category-bar
-							class="w-full z-10 sticky top-[63px]"
-						/>
+							class="w-full z-10 sticky top-[63px]" />
 					}
 
 					<product-list class="category-items" />
@@ -25,14 +24,12 @@
 @if (selectedProduct()) {
 	<div
 		add-to-cart-modal
-		[variant]="selectedProduct()!"
-		(closeModal)="productsPageStore.selectProduct()"
-	></div>
+		[product]="selectedProduct()!"
+		(closeModal)="productsPageStore.selectProduct()"></div>
 }
 
 @if (chooseBranch()) {
 	<branch-ordertype-picker
 		(onCancel)="chooseBranch.set(false)"
-		(onFinished)="chooseBranch.set(false)"
-	/>
+		(onFinished)="chooseBranch.set(false)" />
 }

@@ -56,32 +56,28 @@ export const withCreateInvoiceMethod = <_>() =>
 					isUsualOrder: boolean;
 					note?: string;
 				}) => {
-					const products: InvoiceProduct[] = params.products.map(
-						(p) => {
-							const product: InvoiceProduct = {
-								productVariantId: p.variant.id,
-								quantity: p.quantity,
-							};
-
-							if (p.note) product.note = p.note;
-							if (p.additions) product.additions = p.additions;
-
-							return product;
-						},
-					);
-
-					const invoice: WebstoreInvoice = {
-						products,
-						shippingAddressId: params.shippingAddressId,
-						salesInvoiceType: params.salesInvoiceType,
-						isUsualOrder: params.isUsualOrder,
-						note: params.note,
-					};
-
-					return store.createInvoice({
-						invoice,
-						creationToken: params.creationToken,
-					});
+					// const products: InvoiceProduct[] = params.products.map(
+					// 	(p) => {
+					// 		const product: InvoiceProduct = {
+					// 			productVariantId: p.variant.id,
+					// 			quantity: p.quantity,
+					// 		};
+					// 		if (p.note) product.note = p.note;
+					// 		if (p.additions) product.additions = p.additions;
+					// 		return product;
+					// 	},
+					// );
+					// const invoice: WebstoreInvoice = {
+					// 	products,
+					// 	shippingAddressId: params.shippingAddressId,
+					// 	salesInvoiceType: params.salesInvoiceType,
+					// 	isUsualOrder: params.isUsualOrder,
+					// 	note: params.note,
+					// };
+					// return store.createInvoice({
+					// 	invoice,
+					// 	creationToken: params.creationToken,
+					// });
 				},
 			};
 		}),

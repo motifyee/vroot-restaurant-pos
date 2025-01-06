@@ -2,6 +2,7 @@ import { map, Observable } from 'rxjs';
 import { inject } from '@angular/core';
 import { UseCase } from '@src/app/features';
 import { CartRepo } from '../repos/cart.repo';
+import { CategoryProductMapper } from '../../data/repos/mappers/product.mapper';
 
 export class GetCategoriesUseCase
 	implements UseCase<{ branchId: number }, Category[]>
@@ -12,28 +13,20 @@ export class GetCategoriesUseCase
 		params: { branchId: number },
 		config?: Config,
 	): Observable<Category[]> {
-		let categories = this.productsRepo
-			.getCategories(params.branchId, config)
-			.pipe(
-				map((c) =>
-					c.map((c) => ({
-						...c,
-						products: c.products.map(referenceProduct),
-					})),
-				),
-			);
+		let categories = this.productsRepo.getCategories(
+			params.branchId,
+			config,
+		);
+		// .pipe(
+		// 	map((c) =>
+		// 		c.map((c) => ({
+		// 			...c,
+		// 			products: c.products.map(p=>mapper.mapFrom(p)),
+		// 		})),
+		// 	),
+		// );
 		return categories;
 	}
-}
-
-// refrence the product to its variants
-function referenceProduct(product: Product): Product {
-	product.variants = product.variants?.map((v) => ({
-		...v,
-		product,
-	}));
-
-	return product;
 }
 
 export const GetCategoriesUseCaseProvider = {

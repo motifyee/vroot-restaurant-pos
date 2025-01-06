@@ -24,7 +24,7 @@ export class CalcInvoiceProductPriceUseCase
 					);
 				}, 0) ?? 0;
 
-		return (price + additionsPrice) * params.product.quantity;
+		return (price + additionsPrice) * (params.product.quantity ?? 0);
 	}
 }
 

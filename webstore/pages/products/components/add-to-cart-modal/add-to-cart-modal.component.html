@@ -2,8 +2,7 @@
 	[floatingHeader]="true"
 	width="500px"
 	top="1rem"
-	(onDismissed)="closeModal.emit()"
->
+	(onDismissed)="closeModal.emit()">
 	<div class="flex flex-col max-h-[calc(85vh_-_3rem)]">
 		<div class="flex-1 overflow-y-auto">
 			<div class="image-container">
@@ -12,7 +11,7 @@
 
 			<ng-container *ngTemplateOutlet="productInfo" />
 
-			@if (variant().additions.length > 0) {
+			@if ((product().additions?.length ?? 0) > 0) {
 				<ng-container *ngTemplateOutlet="productAdditions" />
 			}
 
@@ -28,12 +27,11 @@
 <ng-template #productInfo>
 	<div class="flex justify-between items-center gap-2 my-4 mx-2">
 		<div class="item-price flex-1 font-bold">
-			{{ variant().product?.title }} -
-			{{ variant().title }}
+			{{ product().title }}
 		</div>
 
 		<span dir="ltr" class="text-sm font-medium">
-			{{ variant().price }} EGP
+			{{ product().price }} EGP
 		</span>
 	</div>
 </ng-template>
@@ -51,10 +49,9 @@
 			tooltipPosition="top"
 			[tooltipOptions]="{
 				tooltipEvent: scrollService.isTouchDevice() ? 'focus' : 'hover',
-			}"
-		/>
+			}" />
 
-		@for (addition of variant().additions; track addition.id) {
+		@for (addition of product().additions; track addition.id) {
 			@if (addition.with) {
 				<p-button
 					[label]="addition.name + ' (EGP ' + addition.price + ')'"
@@ -66,8 +63,7 @@
 					"
 					[outlined]="!store.additionsEntityMap()[addition.id]"
 					severity="success"
-					(click)="store.toggleAddition(addition)"
-				>
+					(click)="store.toggleAddition(addition)">
 					<div (click)="$event.stopPropagation()" class="qty-btns">
 						<button (click)="store.incrementAddition(addition)">
 							<i class="fas fa-plus"></i>
@@ -79,8 +75,7 @@
 									?.quantity
 							"
 							(ngModel)="setQty($event)"
-							inputmode="numeric"
-						/>
+							inputmode="numeric" />
 
 						<button (click)="store.decrementAddition(addition)">
 							<i class="fas fa-minus"></i>
@@ -101,10 +96,9 @@
 			tooltipPosition="top"
 			[tooltipOptions]="{
 				tooltipEvent: scrollService.isTouchDevice() ? 'focus' : 'hover',
-			}"
-		/>
+			}" />
 
-		@for (addition of variant().additions; track addition.id) {
+		@for (addition of product().additions; track addition.id) {
 			@if (addition.without) {
 				<p-button
 					[label]="addition.name"
@@ -116,8 +110,7 @@
 					"
 					[outlined]="!store.removedAdditionsEntityMap()[addition.id]"
 					severity="danger"
-					(click)="store.toggleRemovedAddition(addition)"
-				/>
+					(click)="store.toggleRemovedAddition(addition)" />
 			}
 		}
 	</div>
@@ -133,8 +126,7 @@
 			placeholder="أكتب ملاحظتك"
 			maxlength=""
 			class="w-100 rounded-3 bg-transparent border p-2"
-			[(ngModel)]="note"
-		></textarea>
+			[(ngModel)]="note"></textarea>
 	</div>
 </ng-template>
 
@@ -148,13 +140,11 @@
 			<input
 				[ngModel]="store.quantity()"
 				(ngModel)="setQty($event)"
-				inputmode="numeric"
-			/>
+				inputmode="numeric" />
 
 			<button
 				(click)="store.decrementQty()"
-				[disabled]="store.quantity() <= 1"
-			>
+				[disabled]="store.quantity() <= 1">
 				<i class="fas fa-minus"></i>
 			</button>
 		</div>
@@ -163,12 +153,11 @@
 			pButton
 			(click)="addToCart()"
 			type="button"
-			class="custom active flex-1 text-sm flex flex-nowrap justify-center"
-		>
+			class="custom active flex-1 text-sm flex flex-nowrap justify-center">
 			<span>إضافة</span>
 			&nbsp;
 			<span dir="ltr">
-				( {{ store.cartProduct().totalPrice }} EGP )
+				( {{ store.computedProduct().totalPrice }} EGP )
 			</span>
 		</button>
 	</div>

@@ -26,12 +26,11 @@ export const menuStore = signalStore(
 
 	withComputed((store) => {
 		return {
-			menu: computed(() =>
-				store.categories().map((c) => ({
-					...c,
-					variants: c.products.flatMap((p) => p.variants),
-				})),
-			),
+			menu: computed(() => store.categories()),
+			// .map((c) => ({
+			// 		...c,
+			// 		variants: c.products.flatMap((p) => p.variants),
+			// 	})),
 		};
 	}),
 

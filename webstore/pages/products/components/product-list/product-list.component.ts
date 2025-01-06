@@ -66,16 +66,17 @@ export class ProductListComponent
 							localStorage.setItem(
 								'test-products',
 								JSON.stringify(
-									m.map((c) => ({
-										...c,
-										products: c.products?.map((p) => ({
-											...p,
-											variants: p.variants?.map((v) => ({
-												...v,
-												product: null,
-											})),
-										})),
-									})),
+									m,
+									// .map((c) => ({
+									// 	...c,
+									// 	products: c.products?.map((p) => ({
+									// 		...p,
+									// 		variants: p.variants?.map((v) => ({
+									// 			...v,
+									// 			product: null,
+									// 		})),
+									// 	})),
+									// })),
 								),
 							);
 						});

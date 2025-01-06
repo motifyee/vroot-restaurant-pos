@@ -1,8 +1,7 @@
 <div
 	#scrollHook
 	class="scroll-hook"
-	[style]="{ top: scrollHookTop() + 'px' }"
-></div>
+	[style]="{ top: scrollHookTop() + 'px' }"></div>
 @if (menuStore.menuStatus() === 'loading') {
 	@for (category of [1]; track category) {
 		<div #category class="category-section" [id]="'category-' + category">
@@ -39,37 +38,38 @@
 			#category
 			class="category-section"
 			[attr.category-id]="category.id"
-			[id]="'category-' + category.id"
-		>
+			[id]="'category-' + category.id">
 			<div class="category-name">
 				<span>{{ category.title }}</span>
 			</div>
 
-			@for (product of category.products; track product.id) {
-				@for (variant of product.variants; track variant.id) {
-					<div
-						(click)="productsPageStore.selectProduct(variant)"
-						class="item-card"
-					>
-						<div class="card-content">
-							<div class="card-content-name">
-								{{ product.title }} - {{ variant.title }}
-							</div>
-							<div class="card-content-price">
-								<div class="card-content-price-2">
-									<div dir="ltr" class="card-content-price-3">
-										{{ variant.price }}
-										<small>EGP</small>
-									</div>
+			@for (
+				product of category.products;
+				track product.productVariantId
+			) {
+				<!-- @for (variant of product.variants; track variant.id) { -->
+				<div
+					(click)="productsPageStore.selectProduct(product)"
+					class="item-card">
+					<div class="card-content">
+						<div class="card-content-name">
+							{{ product.title }}
+						</div>
+						<div class="card-content-price">
+							<div class="card-content-price-2">
+								<div dir="ltr" class="card-content-price-3">
+									{{ product.price }}
+									<small>EGP</small>
 								</div>
 							</div>
 						</div>
-						<div class="card-img">
-							<banner [fontSize]="20" class="h-full" />
-						</div>
 					</div>
-				}
+					<div class="card-img">
+						<banner [fontSize]="20" class="h-full" />
+					</div>
+				</div>
 			}
+			<!-- } -->
 		</div>
 	}
 	<!-- skeleton -->
@@ -78,8 +78,7 @@
 		<img
 			src="assets/images/no-products.png"
 			alt="no products"
-			class="w-40"
-		/>
+			class="w-40" />
 
 		No products found
 	</div>

@@ -3,12 +3,10 @@ import { withTranslator } from '@src/app/core';
 import { storeType } from '@src/app/view/state/utils/utils';
 interface ProductsState {
 	categoriesViewHasInit: boolean;
-	selectedProduct: ProductVariant | undefined;
 }
 
 const intialState: ProductsState = {
 	categoriesViewHasInit: false,
-	selectedProduct: undefined,
 };
 
 export const webstorePageStore = signalStore(
@@ -21,10 +19,10 @@ export const webstorePageStore = signalStore(
 		return {
 			setCategoriesViewInit: () =>
 				patchState(store, { categoriesViewHasInit: true }),
-			selectProduct: (v?: ProductVariant, p?: Product) =>
-				patchState(store, {
-					selectedProduct: v ? { ...v, product: p } : v,
-				}),
+			// selectProduct: (v?: ProductVariant, p?: Product) =>
+			// 	patchState(store, {
+			// 		selectedProduct: v ? { ...v, product: p } : v,
+			// 	}),
 		};
 	}),
 );

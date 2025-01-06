@@ -1,10 +1,10 @@
 import { SyncUseCase } from '@src/app/features';
 
 export class CalcCartProductPriceUseCase
-	implements SyncUseCase<{ product: CartVariant }, number>
+	implements SyncUseCase<{ product: InvoiceProduct }, number>
 {
-	execute(params: { product: CartVariant }, config?: Config): number {
-		const variant = params.product.variant,
+	execute(params: { product: InvoiceProduct }, config?: Config): number {
+		const variant = params.product,
 			price = variant.price ?? 0,
 			additionsMap = variant.additions?.reduce(
 				(acc, addition) => ({
@@ -15,7 +15,7 @@ export class CalcCartProductPriceUseCase
 			),
 			additionsPrice =
 				params.product.additions?.reduce((acc, productAddition) => {
-					const addition = additionsMap[productAddition.id];
+					const addition = additionsMap?.[productAddition.id];
 
 					if (!addition || !productAddition.with) return acc;
 

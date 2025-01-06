@@ -38,7 +38,7 @@ export class ProductsPageComponent implements OnInit {
 	scrollService = inject(ScrollService);
 
 	productsPageStore = inject(productsPageStore);
-	selectedProduct = this.productsPageStore.selectedVariant;
+	selectedProduct = this.productsPageStore.selectedProduct;
 
 	settings = inject(settingsStore);
 

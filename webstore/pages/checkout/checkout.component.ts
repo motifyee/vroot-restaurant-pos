@@ -58,18 +58,18 @@ export class CheckoutComponent {
 
 	creationToken = uuidv4();
 	checkout() {
-		this.invoiceStore
-			.createInvoiceFromCartProducts({
-				creationToken: this.creationToken,
-				products: this.cart.products(),
-				shippingAddressId: this.user.defaultAddress()!.id,
-				salesInvoiceType: this.settings.orderTypeId()!,
-				isUsualOrder: false,
-				note: this.orderNote(),
-			})
-			.subscribe(() => {
-				this.cart.emptyCart();
-				this.creationToken = uuidv4();
-			});
+		// 	this.invoiceStore
+		// 		.createInvoiceFromCartProducts({
+		// 			creationToken: this.creationToken,
+		// 			products: this.cart.products(),
+		// 			shippingAddressId: this.user.defaultAddress()!.id,
+		// 			salesInvoiceType: this.settings.orderTypeId()!,
+		// 			isUsualOrder: false,
+		// 			note: this.orderNote(),
+		// 		})
+		// 		.subscribe(() => {
+		// 			this.cart.emptyCart();
+		// 			this.creationToken = uuidv4();
+		// 		});
 	}
 }

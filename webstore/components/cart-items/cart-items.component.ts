@@ -5,10 +5,7 @@ import {
 	inject,
 	input,
 } from '@angular/core';
-import {
-	CalcInvoiceProductPriceUseCase,
-	CartProductToInvoiceProductUseCase,
-} from '@webstore/features';
+import { CalcInvoiceProductPriceUseCase } from '@webstore/features';
 import { cartStore } from '@webstore/state';
 
 @Component({
@@ -19,7 +16,6 @@ import { cartStore } from '@webstore/state';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartItemsComponent {
-	cartProductToInvoiceProduct = inject(CartProductToInvoiceProductUseCase);
 	cart = inject(cartStore);
 
 	showControls = input<boolean>(false);
@@ -28,9 +24,7 @@ export class CartItemsComponent {
 	items = computed(() => {
 		if (this.products()) return this.products();
 
-		return this.cart
-			.products()
-			.map(this.cartProductToInvoiceProduct.execute);
+		return this.cart.products();
 	});
 
 	cartItems = this.cart.products;

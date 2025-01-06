@@ -9,9 +9,10 @@ export const withGetProductIdxMethod = <_>() =>
 
 		withMethods((store) => {
 			return {
-				getProductIdx: (product: CartVariant) => {
+				getProductIdx: (product: InvoiceProduct) => {
 					const existingIdx = store.products().findIndex((p) => {
-						const idsMatch = p.variant.id === product.variant.id;
+						const idsMatch =
+							p.productVariantId === product.productVariantId;
 						const additionsMatch = deepMatch(
 							p.additions,
 							product.additions,
