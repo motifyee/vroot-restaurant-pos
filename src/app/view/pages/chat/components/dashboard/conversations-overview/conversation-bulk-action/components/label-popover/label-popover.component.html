@@ -1,8 +1,8 @@
-<popover-header [title]="'Assign label'" />
+<popover-header [title]="'Assign label'" (close)="onClosePopover()" />
 
-<div class="card flex justify-center">
+<div class="card flex justify-center p-2">
 	<p-treeselect
-		class="w-full md:w-56"
+		class="w-full py-1 md:w-56"
 		containerStyleClass="w-full"
 		[(ngModel)]="selectedNodes"
 		[options]="nodes"
@@ -10,6 +10,5 @@
 		size="small"
 		[metaKeySelection]="false"
 		selectionMode="checkbox"
-		placeholder="Select Item"
-	/>
+		placeholder="Select Item" />
 </div>

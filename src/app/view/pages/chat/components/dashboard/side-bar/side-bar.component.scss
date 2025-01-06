@@ -15,7 +15,7 @@
 
 /* Common link styling */
 .menu-link {
-	@apply flex items-center p-2 m-0 text-sm leading-4 rounded-lg
+	@apply flex items-center p-2 m-0 text-sm leading-4 rounded-lg font-thin
 	      text-slate-700 dark:text-slate-100 
 		  dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-100;
 }
@@ -79,5 +79,5 @@
 /* Button Styling */
 
 .button-label {
-	@apply text-left rtl:text-right;
+	@apply text-left rtl:text-right font-normal;
 }

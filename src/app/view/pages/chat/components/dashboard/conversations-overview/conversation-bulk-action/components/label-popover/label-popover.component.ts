@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	EventEmitter,
+	Output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TreeSelect } from 'primeng/treeselect';
 import { PopoverHeaderComponent } from '../popover-header/popover-header.component';
@@ -35,4 +40,10 @@ export class LabelPopoverComponent {
 	];
 
 	selectedNodes: any;
+
+	// for hiding the popover
+	@Output() closePopover = new EventEmitter<void>();
+	onClosePopover(): void {
+		this.closePopover.emit();
+	}
 }

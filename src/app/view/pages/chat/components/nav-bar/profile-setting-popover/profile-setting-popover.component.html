@@ -5,8 +5,7 @@
 		</li>
 		<li class="menu-item" tabindex="-1" aria-disabled="false">
 			<button
-				class="button clear small secondary status-change--dropdown-button"
-			>
+				class="button clear small secondary status-change--dropdown-button">
 				<span class="button-content">
 					<div class="status-badge status-badge-online"></div>
 					Online
@@ -15,8 +14,7 @@
 		</li>
 		<li class="menu-item" tabindex="-1" aria-disabled="false">
 			<button
-				class="button clear small secondary status-change--dropdown-buttons"
-			>
+				class="button clear small secondary status-change--dropdown-buttons">
 				<span class="button-content">
 					<div class="status-badge status-badge-busy"></div>
 					Busy
@@ -25,8 +23,7 @@
 		</li>
 		<li class="menu-item" tabindex="-1" aria-disabled="false">
 			<button
-				class="button clear small secondary status-change--dropdown-button"
-			>
+				class="button clear small secondary status-change--dropdown-button">
 				<span class="button-content">
 					<div class="status-badge status-badge-offline"></div>
 					Offline
@@ -47,16 +44,18 @@
 	</ul>
 	<ul class="dropdown-menu">
 		<li class="menu-item" tabindex="-1" aria-disabled="false">
-			<button class="button clear small secondary">
+			<button
+				(click)="showKeyboardShortcutsDialog()"
+				class="button clear small secondary">
 				<keyboard-icon />
 				<span class="button-content">Keyboard Shortcuts</span>
 			</button>
 		</li>
+
 		<li class="menu-item" tabindex="-1" aria-disabled="false">
 			<a
 				href="/app/accounts/4/profile/settings"
-				class="h-8 bg-white button small clear secondary dark:bg-slate-800"
-			>
+				class="h-8 bg-white button small clear secondary dark:bg-slate-800">
 				<user-icon />
 				<span class="button-content">Profile Settings</span>
 			</a>
@@ -75,3 +74,11 @@
 		</li>
 	</ul>
 </div>
+
+<p-dialog
+	appendTo="body"
+	header="Keyboard Shortcuts"
+	[modal]="true"
+	[(visible)]="visible">
+	<keyboard-shortcuts-popover />
+</p-dialog>

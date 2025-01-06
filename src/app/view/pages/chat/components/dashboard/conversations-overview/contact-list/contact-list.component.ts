@@ -16,9 +16,9 @@ import { ContactsPerChatTypeComponent } from '../contacts-per-chat-type/contacts
 })
 export class ContactListComponent {
 	tabs = [
-		{ title: 'mine', value: 5 },
-		{ title: 'unassigned', value: 0 },
-		{ title: 'all', value: 5 },
+		{ title: 'Mine', value: 5 },
+		{ title: 'Unassigned', value: 0 },
+		{ title: 'All', value: 5 },
 	];
 
 	// Signal for active tab

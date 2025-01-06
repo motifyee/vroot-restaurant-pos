@@ -4,16 +4,14 @@
 			class="conversation"
 			[class.hovered]="conversation.hovered || conversation.checked"
 			(mouseenter)="setHoverState(conversation, true)"
-			(mouseleave)="setHoverState(conversation, false)"
-		>
+			(mouseleave)="setHoverState(conversation, false)">
 			@if (conversation.checked || conversation.hovered) {
 				<label class="checkbox-wrapper">
 					<input
 						class="checkbox"
 						type="checkbox"
 						[checked]="conversation.checked"
-						(change)="toggleCheckbox(conversation)"
-					/>
+						(change)="toggleCheckbox(conversation)" />
 				</label>
 			} @else {
 				<div class="user-thumbnail-box">
@@ -21,8 +19,7 @@
 						src=""
 						draggable="false"
 						class="user-thumbnail"
-						style="display: none"
-					/>
+						style="display: none" />
 					<div class="avatar-container" style="font-size: 16px">
 						{{ conversation.avatar }}
 					</div>
@@ -41,7 +38,7 @@
 				</h4>
 				<div class="conversation-message">
 					<arrow-left-icon />
-					<span>{{ conversation.message }}</span>
+					<span class="font-thin">{{ conversation.message }}</span>
 				</div>
 				<div class="meta-container">
 					<span>
@@ -56,8 +53,7 @@
 				<div class="label-wrapper" [title]="conversation.label">
 					<span
 						class="label-color-dot"
-						[style.background]="conversation.labelColor"
-					></span>
+						[style.background]="conversation.labelColor"></span>
 					<span class="label-text">{{ conversation.label }}</span>
 				</div>
 			</div>

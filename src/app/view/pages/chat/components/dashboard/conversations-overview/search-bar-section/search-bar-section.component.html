@@ -3,21 +3,20 @@
 		<button
 			(click)="ExpandSidebar()"
 			class="button clear button--only-icon tiny secondary list-icon-button"
-			type="submit"
-		>
+			type="submit">
 			<list-icon />
 		</button>
 		<a href="/app/accounts/4/search" class="search-link">
 			<div class="flex">
-				<search-icon />
+				<!-- <search-icon /> -->
+				<span class="pi pi-search" style="font-size: 0.75rem"></span>
 			</div>
 			<p class="search-label">Search for messages in conversations</p>
 		</a>
 		<button
 			(click)="toggleExpand()"
 			class="button smooth button--only-icon tiny secondary layout-switch__container"
-			type="submit"
-		>
+			type="submit">
 			<arrow-right-icon />
 		</button>
 	</div>

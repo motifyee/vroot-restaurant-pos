@@ -2,6 +2,10 @@
 
 @use './styles/theme';
 @use './styles/prime_overrides/index';
+@use './styles/prime_overrides/chat/main.scss';
+@use './styles/prime_overrides/chat/buttons.scss';
+@use './styles/prime_overrides/chat/select.scss';
+@use './styles/prime_overrides/chat/dialog.scss';
 
 @layer primeng, tailwind-base, tailwind-utilities;
 

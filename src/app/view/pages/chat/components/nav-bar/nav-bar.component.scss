@@ -61,14 +61,6 @@
 	@apply flex-center rounded-full max-w-full relative h-8 w-8;
 }
 
-/* Avatar container */
-.avatar-container {
-	@apply rounded-full flex-center bg-slate-200 dark:bg-slate-600 text-center font-medium text-slate-100;
-	background-image: linear-gradient(to top, #135899, #135899);
-	font-size: 12px;
-	line-height: 100%;
-}
-
 /* User badge */
 .source-badge {
 	@apply rounded-full w-2.5 h-2.5 bg-green-500 absolute right-0 bottom-0.5;

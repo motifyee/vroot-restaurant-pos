@@ -21,10 +21,10 @@ import { AgentPopoverComponent } from './components/agent-popover/agent-popover.
 export class ConversationBulkActionComponent {
 	@ViewChild('changeStatusPopover') changeStatusPopover?: Popover;
 
-	// Method to hide the popover
-	hidePopover() {
-		if (this.changeStatusPopover) {
-			this.changeStatusPopover.hide();
+	// method to hide bulk action popovers
+	hidePopover(popover: Popover): void {
+		if (popover) {
+			popover.hide();
 		}
 	}
 }

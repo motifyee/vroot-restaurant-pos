@@ -5,8 +5,7 @@
 			<li
 				class="tabs-title"
 				[class.is-active]="activeTab() === tab.title"
-				(click)="setActiveTab(tab.title)"
-			>
+				(click)="setActiveTab(tab.title)">
 				<a>
 					{{ tab.title }}
 					<div class="badge">
@@ -23,10 +22,10 @@
 
 <!-- contact list -->
 @switch (activeTab()) {
-	@case ('mine') {
+	@case ('Mine') {
 		<contacts-per-chat-type />
 	}
-	@case ('unassigned') {
+	@case ('Unassigned') {
 		<contacts-per-chat-type />
 	}
 	@default {
