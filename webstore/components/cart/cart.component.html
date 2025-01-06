@@ -27,7 +27,7 @@
 				<span class="total-price">{{ cart.cartTotal() }} EGP</span>
 			</div>
 
-			<button (click)="checkout()" class="execute-btn">
+			<button (click)="gotoCheckout()" class="execute-btn">
 				تنفيذ الطلب
 			</button>
 		</div>
@@ -47,7 +47,7 @@
 				'btn cursor-pointer' +
 				(floatingCartExpanded() ? ' expanded' : '')
 			"
-			(click)="checkout()">
+			(click)="gotoCheckout()">
 			<span
 				class="cart-icon"
 				(click)="$event.stopPropagation(); toggleFloatCartExpanded()">

@@ -9,7 +9,7 @@ import { BannerComponent } from './components/banner/banner.component';
 import { CategoryBarComponent } from './components/category-bar/category-bar.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { MobilCategoryBarComponent } from './components/mobile-category-bar/mobile-category-bar.component';
-import { CartComponent } from './components/cart/cart.component';
+import { CartComponent } from '../../components/cart/cart.component';
 import { productsPageStore } from './products-page.store';
 import { AddToCartItemModalComponent } from './components/add-to-cart-modal/add-to-cart-modal.component';
 

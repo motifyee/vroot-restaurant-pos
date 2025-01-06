@@ -1,20 +1,20 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, computed, inject, Injector, signal } from '@angular/core';
 import { CartIconComponent } from './icons/cart-icon.component';
-import { ScrollService } from '../../../../services/scroll.service';
+import { ScrollService } from '../../services/scroll.service';
 import {
 	cartExpandUp,
 	floatUp,
-} from '../../../../animations/float-up.animation';
-import { AuthModalComponent } from '../../../../components/auth-modal/auth-modal.component';
+} from '../../animations/float-up.animation';
+import { AuthModalComponent } from '../auth-modal/auth-modal.component';
 import {
 	settingsStore,
 	userStore,
 	cartStore,
 	invoiceStore,
 } from '@webstore/state';
-import { UserAddressesModalComponent } from '../../../../components/user-addresses-modal/user-addresses-modal.component';
-import { scaleInOut } from '../../../../animations/scale-in-out.animation';
+import { UserAddressesModalComponent } from '../user-addresses-modal/user-addresses-modal.component';
+import { scaleInOut } from '../../animations/scale-in-out.animation';
 import { singleCallEffect } from '@src/app/core';
 import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
 import { CartItemsComponent } from '@webstore/components/cart-items/cart-items.component';
@@ -58,23 +58,26 @@ export class CartComponent {
 	}
 
 	injector = inject(Injector);
-	checkout() {
+	gotoCheckout() {
+		// ensure user is logged in
 		if (!this.userStore.isLoggedIn())
 			return singleCallEffect({
 				injector: this.injector,
 				init: () => this.showAuth.set(true),
 				predicate: () => !this.showAuth(),
-				success: () => this.userStore.isLoggedIn() && this.checkout(),
+				success: () => this.userStore.isLoggedIn() && this.gotoCheckout(),
 			});
 
+		// ensure user has selected an address
 		if (this.settings.orderType() == 'delivery' && !this.#selectedAddress())
 			return singleCallEffect({
 				injector: this.injector,
 				init: () => this.showAddressModal.set(true),
 				predicate: () => !this.showAddressModal(),
-				success: () => !!this.#selectedAddress() && this.checkout(),
+				success: () => !!this.#selectedAddress() && this.gotoCheckout(),
 			});
 
+		// navigate to checkout
 		this.router.navigate(['/checkout']);
 	}
 }
