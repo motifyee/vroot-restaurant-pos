@@ -11,34 +11,56 @@ import { withDeleteInvoiceMethod } from './features/with-delete-invoice.method';
 import { withGetInvoiceByIdMethod } from './features/with-get-invoice-by-id.method';
 import { withGetInvoicesMethod } from './features/with-get-invoices.method';
 import { withUpdateInvoiceMethod } from './features/with-update-invoice.method';
+import { withActiveInvoice as withActiveInvoiceMethods } from './features/with-active-invoice.method';
+import { withAddProduct } from './features/with-add-product.method';
+import { withRemoveProductAtIndex } from './features/with-remove-product-at-index.method';
+import { withIncrementProductAtIndex } from './features/with-increment-product-at-index.method';
+import { withDecrementProductAtIndex } from './features/with-decrement-product-at-index.method';
+import { withRemoveActiveInvoice } from './features/with-remove-active-invoice.method';
 
-export type InvoiceEntityState = NamedEntityState<WebstoreInvoice, 'invoice'>;
+export type InvoiceEntityState = NamedEntityState<GetInvoice, 'invoice'>;
 
-export type InvoiceEntityProps = NamedEntityProps<WebstoreInvoice, 'invoice'>;
+export type InvoiceEntityProps = NamedEntityProps<GetInvoice, 'invoice'>;
 
 export const invoiceEntityConfig = entityConfig({
-	entity: type<WebstoreInvoice>(),
+	entity: type<GetInvoice>(),
 	collection: 'invoice',
-	selectId: (c: WebstoreInvoice) => c.id!,
+	selectId: (c: GetInvoice) => c.id!,
 });
 
 // #############################################################################
 
-export type InvoiceStoreState = {};
+export type InvoiceStoreState = {
+	_anonymousInvoiceId: number;
+};
 
-const initialState: InvoiceStoreState = {};
+const initialState: InvoiceStoreState = {
+	_anonymousInvoiceId: -1,
+};
 
-// #############################################################################
-
+// TODO: add get favorite invoices method
 export const invoiceStore = signalStore(
 	withState(initialState),
 	withEntities(invoiceEntityConfig),
 
-	withCreateInvoiceMethod(),
-	withDeleteInvoiceMethod(),
+	// ##################################
+
 	withGetInvoiceByIdMethod(),
 	withGetInvoicesMethod(),
+
+	withCreateInvoiceMethod(),
+	withDeleteInvoiceMethod(),
 	withUpdateInvoiceMethod(),
+
+	// #################################
+
+	withActiveInvoiceMethods(),
+
+	withAddProduct(),
+	withRemoveProductAtIndex(),
+	withIncrementProductAtIndex(),
+	withDecrementProductAtIndex(),
+	withRemoveActiveInvoice(),
 );
 
 // #############################################################################

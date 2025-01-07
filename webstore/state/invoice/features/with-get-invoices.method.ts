@@ -4,40 +4,61 @@ import {
 	type,
 	withMethods,
 } from '@ngrx/signals';
-import { addEntities } from '@ngrx/signals/entities';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap } from 'rxjs';
+import { addEntities, addEntity } from '@ngrx/signals/entities';
 import { inject } from '@angular/core';
-import { tapResponse } from '@ngrx/operators';
 import { CartRepo, InvoicesFilter } from '@webstore/features';
-import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
+import {
+	invoiceEntityConfig,
+	InvoiceEntityState,
+	InvoiceStoreState,
+} from '../invoice.store';
+import { userStore } from '@webstore/state/user';
+import { GetInvoiceByIdMethodType } from './with-get-invoice-by-id.method';
 
 export function withGetInvoicesMethod<_>() {
 	return signalStoreFeature(
-		{ state: type<InvoiceEntityState>() },
+		{
+			state: type<InvoiceEntityState & InvoiceStoreState>(),
+			methods: type<GetInvoiceByIdMethodType>(),
+		},
 		withMethods((store) => {
-			let repo = inject(CartRepo);
+			const repo = inject(CartRepo);
+			const user = inject(userStore);
 
 			return {
-				getInvoices: rxMethod<InvoicesFilter>(
-					pipe(
-						switchMap((params) =>
-							repo.getInvoices(params).pipe(
-								tapResponse({
-									next: (invs) =>
-										patchState(
-											store,
-											addEntities(
-												invs,
-												invoiceEntityConfig,
-											),
-										),
-									error: console.error,
-								}),
-							),
-						),
-					),
-				),
+				getInvoices: (params: InvoicesFilter) => {
+					// If user is logged in, get all active invoices
+					if (user.isLoggedIn()) {
+						return repo.getInvoices(params).subscribe({
+							next: (invs) => {
+								patchState(
+									store,
+									addEntities(invs, invoiceEntityConfig),
+								);
+							},
+							error: console.error,
+						});
+					}
+
+					// If not logged in, try to load anonymous invoice
+					const anonymousId = store._anonymousInvoiceId();
+					if (!anonymousId) return;
+
+					// Load the anonymous invoice and set it as active
+					return store
+						.getInvoiceById({ id: +anonymousId })
+						.subscribe({
+							next: (inv) => {
+								patchState(
+									store,
+									addEntity(inv, invoiceEntityConfig),
+								);
+							},
+							error: () => {
+								console.error('Failed to load invoice');
+							},
+						});
+				},
 			};
 		}),
 	);

@@ -4,6 +4,7 @@ import {
 	CalcCartTotalPriceUseCaseProvider,
 	CalcInvoiceProductPriceUseCaseProvider,
 	CartRepo,
+	FindMatchingProductIndexUseCaseProvider,
 } from '@webstore/features/cart/domain';
 import { CartImplRepo } from './data';
 import { GetCategoriesUseCaseProvider } from './domain';
@@ -19,6 +20,7 @@ export class CartDataModule {
 				CalcCartProductPriceUseCaseProvider,
 				CalcCartTotalPriceUseCaseProvider,
 				CalcInvoiceProductPriceUseCaseProvider,
+				FindMatchingProductIndexUseCaseProvider,
 				{
 					provide: CartRepo,
 					useClass: CartImplRepo,

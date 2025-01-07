@@ -5,40 +5,37 @@ import {
 	withMethods,
 } from '@ngrx/signals';
 import { removeEntity } from '@ngrx/signals/entities';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { distinctUntilChanged, pipe, switchMap } from 'rxjs';
 import { inject } from '@angular/core';
-import { tapResponse } from '@ngrx/operators';
 import { CartRepo } from '@webstore/features';
 import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
+import { featureType } from '@src/app/view/state/utils/utils';
+import { catchError } from 'rxjs';
+import { tap } from 'rxjs';
 
 export const withDeleteInvoiceMethod = <_>() =>
 	signalStoreFeature(
 		{ state: type<InvoiceEntityState>() },
 		withMethods((state) => {
-			let repo = inject(CartRepo);
+			const repo = inject(CartRepo);
 
 			return {
-				deleteInvoice: rxMethod<WebstoreInvoice>(
-					pipe(
-						distinctUntilChanged(),
-						switchMap((inv) =>
-							repo.deleteInvoice(inv).pipe(
-								tapResponse({
-									next: (inv) =>
-										patchState(
-											state,
-											removeEntity(
-												inv.id!,
-												invoiceEntityConfig,
-											),
-										),
-									error: console.error,
-								}),
-							),
-						),
-					),
-				),
+				deleteInvoice: (params: { id: number }) => {
+					return repo.deleteInvoice(params).pipe(
+						tap(() => {
+							patchState(
+								state,
+								removeEntity(params.id, invoiceEntityConfig),
+							);
+						}),
+						catchError((err) => {
+							console.error(err);
+							throw err;
+						}),
+					);
+				},
 			};
 		}),
 	);
+
+const _i = featureType(withDeleteInvoiceMethod);
+export type WithDeleteInvoiceMethodType = typeof _i.methods;

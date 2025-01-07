@@ -10,12 +10,12 @@ declare interface Addition {
 }
 
 // used inside cart || retrieved inside invoice
-declare interface CartAddition extends Addition {
+declare interface GetAddition extends Addition {
 	quantity: number;
 	totalPrice: number;
 }
 
-declare interface CreateInvoiceAddition {
+declare interface CreateAddition {
 	id: string;
 	with: boolean;
 	quantity: number;

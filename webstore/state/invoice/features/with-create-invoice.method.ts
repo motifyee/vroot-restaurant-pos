@@ -4,13 +4,13 @@ import {
 	type,
 	withMethods,
 } from '@ngrx/signals';
-import { distinctUntilChanged, of, switchMap } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { inject } from '@angular/core';
-import { tapResponse } from '@ngrx/operators';
 import { CartRepo } from '@webstore/features';
 import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
 import { addEntity } from '@ngrx/signals/entities';
 import { settingsStore } from '@webstore/state/settings';
+import { featureType } from '@src/app/view/state/utils/utils';
 
 export const withCreateInvoiceMethod = <_>() =>
 	signalStoreFeature(
@@ -21,27 +21,31 @@ export const withCreateInvoiceMethod = <_>() =>
 
 			return {
 				createInvoice: (params: {
-					invoice: WebstoreInvoice;
+					invoice: CreateInvoice;
 					creationToken: string;
 				}) => {
-					params.invoice.toBranchId = settings.selectedBranch?.()?.id;
+					const invoice = {
+						...params.invoice,
+						toBranchId: settings.selectedBranch?.()?.id || 0,
+					};
 
-					return of(params).pipe(
-						distinctUntilChanged(),
-						switchMap((inv) =>
-							repo.createInvoice(inv).pipe(
-								tapResponse({
-									next: (inv) => {
-										patchState(
-											store,
-											addEntity(inv, invoiceEntityConfig),
-										);
-									},
-									error: console.error,
-								}),
-							),
-						),
-					);
+					return repo
+						.createInvoice({
+							...params,
+							invoice,
+						})
+						.pipe(
+							tap((inv) => {
+								patchState(
+									store,
+									addEntity(inv, invoiceEntityConfig),
+								);
+							}),
+							catchError((err) => {
+								console.error(err);
+								return throwError(() => err);
+							}),
+						);
 				},
 			};
 		}),
@@ -82,3 +86,6 @@ export const withCreateInvoiceMethod = <_>() =>
 			};
 		}),
 	);
+
+const _i = featureType(withCreateInvoiceMethod);
+export type CreateInvoiceMethodType = typeof _i.methods;

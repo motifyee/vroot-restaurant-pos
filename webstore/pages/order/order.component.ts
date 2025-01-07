@@ -30,7 +30,7 @@ import { RatingModule, RatingRateEvent } from 'primeng/rating';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderComponent {
-	order = signal<WebstoreInvoice>({
+	order = signal<GetInvoice>({
 		id: 123,
 		products: [
 			{

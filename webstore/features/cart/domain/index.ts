@@ -4,3 +4,4 @@ export * from './usecases/get-categoies.usecase';
 export * from './usecases/calc-cart-product-price.usecase';
 export * from './usecases/calc-cart-total-price.usecase';
 export * from './usecases/calc-invoice-product-price.usecase';
+export * from './usecases/find-matching-product-index.usecase';

@@ -16,25 +16,25 @@ export abstract class CartRepo {
 	abstract getInvoiceById(
 		params: { id: number },
 		config?: Config,
-	): Observable<WebstoreInvoice>;
+	): Observable<GetInvoice>;
 
 	abstract getInvoices(
 		params: InvoicesFilter,
 		config?: Config,
-	): Observable<WebstoreInvoice[]>;
+	): Observable<GetInvoice[]>;
 
 	abstract createInvoice(
-		params: { invoice: WebstoreInvoice; creationToken: string },
+		params: { invoice: CreateInvoice; creationToken: string },
 		config?: Config,
-	): Observable<WebstoreInvoice>;
+	): Observable<GetInvoice>;
 
 	abstract updateInvoice(
-		params: WebstoreInvoice,
+		params: UpdateInvoice,
 		config?: Config,
-	): Observable<WebstoreInvoice>;
+	): Observable<GetInvoice>;
 
 	abstract deleteInvoice(
-		params: WebstoreInvoice,
+		params: { id: number },
 		config?: Config,
-	): Observable<WebstoreInvoice>;
+	): Observable<void>;
 }

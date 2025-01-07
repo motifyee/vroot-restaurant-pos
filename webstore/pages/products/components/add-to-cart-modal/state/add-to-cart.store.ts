@@ -18,32 +18,32 @@ import { CalcCartProductPriceUseCase } from '@webstore/features';
 import { withQtyMethods } from './features/qty.methods';
 import { withAdditionMethods } from './features/addition.methods';
 
-export type AdditionsEntityState = NamedEntityState<CartAddition, 'additions'>;
+export type AdditionsEntityState = NamedEntityState<GetAddition, 'additions'>;
 
-export type AdditionsEntityProps = NamedEntityProps<CartAddition, 'additions'>;
+export type AdditionsEntityProps = NamedEntityProps<GetAddition, 'additions'>;
 
 export const additionsEntityConfig = entityConfig({
-	entity: type<CartAddition>(),
+	entity: type<GetAddition>(),
 	collection: 'additions',
-	selectId: (a: CartAddition) => a.id,
+	selectId: (a: GetAddition) => a.id,
 });
 
 // #############################################################################
 
 export type RemovedAdditionsEntityState = NamedEntityState<
-	CartAddition,
+	GetAddition,
 	'removedAdditions'
 >;
 
 export type RemovedAdditionsEntityProps = NamedEntityProps<
-	CartAddition,
+	GetAddition,
 	'removedAdditions'
 >;
 
 export const removedAdditionsEntityConfig = entityConfig({
-	entity: type<CartAddition>(),
+	entity: type<GetAddition>(),
 	collection: 'removedAdditions',
-	selectId: (a: CartAddition) => a.id,
+	selectId: (a: GetAddition) => a.id,
 });
 
 // #############################################################################
@@ -90,7 +90,7 @@ export const addToCartStore = signalStore(
 
 		return {
 			computedProduct: computed<InvoiceProduct>(() => {
-				const additions: CartAddition[] = Object.values(
+				const additions: GetAddition[] = Object.values(
 					store.additionsEntityMap(),
 				).map((a) => ({
 					...a,
@@ -99,7 +99,7 @@ export const addToCartStore = signalStore(
 					quantity: a.quantity ?? 1,
 				}));
 
-				const removedAdditions: CartAddition[] = Object.values(
+				const removedAdditions: GetAddition[] = Object.values(
 					store.removedAdditionsEntityMap(),
 				).map((a) => ({
 					...a,
