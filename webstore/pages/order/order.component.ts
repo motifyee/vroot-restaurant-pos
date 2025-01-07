@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BgImageComponent } from '@webstore/app/components/bg-image/bg-image.component';
-import { CartItemsComponent } from '@webstore/components/cart-items/cart-items.component';
+import { CartItemsComponent } from '@webstore/components/cart/components/cart-items/cart-items.component';
 import { GetCompanyDomainUseCase } from '@webstore/features/settings/domain/usecases/get-company-domain.usecase';
 import { GetOrderTypeNameUseCase } from '@webstore/features/settings/domain/usecases/get-order-type-name.usecase';
 import { settingsStore } from '@webstore/state';

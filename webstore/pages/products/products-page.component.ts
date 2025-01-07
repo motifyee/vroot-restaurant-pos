@@ -11,7 +11,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { MobilCategoryBarComponent } from './components/mobile-category-bar/mobile-category-bar.component';
 import { CartComponent } from '../../components/cart/cart.component';
 import { productsPageStore } from './products-page.store';
-import { AddToCartItemModalComponent } from './components/add-to-cart-modal/add-to-cart-modal.component';
+import { AddToCartItemModalComponent } from '../../components/add-to-cart-modal/add-to-cart-modal.component';
 
 import { ScrollService } from '../../services/scroll.service';
 import { settingsStore } from '@webstore/state';

@@ -10,9 +10,9 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { cartStore } from '@webstore/state';
-import { BannerComponent } from '../banner/banner.component';
-import { scaleInOut } from '../../../../animations/scale-in-out.animation';
-import { ModalComponent } from '../../../../components/modal/modal.component';
+import { BannerComponent } from '../../pages/products/components/banner/banner.component';
+import { scaleInOut } from '../../animations/scale-in-out.animation';
+import { ModalComponent } from '../modal/modal.component';
 import { ButtonModule } from 'primeng/button';
 import { NgTemplateOutlet } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';

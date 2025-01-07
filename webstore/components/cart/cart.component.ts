@@ -2,10 +2,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { Component, computed, inject, Injector, signal } from '@angular/core';
 import { CartIconComponent } from './icons/cart-icon.component';
 import { ScrollService } from '../../services/scroll.service';
-import {
-	cartExpandUp,
-	floatUp,
-} from '../../animations/float-up.animation';
+import { cartExpandUp, floatUp } from '../../animations/float-up.animation';
 import { AuthModalComponent } from '../auth-modal/auth-modal.component';
 import {
 	settingsStore,
@@ -17,7 +14,7 @@ import { UserAddressesModalComponent } from '../user-addresses-modal/user-addres
 import { scaleInOut } from '../../animations/scale-in-out.animation';
 import { singleCallEffect } from '@src/app/core';
 import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
-import { CartItemsComponent } from '@webstore/components/cart-items/cart-items.component';
+import { CartItemsComponent } from '@webstore/components/cart/components/cart-items/cart-items.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -65,7 +62,8 @@ export class CartComponent {
 				injector: this.injector,
 				init: () => this.showAuth.set(true),
 				predicate: () => !this.showAuth(),
-				success: () => this.userStore.isLoggedIn() && this.gotoCheckout(),
+				success: () =>
+					this.userStore.isLoggedIn() && this.gotoCheckout(),
 			});
 
 		// ensure user has selected an address

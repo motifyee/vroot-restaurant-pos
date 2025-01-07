@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
 import { BgImageComponent } from '@webstore/app/components/bg-image/bg-image.component';
-import { CartItemsComponent } from '@webstore/components/cart-items/cart-items.component';
+import { CartItemsComponent } from '@webstore/components/cart/components/cart-items/cart-items.component';
 import {
 	cartStore,
 	invoiceStore,
