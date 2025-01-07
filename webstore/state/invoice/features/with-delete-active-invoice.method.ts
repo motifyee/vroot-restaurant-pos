@@ -7,7 +7,7 @@ import {
 import { WithDeleteInvoiceMethodType } from './with-delete-invoice.method';
 import { featureType } from '@src/app/view/state/utils/utils';
 
-export const withRemoveActiveInvoice = <_>() =>
+export const withDeleteActiveInvoice = <_>() =>
 	signalStoreFeature(
 		{
 			state: type<InvoiceEntityState & InvoiceStoreState>(),
@@ -18,7 +18,7 @@ export const withRemoveActiveInvoice = <_>() =>
 		},
 		withMethods((store) => {
 			return {
-				removeActiveInvoice: () => {
+				deleteActiveInvoice: () => {
 					const activeInvoice = store.activeInvoice?.();
 
 					if (!activeInvoice) {
@@ -40,5 +40,5 @@ export const withRemoveActiveInvoice = <_>() =>
 		}),
 	);
 
-let _i = featureType(withRemoveActiveInvoice);
+let _i = featureType(withDeleteActiveInvoice);
 export type RemoveActiveInvoiceMethodType = typeof _i.methods;

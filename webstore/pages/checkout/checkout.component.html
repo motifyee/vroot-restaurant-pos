@@ -4,8 +4,7 @@
 			pButton
 			icon="pi pi-chevron-right"
 			class="active w-10 h-10"
-			routerLink="/"
-		></button>
+			routerLink="/"></button>
 
 		<span class="font-bold text-xl">مراجعة الطلب</span>
 	</div>
@@ -32,8 +31,7 @@
 				pInputText
 				disabled
 				[value]="user.user().name"
-				placeholder="الاسم"
-			/>
+				placeholder="الاسم" />
 		</p-inputgroup>
 
 		<p-inputgroup class="flex-1 w-2">
@@ -46,8 +44,7 @@
 				[dir]="user.user().phone ? 'ltr' : 'rtl'"
 				disabled
 				[value]="user.user().phone"
-				placeholder="رقم الموبايل"
-			/>
+				placeholder="رقم الموبايل" />
 		</p-inputgroup>
 
 		<p-inputgroup class="flex-[0_0_100%] sm:flex-1">
@@ -60,8 +57,7 @@
 				[dir]="user.user().email ? 'ltr' : 'rtl'"
 				disabled
 				[value]="user.user().email"
-				placeholder="الايميل"
-			/>
+				placeholder="الايميل" />
 		</p-inputgroup>
 	</div>
 </ng-template>
@@ -83,7 +79,7 @@
 <ng-template #_orderItems>
 	<div class="card">
 		<div class="text-xl mb-2 flex justify-between">
-			<span> تفاصيل الطلب </span>
+			<span>تفاصيل الطلب</span>
 
 			<span class="text-sm cursor-pointer text-highlight" routerLink="/">
 				اطلب المزيد
@@ -103,8 +99,7 @@
 			class="w-full min-h-16"
 			p-inputtextarea
 			[(ngModel)]="orderNote"
-			placeholder="هل لك ملاحظات خاصة علي الطلب؟"
-		></textarea>
+			placeholder="هل لك ملاحظات خاصة علي الطلب؟"></textarea>
 	</div>
 </ng-template>
 
@@ -114,19 +109,18 @@
 
 		<div class="flex justify-between text-highlight border-b py-4">
 			<span>المجموع الفرعي</span>
-			<span>{{ cart.cartTotal() }}</span>
+			<span>{{ invoiceStore.activeInvoice()?.totalPrice }}</span>
 		</div>
 
 		<div class="flex justify-between py-4">
 			<span>المجموع الكلي</span>
-			<span>{{ cart.cartTotal() }}</span>
+			<span>{{ invoiceStore.activeInvoice()?.totalPrice }}</span>
 		</div>
 
 		<small class="text-highlight">شامل ضريبة القيمة المضافة*</small>
 
 		<div
-			class="flex flex-col gap-2 items-center justify-center py-4 text-highlight"
-		>
+			class="flex flex-col gap-2 items-center justify-center py-4 text-highlight">
 			<span>الرقم الضريبي: 523532</span>
 			<a class="underline cursor-pointer">عرض الشهادة</a>
 		</div>
@@ -135,6 +129,5 @@
 	<p-button
 		[label]="'ارسال الطلب - ' + deliveryTitle()"
 		class="w-full custom active"
-		(onClick)="checkout()"
-	/>
+		(onClick)="checkout()" />
 </ng-template>

@@ -4,16 +4,10 @@ import { CartIconComponent } from './icons/cart-icon.component';
 import { ScrollService } from '../../services/scroll.service';
 import { cartExpandUp, floatUp } from '../../animations/float-up.animation';
 import { AuthModalComponent } from '../auth-modal/auth-modal.component';
-import {
-	settingsStore,
-	userStore,
-	cartStore,
-	invoiceStore,
-} from '@webstore/state';
+import { settingsStore, userStore, invoiceStore } from '@webstore/state';
 import { UserAddressesModalComponent } from '../user-addresses-modal/user-addresses-modal.component';
 import { scaleInOut } from '../../animations/scale-in-out.animation';
 import { singleCallEffect } from '@src/app/core';
-import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
 import { CartItemsComponent } from '@webstore/components/cart/components/cart-items/cart-items.component';
 import { Router } from '@angular/router';
 
@@ -36,10 +30,14 @@ export class CartComponent {
 	scrollService = inject(ScrollService);
 	userStore = inject(userStore);
 	settings = inject(settingsStore);
-	invoiceStore = inject(invoiceStore);
 
-	cart = inject(cartStore);
-	cartItems = this.cart.products;
+	invoiceStore = inject(invoiceStore);
+	totalPrice = computed(
+		() => this.invoiceStore.activeInvoice()?.totalPrice || 0,
+	);
+	cartItems = computed(
+		() => this.invoiceStore.activeInvoice?.()?.products || [],
+	);
 
 	showAuth = signal(false);
 	showAddressModal = signal(false);

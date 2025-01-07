@@ -11,12 +11,7 @@ import { RouterLink } from '@angular/router';
 import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
 import { BgImageComponent } from '@webstore/app/components/bg-image/bg-image.component';
 import { CartItemsComponent } from '@webstore/components/cart/components/cart-items/cart-items.component';
-import {
-	cartStore,
-	invoiceStore,
-	settingsStore,
-	userStore,
-} from '@webstore/state';
+import { invoiceStore, settingsStore, userStore } from '@webstore/state';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputGroup } from 'primeng/inputgroup';
@@ -44,7 +39,6 @@ import { InputTextModule } from 'primeng/inputtext';
 export class CheckoutComponent {
 	settings = inject(settingsStore);
 	user = inject(userStore);
-	cart = inject(cartStore);
 	invoiceStore = inject(invoiceStore);
 
 	orderNote = signal<string>('');

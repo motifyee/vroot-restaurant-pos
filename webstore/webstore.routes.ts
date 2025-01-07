@@ -1,7 +1,6 @@
 import { importProvidersFrom } from '@angular/core';
 import { Route, Routes } from '@angular/router';
 import {
-	cartStore,
 	invoiceStore,
 	menuStore,
 	settingsStore,
@@ -31,7 +30,6 @@ export const webstoreMainRoute: Route = {
 		import('./webstore.component').then((m) => m.WebstoreComponent),
 	providers: [
 		userStore,
-		cartStore,
 		settingsStore,
 		menuStore,
 		invoiceStore,

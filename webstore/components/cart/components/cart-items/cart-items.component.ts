@@ -6,8 +6,7 @@ import {
 	input,
 } from '@angular/core';
 import { CalcInvoiceProductPriceUseCase } from '@webstore/features';
-import { cartStore } from '@webstore/state';
-
+import { invoiceStore } from '@webstore/state';
 @Component({
 	selector: 'cart-items',
 	imports: [],
@@ -16,20 +15,18 @@ import { cartStore } from '@webstore/state';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartItemsComponent {
-	cart = inject(cartStore);
+	readonly invoiceStore = inject(invoiceStore);
 
-	showControls = input<boolean>(false);
-	products = input<InvoiceProduct[] | undefined>(undefined);
+	readonly showControls = input<boolean>(false);
+	readonly products = input<InvoiceProduct[] | undefined>(undefined);
 
-	items = computed(() => {
+	readonly items = computed(() => {
 		if (this.products()) return this.products();
 
-		return this.cart.products();
+		return this.invoiceStore.activeInvoice()?.products || [];
 	});
 
-	cartItems = this.cart.products;
-
-	productPrice = inject(CalcInvoiceProductPriceUseCase);
-	calcPrice = (product: InvoiceProduct) =>
+	readonly productPrice = inject(CalcInvoiceProductPriceUseCase);
+	readonly calcPrice = (product: InvoiceProduct) =>
 		this.productPrice.execute({ product });
 }

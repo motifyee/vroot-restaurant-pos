@@ -21,7 +21,7 @@
 			<div class="quantity">
 				<div>
 					<button
-						(click)="cart.decrementAtIdx(idx)"
+						(click)="invoiceStore.decrementProductAtIndex(idx)"
 						class="btn-decrease">
 						-
 					</button>
@@ -29,14 +29,14 @@
 					<span class="quantity-number">{{ item.quantity }}</span>
 
 					<button
-						(click)="cart.incrementAtIdx(idx)"
+						(click)="invoiceStore.incrementProductAtIndex(idx)"
 						class="btn-increase">
 						+
 					</button>
 				</div>
 
 				<button
-					(click)="cart.removeIdxFromCart(idx)"
+					(click)="invoiceStore.removeProductAtIndex(idx)"
 					class="btn-delete">
 					<i class="far fa-trash-alt"></i>
 				</button>

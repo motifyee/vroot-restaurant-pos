@@ -24,7 +24,7 @@
 
 			<div class="total">
 				<span class="total-label">الاجمالي</span>
-				<span class="total-price">{{ cart.cartTotal() }} EGP</span>
+				<span class="total-price">{{ totalPrice() }} EGP</span>
 			</div>
 
 			<button (click)="gotoCheckout()" class="execute-btn">
@@ -60,7 +60,7 @@
 			<!-- <div class="action"> -->
 			<span class="flex-1 text-center p-4">تنفيذ الطلب</span>
 
-			<span class="total-price p-4">{{ cart.cartTotal() }} EGP</span>
+			<span class="total-price p-4">{{ totalPrice() }} EGP</span>
 			<!-- </div> -->
 		</div>
 	</div>

@@ -9,7 +9,7 @@ import {
 	effect,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { cartStore } from '@webstore/state';
+import { invoiceStore } from '@webstore/state';
 import { BannerComponent } from '../../pages/products/components/banner/banner.component';
 import { scaleInOut } from '../../animations/scale-in-out.animation';
 import { ModalComponent } from '../modal/modal.component';
@@ -41,7 +41,8 @@ export class AddToCartItemModalComponent implements OnInit {
 
 	store = inject(addToCartStore);
 
-	productStore = inject(cartStore);
+	invoiceStore = inject(invoiceStore);
+
 	scrollService = inject(ScrollService);
 
 	closeModal = output<void>();
@@ -58,13 +59,18 @@ export class AddToCartItemModalComponent implements OnInit {
 	// ###########################################################################
 
 	ngOnInit(): void {
-		this.store.setVariant(this.product());
+		this.store.setProduct(this.product());
 	}
 	// ###########################################################################
 
 	addToCart() {
-		this.productStore.addToCart(this.store.product());
-
-		this.closeModal.emit();
+		this.invoiceStore.addProduct(this.store.product()).subscribe({
+			next: () => {
+				this.closeModal.emit();
+			},
+			error: (err) => {
+				console.error(err);
+			},
+		});
 	}
 }

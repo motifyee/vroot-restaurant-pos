@@ -2,8 +2,7 @@
 	[header]="header()"
 	[closable]="isDismissable()"
 	(onDismissed)="dismiss()"
-	[headerIconUrl]="headerIconUrl()"
->
+	[headerIconUrl]="headerIconUrl()">
 	@if (!choosedBranch()) {
 		@if (pendingBranch()) {
 			<ng-container [ngTemplateOutlet]="confirmResetOrder"></ng-container>
@@ -24,9 +23,11 @@
 
 		<div class="flex w-full justify-between">
 			<button
-				(click)="cart.emptyCart(); selectBranch(pendingBranch()!)"
-				class="tab-style text-red-500"
-			>
+				(click)="
+					invoiceStore.deleteActiveInvoice();
+					selectBranch(pendingBranch()!)
+				"
+				class="tab-style text-red-500">
 				حذف السلة
 			</button>
 

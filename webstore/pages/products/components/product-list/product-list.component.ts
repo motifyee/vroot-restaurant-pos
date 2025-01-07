@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs';
 import { TopbarComponent } from '../../../../components/topbar/topbar.component';
 import { productsPageStore } from '../../products-page.store';
 import { SkeletonModule } from 'primeng/skeleton';
-import { settingsStore, menuStore, cartStore } from '@webstore/state';
+import { settingsStore, menuStore } from '@webstore/state';
 import { IS_DEVMODE } from '@src/app/core';
 import { BannerComponent } from '../banner/banner.component';
 
@@ -38,7 +38,6 @@ export class ProductListComponent
 	private scrollService = inject(ScrollService);
 	settings = inject(settingsStore);
 	menuStore = inject(menuStore);
-	cart = inject(cartStore);
 	productsPageStore = inject(productsPageStore);
 
 	scrollHookTop = this.scrollService.scrollHookTop;
