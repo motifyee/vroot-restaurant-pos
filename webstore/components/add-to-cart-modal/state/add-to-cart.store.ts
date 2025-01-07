@@ -75,7 +75,7 @@ export const addToCartStore = signalStore(
 	withEntities(removedAdditionsEntityConfig),
 	withMethods((store) => {
 		return {
-			setVariant: (product: InvoiceProduct) => {
+			setProduct: (product: InvoiceProduct) => {
 				patchState(store, { product });
 			},
 			setNote: (note: string) => {

@@ -4,17 +4,21 @@ import {
 	type,
 	withMethods,
 } from '@ngrx/signals';
-import { catchError, tap, throwError } from 'rxjs';
+import { catchError, tap, throwError, finalize } from 'rxjs';
 import { inject } from '@angular/core';
 import { CartRepo } from '@webstore/features';
 import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
 import { addEntity } from '@ngrx/signals/entities';
 import { settingsStore } from '@webstore/state/settings';
 import { featureType } from '@src/app/view/state/utils/utils';
+import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
 
 export const withCreateInvoiceMethod = <_>() =>
 	signalStoreFeature(
-		{ state: type<InvoiceEntityState>() },
+		{
+			state: type<InvoiceEntityState>(),
+			methods: type<LoadingMethod>(),
+		},
 		withMethods((store) => {
 			const repo = inject(CartRepo),
 				settings = inject(settingsStore);
@@ -24,6 +28,7 @@ export const withCreateInvoiceMethod = <_>() =>
 					invoice: CreateInvoice;
 					creationToken: string;
 				}) => {
+					store.setLoading(true);
 					const invoice = {
 						...params.invoice,
 						toBranchId: settings.selectedBranch?.()?.id || 0,
@@ -35,53 +40,19 @@ export const withCreateInvoiceMethod = <_>() =>
 							invoice,
 						})
 						.pipe(
-							tap((inv) => {
-								patchState(
-									store,
-									addEntity(inv, invoiceEntityConfig),
-								);
-							}),
-							catchError((err) => {
-								console.error(err);
-								return throwError(() => err);
+							tap({
+								next: (inv) => {
+									patchState(
+										store,
+										addEntity(inv, invoiceEntityConfig),
+									);
+								},
+								error: (err) => {
+									console.error(err);
+								},
+								finalize: () => store.setLoading(false),
 							}),
 						);
-				},
-			};
-		}),
-
-		withMethods((store) => {
-			return {
-				createInvoiceFromCartProducts: (params: {
-					products: CartVariant[];
-					shippingAddressId: number;
-					salesInvoiceType: number;
-					creationToken: string;
-					isUsualOrder: boolean;
-					note?: string;
-				}) => {
-					// const products: InvoiceProduct[] = params.products.map(
-					// 	(p) => {
-					// 		const product: InvoiceProduct = {
-					// 			productVariantId: p.variant.id,
-					// 			quantity: p.quantity,
-					// 		};
-					// 		if (p.note) product.note = p.note;
-					// 		if (p.additions) product.additions = p.additions;
-					// 		return product;
-					// 	},
-					// );
-					// const invoice: WebstoreInvoice = {
-					// 	products,
-					// 	shippingAddressId: params.shippingAddressId,
-					// 	salesInvoiceType: params.salesInvoiceType,
-					// 	isUsualOrder: params.isUsualOrder,
-					// 	note: params.note,
-					// };
-					// return store.createInvoice({
-					// 	invoice,
-					// 	creationToken: params.creationToken,
-					// });
 				},
 			};
 		}),

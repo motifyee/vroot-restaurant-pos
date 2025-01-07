@@ -23,7 +23,7 @@ export const withAddProduct = <_>() =>
 
 			return {
 				addProduct: (product: InvoiceProduct) => {
-					const activeInvoice = store.activeUpdateInvoice?.();
+					const activeInvoice = store.activeInvoice?.();
 
 					// If no active invoice, create new one
 					if (!activeInvoice) {
@@ -44,15 +44,13 @@ export const withAddProduct = <_>() =>
 							toBranchId: settings.selectedBranch?.()?.id || 0,
 						};
 
-						return store
-							.createInvoice({
-								invoice: createInvoice,
-								creationToken: crypto.randomUUID(),
-							})
-							.subscribe();
+						return store.createInvoice({
+							invoice: createInvoice,
+							creationToken: crypto.randomUUID(),
+						});
 					}
 
-					const products = [...store.activeInvoice()!.products];
+					const products = [...activeInvoice.products];
 
 					const idx = matchingProductIndex.execute({
 						product: product,
@@ -70,7 +68,7 @@ export const withAddProduct = <_>() =>
 						products,
 					};
 
-					return store.updateInvoice(invoice).subscribe();
+					return store.updateInvoice(invoice);
 				},
 			};
 		}),

@@ -17,6 +17,7 @@ import { withRemoveProductAtIndex } from './features/with-remove-product-at-inde
 import { withIncrementProductAtIndex } from './features/with-increment-product-at-index.method';
 import { withDecrementProductAtIndex } from './features/with-decrement-product-at-index.method';
 import { withRemoveActiveInvoice } from './features/with-remove-active-invoice.method';
+import { withLoading } from '@src/app/features/base/state/with-loading.method';
 
 export type InvoiceEntityState = NamedEntityState<GetInvoice, 'invoice'>;
 
@@ -40,6 +41,7 @@ const initialState: InvoiceStoreState = {
 
 // TODO: add get favorite invoices method
 export const invoiceStore = signalStore(
+	withLoading(),
 	withState(initialState),
 	withEntities(invoiceEntityConfig),
 
