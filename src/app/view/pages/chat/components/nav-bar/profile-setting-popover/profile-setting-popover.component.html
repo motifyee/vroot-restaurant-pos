@@ -3,74 +3,84 @@
 		<li class="list-item-disabled" aria-disabled="true">
 			<span>Set yourself as</span>
 		</li>
-		<li class="menu-item" tabindex="-1" aria-disabled="false">
-			<button
-				class="button clear small secondary status-change--dropdown-button">
-				<span class="button-content">
-					<div class="status-badge status-badge-online"></div>
-					Online
-				</span>
-			</button>
+		<li class="menu-item" aria-disabled="false">
+			<p-button
+				class="button-secondary-transparent w-full"
+				label="Online"
+				size="small"
+				variant="text">
+				<div class="status-badge status-badge-online"></div>
+			</p-button>
 		</li>
-		<li class="menu-item" tabindex="-1" aria-disabled="false">
-			<button
-				class="button clear small secondary status-change--dropdown-buttons">
-				<span class="button-content">
-					<div class="status-badge status-badge-busy"></div>
-					Busy
-				</span>
-			</button>
+		<li class="menu-item" aria-disabled="false">
+			<p-button
+				class="button-secondary-transparent w-full"
+				label="Busy"
+				size="small"
+				variant="text">
+				<div class="status-badge status-badge-busy"></div>
+			</p-button>
 		</li>
-		<li class="menu-item" tabindex="-1" aria-disabled="false">
-			<button
-				class="button clear small secondary status-change--dropdown-button">
-				<span class="button-content">
-					<div class="status-badge status-badge-offline"></div>
-					Offline
-				</span>
-			</button>
-		</li>
-		<li class="list-item-divider" aria-disabled="true"></li>
-		<li class="menu-item-justify" tabindex="-1" aria-disabled="false">
-			<div class="flex-center">
-				<more-info-icon />
-				<span class="text-xs-medium">Mark offline automatically</span>
-			</div>
-			<button class="button-toggle" role="switch" aria-checked="true">
-				<span aria-hidden="true" class="active"></span>
-			</button>
-		</li>
-		<li class="list-item-divider" aria-disabled="true"></li>
-	</ul>
-	<ul class="dropdown-menu">
-		<li class="menu-item" tabindex="-1" aria-disabled="false">
-			<button
-				(click)="showKeyboardShortcutsDialog()"
-				class="button clear small secondary">
-				<keyboard-icon />
-				<span class="button-content">Keyboard Shortcuts</span>
-			</button>
+		<li class="menu-item" aria-disabled="false">
+			<p-button
+				class="button-secondary-transparent w-full"
+				label="Offline"
+				size="small"
+				variant="text">
+				<div class="status-badge status-badge-offline"></div>
+			</p-button>
 		</li>
 
-		<li class="menu-item" tabindex="-1" aria-disabled="false">
-			<a
-				href="/app/accounts/4/profile/settings"
-				class="h-8 bg-white button small clear secondary dark:bg-slate-800">
-				<user-icon />
-				<span class="button-content">Profile Settings</span>
-			</a>
+		<p-divider />
+
+		<li class="list-item-divider" aria-disabled="true"></li>
+		<li class="menu-item-justify" aria-disabled="false">
+			<div class="flex-center">
+				<i class="pi pi-info-circle mr-2 text-slate-400 text-sm"></i>
+				<span class="text-xs-medium">Mark offline automatically</span>
+			</div>
+			<p-toggleswitch class="flex" />
 		</li>
-		<li class="menu-item" tabindex="-1" aria-disabled="false">
-			<button class="button clear small secondary">
-				<appearance-icon />
-				<span class="button-content">Change Appearance</span>
-			</button>
+
+		<li class="list-item-divider" aria-disabled="true"></li>
+		<p-divider />
+	</ul>
+
+	<ul class="dropdown-menu">
+		<li class="menu-item" aria-disabled="false">
+			<p-button
+				(click)="showKeyboardShortcutsDialog()"
+				class="button-secondary-transparent w-full"
+				label="Keyboard Shortcuts"
+				size="small"
+				variant="text">
+				<keyboard-icon class="flex" />
+			</p-button>
 		</li>
-		<li class="menu-item" tabindex="-1" aria-disabled="false">
-			<button class="button clear small secondary">
-				<power-icon />
-				<span class="button-content">Logout</span>
-			</button>
+
+		<li class="menu-item" aria-disabled="false">
+			<p-button
+				class="button-secondary-transparent w-full"
+				label="Profile Setting"
+				size="small"
+				variant="text"
+				icon="pi pi-user" />
+		</li>
+		<li class="menu-item" aria-disabled="false">
+			<p-button
+				class="button-secondary-transparent w-full"
+				label="Change Appearance"
+				size="small"
+				variant="text"
+				icon="pi pi-palette" />
+		</li>
+		<li class="menu-item" aria-disabled="false">
+			<p-button
+				class="button-secondary-transparent w-full"
+				label="Logout"
+				size="small"
+				variant="text"
+				icon="pi pi-power-off" />
 		</li>
 	</ul>
 </div>

@@ -1,0 +1,8 @@
+// divider
+.p-divider-horizontal {
+	margin: 0 !important;
+}
+// changing the color of the divider
+.p-divider-horizontal:before {
+	border-block-start: 1px solid var(--border) !important;
+}

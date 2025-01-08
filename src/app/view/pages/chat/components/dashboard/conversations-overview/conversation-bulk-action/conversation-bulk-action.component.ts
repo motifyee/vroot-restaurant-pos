@@ -4,6 +4,7 @@ import { ChangeStatusPopoverComponent } from './components/change-status-popover
 import { LabelPopoverComponent } from './components/label-popover/label-popover.component';
 import { TeamPopoverComponent } from './components/team-popover/team-popover.component';
 import { AgentPopoverComponent } from './components/agent-popover/agent-popover.component';
+import { Button } from 'primeng/button';
 
 @Component({
 	selector: 'conversation-bulk-action',
@@ -13,6 +14,7 @@ import { AgentPopoverComponent } from './components/agent-popover/agent-popover.
 		LabelPopoverComponent,
 		TeamPopoverComponent,
 		AgentPopoverComponent,
+		Button,
 	],
 	templateUrl: './conversation-bulk-action.component.html',
 	styleUrl: './conversation-bulk-action.component.scss',

@@ -14,11 +14,6 @@
 	background-color: #0006;
 }
 
-.modal-mask .modal-container.medium {
-	width: 56.25rem;
-	max-width: 80%;
-}
-
 .multiselect {
 	min-height: 2.5rem;
 	border-radius: 5px;
@@ -103,7 +98,7 @@ select {
 }
 
 .modal-wrapper {
-	@apply relative max-h-full overflow-auto bg-white shadow-md modal-container
+	@apply relative max-h-full overflow-auto bg-white shadow-md 
   rtl:text-right dark:bg-slate-800  rounded-xl;
 	width: 60%;
 }

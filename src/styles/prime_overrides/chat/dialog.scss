@@ -1,5 +1,11 @@
 .p-dialog {
 	background: var(--main-color) !important;
+	// max-height: 90%;
+	// border-radius: var(--p-dialog-border-radius);
+	// box-shadow: var(--p-dialog-shadow);
+	border: none !important;
+	color: var(--font-color) !important;
+	font-family: var(--main-font-family);
 }
 
 .p-dialog-title {
@@ -9,3 +15,28 @@
 .p-dialog-header.ng-star-inserted > div > p-button > button {
 	border-radius: 5px !important;
 }
+
+.p-dialog-header {
+	@apply pt-8 px-8 pb-0 !important;
+}
+
+.p-dialog-content {
+	@apply px-8  !important;
+}
+
+.p-dialog-header-actions p-button button.p-button .p-iconwrapper svg {
+	width: 13px !important;
+	height: 13px !important;
+}
+
+// button related
+/*  dismiss Button for Dialog Header */
+.p-dialog-header-actions p-button button.p-button {
+	color: var(--btn-text-secondary-light);
+}
+
+.p-dialog-header-actions p-button button.p-button:hover {
+	background-color: var(--btn-bg-secondary-light) !important;
+	color: var(--btn-text-secondary-light) !important;
+}
+/*  ./dismiss Button for Dialog Header */

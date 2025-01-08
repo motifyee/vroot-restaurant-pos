@@ -1,0 +1,64 @@
+.p-popover {
+	border-color: var(--border) !important;
+	font-family: var(--main-font-family);
+}
+
+popover-header {
+	color: var(--font-color);
+}
+
+p-popover button {
+	background-color: unset;
+	border-color: unset;
+	color: unset;
+	cursor: pointer;
+	padding: 0;
+	text-decoration: none;
+	transition: none;
+}
+
+// body of the popover's content
+.p-popover-content {
+	background-color: var(--main-color);
+	// border: 1px solid var(--border);
+	border-radius: 5px;
+	padding: 0 !important;
+}
+
+// the tip of the popover
+.p-popover.p-component.ng-star-inserted:after {
+	border-bottom-color: var(--main-color);
+}
+
+// remove the tip of the popover (profile-settings-popover)
+.p-popover.p-component.ng-star-inserted:has(.dropdown-container)::before,
+.p-popover.p-component.ng-star-inserted:has(.dropdown-container)::after {
+	visibility: hidden;
+}
+
+// remove the tip of the popover (sort-popover)
+.p-popover.p-component.ng-star-inserted:has(.sort-container)::before,
+.p-popover.p-component.ng-star-inserted:has(.sort-container)::after {
+	visibility: hidden;
+}
+
+// the tip's border of the popover
+.p-popover.p-component.ng-star-inserted::before {
+	border-bottom-color: var(--border);
+}
+
+popover-header > div > span {
+	font-size: 0.875rem !important;
+}
+
+//target the dismiss button in popover's header
+.p-popover.p-component popover-header p-button button {
+	width: 1.5rem;
+	height: 1.5rem;
+	background-color: transparent;
+}
+
+//target the dismiss button in popover's header
+.p-popover.p-component popover-header p-button button:hover {
+	background-color: var(--btn-bg-secondary-light) !important;
+}
