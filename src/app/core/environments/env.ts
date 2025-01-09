@@ -1,5 +1,5 @@
-// export const ENDPOINT = 'https://vpp.tarabia.online';
-export const ENDPOINT = 'https://localhost:5012';
+export const ENDPOINT = 'https://vpp.tarabia.online';
+// export const ENDPOINT = 'https://localhost:5012';
 
 // used as constants to help with tree-shaking
 export const IS_DEVMODE = true;

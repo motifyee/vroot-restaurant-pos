@@ -68,7 +68,8 @@
 
 	.btn {
 		@apply rounded-lg select-none
-  text-white font-bold overflow-hidden 
+    text-white font-bold overflow-hidden 
+    w-full p-0
     flex justify-between items-center;
 		background-color: var(--GreenBackground);
 
@@ -78,6 +79,10 @@
 
 		&.expanded {
 			@apply rounded-t-none;
+		}
+
+		.execute-btn {
+			@apply flex-1 text-center text-white p-4 pointer-events-none;
 		}
 
 		.cart-icon {

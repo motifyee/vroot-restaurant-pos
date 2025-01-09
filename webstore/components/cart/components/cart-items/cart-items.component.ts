@@ -26,6 +26,10 @@ export class CartItemsComponent {
 		return this.invoiceStore.activeInvoice()?.products || [];
 	});
 
+	readonly trackByProduct = (product: InvoiceProduct) =>
+		`${product.productVariantId}
+    ${product.additions?.map((a) => `${a.id}-${a.quantity}`).join(',')}`;
+
 	readonly productPrice = inject(CalcInvoiceProductPriceUseCase);
 	readonly calcPrice = (product: InvoiceProduct) =>
 		this.productPrice.execute({ product });

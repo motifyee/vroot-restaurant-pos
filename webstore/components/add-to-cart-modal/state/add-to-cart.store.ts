@@ -59,7 +59,7 @@ const initialState: AddToCartStoreState = {
 		productVariantId: 0,
 		title: '',
 		price: 0,
-		quantity: 0,
+		quantity: 1,
 		totalPrice: 0,
 		additions: [],
 	},

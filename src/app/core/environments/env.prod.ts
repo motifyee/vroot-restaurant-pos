@@ -1,4 +1,5 @@
-export const ENDPOINT = 'https://10.99.77.247:5012';
+// export const ENDPOINT = 'https://10.99.77.247:5012';
+export const ENDPOINT = 'https://vpp.tarabia.online';
 
 export const IS_DEVMODE = false;
 export const IS_PRODUCTIONMODE = true;

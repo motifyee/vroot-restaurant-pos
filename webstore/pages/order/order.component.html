@@ -1,20 +1,23 @@
 <div class="p-4 flex flex-col gap-4">
-	<ng-container [ngTemplateOutlet]="pageTitle" />
+	@if (order() && settings.companyInfo()) {
+		<ng-container [ngTemplateOutlet]="pageTitle" />
 
-	<ng-container [ngTemplateOutlet]="ratingCard" />
+		<ng-container [ngTemplateOutlet]="ratingCard" />
 
-	<div class="card p-4 text-xl text-center" (click)="favoriteOrder()">
-		احفظ هذا الطلب في قائمة
-		<span class="font-bold">(الطلبات المفضلة)</span>
-	</div>
+		<ng-container [ngTemplateOutlet]="favoriteCard" />
 
-	<ng-container [ngTemplateOutlet]="whatsappCard" />
+		<ng-container [ngTemplateOutlet]="whatsappCard" />
 
-	<ng-container [ngTemplateOutlet]="orderTypeCard" />
+		<ng-container [ngTemplateOutlet]="orderTypeCard" />
 
-	<ng-container [ngTemplateOutlet]="orderDetailsCard" />
+		<ng-container [ngTemplateOutlet]="orderDetailsCard" />
 
-	<ng-container [ngTemplateOutlet]="paymentDetailsCard" />
+		<ng-container [ngTemplateOutlet]="paymentDetailsCard" />
+	} @else {
+		@for (i of [1, 2, 3, 4, 5, 6, 7]; track i) {
+			<ng-container [ngTemplateOutlet]="skeleton" />
+		}
+	}
 </div>
 
 <ng-template #pageTitle>
@@ -23,7 +26,7 @@
 			pButton
 			icon="pi pi-chevron-right"
 			class="active w-10 h-10"
-			routerLink="/"></button>
+			[routerLink]="['/orders']"></button>
 
 		<div class="flex flex-col">
 			<span class="font-bold text-xl">تفاصيل الطلب {{ order().id }}</span>
@@ -49,6 +52,13 @@
 				<i class="pi pi-star"></i>
 			</ng-template>
 		</p-rating>
+	</div>
+</ng-template>
+
+<ng-template #favoriteCard>
+	<div class="card p-4 text-xl text-center" (click)="favoriteOrder()">
+		احفظ هذا الطلب في قائمة
+		<span class="font-bold">(الطلبات المفضلة)</span>
 	</div>
 </ng-template>
 
@@ -138,5 +148,12 @@
 			<span>الرقم الضريبي: 523532</span>
 			<a class="underline cursor-pointer">عرض الشهادة</a>
 		</div>
+	</div>
+</ng-template>
+
+<ng-template #skeleton>
+	<div class="card p-4 flex flex-col gap-3">
+		<p-skeleton width="100%" height="2rem" styleClass="rounded" />
+		<p-skeleton width="12rem" height="1.5rem" styleClass="rounded" />
 	</div>
 </ng-template>

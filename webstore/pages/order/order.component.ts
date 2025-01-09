@@ -1,9 +1,12 @@
+import { Router, RouterModule } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
 import {
 	ChangeDetectionStrategy,
 	Component,
 	computed,
 	inject,
+	input,
+	OnInit,
 	signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -11,9 +14,11 @@ import { BgImageComponent } from '@webstore/app/components/bg-image/bg-image.com
 import { CartItemsComponent } from '@webstore/components/cart/components/cart-items/cart-items.component';
 import { GetCompanyDomainUseCase } from '@webstore/features/settings/domain/usecases/get-company-domain.usecase';
 import { GetOrderTypeNameUseCase } from '@webstore/features/settings/domain/usecases/get-order-type-name.usecase';
-import { settingsStore } from '@webstore/state';
+import { invoiceStore, settingsStore } from '@webstore/state';
 import { ButtonModule } from 'primeng/button';
 import { RatingModule, RatingRateEvent } from 'primeng/rating';
+import { SkeletonModule } from 'primeng/skeleton';
+import { webstorePaths } from '@webstore/webstore.routes';
 
 @Component({
 	selector: 'order',
@@ -24,52 +29,56 @@ import { RatingModule, RatingRateEvent } from 'primeng/rating';
 		BgImageComponent,
 		NgTemplateOutlet,
 		CartItemsComponent,
+		SkeletonModule,
+		RouterModule,
 	],
 	templateUrl: './order.component.html',
 	styleUrl: './order.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrderComponent {
-	order = signal<GetInvoice>({
-		id: 123,
-		products: [
-			{
-				productVariantId: 123,
-				title: 'product title',
-				quantity: 1,
-				price: 123,
-				totalPrice: 246,
-				note: 'note',
-				additions: [
-					{
-						id: '123',
-						name: 'addition name',
-						with: true,
-						without: false,
-						price: 123,
-						quantity: 1,
-						totalPrice: 123,
-					},
-				],
-			},
-		],
-		shippingAddressId: 0,
-		salesInvoiceType: 3,
-		note: 'invoice note',
-		totalPrice: 246,
-		toBranchId: 9,
-		isUsualOrder: false,
-		createdAt: '2021-01-01',
-		rating: 2,
-	});
+export class OrderComponent implements OnInit {
+	orderId = input.required<number>();
+
+	router = inject(Router);
+
+	invoiceStore = inject(invoiceStore);
+	order = computed(
+		() => this.invoiceStore.invoiceEntityMap()[this.orderId()],
+	);
+
+	ngOnInit(): void {
+		if (!this.order())
+			this.invoiceStore.getInvoiceById({ id: this.orderId() }).subscribe({
+				// next: () => {},
+				error: () => {
+					this.router.navigate(['/']);
+				},
+			});
+
+		if (!this.settings.companyInfo())
+			this.settings.getCompanyInfo().subscribe();
+	}
 
 	rateOrder(rating: RatingRateEvent) {
-		// TODO update order rating using api
-		this.order.set({ ...this.order(), rating: rating.value });
+		this.invoiceStore
+			.updateInvoice({
+				...this.order(),
+				rating: rating.value,
+			})
+			.subscribe();
 	}
 
 	favoriteOrder() {
-		// TODO update order favorite using api
+		this.invoiceStore
+			.updateInvoice({
+				...this.order(),
+				isUsualOrder: true,
+			})
+			.subscribe({
+				next: () => {
+					this.router.navigate([webstorePaths.usuals]);
+				},
+			});
 	}
 
 	// ###########################################################################

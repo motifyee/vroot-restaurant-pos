@@ -11,10 +11,11 @@ import { productsPageStore } from './pages/products/products-page.store';
 import { _ } from '@ngx-translate/core';
 import { webstorePageStore } from './webstore.store';
 import { scaleInOut } from './animations/scale-in-out.animation';
-import { RouterOutlet } from '@angular/router';
+import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { CommonModule } from '@angular/common';
 import { userStore, settingsStore } from '@webstore/state';
+import { routeAnimation } from './animations/route.animation';
 
 @Component({
 	selector: 'webstore',
@@ -23,7 +24,7 @@ import { userStore, settingsStore } from '@webstore/state';
 	styleUrls: ['./webstore.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [ScrollService, productsPageStore, webstorePageStore],
-	animations: [scaleInOut],
+	animations: [scaleInOut, routeAnimation],
 	host: {
 		'[attr.dir]': '"rtl"',
 	},
@@ -68,5 +69,12 @@ export class WebstoreComponent implements OnInit {
 		this.tr
 			.use(this.tr.currentLang === 'en' ? 'ar' : 'en')
 			.subscribe(() => console.log(this.tr.instant('body')));
+	}
+
+	contexts = inject(ChildrenOutletContexts);
+	routeAnimationData() {
+		return this.contexts.getContext('primary')?.route?.snapshot?.data?.[
+			'animation'
+		];
 	}
 }

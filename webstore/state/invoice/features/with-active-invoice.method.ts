@@ -109,6 +109,7 @@ export const withActiveInvoice = <_>() =>
 					shippingAddressId: invoice.shippingAddressId,
 					salesInvoiceType: invoice.salesInvoiceType,
 					note: invoice.note,
+					branchId: invoice.branchId,
 					toBranchId: invoice.toBranchId,
 					isUsualOrder: invoice.isUsualOrder,
 				};

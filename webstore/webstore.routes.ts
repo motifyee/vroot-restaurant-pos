@@ -8,13 +8,15 @@ import {
 } from '@webstore/state';
 import { WebstoreFeaturesModule } from './webstore.features.module';
 import { checkoutPageGuard } from './guards/checkout.guard';
+import { ProductsPageComponent } from './pages/products/products-page.component';
+import { animation } from '@angular/animations';
 
 export const webstorePaths = {
 	home: '',
 	products: '',
 	branches: 'branches',
 	account: 'account',
-	order: 'order',
+	order: (orderId?: string) => `order/${orderId || ':orderId'}`,
 	orders: 'orders',
 	usuals: 'usuals',
 	checkout: 'checkout',
@@ -42,6 +44,7 @@ export const webstoreMainRoute: Route = {
 				import('./pages/products/products-page.component').then(
 					(m) => m.ProductsPageComponent,
 				),
+			data: { animation: 'products-page' },
 		},
 		{
 			path: webstorePaths.branches,
@@ -49,6 +52,7 @@ export const webstoreMainRoute: Route = {
 				import(
 					'./components/topbar/order-type/pickup/pickup.component'
 				).then((m) => m.PickupComponent),
+			data: { animation: 'page-in-out' },
 		},
 		{
 			path: webstorePaths.account,
@@ -56,13 +60,15 @@ export const webstoreMainRoute: Route = {
 				import('./pages/account/account.component').then(
 					(m) => m.AccountComponent,
 				),
+			data: { animation: 'page-in-out' },
 		},
 		{
-			path: webstorePaths.order,
+			path: webstorePaths.order(),
 			loadComponent: () =>
 				import('./pages/order/order.component').then(
 					(m) => m.OrderComponent,
 				),
+			data: { animation: 'page-in-out' },
 		},
 		{
 			path: webstorePaths.orders,
@@ -70,6 +76,7 @@ export const webstoreMainRoute: Route = {
 				import('./pages/orders/orders.component').then(
 					(m) => m.OrdersComponent,
 				),
+			data: { animation: 'page-in-out' },
 		},
 		{
 			path: webstorePaths.usuals,
@@ -77,6 +84,7 @@ export const webstoreMainRoute: Route = {
 				import('./pages/usual-orders/usual-orders.component').then(
 					(m) => m.UsualOrdersComponent,
 				),
+			data: { animation: 'page-in-out' },
 		},
 		{
 			path: webstorePaths.checkout,
@@ -85,6 +93,7 @@ export const webstoreMainRoute: Route = {
 				import('./pages/checkout/checkout.component').then(
 					(m) => m.CheckoutComponent,
 				),
+			data: { animation: 'page-in-out' },
 		},
 		{
 			path: webstorePaths.callUs,
@@ -92,6 +101,7 @@ export const webstoreMainRoute: Route = {
 				import('./pages/call-us/call-us.component').then(
 					(m) => m.CallUsComponent,
 				),
+			data: { animation: 'page-in-out' },
 		},
 	],
 };

@@ -4,7 +4,11 @@ import {
 	importProvidersFrom,
 	provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter, RouterModule } from '@angular/router';
+import {
+	provideRouter,
+	RouterModule,
+	withComponentInputBinding,
+} from '@angular/router';
 
 import {
 	HTTP_INTERCEPTORS,
@@ -50,7 +54,7 @@ export const webstoreConfig: ApplicationConfig = {
 			StorageModule.forLocalStorage(),
 		),
 		provideZoneChangeDetection({ eventCoalescing: true }),
-		provideRouter(webstoreRoutes),
+		provideRouter(webstoreRoutes, withComponentInputBinding()),
 		{
 			provide: ErrorHandler,
 			useClass: ErrorHandlerService,

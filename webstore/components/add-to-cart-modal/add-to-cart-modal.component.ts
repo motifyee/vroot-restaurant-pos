@@ -18,6 +18,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { ScrollService } from '@webstore/services/scroll.service';
 import { addToCartStore } from './state/add-to-cart.store';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
 	selector: 'add-to-cart-modal, [add-to-cart-modal]',
@@ -29,6 +30,7 @@ import { addToCartStore } from './state/add-to-cart.store';
 		NgTemplateOutlet,
 		ButtonModule,
 		TooltipModule,
+		SkeletonModule,
 	],
 	providers: [ScrollService, addToCartStore],
 	templateUrl: './add-to-cart-modal.component.html',
@@ -64,7 +66,7 @@ export class AddToCartItemModalComponent implements OnInit {
 	// ###########################################################################
 
 	addToCart() {
-		this.invoiceStore.addProduct(this.store.product()).subscribe({
+		this.invoiceStore.addProduct(this.store.computedProduct()).subscribe({
 			next: () => {
 				this.closeModal.emit();
 			},

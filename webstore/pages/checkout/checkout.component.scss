@@ -1,3 +1,7 @@
+:host {
+	@apply grid place-items-center;
+}
+
 .card {
 	@apply p-4;
 }

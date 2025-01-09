@@ -13,7 +13,13 @@ export class FindMatchingProductIndexUseCase
 
 		return list.findIndex((p: InvoiceProduct | CreateInvoiceProduct) => {
 			const idsMatch = p.productVariantId === product.productVariantId;
-			const additionsMatch = deepMatch(p.additions, product.additions);
+			const additionsMatch = deepMatch(
+				p.additions?.map((a) => ({ id: a.id, quantity: a.quantity })),
+				product.additions?.map((a) => ({
+					id: a.id,
+					quantity: a.quantity,
+				})),
+			);
 
 			return idsMatch && additionsMatch;
 		});

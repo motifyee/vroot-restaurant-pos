@@ -7,10 +7,11 @@ interface GetInvoice {
 	createdAt?: string;
 	rating?: number;
 
-	shippingAddressId: number;
+	shippingAddressId?: number;
 	salesInvoiceType: number;
 	note: string;
 
+	branchId: number;
 	toBranchId: number;
 	isUsualOrder: boolean;
 	preparationStage?: null | 'preparing' | 'prepared' | 'delivered';
@@ -22,6 +23,7 @@ interface CreateInvoice
 		| 'shippingAddressId'
 		| 'salesInvoiceType'
 		| 'note'
+		| 'branchId'
 		| 'toBranchId'
 		| 'isUsualOrder'
 	> {

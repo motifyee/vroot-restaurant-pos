@@ -4,7 +4,7 @@ import {
 	type,
 	withMethods,
 } from '@ngrx/signals';
-import { catchError, tap, throwError, finalize } from 'rxjs';
+import { tap } from 'rxjs';
 import { inject } from '@angular/core';
 import { CartRepo } from '@webstore/features';
 import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
@@ -29,9 +29,9 @@ export const withCreateInvoiceMethod = <_>() =>
 					creationToken: string;
 				}) => {
 					store.setLoading(true);
-					const invoice = {
+					const invoice: CreateInvoice = {
 						...params.invoice,
-						toBranchId: settings.selectedBranch?.()?.id || 0,
+						branchId: settings.selectedBranch?.()?.id || 0,
 					};
 
 					return repo

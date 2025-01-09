@@ -1,4 +1,4 @@
-<div class="p-4 flex flex-col gap-4">
+<div class="p-4 flex flex-col gap-4 max-w-screen-md">
 	<div class="title flex gap-2 items-center">
 		<button
 			pButton
@@ -129,5 +129,7 @@
 	<p-button
 		[label]="'ارسال الطلب - ' + deliveryTitle()"
 		class="w-full custom active"
+		[loading]="invoiceStore.isLoading()"
+		[disabled]="invoiceStore.isLoading()"
 		(onClick)="checkout()" />
 </ng-template>

@@ -37,7 +37,9 @@ export const withRemoveProductAtIndex = <_>() =>
 					// If no products left, delete the invoice
 					if (products.length === 0) {
 						store.clearAnonymousInvoiceId();
-						return store.deleteInvoice({ id: activeInvoice.id });
+						return store
+							.deleteInvoice({ id: activeInvoice.id })
+							.subscribe();
 					}
 
 					// Update invoice with remaining products

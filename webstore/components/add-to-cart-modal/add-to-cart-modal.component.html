@@ -2,6 +2,7 @@
 	[floatingHeader]="true"
 	width="500px"
 	top="1rem"
+	[closable]="!invoiceStore.isLoading()"
 	(onDismissed)="closeModal.emit()">
 	<div class="flex flex-col max-h-[calc(85vh_-_3rem)]">
 		<div class="flex-1 overflow-y-auto">
@@ -153,6 +154,8 @@
 			pButton
 			(click)="addToCart()"
 			type="button"
+			[loading]="invoiceStore.isLoading()"
+			[disabled]="invoiceStore.isLoading()"
 			class="custom active flex-1 text-sm flex flex-nowrap justify-center">
 			<span>إضافة</span>
 			&nbsp;

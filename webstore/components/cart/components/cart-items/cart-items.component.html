@@ -1,46 +1,42 @@
-@for (item of items(); track item.productVariantId; let idx = $index) {
-	<div class="cart-items">
-		<div class="cart-item">
-			<span class="item-title">
-				@if (!showControls()) {
-					<span class="quantity-number">
-						x{{ item.quantity }} &nbsp;
-					</span>
-				}
+@for (item of items(); track this.trackByProduct(item); let idx = $index) {
+	<div class="cart-item">
+		<span class="item-title">
+			@if (!showControls()) {
+				<span class="quantity-number">x{{ item.quantity }} &nbsp;</span>
+			}
 
-				{{ item.title }}
-			</span>
+			{{ item.title }}
+		</span>
 
-			<span class="price">
-				{{ calcPrice(item) }}
-				<small>EGP</small>
-			</span>
-		</div>
+		<span class="price">
+			{{ calcPrice(item) }}
+			<small>EGP</small>
+		</span>
+	</div>
 
-		@if (showControls()) {
-			<div class="quantity">
-				<div>
-					<button
-						(click)="invoiceStore.decrementProductAtIndex(idx)"
-						class="btn-decrease">
-						-
-					</button>
+	@if (showControls()) {
+		<div class="quantity">
+			<div>
+				<button
+					(click)="invoiceStore.decrementProductAtIndex(idx)"
+					class="btn-decrease">
+					-
+				</button>
 
-					<span class="quantity-number">{{ item.quantity }}</span>
-
-					<button
-						(click)="invoiceStore.incrementProductAtIndex(idx)"
-						class="btn-increase">
-						+
-					</button>
-				</div>
+				<span class="quantity-number">{{ item.quantity }}</span>
 
 				<button
-					(click)="invoiceStore.removeProductAtIndex(idx)"
-					class="btn-delete">
-					<i class="far fa-trash-alt"></i>
+					(click)="invoiceStore.incrementProductAtIndex(idx)"
+					class="btn-increase">
+					+
 				</button>
 			</div>
-		}
-	</div>
+
+			<button
+				(click)="invoiceStore.removeProductAtIndex(idx)"
+				class="btn-delete">
+				<i class="far fa-trash-alt"></i>
+			</button>
+		</div>
+	}
 }

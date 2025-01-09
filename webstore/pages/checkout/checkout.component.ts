@@ -7,11 +7,11 @@ import {
 	signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
+import { Router, RouterLink } from '@angular/router';
 import { BgImageComponent } from '@webstore/app/components/bg-image/bg-image.component';
 import { CartItemsComponent } from '@webstore/components/cart/components/cart-items/cart-items.component';
 import { invoiceStore, settingsStore, userStore } from '@webstore/state';
+import { webstorePaths } from '@webstore/webstore.routes';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputGroup } from 'primeng/inputgroup';
@@ -37,6 +37,8 @@ import { InputTextModule } from 'primeng/inputtext';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckoutComponent {
+	private router = inject(Router);
+
 	settings = inject(settingsStore);
 	user = inject(userStore);
 	invoiceStore = inject(invoiceStore);
@@ -50,20 +52,17 @@ export class CheckoutComponent {
 		return '';
 	});
 
-	creationToken = uuidv4();
 	checkout() {
-		// 	this.invoiceStore
-		// 		.createInvoiceFromCartProducts({
-		// 			creationToken: this.creationToken,
-		// 			products: this.cart.products(),
-		// 			shippingAddressId: this.user.defaultAddress()!.id,
-		// 			salesInvoiceType: this.settings.orderTypeId()!,
-		// 			isUsualOrder: false,
-		// 			note: this.orderNote(),
-		// 		})
-		// 		.subscribe(() => {
-		// 			this.cart.emptyCart();
-		// 			this.creationToken = uuidv4();
-		// 		});
+		this.invoiceStore.executeActiveInvoice().subscribe({
+			next: (invoice) => {
+				console.log(invoice);
+				this.router.navigate([
+					webstorePaths.order(invoice?.id.toString()),
+				]);
+			},
+			error: (err) => {
+				console.error(err);
+			},
+		});
 	}
 }

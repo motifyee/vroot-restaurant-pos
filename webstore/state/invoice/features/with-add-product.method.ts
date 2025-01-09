@@ -37,10 +37,10 @@ export const withAddProduct = <_>() =>
 						);
 						const createInvoice: CreateInvoice = {
 							products,
-							shippingAddressId: 0,
 							salesInvoiceType: settings.orderTypeId() || 0,
 							isUsualOrder: false,
 							note: '',
+							branchId: settings.selectedBranch?.()?.id || 0,
 							toBranchId: settings.selectedBranch?.()?.id || 0,
 						};
 
@@ -58,13 +58,17 @@ export const withAddProduct = <_>() =>
 					});
 
 					if (idx !== -1) {
-						products[idx].quantity += product.quantity;
+						products[idx] = {
+							...products[idx],
+							quantity: products[idx].quantity + product.quantity,
+						};
 					} else {
 						products.push(product);
 					}
 
 					const invoice: GetInvoice = {
 						...store.activeInvoice()!,
+						branchId: settings.selectedBranch?.()?.id || 0,
 						products,
 					};
 

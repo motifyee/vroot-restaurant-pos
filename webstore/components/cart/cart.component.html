@@ -19,7 +19,13 @@
 
 <ng-template #fullCart>
 	<aside class="sticky mb-4 top-20">
-		<div class="cart">
+		<div class="cart relative">
+			@if (invoiceStore.isLoading()) {
+				<div class="spinner-container -m-[8px]">
+					<span class="spinner"></span>
+				</div>
+			}
+
 			<cart-items [showControls]="true" />
 
 			<div class="total">
@@ -27,8 +33,15 @@
 				<span class="total-price">{{ totalPrice() }} EGP</span>
 			</div>
 
-			<button (click)="gotoCheckout()" class="execute-btn">
-				تنفيذ الطلب
+			<button
+				pButton
+				[loading]="invoiceStore.isLoading()"
+				[disabled]="invoiceStore.isLoading()"
+				(click)="gotoCheckout()"
+				class="execute-btn">
+				<span>تنفيذ الطلب</span>
+				&nbsp;
+				<span dir="ltr">( {{ totalPrice() }} EGP )</span>
 			</button>
 		</div>
 	</aside>
@@ -37,12 +50,20 @@
 <ng-template #floatingCart>
 	<div @floatUp class="floating-cart">
 		@if (floatingCartExpanded()) {
-			<div @expandUp class="items">
+			<div @expandUp class="items relative">
+				@if (invoiceStore.isLoading()) {
+					<div class="spinner-container -m-3">
+						<span class="spinner"></span>
+					</div>
+				}
+
 				<cart-items />
 			</div>
 		}
 
-		<div
+		<button
+			pButton
+			[disabled]="invoiceStore.isLoading()"
 			[class]="
 				'btn cursor-pointer' +
 				(floatingCartExpanded() ? ' expanded' : '')
@@ -50,7 +71,10 @@
 			(click)="gotoCheckout()">
 			<span
 				class="cart-icon"
-				(click)="$event.stopPropagation(); toggleFloatCartExpanded()">
+				(click)="
+					$event.stopPropagation();
+					!invoiceStore.isLoading() && toggleFloatCartExpanded()
+				">
 				<div class="relative">
 					<span class="badge">{{ cartItems().length }}</span>
 					<cart-icon class="w-8 h-8" />
@@ -58,11 +82,18 @@
 			</span>
 
 			<!-- <div class="action"> -->
-			<span class="flex-1 text-center p-4">تنفيذ الطلب</span>
+			<button
+				pButton
+				[text]="true"
+				[loading]="invoiceStore.isLoading()"
+				[disabled]="invoiceStore.isLoading()"
+				class="execute-btn">
+				تنفيذ الطلب
+			</button>
 
 			<span class="total-price p-4">{{ totalPrice() }} EGP</span>
 			<!-- </div> -->
-		</div>
+		</button>
 	</div>
 </ng-template>
 

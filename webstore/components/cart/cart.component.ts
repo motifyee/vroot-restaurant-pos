@@ -10,6 +10,7 @@ import { scaleInOut } from '../../animations/scale-in-out.animation';
 import { singleCallEffect } from '@src/app/core';
 import { CartItemsComponent } from '@webstore/components/cart/components/cart-items/cart-items.component';
 import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
 	selector: 'cart',
@@ -19,6 +20,7 @@ import { Router } from '@angular/router';
 		AuthModalComponent,
 		UserAddressesModalComponent,
 		CartItemsComponent,
+		ButtonModule,
 	],
 	templateUrl: './cart.component.html',
 	styleUrl: './cart.component.scss',
