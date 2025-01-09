@@ -3,26 +3,19 @@
 <div class="px-2.5 pt-0 pb-2.5">
 	<ul class="m-0 list-none !p-0">
 		<li class="btn-wrapper">
-			<button
+			<p-button
+				class="button-secondary-transparent"
+				label="Reopen"
 				(click)="onClosePopover()"
-				class="button clear small secondary"
-				type="submit">
-				<i class="pi pi-reply text-xxs"></i>
-
-				<span class="">Reopen</span>
-			</button>
-			<!-- <p-button label="Reopen" severity="secondary">
-				<i class="pi pi-reply text-xxs"></i>
-			</p-button> -->
+				icon="pi pi-reply"
+				iconPos="left" />
 		</li>
 		<li class="btn-wrapper">
-			<button class="button clear small secondary" type="submit">
-				<i class="pi pi-send text-xxs"></i>
-				<span class="">Snooze</span>
-			</button>
-			<!-- <p-button label="Snooze" severity="secondary">
-				<i class="pi pi-send text-xxs"></i>
-			</p-button> -->
+			<p-button
+				class="button-secondary-transparent"
+				label="Snooze"
+				icon="pi pi-send"
+				iconPos="left" />
 		</li>
 	</ul>
 </div>

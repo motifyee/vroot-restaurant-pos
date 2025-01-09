@@ -4,15 +4,16 @@ import {
 	Output,
 	EventEmitter,
 } from '@angular/core';
-import { DismissIconComponent } from '../../../../nav-bar/icons/dismiss-icon.component';
 import { ColorPicker } from 'primeng/colorpicker';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { Checkbox } from 'primeng/checkbox';
+import { Button } from 'primeng/button';
 
 @Component({
 	selector: 'add-new-label-popup',
 	standalone: true,
-	imports: [DismissIconComponent, ColorPicker, FormsModule, InputTextModule],
+	imports: [ColorPicker, FormsModule, InputTextModule, Checkbox, Button],
 	templateUrl: './add-new-label-popup.component.html',
 	styleUrl: './add-new-label-popup.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,4 +26,8 @@ export class AddNewLabelPopupComponent {
 	onToggleVisibility() {
 		this.toggleVisibility.emit();
 	}
+
+	value: string | undefined;
+	description: string | undefined;
+	checked: boolean = false;
 }

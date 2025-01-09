@@ -4,26 +4,31 @@
 		<span class="status-badge">Open</span>
 	</div>
 	<div class="right-section">
-		<button
-			(click)="toggleFilterPopup()"
-			class="button smooth button--only-icon tiny secondary"
-			type="submit">
-			<filter-icon />
-		</button>
+		<p-button
+			(click)="toggleFilterDialogVisibility()"
+			class="button-icon-secondary tiny"
+			icon="pi pi-sliders-h"
+			type="submit" />
+
 		<div class="relative flex">
-			<button
+			<p-button
 				(click)="op.toggle($event)"
-				class="button smooth button--only-icon tiny secondary"
-				type="submit">
-				<sort-icon />
-			</button>
+				class="button-icon-secondary tiny"
+				icon="pi pi-sort-alt"
+				type="submit" />
 		</div>
 	</div>
 </div>
 
-@if (isFilterPopupVisible) {
-	<filter-popup />
-}
+<p-dialog
+	appendTo="body"
+	[modal]="true"
+	[header]="'Filter conversations'"
+	[(visible)]="isFilterDialogVisible"
+	[style]="{ width: '65%' }"
+	class="bg-slate-500">
+	<filter-popup (toggleVisibility)="toggleFilterDialogVisibility()" />
+</p-dialog>
 
 <p-popover #op>
 	<sort-popover />

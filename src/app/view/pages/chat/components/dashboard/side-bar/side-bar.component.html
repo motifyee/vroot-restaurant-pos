@@ -38,12 +38,12 @@
 				<div>
 					<li class="new-team-item">
 						<a href="settings/teams/new">
-							<button
-								class="button clear tiny secondary"
-								type="submit">
-								<plus-icon />
-								<span class="button-label">New team</span>
-							</button>
+							<p-button
+								class="button-secondary-transparent"
+								label="New team"
+								size="small"
+								variant="text"
+								icon="pi pi-plus" />
 						</a>
 					</li>
 				</div>
@@ -68,12 +68,12 @@
 				<div>
 					<li class="new-inbox-item">
 						<a href="settings/inboxes/new">
-							<button
-								class="button clear tiny secondary"
-								type="submit">
-								<plus-icon />
-								<span class="button-label">New inbox</span>
-							</button>
+							<p-button
+								class="button-secondary-transparent"
+								label="New inbox"
+								size="small"
+								variant="text"
+								icon="pi pi-plus" />
 						</a>
 					</li>
 				</div>
@@ -117,15 +117,13 @@
 				</li>
 				<div>
 					<li class="new-common-item">
-						<!-- <a href="#"> -->
-						<button
-							class="button clear tiny secondary"
-							type="submit"
-							(click)="toggleLabelDialogVisibility()">
-							<plus-icon />
-							<span class="button-label">New label</span>
-						</button>
-						<!-- </a> -->
+						<p-button
+							(click)="toggleLabelDialogVisibility()"
+							class="button-secondary-transparent"
+							label="New label"
+							size="small"
+							variant="text"
+							icon="pi pi-plus" />
 					</li>
 				</div>
 			</ul>
@@ -136,6 +134,7 @@
 <!-- Add New Label Dialog -->
 <div class="label-dialog">
 	<p-dialog
+		appendTo="body"
 		[modal]="true"
 		[header]="'Add Label'"
 		[(visible)]="isLabelDialogVisible"

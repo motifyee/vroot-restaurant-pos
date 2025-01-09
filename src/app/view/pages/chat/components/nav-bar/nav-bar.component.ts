@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { ElementRef, HostListener, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { CampaignIconComponent } from '@src/app/view/pages/chat/components/nav-bar/icons/campaign-icon.component';
 import { CaptainIconComponent } from '@src/app/view/pages/chat/components/nav-bar/icons/captain-icon.component';
 import { ContactsIconComponent } from '@src/app/view/pages/chat/components/nav-bar/icons/contacts-icon.component';
@@ -14,8 +12,9 @@ import { ReportsIconComponent } from '@src/app/view/pages/chat/components/nav-ba
 import { SettingsIconComponent } from '@src/app/view/pages/chat/components/nav-bar/icons/settings-icon.component';
 import { UnreadNotificationsComponent } from './unread-notifications/unread-notifications.component';
 import { ProfileSettingPopoverComponent } from './profile-setting-popover/profile-setting-popover.component';
-// import { Popover } from 'primeng/popover';
-
+import { Popover } from 'primeng/popover';
+import { Dialog } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 @Component({
 	selector: 'nav-bar',
 	imports: [
@@ -32,42 +31,18 @@ import { ProfileSettingPopoverComponent } from './profile-setting-popover/profil
 		MessageIconComponent,
 		UnreadNotificationsComponent,
 		ProfileSettingPopoverComponent,
-		// Popover,
+		Popover,
+		Dialog,
+		ButtonModule,
 	],
 	templateUrl: './nav-bar.component.html',
 	styleUrl: './nav-bar.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavBarComponent {
-	constructor(private elementRef: ElementRef) {}
+	visible: boolean = false;
 
-	// UnreadNotifications
-	showUnreadNotifications = signal(false); // Signal to control popup visibility
-
-	toggleUnreadNotifications() {
-		this.showUnreadNotifications.set(!this.showUnreadNotifications()); // Toggle popup visibility
+	showDialog() {
+		this.visible = true;
 	}
-
-	handleUnreadNotificationsClose() {
-		this.showUnreadNotifications.set(false); // Close the popup
-	}
-	// ./UnreadNotifications
-
-	// handling profile-setting-popover visibility
-	isPopoverVisible = false;
-
-	togglePopover() {
-		this.isPopoverVisible = !this.isPopoverVisible;
-	}
-
-	@HostListener('document:click', ['$event'])
-	onClickOutside(event: MouseEvent) {
-		const clickedInside = this.elementRef.nativeElement.contains(
-			event.target,
-		);
-		if (!clickedInside) {
-			this.isPopoverVisible = false;
-		}
-	}
-	// ./handling profile-setting-popover visibility
 }

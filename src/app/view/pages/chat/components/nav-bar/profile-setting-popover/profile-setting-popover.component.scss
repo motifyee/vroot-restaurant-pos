@@ -19,6 +19,9 @@
 
 /* Dropdown Menu */
 
+.dropdown-menu {
+	@apply mt-0 mb-3 p-0 !important;
+}
 /* List Item */
 .list-item {
 	@apply list-none mb-1;

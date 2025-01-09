@@ -1,25 +1,5 @@
-.modal-mask {
-	@apply fixed left-0 top-0 z-20 flex items-center justify-center h-full w-full;
-}
-
 .modal-container {
-	@apply flex flex-col justify-between absolute z-10 h-[90vh] w-[32.5rem] rounded-md shadow-md bg-white dark:bg-slate-800 m-4 left-14 rtl:left-auto rtl:right-14;
-}
-
-.modal-header {
-	@apply flex flex-row items-center justify-between w-full px-6 pt-5 pb-3 border-b border-solid border-slate-50 dark:border-slate-700;
-}
-
-.header-title span {
-	@apply text-xl font-bold text-slate-800 dark:text-slate-100;
-}
-
-.header-actions {
-	@apply flex gap-2;
-}
-
-.modal-content {
-	@apply flex flex-col py-2 px-2.5 overflow-auto h-full;
+	@apply h-[90vh] w-[32.5rem];
 }
 
 .empty-state {
@@ -28,8 +8,4 @@
 
 .empty-state h3 {
 	@apply text-slate-700 dark:text-slate-200 text-xl font-thin;
-}
-
-.overlay {
-	@apply fixed left-0 top-0  h-full w-full bg-black/40;
 }

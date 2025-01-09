@@ -39,17 +39,14 @@
 
 		<div class="bottom-buttons">
 			<div class="mb-4">
-				<button
-					(click)="toggleUnreadNotifications()"
-					class="notification-btn">
+				<button (click)="showDialog()" class="notification-btn">
 					<notification-icon />
 				</button>
 			</div>
 
-			<!-- (click)="op.toggle($event)" -->
 			<button
-				(click)="togglePopover()"
-				class="button clear link primary flex items-center rounded-full">
+				(click)="op.toggle($event)"
+				class="button clear link primary flex items-center rounded-full p-0">
 				<span class="cursor-pointer text-start">
 					<div class="user-thumbnail-box" title="">
 						<div
@@ -66,14 +63,14 @@
 	</div>
 </aside>
 
-<unread-notifications
-	[isVisible]="showUnreadNotifications()"
-	(close)="handleUnreadNotificationsClose()"></unread-notifications>
+<p-dialog
+	header="Unread Notifications"
+	[modal]="true"
+	[(visible)]="visible"
+	position="left">
+	<unread-notifications />
+</p-dialog>
 
-@if (isPopoverVisible) {
+<p-popover #op>
 	<profile-setting-popover />
-}
-
-<!-- <p-popover #op>
-	<profile-setting-popover />
-</p-popover> -->
+</p-popover>

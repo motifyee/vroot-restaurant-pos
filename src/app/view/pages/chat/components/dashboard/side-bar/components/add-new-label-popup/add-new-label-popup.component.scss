@@ -62,7 +62,7 @@ input {
 
 /* Flex container */
 .flex-col-items-start {
-	@apply flex flex-col items-start px-8 pb-0;
+	@apply flex flex-col items-start pb-0;
 }
 
 /* Header */
@@ -83,7 +83,7 @@ input {
 
 /* Form */
 .flex-form {
-	@apply flex flex-wrap mx-0;
+	@apply flex flex-wrap mx-0 gap-4 w-full p-0 !important;
 }
 
 /* Footer Buttons */

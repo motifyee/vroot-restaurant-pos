@@ -5,35 +5,29 @@
 			<span class="text-xs !mx-1">1 conversations selected</span>
 		</label>
 		<div class="flex items-center gap-1 bulk-action__actions">
-			<button
+			<p-button
 				(click)="labelPopover.toggle($event)"
-				class="button smooth button--only-icon tiny secondary"
-				type="submit">
-				<i class="pi pi-tag"></i>
-			</button>
-			<button
+				class="button-icon-secondary tiny"
+				icon="pi pi-tag"
+				type="submit" />
+			<p-button
 				(click)="changeStatusPopover.toggle($event)"
-				class="button smooth button--only-icon tiny secondary"
-				type="submit">
-				<i class="pi pi-undo"></i>
-			</button>
-			<button
+				class="button-icon-secondary tiny"
+				icon="pi pi-sync"
+				type="submit" />
+			<p-button
 				(click)="agentPopover.toggle($event)"
-				class="button smooth button--only-icon tiny secondary"
-				type="submit">
-				<i class="pi pi-user"></i>
-			</button>
-			<button
+				class="button-icon-secondary tiny"
+				icon="pi pi-user"
+				type="submit" />
+			<p-button
 				(click)="teamPopover.toggle($event)"
-				class="button smooth button--only-icon tiny secondary"
-				type="submit">
-				<i class="pi pi-users"></i>
-			</button>
+				class="button-icon-secondary tiny"
+				icon="pi pi-users"
+				type="submit" />
 		</div>
 	</div>
 </div>
-
-<!-- popovers -->
 
 <!-- popovers -->
 <p-popover #labelPopover>

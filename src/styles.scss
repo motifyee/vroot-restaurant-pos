@@ -2,10 +2,15 @@
 
 @use './styles/theme';
 @use './styles/prime_overrides/index';
-@use './styles/prime_overrides/chat/main.scss';
-@use './styles/prime_overrides/chat/buttons.scss';
 @use './styles/prime_overrides/chat/select.scss';
+@use './styles/prime_overrides/chat/colorpicker.scss';
 @use './styles/prime_overrides/chat/dialog.scss';
+@use './styles/prime_overrides/chat/divider.scss';
+@use './styles/prime_overrides/chat/main.scss';
+@use './styles/prime_overrides/chat/popover.scss';
+@use './styles/prime_overrides/chat/checkbox.scss';
+@use './styles/prime_overrides/chat/buttons.scss';
+@use './styles/prime_overrides/chat/icons.scss';
 
 @layer primeng, tailwind-base, tailwind-utilities;
 
