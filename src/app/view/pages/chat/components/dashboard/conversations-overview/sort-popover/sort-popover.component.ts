@@ -38,7 +38,6 @@ export class SortPopoverComponent implements OnInit {
 	ngOnInit() {
 		this.status = [
 			{ name: 'Open' },
-			{ name: 'Resolved' },
 			{ name: 'Pending' },
 			{ name: 'Resolved' },
 			{ name: 'All' },

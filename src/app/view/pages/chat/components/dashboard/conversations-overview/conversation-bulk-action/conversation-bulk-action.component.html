@@ -1,35 +1,32 @@
 <div class="p-4">
 	<div class="flex items-center justify-between">
-		<label class="flex items-center justify-between bulk-action__panel"
-			><input type="checkbox" class="checkbox" /><span
-				class="text-xs mx-1"
-				>1 conversations selected</span
-			></label
-		>
+		<label class="flex items-center justify-between bulk-action__panel">
+			<input type="checkbox" class="checkbox" />
+			<span class="text-xs !mx-1">1 conversations selected</span>
+		</label>
 		<div class="flex items-center gap-1 bulk-action__actions">
 			<button
 				(click)="labelPopover.toggle($event)"
 				class="button smooth button--only-icon tiny secondary"
-				type="submit"
-			>
-				<i class="pi pi-tag"></i></button
-			><button
+				type="submit">
+				<i class="pi pi-tag"></i>
+			</button>
+			<button
 				(click)="changeStatusPopover.toggle($event)"
 				class="button smooth button--only-icon tiny secondary"
-				type="submit"
-			>
-				<i class="pi pi-undo"></i></button
-			><button
+				type="submit">
+				<i class="pi pi-undo"></i>
+			</button>
+			<button
 				(click)="agentPopover.toggle($event)"
 				class="button smooth button--only-icon tiny secondary"
-				type="submit"
-			>
-				<i class="pi pi-user"></i></button
-			><button
+				type="submit">
+				<i class="pi pi-user"></i>
+			</button>
+			<button
 				(click)="teamPopover.toggle($event)"
 				class="button smooth button--only-icon tiny secondary"
-				type="submit"
-			>
+				type="submit">
 				<i class="pi pi-users"></i>
 			</button>
 		</div>
@@ -40,17 +37,17 @@
 
 <!-- popovers -->
 <p-popover #labelPopover>
-	<label-popover />
+	<label-popover (closePopover)="hidePopover(labelPopover)" />
 </p-popover>
 
 <p-popover #changeStatusPopover>
-	<change-status-popover (hide)="hidePopover()" />
+	<change-status-popover (closePopover)="hidePopover(changeStatusPopover)" />
 </p-popover>
 
 <p-popover #agentPopover>
-	<agent-popover />
+	<agent-popover (closePopover)="hidePopover(agentPopover)" />
 </p-popover>
 
 <p-popover #teamPopover>
-	<team-popover />
+	<team-popover (closePopover)="hidePopover(teamPopover)" />
 </p-popover>

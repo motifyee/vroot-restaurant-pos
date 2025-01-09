@@ -28,7 +28,7 @@ import { InputTextModule } from 'primeng/inputtext';
 export class ProfileSettingPopoverComponent {
 	visible: boolean = false;
 
-	showDialog() {
+	showKeyboardShortcutsDialog() {
 		this.visible = true;
 	}
 }
