@@ -1,7 +1,17 @@
 <div class="p-4 flex flex-col gap-4">
-	@for (invoice of invoices.invoiceEntities(); track invoice.id) {
-		<div class="card p-4 flex flex-col gap-3">
-			<p-skeleton width="100%" height="2rem" styleClass="rounded" />
-		</div>
+	<span class="font-bold">الطلبات</span>
+
+	@if (invoices.isLoading()) {
+		@for (i of [1, 2, 3, 4]; track i) {
+			<div class="card p-4 flex flex-col gap-3">
+				<p-skeleton width="100%" height="2rem" styleClass="rounded" />
+			</div>
+		}
+	} @else {
+		@for (invoice of invoices.invoiceEntities(); track invoice.id) {
+			<div class="card p-4 flex flex-col gap-3">
+				<p-skeleton width="100%" height="2rem" styleClass="rounded" />
+			</div>
+		}
 	}
 </div>

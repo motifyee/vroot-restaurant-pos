@@ -15,6 +15,8 @@ import {
 import { userStore } from '@webstore/state/user';
 import { GetInvoiceByIdMethodType } from './with-get-invoice-by-id.method';
 import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
+import { Router } from '@angular/router';
+import { featureType } from '@src/app/view/state/utils/utils';
 
 export function withGetInvoicesMethod<_>() {
 	return signalStoreFeature(
@@ -25,13 +27,14 @@ export function withGetInvoicesMethod<_>() {
 		withMethods((store) => {
 			const repo = inject(CartRepo);
 			const user = inject(userStore);
+			const router = inject(Router);
 
 			return {
 				getInvoices: (params: InvoicesFilter) => {
 					store.setLoading(true);
 
 					// If user is logged in, get all active invoices
-					if (user.isLoggedIn()) {
+					if (user.isLoggedIn())
 						return repo.getInvoices(params).subscribe({
 							next: (invs) => {
 								store.setLoading(false);
@@ -45,7 +48,6 @@ export function withGetInvoicesMethod<_>() {
 								console.error(err);
 							},
 						});
-					}
 
 					// If not logged in, try to load anonymous invoice
 					const anonymousId = store._anonymousInvoiceId();
@@ -75,3 +77,6 @@ export function withGetInvoicesMethod<_>() {
 		}),
 	);
 }
+
+const _i = featureType(withGetInvoicesMethod);
+export type GetInvoicesMethodType = typeof _i.methods;

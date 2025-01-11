@@ -14,7 +14,7 @@ import { scaleInOut } from './animations/scale-in-out.animation';
 import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { CommonModule } from '@angular/common';
-import { userStore, settingsStore } from '@webstore/state';
+import { userStore, settingsStore, invoiceStore } from '@webstore/state';
 import { routeAnimation } from './animations/route.animation';
 
 @Component({
@@ -43,6 +43,7 @@ export class WebstoreComponent implements OnInit {
 
 	settings = inject(settingsStore);
 	user = inject(userStore);
+	invoiceStore = inject(invoiceStore);
 
 	constructor() {}
 	ngOnInit(): void {
@@ -52,6 +53,8 @@ export class WebstoreComponent implements OnInit {
 
 			document.title = `WebStore [ ${info.name} ]`; // `${info.name} - WebStore`;
 		});
+
+		this.invoiceStore.loadAnonymousInvoice();
 
 		this.user.loadUserData();
 	}

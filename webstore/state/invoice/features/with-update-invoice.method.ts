@@ -50,7 +50,13 @@ export function withUpdateInvoiceMethod<_>() {
 							next: (inv) => {
 								patchState(
 									store,
-									setEntity(inv, invoiceEntityConfig),
+									setEntity(
+										{
+											...inv,
+											branchId: (<any>inv).toBranchId,
+										},
+										invoiceEntityConfig,
+									),
 								);
 							},
 							error: (err) => {

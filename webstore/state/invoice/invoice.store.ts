@@ -33,11 +33,11 @@ export const invoiceEntityConfig = entityConfig({
 // #############################################################################
 
 export type InvoiceStoreState = {
-	_anonymousInvoiceId: number;
+	_anonymousInvoiceId: number | null;
 };
 
 const initialState: InvoiceStoreState = {
-	_anonymousInvoiceId: -1,
+	_anonymousInvoiceId: null,
 };
 
 // TODO: add get favorite invoices method
@@ -50,6 +50,7 @@ export const invoiceStore = signalStore(
 
 	withGetInvoiceByIdMethod(),
 	withGetInvoicesMethod(),
+	withActiveInvoiceMethods(),
 
 	withCreateInvoiceMethod(),
 	withDeleteInvoiceMethod(),
@@ -57,7 +58,6 @@ export const invoiceStore = signalStore(
 
 	// #################################
 
-	withActiveInvoiceMethods(),
 	withExecuteActiveInvoice(),
 
 	withAddProduct(),

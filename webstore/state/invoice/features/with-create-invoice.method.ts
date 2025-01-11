@@ -12,16 +12,19 @@ import { addEntity } from '@ngrx/signals/entities';
 import { settingsStore } from '@webstore/state/settings';
 import { featureType } from '@src/app/view/state/utils/utils';
 import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
+import { ActiveInvoiceFeatureMethodsType } from './with-active-invoice.method';
+import { userStore } from '@webstore/state/user';
 
 export const withCreateInvoiceMethod = <_>() =>
 	signalStoreFeature(
 		{
 			state: type<InvoiceEntityState>(),
-			methods: type<LoadingMethod>(),
+			methods: type<LoadingMethod & ActiveInvoiceFeatureMethodsType>(),
 		},
 		withMethods((store) => {
 			const repo = inject(CartRepo),
-				settings = inject(settingsStore);
+				settings = inject(settingsStore),
+				user = inject(userStore);
 
 			return {
 				createInvoice: (params: {
@@ -44,8 +47,17 @@ export const withCreateInvoiceMethod = <_>() =>
 								next: (inv) => {
 									patchState(
 										store,
-										addEntity(inv, invoiceEntityConfig),
+										addEntity(
+											{
+												...inv,
+												branchId: (<any>inv).toBranchId,
+											},
+											invoiceEntityConfig,
+										),
 									);
+
+									if (!user.isLoggedIn())
+										store.setAnonymousInvoiceId(inv.id);
 								},
 								error: (err) => {
 									console.error(err);

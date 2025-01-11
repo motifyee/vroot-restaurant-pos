@@ -1,4 +1,4 @@
-import { computed } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import {
 	type,
 	patchState,
@@ -13,13 +13,15 @@ import {
 } from '../invoice.store';
 import { featureType } from '@src/app/view/state/utils/utils';
 import { GetInvoiceByIdMethodType } from './with-get-invoice-by-id.method';
+import { userStore } from '@webstore/state/user';
+import { GetInvoicesMethodType } from './with-get-invoices.method';
 
 export const withActiveInvoice = <_>() =>
 	signalStoreFeature(
 		{
 			state: type<InvoiceEntityState & InvoiceStoreState>(),
 			props: type<InvoiceEntityProps>(),
-			methods: type<GetInvoiceByIdMethodType>(),
+			methods: type<GetInvoiceByIdMethodType & GetInvoicesMethodType>(),
 		},
 		withMethods((store) => ({
 			loadAnonymousInvoice: () => {
@@ -40,13 +42,13 @@ export const withActiveInvoice = <_>() =>
 
 			clearAnonymousInvoiceId: () => {
 				localStorage.removeItem('anonymousInvoiceId');
-				patchState(store, { _anonymousInvoiceId: -1 });
+				patchState(store, { _anonymousInvoiceId: null });
 			},
 		})),
 		withComputed((store) => ({
 			activeInvoiceId: computed<number | null>(() => {
 				const id = store._anonymousInvoiceId();
-				if (id !== -1) return id;
+				if (id) return id;
 
 				const invoices = store
 					.invoiceEntities()
@@ -63,6 +65,25 @@ export const withActiveInvoice = <_>() =>
 				return invoices[0].id;
 			}),
 		})),
+		withMethods((store) => {
+			const user = inject(userStore);
+
+			return {
+				loadActiveInvoice: () => {
+					//  TODO use get active invoice filter
+					if (user.isLoggedIn()) {
+						store.getInvoices({
+							pageNumber: 1,
+							pageSize: 10,
+						});
+
+						return;
+					}
+
+					store.loadAnonymousInvoice();
+				},
+			};
+		}),
 		withComputed((store) => ({
 			activeInvoice: computed<GetInvoice | null>(() => {
 				const id = store.activeInvoiceId();
@@ -110,7 +131,6 @@ export const withActiveInvoice = <_>() =>
 					salesInvoiceType: invoice.salesInvoiceType,
 					note: invoice.note,
 					branchId: invoice.branchId,
-					toBranchId: invoice.toBranchId,
 					isUsualOrder: invoice.isUsualOrder,
 				};
 			}),

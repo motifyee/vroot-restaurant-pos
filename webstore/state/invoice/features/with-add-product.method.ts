@@ -7,6 +7,7 @@ import { inject } from '@angular/core';
 import { settingsStore } from '@webstore/state/settings';
 import { FindMatchingProductIndexUseCase } from '@webstore/features';
 import { featureType } from '@src/app/view/state/utils/utils';
+import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
 
 export const withAddProduct = <_>() =>
 	signalStoreFeature(
@@ -41,12 +42,11 @@ export const withAddProduct = <_>() =>
 							isUsualOrder: false,
 							note: '',
 							branchId: settings.selectedBranch?.()?.id || 0,
-							toBranchId: settings.selectedBranch?.()?.id || 0,
 						};
 
 						return store.createInvoice({
 							invoice: createInvoice,
-							creationToken: crypto.randomUUID(),
+							creationToken: uuidv4(),
 						});
 					}
 

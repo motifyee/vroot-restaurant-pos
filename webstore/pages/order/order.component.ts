@@ -86,7 +86,7 @@ export class OrderComponent implements OnInit {
 	settings = inject(settingsStore);
 	branchName = computed(() => {
 		const branches = this.settings.companyInfo().branchs;
-		return branches.find((branch) => branch.id === this.order().toBranchId)
+		return branches.find((branch) => branch.id === this.order().branchId)
 			?.name;
 	});
 
