@@ -11,6 +11,7 @@ import { singleCallEffect } from '@src/app/core';
 import { CartItemsComponent } from '@webstore/components/cart/components/cart-items/cart-items.component';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { InvoiceType } from '@webstore/features/cart/data/repos/dto/sales-invoice-type';
 
 @Component({
 	selector: 'cart',
@@ -67,7 +68,10 @@ export class CartComponent {
 			});
 
 		// ensure user has selected an address
-		if (this.settings.orderType() == 'delivery' && !this.#selectedAddress())
+		if (
+			this.settings.defaultOrderType() == InvoiceType.delivery &&
+			!this.#selectedAddress()
+		)
 			return singleCallEffect({
 				injector: this.injector,
 				init: () => this.showAddressModal.set(true),

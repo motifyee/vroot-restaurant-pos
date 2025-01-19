@@ -19,8 +19,8 @@ import { TopbarComponent } from '../../../../components/topbar/topbar.component'
 import { productsPageStore } from '../../products-page.store';
 import { SkeletonModule } from 'primeng/skeleton';
 import { settingsStore, menuStore } from '@webstore/state';
-import { IS_DEVMODE } from '@src/app/core';
 import { BannerComponent } from '../banner/banner.component';
+import { IS_DEVMODE } from '@src/app/core';
 
 @Component({
 	selector: 'product-list',
@@ -50,36 +50,19 @@ export class ProductListComponent
 
 	ngOnInit() {
 		if (IS_DEVMODE) {
-			if (
-				localStorage.getItem('test-branch-idx') &&
-				localStorage.getItem('test-products')
-			)
-				this.menuStore.setMenu(
-					JSON.parse(localStorage.getItem('test-products')!),
-				);
-			else
-				localStorage.getItem('test-branch-idx') &&
-					this.menuStore
-						.getMenu(+localStorage.getItem('test-branch-idx')!)
-						.subscribe((m) => {
-							localStorage.setItem(
-								'test-products',
-								JSON.stringify(
-									m,
-									// .map((c) => ({
-									// 	...c,
-									// 	products: c.products?.map((p) => ({
-									// 		...p,
-									// 		variants: p.variants?.map((v) => ({
-									// 			...v,
-									// 			product: null,
-									// 		})),
-									// 	})),
-									// })),
-								),
-							);
-						});
+			const products = localStorage.getItem('products');
+			if (products) {
+				this.menuStore.setMenu(JSON.parse(products));
+				return;
+			}
 		}
+
+		const branchId = this.settings.selectedBranch?.()?.id;
+		if (!branchId) return;
+
+		this.menuStore.getMenu(branchId).subscribe((m) => {
+			IS_DEVMODE && localStorage.setItem('products', JSON.stringify(m));
+		});
 	}
 
 	// ###########################################################################

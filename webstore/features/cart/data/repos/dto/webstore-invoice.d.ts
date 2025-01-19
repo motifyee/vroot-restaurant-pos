@@ -8,7 +8,7 @@ interface GetInvoice {
 	rating?: number;
 
 	shippingAddressId?: number;
-	salesInvoiceType: number;
+	salesInvoiceType: SalesInvoiceType;
 	note: string;
 
 	branchId: number;

@@ -7,7 +7,15 @@
 
 	@case ('error') {
 		<div class="absolute w-full h-full flex justify-center items-center">
-			Could not load company id
+			Could not load company info
+			<br />
+			Try to refresh the page
+			<br />
+			<button
+				pButton
+				type="button"
+				label="Refresh"
+				(click)="refresh()"></button>
 		</div>
 	}
 

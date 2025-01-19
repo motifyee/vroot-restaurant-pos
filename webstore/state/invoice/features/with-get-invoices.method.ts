@@ -15,8 +15,8 @@ import {
 import { userStore } from '@webstore/state/user';
 import { GetInvoiceByIdMethodType } from './with-get-invoice-by-id.method';
 import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
-import { Router } from '@angular/router';
 import { featureType } from '@src/app/view/state/utils/utils';
+import { tap } from 'rxjs';
 
 export function withGetInvoicesMethod<_>() {
 	return signalStoreFeature(
@@ -27,7 +27,6 @@ export function withGetInvoicesMethod<_>() {
 		withMethods((store) => {
 			const repo = inject(CartRepo);
 			const user = inject(userStore);
-			const router = inject(Router);
 
 			return {
 				getInvoices: (params: InvoicesFilter) => {
@@ -35,19 +34,27 @@ export function withGetInvoicesMethod<_>() {
 
 					// If user is logged in, get all active invoices
 					if (user.isLoggedIn())
-						return repo.getInvoices(params).subscribe({
-							next: (invs) => {
-								store.setLoading(false);
-								patchState(
-									store,
-									addEntities(invs, invoiceEntityConfig),
-								);
-							},
-							error: (err) => {
-								store.setLoading(false);
-								console.error(err);
-							},
-						});
+						return repo
+							.getInvoices(params)
+							.pipe(
+								tap({
+									next: (invs: GetInvoice[]) => {
+										patchState(
+											store,
+											addEntities(
+												invs,
+												invoiceEntityConfig,
+											),
+										);
+									},
+									error: (err: Error) => {
+										console.error(err);
+									},
+
+									finalize: () => store.setLoading(false),
+								}),
+							)
+							.subscribe();
 
 					// If not logged in, try to load anonymous invoice
 					const anonymousId = store._anonymousInvoiceId();
@@ -59,19 +66,24 @@ export function withGetInvoicesMethod<_>() {
 					// Load the anonymous invoice and set it as active
 					return store
 						.getInvoiceById({ id: +anonymousId })
-						.subscribe({
-							next: (inv) => {
-								store.setLoading(false);
-								patchState(
-									store,
-									addEntity(inv, invoiceEntityConfig),
-								);
-							},
-							error: (err) => {
-								store.setLoading(false);
-								console.error('Failed to load invoice:', err);
-							},
-						});
+						.pipe(
+							tap({
+								next: (inv) => {
+									patchState(
+										store,
+										addEntity(inv, invoiceEntityConfig),
+									);
+								},
+								error: (err) => {
+									console.error(
+										'Failed to load invoice:',
+										err,
+									);
+								},
+								finalize: () => store.setLoading(false),
+							}),
+						)
+						.subscribe();
 				},
 			};
 		}),

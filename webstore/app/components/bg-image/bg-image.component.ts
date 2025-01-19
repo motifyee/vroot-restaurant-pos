@@ -11,6 +11,10 @@ import {
 	styles: `
 		:host {
 			@apply block bg-no-repeat bg-center bg-contain;
+			background-color: inherit;
+			mask-size: contain;
+			mask-repeat: no-repeat;
+			mask-position: center;
 		}
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,8 +30,20 @@ export class BgImageComponent {
 		return `${this.height()}px`;
 	}
 
-	url = input.required<string>();
-	@HostBinding('style.background-image') get _url() {
-		return `url(${this.url()})`;
+	color = input<string | null>(null);
+	@HostBinding('style.background-color') get _color() {
+		return this.color() ?? 'unset';
+	}
+
+	src = input.required<string>();
+	@HostBinding('style.background-image') get _background() {
+		if (this.color()) return `unset`;
+
+		return `url(${this.src()})`;
+	}
+	@HostBinding('style.mask-image') get _mask() {
+		if (!this.color()) return `unset`;
+
+		return `url(${this.src()})`;
 	}
 }

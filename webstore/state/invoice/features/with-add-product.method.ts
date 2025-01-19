@@ -8,6 +8,7 @@ import { settingsStore } from '@webstore/state/settings';
 import { FindMatchingProductIndexUseCase } from '@webstore/features';
 import { featureType } from '@src/app/view/state/utils/utils';
 import { uuidv4 } from '@src/app/view/state/app/utils/uuid';
+import { InvoiceType } from '@webstore/features/cart/data/repos/dto/sales-invoice-type';
 
 export const withAddProduct = <_>() =>
 	signalStoreFeature(
@@ -38,7 +39,7 @@ export const withAddProduct = <_>() =>
 						);
 						const createInvoice: CreateInvoice = {
 							products,
-							salesInvoiceType: settings.orderTypeId() || 0,
+							salesInvoiceType: settings.defaultOrderType(),
 							isUsualOrder: false,
 							note: '',
 							branchId: settings.selectedBranch?.()?.id || 0,

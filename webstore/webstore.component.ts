@@ -50,8 +50,9 @@ export class WebstoreComponent implements OnInit {
 		this.settings.getCompanyInfo().subscribe((info) => {
 			if (info.branchs.length == 1)
 				this.settings.selectBranch(info.branchs[0]);
+			else this.settings.loadSelectedBranch();
 
-			document.title = `WebStore [ ${info.name} ]`; // `${info.name} - WebStore`;
+			document.title = `WebStore — ${info.name}`;
 		});
 
 		this.invoiceStore.loadAnonymousInvoice();
@@ -79,5 +80,9 @@ export class WebstoreComponent implements OnInit {
 		return this.contexts.getContext('primary')?.route?.snapshot?.data?.[
 			'animation'
 		];
+	}
+
+	refresh() {
+		window.location.reload();
 	}
 }

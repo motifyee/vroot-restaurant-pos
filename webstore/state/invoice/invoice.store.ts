@@ -1,4 +1,10 @@
-import { signalStore, type, withState } from '@ngrx/signals';
+import {
+	signalStore,
+	signalStoreFeature,
+	type,
+	withMethods,
+	withState,
+} from '@ngrx/signals';
 import { storeType } from '@src/app/view/state/utils/utils';
 import {
 	entityConfig,
@@ -19,6 +25,7 @@ import { withDecrementProductAtIndex } from './features/with-decrement-product-a
 import { withDeleteActiveInvoice } from './features/with-delete-active-invoice.method';
 import { withExecuteActiveInvoice } from './features/with-execute-active-invoice.method';
 import { withLoading } from '@src/app/features/base/state/with-loading.method';
+import { withUpdateActiveInvoice } from './features/with-update-active-invoice.method';
 
 export type InvoiceEntityState = NamedEntityState<GetInvoice, 'invoice'>;
 
@@ -42,9 +49,12 @@ const initialState: InvoiceStoreState = {
 
 // TODO: add get favorite invoices method
 export const invoiceStore = signalStore(
-	withLoading(),
-	withState(initialState),
-	withEntities(invoiceEntityConfig),
+	(<_>() =>
+		signalStoreFeature(
+			withLoading(),
+			withState(initialState),
+			withEntities(invoiceEntityConfig),
+		))(),
 
 	// ##################################
 
@@ -59,6 +69,7 @@ export const invoiceStore = signalStore(
 	// #################################
 
 	withExecuteActiveInvoice(),
+	withUpdateActiveInvoice(),
 
 	withAddProduct(),
 	withRemoveProductAtIndex(),

@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { BgImageComponent } from '@webstore/app/components/bg-image/bg-image.component';
 import { CartItemsComponent } from '@webstore/components/cart/components/cart-items/cart-items.component';
+import { InvoiceType } from '@webstore/features/cart/data/repos/dto/sales-invoice-type';
 import { invoiceStore, settingsStore, userStore } from '@webstore/state';
 import { webstorePaths } from '@webstore/webstore.routes';
 import { ButtonModule } from 'primeng/button';
@@ -47,8 +48,11 @@ export class CheckoutComponent {
 
 	deliveryTitle = computed(() => {
 		if (!this.settings.selectedBranch?.()) return '';
-		if (this.settings.orderType() == 'delivery') return 'ديليفري';
-		if (this.settings.orderType() == 'pickup') return 'استلام';
+		if (this.settings.defaultOrderType() == InvoiceType.delivery)
+			return 'ديليفري';
+
+		if (this.settings.defaultOrderType() == InvoiceType.pickup)
+			return 'استلام';
 		return '';
 	});
 

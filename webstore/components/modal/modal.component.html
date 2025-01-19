@@ -9,14 +9,13 @@
 		height: height() || 'fit-content',
 		'max-width': maxWidth() || 'calc(100vw - 1rem)',
 		'max-height': maxHeight() || 'calc(100vh - 1rem)',
-	}"
->
+	}">
 	<div class="header" [ngClass]="{ 'absolute z-10': floatingHeader() }">
 		<span class="flex gap-2">
 			@if (headerIconUrl()) {
-				<bg-img [url]="headerIconUrl()" />
+				<bg-img [src]="headerIconUrl()" />
 			}
-			<span class="font-bold"> {{ header() }} </span>
+			<span class="font-bold">{{ header() }}</span>
 		</span>
 
 		@if (closable()) {
@@ -25,8 +24,7 @@
 				[rounded]="true"
 				severity="danger"
 				[outlined]="true"
-				(onClick)="onDismissed.emit()"
-			/>
+				(onClick)="onDismissed.emit()" />
 		}
 	</div>
 

@@ -75,6 +75,7 @@ export const withActiveInvoice = <_>() =>
 						store.getInvoices({
 							pageNumber: 1,
 							pageSize: 10,
+							active: true,
 						});
 
 						return;

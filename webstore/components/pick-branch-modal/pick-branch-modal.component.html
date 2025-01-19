@@ -47,11 +47,13 @@
 
 <ng-template #chooseOrderType>
 	<div @slideIn class="w-full flex flex-col gap-2">
-		<button (click)="selectOrderType('delivery')" class="tab-style">
+		<button
+			(click)="selectOrderType(InvoiceType.delivery)"
+			class="tab-style">
 			ديليفري
 		</button>
 
-		<button (click)="selectOrderType('pickup')" class="tab-style">
+		<button (click)="selectOrderType(InvoiceType.pickup)" class="tab-style">
 			استلام من الفرع
 		</button>
 	</div>

@@ -3,8 +3,7 @@
 		<div
 			(click)="isSideBarVisible.set(true)"
 			id="burger-menu"
-			class="menu-side-btn icon-menu"
-		>
+			class="menu-side-btn icon-menu">
 			<div class="burger-menu">
 				<span></span>
 				<span></span>
@@ -12,35 +11,23 @@
 			</div>
 		</div>
 
-		<div
-			(click)="
-				branchOrderTypeTarget.set('orderType');
-				isBranchOrderTypePickerVisible.set(true)
-			"
-			class="order-type"
-		>
+		<div (click)="showOrderTypePicker('orderType')" class="order-type">
 			<div class="food-type-1 mb-1">
 				{{ deliveryTitle() }}
 			</div>
 
-			@if (settings.orderType()) {
+			@if (orderType()) {
 				<bg-img
-					[url]="'/assets/icons/' + settings.orderType() + '.svg'"
-				/>
+					[src]="'/assets/icons/' + orderTypeTitle() + '.svg'"
+					color="#fff" />
 			}
 		</div>
 
 		<div class="flex-1 ml-3 flex items-center justify-end">
-			<span
-				(click)="
-					branchOrderTypeTarget.set('branch');
-					isBranchOrderTypePickerVisible.set(true)
-				"
-				class="branch-name"
-			>
+			<span (click)="showOrderTypePicker('branch')" class="branch-name">
 				{{ branchName() }}
 
-				<bg-img url="/assets/icons/branch.svg" />
+				<bg-img src="/assets/icons/branch.svg" />
 			</span>
 		</div>
 	</div>
@@ -54,6 +41,5 @@
 	<branch-ordertype-picker
 		[target]="branchOrderTypeTarget()"
 		(onFinished)="isBranchOrderTypePickerVisible.set(false)"
-		(onCancel)="isBranchOrderTypePickerVisible.set(false)"
-	/>
+		(onCancel)="isBranchOrderTypePickerVisible.set(false)" />
 }

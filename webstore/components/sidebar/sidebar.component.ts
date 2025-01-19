@@ -50,7 +50,7 @@ export class SidebarComponent implements OnInit {
 	]);
 
 	onLinkClick(link: MenuLink) {
-		if (link.url) this.router.navigate([link.url]);
+		if (typeof link.url === 'string') this.router.navigateByUrl(link.url);
 
 		link.action?.();
 

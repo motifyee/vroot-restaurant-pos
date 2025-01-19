@@ -6,14 +6,15 @@ import {
 	withMethods,
 	withState,
 } from '@ngrx/signals';
+import { InvoiceType } from '@webstore/features/cart/data/repos/dto/sales-invoice-type';
 import { GetOrderTypeIdUseCase } from '@webstore/features/settings/domain/usecases/get-order-type-id.usecase';
 
 type State = {
-	orderType: null | OrderType;
+	defaultOrderType: null | InvoiceType;
 };
 
 const initialState: State = {
-	orderType: null,
+	defaultOrderType: null,
 };
 
 export function withSelectOrderTypeMethod<_>() {
@@ -25,15 +26,15 @@ export function withSelectOrderTypeMethod<_>() {
 			return {
 				orderTypeId: computed(
 					() =>
-						store.orderType() &&
-						getOrderTypeId.execute(store.orderType()!),
+						store.defaultOrderType() &&
+						InvoiceType[store.defaultOrderType()!],
 				),
 			};
 		}),
 		withMethods((store) => {
 			return {
-				selectOrderType: (orderType: 'pickup' | 'delivery') => {
-					patchState(store, { orderType });
+				selectDefaultOrderType: (orderType: InvoiceType) => {
+					patchState(store, { defaultOrderType: orderType });
 				},
 			};
 		}),

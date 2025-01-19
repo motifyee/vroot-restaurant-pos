@@ -9,10 +9,11 @@ import {
 	ViewChild,
 } from '@angular/core';
 import { ScrollService } from '../../services/scroll.service';
-import { settingsStore } from '@webstore/state';
+import { invoiceStore, settingsStore } from '@webstore/state';
 import { BranchOrderTypePickerComponent } from '../pick-branch-modal/pick-branch-modal.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { BgImageComponent } from '@webstore/app/components/bg-image/bg-image.component';
+import { InvoiceType } from '@webstore/features/cart/data/repos/dto/sales-invoice-type';
 
 @Component({
 	selector: 'topbar',
@@ -40,10 +41,18 @@ export class TopbarComponent implements AfterViewInit {
 
 	settings = inject(settingsStore);
 
+	invoice = inject(invoiceStore);
+	orderType = computed(() => this.invoice.activeInvoice()?.salesInvoiceType);
+	orderTypeTitle = computed(() =>
+		this.orderType()
+			? InvoiceType[this.orderType()!]
+			: this.settings.defaultOrderType(),
+	);
+
 	deliveryTitle = computed(() => {
 		if (!this.settings.selectedBranch?.()) return '';
-		if (this.settings.orderType() == 'delivery') return 'ديليفري';
-		if (this.settings.orderType() == 'pickup') return 'استلام من الفرع';
+		if (this.orderType() == InvoiceType.delivery) return 'ديليفري';
+		if (this.orderType() == InvoiceType.pickup) return 'استلام من الفرع';
 		return '';
 	});
 
@@ -52,6 +61,10 @@ export class TopbarComponent implements AfterViewInit {
 	@ViewChild('container') container: ElementRef<HTMLElement> | undefined;
 
 	isBranchOrderTypePickerVisible = signal(false);
+	showOrderTypePicker(target: 'branch' | 'orderType') {
+		this.branchOrderTypeTarget.set(target);
+		this.isBranchOrderTypePickerVisible.set(true);
+	}
 
 	isOrderTimeVisible = signal(false);
 }

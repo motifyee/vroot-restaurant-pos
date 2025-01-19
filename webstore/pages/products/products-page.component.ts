@@ -1,6 +1,7 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
+	computed,
 	inject,
 	OnInit,
 	signal,
@@ -14,9 +15,11 @@ import { productsPageStore } from './products-page.store';
 import { AddToCartItemModalComponent } from '../../components/add-to-cart-modal/add-to-cart-modal.component';
 
 import { ScrollService } from '../../services/scroll.service';
-import { settingsStore } from '@webstore/state';
-import { BranchOrderTypePickerComponent } from '../../components/pick-branch-modal/pick-branch-modal.component';
-import { IS_DEVMODE } from '@src/app/core';
+import { invoiceStore, settingsStore } from '@webstore/state';
+import {
+	BranchOrderTypePickerComponent,
+	PickBranchModalTarget,
+} from '../../components/pick-branch-modal/pick-branch-modal.component';
 
 @Component({
 	selector: 'products-page',
@@ -41,18 +44,25 @@ export class ProductsPageComponent implements OnInit {
 	selectedProduct = this.productsPageStore.selectedProduct;
 
 	settings = inject(settingsStore);
+	invoices = inject(invoiceStore);
 
 	chooseBranch = signal(false);
+	branchOrderType = computed<PickBranchModalTarget | null>(() => {
+		if (
+			!this.settings.selectedBranch?.() &&
+			!this.settings.defaultOrderType()
+		)
+			return 'all';
+
+		if (!this.settings.selectedBranch?.()) return 'branch';
+		if (!this.settings.defaultOrderType()) return 'orderType';
+
+		return null;
+	});
 
 	ngOnInit(): void {
-		if (IS_DEVMODE && localStorage.getItem('test-branch-idx')) {
-			this.settings.selectOrderType('delivery');
-			this.settings.selectBranchById(
-				+localStorage.getItem('test-branch-idx')!,
-			);
-		}
+		// if (this.branchOrderType()) this.chooseBranch.set(true);
 
-		if (!this.settings.selectedBranch?.() || !this.settings.orderType())
-			this.chooseBranch.set(true);
+		this.invoices.loadActiveInvoice();
 	}
 }

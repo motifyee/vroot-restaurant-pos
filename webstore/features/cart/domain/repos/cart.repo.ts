@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 export type InvoicesFilter = {
 	pageNumber: number;
 	pageSize: number;
+	active?: boolean;
+	usualOrder?: boolean;
 };
 
 export abstract class CartRepo {

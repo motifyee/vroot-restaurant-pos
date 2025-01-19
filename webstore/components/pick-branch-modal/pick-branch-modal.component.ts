@@ -17,6 +17,9 @@ import { scaleInOut } from '../../animations/scale-in-out.animation';
 import { ModalComponent } from '../modal/modal.component';
 import { IS_DEVMODE } from '@src/app/core';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { InvoiceType } from '@webstore/features/cart/data/repos/dto/sales-invoice-type';
+
+export type PickBranchModalTarget = 'branch' | 'orderType' | 'all';
 
 @Component({
 	selector: 'branch-ordertype-picker',
@@ -39,6 +42,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 })
 export class BranchOrderTypePickerComponent {
 	@HostBinding('@scaleInOut') scaleInOut = true;
+	readonly InvoiceType = InvoiceType;
 
 	header = computed(() => {
 		if (!this.choosedBranch())
@@ -59,16 +63,16 @@ export class BranchOrderTypePickerComponent {
 			case 'all':
 				return !!(
 					this.settings.selectedBranch?.() &&
-					this.settings.orderType()
+					this.settings.defaultOrderType()
 				);
 			case 'branch':
 				return !!this.settings.selectedBranch?.();
 			case 'orderType':
-				return !!this.settings.orderType();
+				return !!this.settings.defaultOrderType();
 		}
 	});
 
-	target = input<'branch' | 'orderType' | 'all'>('all');
+	target = input<PickBranchModalTarget>('all');
 
 	choosedBranch = signal(false);
 	choosedOrderType = signal(false);
@@ -107,20 +111,17 @@ export class BranchOrderTypePickerComponent {
 
 		this.settings.selectBranch(branch);
 		this.choosedBranch.set(true);
-
-		this.menu
-			.getMenu(branch.id)
-			.subscribe(
-				(m) =>
-					IS_DEVMODE &&
-					localStorage.getItem('test-branch-idx') &&
-					localStorage.setItem('test-products', JSON.stringify(m)),
-			);
 	}
 
-	selectOrderType(type: 'delivery' | 'pickup') {
-		this.settings.selectOrderType(type);
-		this.choosedOrderType.set(true);
+	selectOrderType(type: InvoiceType) {
+		if (!this.invoiceStore.activeInvoice())
+			return this.settings.selectDefaultOrderType(type);
+
+		this.invoiceStore
+			.updateActiveInvoice({
+				salesInvoiceType: type,
+			})
+			?.subscribe(() => this.choosedOrderType.set(true));
 	}
 
 	dismiss() {

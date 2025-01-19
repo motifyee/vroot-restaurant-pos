@@ -1,6 +1,6 @@
 import { map, Observable } from 'rxjs';
 import { inject } from '@angular/core';
-import { CartRepo } from '../../../domain';
+import { CartRepo, InvoicesFilter } from '../../../domain';
 import { ENDPOINT, HttpService } from '@src/app/core';
 import { CategoryProductMapper } from '../mappers/product.mapper';
 
@@ -39,41 +39,12 @@ export class CartImplRepo implements CartRepo {
 	}
 
 	getInvoices(
-		{
-			from,
-			to,
-			pageNumber,
-			pageSize,
-			fromBranch,
-			toBranch,
-			deliveryId,
-			isClosed,
-		}: {
-			from: string;
-			to: string;
-			pageNumber: number;
-			pageSize: number;
-			fromBranch: number;
-			toBranch: number;
-			deliveryId: number;
-			isClosed: boolean;
-		},
+		params: InvoicesFilter,
 		config?: Config,
 	): Observable<GetInvoice[]> {
 		return this.http.get<GetInvoice[]>(
 			`${ENDPOINT}/api/store/invoices`,
-			{
-				params: {
-					// from,
-					// to,
-					pageSize,
-					pageNumber,
-					// fromBranch,
-					// toBranch,
-					// deliveryId,
-					// isClosed,
-				},
-			},
+			{ params },
 			config,
 		);
 	}
