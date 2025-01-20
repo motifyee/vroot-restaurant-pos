@@ -7,7 +7,7 @@
       "type": "chrome",
       "request": "launch",
       // "preLaunchTask": "npm: serve-webstore",
-      "url": "http://localhost:4200",
+      "url": "http://l-webstore-medanelsham.vroot.com:4200",
       "webRoot": "${workspaceFolder}"
     },
     {

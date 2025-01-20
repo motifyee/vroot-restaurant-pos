@@ -61,7 +61,7 @@ export class ProductsPageComponent implements OnInit {
 	});
 
 	ngOnInit(): void {
-		// if (this.branchOrderType()) this.chooseBranch.set(true);
+		if (this.branchOrderType()) this.chooseBranch.set(true);
 
 		this.invoices.loadActiveInvoice();
 	}
