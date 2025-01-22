@@ -166,6 +166,7 @@ export class BranchOrderTypePickerComponent implements OnInit, OnDestroy {
 			?.pipe(finalize(() => this.loading.set(-1)))
 			.subscribe(() => {
 				this.selectBranch(this.pendingBranch()!);
+				this.menu.getMenu();
 			});
 	}
 
