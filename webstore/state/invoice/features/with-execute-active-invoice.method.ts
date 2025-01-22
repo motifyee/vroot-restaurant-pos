@@ -8,6 +8,9 @@ import { UpdateInvoiceMethodType } from './with-update-invoice.method';
 import { featureType } from '@src/app/view/state/utils/utils';
 import { Observable, of, tap } from 'rxjs';
 import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
+import { ApiMsgMethods } from '@src/app/features/base/state/with-api-msg.method';
+
+export const EXECUTE_INVOICE = Symbol('EXECUTE_INVOICE');
 
 export const withExecuteActiveInvoice = <_>() =>
 	signalStoreFeature(
@@ -17,7 +20,8 @@ export const withExecuteActiveInvoice = <_>() =>
 			methods: type<
 				UpdateInvoiceMethodType &
 					ActiveInvoiceFeatureMethodsType &
-					LoadingMethod
+					LoadingMethod &
+					ApiMsgMethods
 			>(),
 		},
 		withMethods((store) => {
@@ -42,11 +46,18 @@ export const withExecuteActiveInvoice = <_>() =>
 							next: () => {
 								// Clear the anonymous invoice ID after execution
 								store.clearAnonymousInvoiceId();
+
+								store.deactivateApiMsg(EXECUTE_INVOICE);
 							},
 							error: (err) => {
 								console.error(
 									'Failed to execute invoice:',
 									err,
+								);
+
+								store.setApiMsg(
+									'حدث خطأ ما أثناء تنفيذ الفاتورة',
+									EXECUTE_INVOICE,
 								);
 							},
 							finalize: () => store.setLoading(false),

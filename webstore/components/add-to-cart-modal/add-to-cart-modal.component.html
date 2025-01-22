@@ -132,6 +132,15 @@
 </ng-template>
 
 <ng-template #actionButtons>
+	@if (hasActiveApiMsg()) {
+		<p-message
+			severity="error"
+			closable
+			(onClose)="clearActiveApiMsg()"
+			icon="pi pi-exclamation-circle"
+			[text]="activeApiMsg()" />
+	}
+
 	<div class="bottom">
 		<div class="qty-btns">
 			<button (click)="store.incrementQty()">

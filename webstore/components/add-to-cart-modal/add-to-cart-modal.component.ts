@@ -7,6 +7,8 @@ import {
 	HostBinding,
 	output,
 	effect,
+	OnDestroy,
+	computed,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { invoiceStore } from '@webstore/state';
@@ -19,6 +21,9 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ScrollService } from '@webstore/services/scroll.service';
 import { addToCartStore } from './state/add-to-cart.store';
 import { SkeletonModule } from 'primeng/skeleton';
+import { MessageModule } from 'primeng/message';
+import { UPDATE_INVOICE } from '@webstore/state/invoice/features/with-update-invoice.method';
+import { CREATE_INVOICE } from '@webstore/state/invoice/features/with-create-invoice.method';
 
 @Component({
 	selector: 'add-to-cart-modal, [add-to-cart-modal]',
@@ -31,6 +36,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 		ButtonModule,
 		TooltipModule,
 		SkeletonModule,
+		MessageModule,
 	],
 	providers: [ScrollService, addToCartStore],
 	templateUrl: './add-to-cart-modal.component.html',
@@ -38,7 +44,10 @@ import { SkeletonModule } from 'primeng/skeleton';
 	host: { class: 'popup' },
 	animations: [scaleInOut],
 })
-export class AddToCartItemModalComponent implements OnInit {
+export class AddToCartModalComponent implements OnInit, OnDestroy {
+	CREATE_INVOICE = CREATE_INVOICE;
+	UPDATE_INVOICE = UPDATE_INVOICE;
+
 	@HostBinding('@scaleInOut') scaleInOutAnimation = true;
 
 	store = inject(addToCartStore);
@@ -61,11 +70,40 @@ export class AddToCartItemModalComponent implements OnInit {
 	// ###########################################################################
 
 	ngOnInit(): void {
+		this.clearActiveApiMsg();
+
 		this.store.setProduct(this.product());
 	}
+
+	// ###########################################################################
+
+	hasActiveApiMsg = computed(() => {
+		this.invoiceStore.apiMsgs();
+
+		return this.invoiceStore.isAnyApiMsgActive([
+			UPDATE_INVOICE,
+			CREATE_INVOICE,
+		]);
+	});
+
+	activeApiMsg = computed(() => {
+		return (
+			this.invoiceStore.getFirstActiveApiMsg([
+				UPDATE_INVOICE,
+				CREATE_INVOICE,
+			]) ?? 'حدث خطأ ما'
+		);
+	});
+
+	clearActiveApiMsg() {
+		this.invoiceStore.clearAllApiMsgs([UPDATE_INVOICE, CREATE_INVOICE]);
+	}
+
 	// ###########################################################################
 
 	addToCart() {
+		this.clearActiveApiMsg();
+
 		this.invoiceStore.addProduct(this.store.computedProduct()).subscribe({
 			next: () => {
 				this.closeModal.emit();
@@ -74,5 +112,11 @@ export class AddToCartItemModalComponent implements OnInit {
 				console.error(err);
 			},
 		});
+	}
+
+	// ###########################################################################
+
+	ngOnDestroy(): void {
+		this.clearActiveApiMsg();
 	}
 }

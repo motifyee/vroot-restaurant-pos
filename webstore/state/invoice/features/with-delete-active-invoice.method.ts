@@ -6,6 +6,7 @@ import {
 } from './with-active-invoice.method';
 import { WithDeleteInvoiceMethodType } from './with-delete-invoice.method';
 import { featureType } from '@src/app/view/state/utils/utils';
+import { finalize, tap } from 'rxjs';
 
 export const withDeleteActiveInvoice = <_>() =>
 	signalStoreFeature(
@@ -28,13 +29,7 @@ export const withDeleteActiveInvoice = <_>() =>
 
 					return store
 						.deleteInvoice({ id: activeInvoice.id })
-						.subscribe({
-							next: () => {
-								// Clear the anonymous invoice ID first
-								store.clearAnonymousInvoiceId();
-							},
-							error: console.error,
-						});
+						.pipe(tap(() => store.clearAnonymousInvoiceId()));
 				},
 			};
 		}),

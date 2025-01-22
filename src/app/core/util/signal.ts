@@ -38,10 +38,34 @@ export function mapSignalUpdater<K, V>(signal: WritableSignal<Map<K, V>>) {
 		updateMapSignal(signal, value);
 }
 
+/**
+ * Creates a one-time effect that executes a success callback when a predicate becomes true.
+ * The effect automatically destroys itself after executing.
+ *
+ * @param params Configuration object for the single call effect
+ * @param params.injector Angular injector instance for effect context
+ * @param params.init Optional initialization function called before setting up the effect
+ * @param params.predicate Function that determines when to trigger the success callback
+ * @param params.success Callback function executed when predicate becomes true
+ *
+ * @example
+ * ```ts
+ * // Wait for user data to be available before proceeding
+ * singleCallEffect({
+ *   injector: this.injector,
+ *   predicate: () => !!this.userData,
+ *   init: () => this.showLoading(),
+ *   success: () => this.proceedWithUserData()
+ * });
+ * ```
+ *
+ * Note: Uses setTimeout internally to avoid Angular's NG0602 error when effects
+ * are called sequentially within a reactive context.
+ */
 export function singleCallEffect(params: {
 	injector: Injector;
-	predicate: () => boolean;
 	init?: () => void;
+	predicate: () => boolean;
 	success: () => void;
 }) {
 	const { injector, predicate, init, success } = params;

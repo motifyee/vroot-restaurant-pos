@@ -2,7 +2,6 @@ import {
 	signalStore,
 	signalStoreFeature,
 	type,
-	withMethods,
 	withState,
 } from '@ngrx/signals';
 import { storeType } from '@src/app/view/state/utils/utils';
@@ -26,6 +25,7 @@ import { withDeleteActiveInvoice } from './features/with-delete-active-invoice.m
 import { withExecuteActiveInvoice } from './features/with-execute-active-invoice.method';
 import { withLoading } from '@src/app/features/base/state/with-loading.method';
 import { withUpdateActiveInvoice } from './features/with-update-active-invoice.method';
+import { withApiMsg } from '@src/app/features/base/state/with-api-msg.method';
 
 export type InvoiceEntityState = NamedEntityState<GetInvoice, 'invoice'>;
 
@@ -51,6 +51,7 @@ const initialState: InvoiceStoreState = {
 export const invoiceStore = signalStore(
 	(<_>() =>
 		signalStoreFeature(
+			withApiMsg(),
 			withLoading(),
 			withState(initialState),
 			withEntities(invoiceEntityConfig),

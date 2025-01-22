@@ -4,7 +4,6 @@ import {
 	computed,
 	inject,
 	OnInit,
-	signal,
 } from '@angular/core';
 import { BannerComponent } from './components/banner/banner.component';
 import { CategoryBarComponent } from './components/category-bar/category-bar.component';
@@ -12,7 +11,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { MobilCategoryBarComponent } from './components/mobile-category-bar/mobile-category-bar.component';
 import { CartComponent } from '../../components/cart/cart.component';
 import { productsPageStore } from './products-page.store';
-import { AddToCartItemModalComponent } from '../../components/add-to-cart-modal/add-to-cart-modal.component';
+import { AddToCartModalComponent } from '../../components/add-to-cart-modal/add-to-cart-modal.component';
 
 import { ScrollService } from '../../services/scroll.service';
 import { invoiceStore, settingsStore } from '@webstore/state';
@@ -29,7 +28,7 @@ import {
 		MobilCategoryBarComponent,
 		ProductListComponent,
 		CartComponent,
-		AddToCartItemModalComponent,
+		AddToCartModalComponent,
 		BranchOrderTypePickerComponent,
 	],
 	templateUrl: './products-page.component.html',
@@ -46,22 +45,21 @@ export class ProductsPageComponent implements OnInit {
 	settings = inject(settingsStore);
 	invoices = inject(invoiceStore);
 
-	chooseBranch = signal(false);
+	// chooseBranch = signal(false);
 	branchOrderType = computed<PickBranchModalTarget | null>(() => {
 		if (
 			!this.settings.selectedBranch?.() &&
-			!this.settings.defaultOrderType()
+			!this.settings.defaultInvoiceType()
 		)
 			return 'all';
 
 		if (!this.settings.selectedBranch?.()) return 'branch';
-		if (!this.settings.defaultOrderType()) return 'orderType';
-
+		if (!this.settings.defaultInvoiceType()) return 'orderType';
 		return null;
 	});
 
 	ngOnInit(): void {
-		if (this.branchOrderType()) this.chooseBranch.set(true);
+		// if (this.branchOrderType()) this.chooseBranch.set(true);
 
 		this.invoices.loadActiveInvoice();
 	}

@@ -28,9 +28,6 @@
 		(closeModal)="productsPageStore.selectProduct()"></div>
 }
 
-@if (chooseBranch()) {
-	<branch-ordertype-picker
-		[target]="branchOrderType()!"
-		(onCancel)="chooseBranch.set(false)"
-		(onFinished)="chooseBranch.set(false)" />
+@if (!this.settings.selectedBranch?.()) {
+	<branch-ordertype-picker target="branch" />
 }

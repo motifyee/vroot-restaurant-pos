@@ -9,6 +9,8 @@ import { storeType } from '@src/app/view/state/utils/utils';
 import { computed, inject } from '@angular/core';
 import { GetCategoriesUseCase } from '@webstore/features';
 import { tapResponse } from '@ngrx/operators';
+import { IS_DEVMODE } from '@src/app/core';
+import { of } from 'rxjs';
 
 type MenuState = {
 	categories: Category[];
@@ -27,10 +29,6 @@ export const menuStore = signalStore(
 	withComputed((store) => {
 		return {
 			menu: computed(() => store.categories()),
-			// .map((c) => ({
-			// 		...c,
-			// 		variants: c.products.flatMap((p) => p.variants),
-			// 	})),
 		};
 	}),
 
@@ -46,7 +44,20 @@ export const menuStore = signalStore(
 		let usecase = inject(GetCategoriesUseCase);
 
 		return {
-			getMenu: (branchId: number) => {
+			getMenu: (branchId?: number) => {
+				if (IS_DEVMODE) {
+					const products: Category[] = JSON.parse(
+						localStorage.getItem('products') ?? 'null',
+					);
+
+					if (products) {
+						store.setMenu(products);
+						return of(products);
+					}
+				}
+
+				if (typeof branchId !== 'number') return of([]);
+
 				patchState(store, { menuStatus: 'loading' });
 
 				return usecase.execute({ branchId }).pipe(
@@ -56,6 +67,12 @@ export const menuStore = signalStore(
 								categories,
 								menuStatus: 'loaded',
 							});
+
+							IS_DEVMODE &&
+								localStorage.setItem(
+									'products',
+									JSON.stringify(categories),
+								);
 						},
 						error: (err) => {
 							console.error(err);

@@ -2,7 +2,21 @@
 	#scrollHook
 	class="scroll-hook"
 	[style]="{ top: scrollHookTop() + 'px' }"></div>
-@if (menuStore.menuStatus() === 'loading') {
+
+@switch (menuStore.menuStatus()) {
+	@case ('loading') {
+		<ng-container [ngTemplateOutlet]="_loadingSkeleton" />
+	}
+	@default {
+		@if (menu().length) {
+			<ng-container [ngTemplateOutlet]="_productList" />
+		} @else {
+			<ng-container [ngTemplateOutlet]="_emptyState" />
+		}
+	}
+}
+
+<ng-template #_loadingSkeleton>
 	@for (category of [1]; track category) {
 		<div #category class="category-section" [id]="'category-' + category">
 			<div class="category-name">
@@ -32,7 +46,9 @@
 			}
 		</div>
 	}
-} @else if (menu().length > 0) {
+</ng-template>
+
+<ng-template #_productList>
 	@for (category of menu(); track category.id) {
 		<div
 			#category
@@ -47,14 +63,12 @@
 				product of category.products;
 				track product.productVariantId
 			) {
-				<!-- @for (variant of product.variants; track variant.id) { -->
-				<div
-					(click)="productsPageStore.selectProduct(product)"
-					class="item-card">
+				<div (click)="selectProduct(product)" class="item-card">
 					<div class="card-content">
 						<div class="card-content-name">
 							{{ product.title }}
 						</div>
+
 						<div class="card-content-price">
 							<div class="card-content-price-2">
 								<div dir="ltr" class="card-content-price-3">
@@ -62,24 +76,34 @@
 									<small>EGP</small>
 								</div>
 							</div>
+							@if (loadingProducts()[product.productVariantId]) {
+								<p-progress-spinner ariaLabel="loading" />
+							}
 						</div>
 					</div>
+
 					<div class="card-img">
 						<banner [fontSize]="20" class="h-full" />
 					</div>
 				</div>
 			}
-			<!-- } -->
 		</div>
 	}
-	<!-- skeleton -->
-} @else {
+</ng-template>
+
+<ng-template #_emptyState>
 	<div class="w-full text-center flex flex-col items-center gap-5">
 		<img
 			src="assets/images/no-products.png"
 			alt="no products"
 			class="w-40" />
-
 		No products found
 	</div>
+</ng-template>
+
+@if (selectInvoiceType()) {
+	<branch-ordertype-picker
+		target="orderType"
+		(onFinished)="selectInvoiceType.set(false)"
+		(onCancel)="selectInvoiceType.set(false)" />
 }

@@ -11,16 +11,20 @@ import {
 	ViewChildren,
 	QueryList,
 	AfterViewChecked,
-	ChangeDetectorRef,
+	Injector,
+	signal,
 } from '@angular/core';
 import { ScrollService } from '../../../../services/scroll.service'; // Import your scroll service
 import { Subscription } from 'rxjs';
 import { TopbarComponent } from '../../../../components/topbar/topbar.component';
 import { productsPageStore } from '../../products-page.store';
 import { SkeletonModule } from 'primeng/skeleton';
-import { settingsStore, menuStore } from '@webstore/state';
+import { settingsStore, menuStore, invoiceStore } from '@webstore/state';
 import { BannerComponent } from '../banner/banner.component';
-import { IS_DEVMODE } from '@src/app/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { singleCallEffect } from '@src/app/core';
+import { BranchOrderTypePickerComponent } from '@webstore/components/pick-branch-modal/pick-branch-modal.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
 	selector: 'product-list',
@@ -28,17 +32,23 @@ import { IS_DEVMODE } from '@src/app/core';
 	styleUrls: ['./product-list.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [TopbarComponent],
-	imports: [SkeletonModule, BannerComponent],
+	imports: [
+		SkeletonModule,
+		BannerComponent,
+		NgTemplateOutlet,
+		BranchOrderTypePickerComponent,
+		ProgressSpinnerModule,
+	],
 })
 export class ProductListComponent
 	implements OnInit, AfterViewChecked, OnDestroy
 {
-	private cdr = inject(ChangeDetectorRef);
 	private scrollSubscription!: Subscription;
 	private scrollService = inject(ScrollService);
 	settings = inject(settingsStore);
 	menuStore = inject(menuStore);
 	productsPageStore = inject(productsPageStore);
+	invoices = inject(invoiceStore);
 
 	scrollHookTop = this.scrollService.scrollHookTop;
 	@ViewChild('scrollHook') public scrollHook?: ElementRef;
@@ -49,29 +59,67 @@ export class ProductListComponent
 	menu = this.menuStore.menu;
 
 	ngOnInit() {
-		if (IS_DEVMODE) {
-			const products = localStorage.getItem('products');
-			if (products) {
-				this.menuStore.setMenu(JSON.parse(products));
-				return;
-			}
-		}
-
 		const branchId = this.settings.selectedBranch?.()?.id;
-		if (!branchId) return;
 
-		this.menuStore.getMenu(branchId).subscribe((m) => {
-			IS_DEVMODE && localStorage.setItem('products', JSON.stringify(m));
-		});
+		this.menuStore.getMenu(branchId).subscribe();
+	}
+
+	loadingProducts = signal<{ [key: string]: boolean }>({});
+
+	injector = inject(Injector);
+	selectInvoiceType = signal(false);
+	selectProduct(product: InvoiceProduct) {
+		// check if invoiceStore is loading, to delay product selection
+		if (this.invoices.isLoading())
+			if (this.loadingProducts()[product.productVariantId])
+				// check if product is already loading, to prevent multiple calls
+				return;
+			else
+				return singleCallEffect({
+					injector: this.injector,
+					init: () =>
+						// set loading state
+						this.loadingProducts.set({
+							...this.loadingProducts(),
+							[product.productVariantId]: true,
+						}),
+					predicate: () => !this.invoices.isLoading(),
+					success: () => {
+						// clear loading state
+						this.loadingProducts.set({
+							...this.loadingProducts(),
+							[product.productVariantId]: false,
+						});
+
+						// try to select product again
+						this.selectProduct(product);
+					},
+				});
+
+		const invoiceTypeSelected = () =>
+			!!this.invoices.activeInvoice() ||
+			!!this.settings.defaultInvoiceType?.();
+
+		// Select invoice-type before adding products
+		if (!invoiceTypeSelected())
+			return singleCallEffect({
+				injector: this.injector,
+				init: () => this.selectInvoiceType.set(true),
+				predicate: invoiceTypeSelected,
+				success: () => this.selectProduct(product),
+			});
+
+		this.productsPageStore.selectProduct(product);
 	}
 
 	// ###########################################################################
 
 	//  trigger ngAfterViewChecked on menu change
-	_ = effect(() => {
-		this.menu();
-		this.cdr.markForCheck();
-	});
+	// _ = effect(() => {
+	// this.menu();
+	// this.cdr.markForCheck();
+	// });
+
 	ngAfterViewChecked(): void {
 		if (!this.menu().length) return;
 

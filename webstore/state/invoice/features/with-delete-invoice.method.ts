@@ -9,14 +9,17 @@ import { inject } from '@angular/core';
 import { CartRepo } from '@webstore/features';
 import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
 import { featureType } from '@src/app/view/state/utils/utils';
-import { tap, finalize } from 'rxjs';
+import { tap } from 'rxjs';
 import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
+import { ApiMsgMethods } from '@src/app/features/base/state/with-api-msg.method';
+
+export const DELETE_INVOICE = Symbol('DELETE_INVOICE');
 
 export const withDeleteInvoiceMethod = <_>() =>
 	signalStoreFeature(
 		{
 			state: type<InvoiceEntityState>(),
-			methods: type<LoadingMethod>(),
+			methods: type<LoadingMethod & ApiMsgMethods>(),
 		},
 		withMethods((state) => {
 			const repo = inject(CartRepo);
@@ -34,9 +37,15 @@ export const withDeleteInvoiceMethod = <_>() =>
 										invoiceEntityConfig,
 									),
 								);
+
+								state.deactivateApiMsg(DELETE_INVOICE);
 							},
 							error: (err) => {
 								console.error(err);
+								state.setApiMsg(
+									'حدث خطأ ما أثناء حذف الفاتورة',
+									DELETE_INVOICE,
+								);
 							},
 							finalize: () => state.setLoading(false),
 						}),

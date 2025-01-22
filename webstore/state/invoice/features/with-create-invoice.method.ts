@@ -14,12 +14,17 @@ import { featureType } from '@src/app/view/state/utils/utils';
 import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
 import { ActiveInvoiceFeatureMethodsType } from './with-active-invoice.method';
 import { userStore } from '@webstore/state/user';
+import { ApiMsgMethods } from '@src/app/features/base/state/with-api-msg.method';
+
+export const CREATE_INVOICE = Symbol('CREATE_INVOICE');
 
 export const withCreateInvoiceMethod = <_>() =>
 	signalStoreFeature(
 		{
 			state: type<InvoiceEntityState>(),
-			methods: type<LoadingMethod & ActiveInvoiceFeatureMethodsType>(),
+			methods: type<
+				LoadingMethod & ActiveInvoiceFeatureMethodsType & ApiMsgMethods
+			>(),
 		},
 		withMethods((store) => {
 			const repo = inject(CartRepo),
@@ -36,6 +41,9 @@ export const withCreateInvoiceMethod = <_>() =>
 						...params.invoice,
 						branchId: settings.selectedBranch?.()?.id || 0,
 					};
+
+					if (!invoice.salesInvoiceType)
+						delete invoice.salesInvoiceType;
 
 					return repo
 						.createInvoice({
@@ -56,11 +64,17 @@ export const withCreateInvoiceMethod = <_>() =>
 										),
 									);
 
+									store.deactivateApiMsg(CREATE_INVOICE);
+
 									if (!user.isLoggedIn())
 										store.setAnonymousInvoiceId(inv.id);
 								},
 								error: (err) => {
 									console.error(err);
+									store.setApiMsg(
+										'حدث خطأ ما أثناء إنشاء الفاتورة',
+										CREATE_INVOICE,
+									);
 								},
 								finalize: () => store.setLoading(false),
 							}),

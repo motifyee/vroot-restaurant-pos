@@ -48,10 +48,10 @@ export class CheckoutComponent {
 
 	deliveryTitle = computed(() => {
 		if (!this.settings.selectedBranch?.()) return '';
-		if (this.settings.defaultOrderType() == InvoiceType.delivery)
+		if (this.settings.defaultInvoiceType() == InvoiceType.delivery)
 			return 'ديليفري';
 
-		if (this.settings.defaultOrderType() == InvoiceType.pickup)
+		if (this.settings.defaultInvoiceType() == InvoiceType.pickup)
 			return 'استلام';
 		return '';
 	});

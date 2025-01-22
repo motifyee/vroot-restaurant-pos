@@ -17,12 +17,17 @@ import { GetInvoiceByIdMethodType } from './with-get-invoice-by-id.method';
 import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
 import { featureType } from '@src/app/view/state/utils/utils';
 import { tap } from 'rxjs';
+import { ApiMsgMethods } from '@src/app/features/base/state/with-api-msg.method';
+
+export const GET_INVOICES = Symbol('GET_INVOICES');
 
 export function withGetInvoicesMethod<_>() {
 	return signalStoreFeature(
 		{
 			state: type<InvoiceEntityState & InvoiceStoreState>(),
-			methods: type<GetInvoiceByIdMethodType & LoadingMethod>(),
+			methods: type<
+				GetInvoiceByIdMethodType & LoadingMethod & ApiMsgMethods
+			>(),
 		},
 		withMethods((store) => {
 			const repo = inject(CartRepo);
@@ -46,9 +51,15 @@ export function withGetInvoicesMethod<_>() {
 												invoiceEntityConfig,
 											),
 										);
+
+										store.deactivateApiMsg(GET_INVOICES);
 									},
 									error: (err: Error) => {
 										console.error(err);
+										store.setApiMsg(
+											'حدث خطأ ما أثناء تحميل الفواتير',
+											GET_INVOICES,
+										);
 									},
 
 									finalize: () => store.setLoading(false),

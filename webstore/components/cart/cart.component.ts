@@ -69,7 +69,7 @@ export class CartComponent {
 
 		// ensure user has selected an address
 		if (
-			this.settings.defaultOrderType() == InvoiceType.delivery &&
+			this.settings.defaultInvoiceType() == InvoiceType.delivery &&
 			!this.#selectedAddress()
 		)
 			return singleCallEffect({

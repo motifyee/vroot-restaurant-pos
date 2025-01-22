@@ -19,6 +19,10 @@ TypeScript & Angular
 - Use standalone components when applicable.
 - Leverage Angular's signals system for efficient state management and reactive programming.
 - Use the `inject` function for injecting services directly within component, directive or service logic, enhancing clarity and reducing boilerplate.
+- Use the `effect` function for side effects.
+- Use the `input` function for input properties.
+- Use the `output` function for output properties.
+- Use self closing tags for components.
 
 File Naming Conventions
 

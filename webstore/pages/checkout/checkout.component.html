@@ -64,11 +64,9 @@
 
 <ng-template #_orderType>
 	<div class="card flex items-center gap-4">
-		@if (settings.defaultOrderType()) {
+		@if (settings.orderTypeId()) {
 			<bg-img
-				[src]="
-					'/assets/icons/' + settings.defaultOrderType() + '.svg'
-				" />
+				[src]="'/assets/icons/' + settings.orderTypeId() + '.svg'" />
 		}
 
 		<span class="flex-1">

@@ -7,34 +7,31 @@ import {
 	withState,
 } from '@ngrx/signals';
 import { InvoiceType } from '@webstore/features/cart/data/repos/dto/sales-invoice-type';
-import { GetOrderTypeIdUseCase } from '@webstore/features/settings/domain/usecases/get-order-type-id.usecase';
 
 type State = {
-	defaultOrderType: null | InvoiceType;
+	defaultInvoiceType: null | InvoiceType;
 };
 
 const initialState: State = {
-	defaultOrderType: null,
+	defaultInvoiceType: null,
 };
 
 export function withSelectOrderTypeMethod<_>() {
 	return signalStoreFeature(
 		withState(initialState),
 		withComputed((store) => {
-			const getOrderTypeId = inject(GetOrderTypeIdUseCase);
-
 			return {
 				orderTypeId: computed(
 					() =>
-						store.defaultOrderType() &&
-						InvoiceType[store.defaultOrderType()!],
+						store.defaultInvoiceType() &&
+						InvoiceType[store.defaultInvoiceType()!],
 				),
 			};
 		}),
 		withMethods((store) => {
 			return {
-				selectDefaultOrderType: (orderType: InvoiceType) => {
-					patchState(store, { defaultOrderType: orderType });
+				selectDefaultInvoiceType: (invoiceType: InvoiceType) => {
+					patchState(store, { defaultInvoiceType: invoiceType });
 				},
 			};
 		}),

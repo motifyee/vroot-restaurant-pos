@@ -42,11 +42,16 @@ export class TopbarComponent implements AfterViewInit {
 	settings = inject(settingsStore);
 
 	invoice = inject(invoiceStore);
-	orderType = computed(() => this.invoice.activeInvoice()?.salesInvoiceType);
+	orderType = computed(
+		() =>
+			this.invoice.activeInvoice()?.salesInvoiceType ||
+			this.settings.defaultInvoiceType(),
+	);
+
 	orderTypeTitle = computed(() =>
 		this.orderType()
 			? InvoiceType[this.orderType()!]
-			: this.settings.defaultOrderType(),
+			: this.settings.defaultInvoiceType(),
 	);
 
 	deliveryTitle = computed(() => {

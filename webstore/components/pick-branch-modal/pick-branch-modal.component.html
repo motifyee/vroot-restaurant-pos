@@ -5,12 +5,20 @@
 	[headerIconUrl]="headerIconUrl()">
 	@if (!choosedBranch()) {
 		@if (pendingBranch()) {
-			<ng-container [ngTemplateOutlet]="confirmResetOrder"></ng-container>
+			<ng-container [ngTemplateOutlet]="confirmResetOrder" />
 		} @else {
-			<ng-container [ngTemplateOutlet]="chooseBranch"></ng-container>
+			<ng-container [ngTemplateOutlet]="chooseBranch" />
 		}
 	} @else if (!choosedOrderType()) {
-		<ng-container [ngTemplateOutlet]="chooseOrderType"></ng-container>
+		@if (hasUpdateMsg()) {
+			<p-message
+				closable
+				severity="error"
+				[text]="updateMsg()"
+				(onHide)="clearUpdateMsg()" />
+		}
+
+		<ng-container [ngTemplateOutlet]="chooseOrderType" />
 	}
 	<!-- otherwise onFinish emits -->
 </modal>
@@ -19,16 +27,27 @@
 
 <ng-template #confirmResetOrder>
 	<div @slideIn class="w-full flex flex-col gap-2">
+		@if (hasDeleteMsg()) {
+			<p-message
+				closable
+				severity="error"
+				[text]="deleteMsg()"
+				(onHide)="clearDeleteMsg()" />
+		}
+
 		<span>سيتم حذف المنتجات من السلة. هل أنت متأكد؟</span>
 
 		<div class="flex w-full justify-between">
 			<button
-				(click)="
-					invoiceStore.deleteActiveInvoice();
-					selectBranch(pendingBranch()!)
-				"
+				(click)="deleteActiveInvoice()"
 				class="tab-style text-red-500">
-				حذف السلة
+				<span class="flex items-center gap-2">
+					حذف السلة
+
+					@if (loading() === 'deleting') {
+						<ng-container [ngTemplateOutlet]="loadingSpinner" />
+					}
+				</span>
 			</button>
 
 			<!-- cancel because it happens only when branch and order type are set -->
@@ -40,7 +59,13 @@
 <ng-template #chooseBranch>
 	@for (branch of settings.companyInfo().branchs; track branch.id) {
 		<button (click)="selectBranch(branch)" class="tab-style">
-			{{ branch.name }}
+			<span class="flex items-center gap-2">
+				{{ branch.name }}
+
+				@if (loading() === branch.id) {
+					<ng-container [ngTemplateOutlet]="loadingSpinner" />
+				}
+			</span>
 		</button>
 	}
 </ng-template>
@@ -50,11 +75,30 @@
 		<button
 			(click)="selectOrderType(InvoiceType.delivery)"
 			class="tab-style">
-			ديليفري
+			<span class="flex items-center gap-2">
+				ديليفري
+
+				@if (loading() === InvoiceType.delivery) {
+					<ng-container [ngTemplateOutlet]="loadingSpinner" />
+				}
+			</span>
 		</button>
 
 		<button (click)="selectOrderType(InvoiceType.pickup)" class="tab-style">
-			استلام من الفرع
+			<span class="flex items-center gap-2">
+				استلام من الفرع
+
+				@if (loading() === InvoiceType.pickup) {
+					<ng-container [ngTemplateOutlet]="loadingSpinner" />
+				}
+			</span>
 		</button>
 	</div>
+</ng-template>
+
+<ng-template #loadingSpinner>
+	<p-progressSpinner
+		strokeWidth="2"
+		animationDuration="1s"
+		[style]="{ width: '1.5rem', height: '1.5rem' }" />
 </ng-template>

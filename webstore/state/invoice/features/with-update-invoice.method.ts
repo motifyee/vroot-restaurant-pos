@@ -4,19 +4,22 @@ import {
 	type,
 	withMethods,
 } from '@ngrx/signals';
-import { finalize, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { inject } from '@angular/core';
 import { setEntity } from '@ngrx/signals/entities';
 import { CartRepo } from '@webstore/features';
 import { invoiceEntityConfig, InvoiceEntityState } from '../invoice.store';
 import { featureType } from '@src/app/view/state/utils/utils';
 import { LoadingMethod } from '@src/app/features/base/state/with-loading.method';
+import { ApiMsgMethods } from '@src/app/features/base/state/with-api-msg.method';
+
+export const UPDATE_INVOICE = Symbol('UPDATE_INVOICE');
 
 export function withUpdateInvoiceMethod<_>() {
 	return signalStoreFeature(
 		{
 			state: type<InvoiceEntityState>(),
-			methods: type<LoadingMethod>(),
+			methods: type<LoadingMethod & ApiMsgMethods>(),
 		},
 		withMethods((store) => {
 			let repo = inject(CartRepo);
@@ -58,9 +61,14 @@ export function withUpdateInvoiceMethod<_>() {
 										invoiceEntityConfig,
 									),
 								);
+								store.deactivateApiMsg(UPDATE_INVOICE);
 							},
 							error: (err) => {
 								console.error(err);
+								store.setApiMsg(
+									'حدث خطأ ما أثناء تعديل الفاتورة',
+									UPDATE_INVOICE,
+								);
 							},
 							finalize: () => store.setLoading(false),
 						}),
