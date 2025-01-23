@@ -127,6 +127,13 @@
 		</div>
 	</div>
 
+	@if (isApiMsgActive()) {
+		<p-message
+			severity="error"
+			icon="pi pi-exclamation-triangle"
+			[text]="apiMsg()" />
+	}
+
 	<p-button
 		[label]="'ارسال الطلب - ' + deliveryTitle()"
 		class="w-full custom active"

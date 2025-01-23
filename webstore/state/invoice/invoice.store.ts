@@ -1,7 +1,9 @@
 import {
+	patchState,
 	signalStore,
 	signalStoreFeature,
 	type,
+	withMethods,
 	withState,
 } from '@ngrx/signals';
 import { storeType } from '@src/app/view/state/utils/utils';
@@ -41,10 +43,12 @@ export const invoiceEntityConfig = entityConfig({
 
 export type InvoiceStoreState = {
 	_anonymousInvoiceId: number | null;
+	selectedAddress: Address | null;
 };
 
 const initialState: InvoiceStoreState = {
 	_anonymousInvoiceId: null,
+	selectedAddress: null,
 };
 
 // TODO: add get favorite invoices method
@@ -55,6 +59,11 @@ export const invoiceStore = signalStore(
 			withLoading(),
 			withState(initialState),
 			withEntities(invoiceEntityConfig),
+			withMethods((store) => ({
+				setSelectedAddress: (address: Address | null) => {
+					patchState(store, { selectedAddress: address });
+				},
+			})),
 		))(),
 
 	// ##################################

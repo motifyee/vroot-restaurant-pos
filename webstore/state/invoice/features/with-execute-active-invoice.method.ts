@@ -38,6 +38,7 @@ export const withExecuteActiveInvoice = <_>() =>
 
 					const invoice: GetInvoice = {
 						...activeInvoice,
+						shippingAddressId: store.selectedAddress()?.id,
 						preparationStage: 'preparing',
 					};
 

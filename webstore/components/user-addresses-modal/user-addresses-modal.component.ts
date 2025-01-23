@@ -12,7 +12,7 @@ import {
 	signal,
 	ViewChild,
 } from '@angular/core';
-import { userStore } from '@webstore/state';
+import { invoiceStore, userStore } from '@webstore/state';
 import { ModalComponent } from '../modal/modal.component';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -78,6 +78,7 @@ export class UserAddressesModalComponent implements OnInit {
 	slideState = 'enter';
 
 	user = inject(userStore);
+	invoices = inject(invoiceStore);
 
 	protected addressForm: Partial<Address> = {};
 	protected initialFormValue: Partial<Address> = {};

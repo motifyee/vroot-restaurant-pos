@@ -38,7 +38,7 @@
 		</p-button>
 
 		<span
-			(click)="onSelected.emit(value)"
+			(click)="invoices.setSelectedAddress(value); onSelected.emit(value)"
 			class="address-title flex-1"
 			[ngClass]="{ 'font-bold': value.isDefault }">
 			{{ value.title }}

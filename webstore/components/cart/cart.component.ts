@@ -44,10 +44,6 @@ export class CartComponent {
 
 	showAuth = signal(false);
 	showAddressModal = signal(false);
-	selectedAddress = signal<Address | undefined>(undefined);
-	#selectedAddress = computed(
-		() => this.selectedAddress() || this.userStore.defaultAddress(),
-	);
 
 	floatingCartExpanded = signal(false);
 
@@ -70,13 +66,15 @@ export class CartComponent {
 		// ensure user has selected an address
 		if (
 			this.settings.defaultInvoiceType() == InvoiceType.delivery &&
-			!this.#selectedAddress()
+			!this.invoiceStore.selectedAddress()
 		)
 			return singleCallEffect({
 				injector: this.injector,
 				init: () => this.showAddressModal.set(true),
 				predicate: () => !this.showAddressModal(),
-				success: () => !!this.#selectedAddress() && this.gotoCheckout(),
+				success: () =>
+					!!this.invoiceStore.selectedAddress() &&
+					this.gotoCheckout(),
 			});
 
 		// navigate to checkout

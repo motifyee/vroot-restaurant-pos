@@ -105,6 +105,6 @@
 
 @if (showAddressModal()) {
 	<user-addresses-modal
-		(onSelected)="showAddressModal.set(false); selectedAddress.set($event)"
+		(onSelected)="showAddressModal.set(false)"
 		(onDismissed)="showAddressModal.set(false)" />
 }
