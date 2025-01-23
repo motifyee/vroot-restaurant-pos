@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { slideInOut } from '@webstore/animations/slide-in-out.animation';
-import { userStore } from '@webstore/state';
+import { invoiceStore, userStore } from '@webstore/state';
 import { webstorePaths } from '@webstore/webstore.routes';
 
 interface MenuLink {
@@ -33,6 +33,7 @@ export class SidebarComponent implements OnInit {
 	@Output() onDismiss = new EventEmitter<void>();
 
 	user = inject(userStore);
+	invoices = inject(invoiceStore);
 	isLoggedin = this.user.isLoggedIn;
 
 	router = inject(Router);
@@ -65,6 +66,7 @@ export class SidebarComponent implements OnInit {
 
 	logout() {
 		this.user.removeUserData();
+		this.invoices.clearInvoice();
 		this.router.navigate([webstorePaths.home]);
 	}
 }

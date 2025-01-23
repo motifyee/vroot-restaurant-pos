@@ -70,18 +70,13 @@ export const withActiveInvoice = <_>() =>
 
 			return {
 				loadActiveInvoice: () => {
-					//  TODO use get active invoice filter
-					if (user.isLoggedIn()) {
-						store.getInvoices({
-							pageNumber: 1,
-							pageSize: 10,
-							active: true,
-						});
-
-						return;
-					}
-
 					store.loadAnonymousInvoice();
+
+					store.getInvoices({
+						pageNumber: 1,
+						pageSize: 10,
+						active: true,
+					});
 				},
 			};
 		}),

@@ -64,9 +64,8 @@
 
 <ng-template #_orderType>
 	<div class="card flex items-center gap-4">
-		@if (settings.orderTypeId()) {
-			<bg-img
-				[src]="'/assets/icons/' + settings.orderTypeId() + '.svg'" />
+		@if (invoices.activeInvoice()?.salesInvoiceType) {
+			<bg-img [src]="'/assets/icons/' + orderTypeIcon() + '.svg'" />
 		}
 
 		<span class="flex-1">
@@ -110,12 +109,12 @@
 
 		<div class="flex justify-between text-highlight border-b py-4">
 			<span>المجموع الفرعي</span>
-			<span>{{ invoiceStore.activeInvoice()?.totalPrice }}</span>
+			<span>{{ invoices.activeInvoice()?.totalPrice }}</span>
 		</div>
 
 		<div class="flex justify-between py-4">
 			<span>المجموع الكلي</span>
-			<span>{{ invoiceStore.activeInvoice()?.totalPrice }}</span>
+			<span>{{ invoices.activeInvoice()?.totalPrice }}</span>
 		</div>
 
 		<small class="text-highlight">شامل ضريبة القيمة المضافة*</small>
@@ -137,7 +136,7 @@
 	<p-button
 		[label]="'ارسال الطلب - ' + deliveryTitle()"
 		class="w-full custom active"
-		[loading]="invoiceStore.isLoading()"
-		[disabled]="invoiceStore.isLoading()"
+		[loading]="invoices.isLoading()"
+		[disabled]="invoices.isLoading()"
 		(onClick)="checkout()" />
 </ng-template>

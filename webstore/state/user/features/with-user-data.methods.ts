@@ -29,6 +29,7 @@ export function withUserDataMethods<_>() {
 				},
 				removeUserData: () => {
 					localStorage.removeItem('user');
+					localStorage.removeItem('token');
 					patchState(store, {
 						user: defaultUserState,
 						isLoggedIn: false,

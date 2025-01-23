@@ -43,38 +43,42 @@ import { MessageModule } from 'primeng/message';
 })
 export class CheckoutComponent implements OnInit {
 	ngOnInit(): void {
-		this.invoiceStore.clearApiMsg(UPDATE_INVOICE);
+		this.invoices.clearApiMsg(UPDATE_INVOICE);
 	}
 
 	private router = inject(Router);
 
 	settings = inject(settingsStore);
 	user = inject(userStore);
-	invoiceStore = inject(invoiceStore);
+	invoices = inject(invoiceStore);
 
 	orderNote = signal<string>('');
 
 	deliveryTitle = computed(() => {
-		if (!this.settings.selectedBranch?.()) return '';
-		if (this.settings.defaultInvoiceType() == InvoiceType.delivery)
-			return 'ديليفري';
+		const invoiceType = this.invoices.activeInvoice()?.salesInvoiceType;
+		if (typeof invoiceType !== 'number') return '';
 
-		if (this.settings.defaultInvoiceType() == InvoiceType.pickup)
-			return 'استلام';
+		if (invoiceType == InvoiceType.delivery) return 'ديليفري';
+
+		if (invoiceType == InvoiceType.pickup) return 'استلام';
 		return '';
 	});
 
-	apiMsg = computed(() => this.invoiceStore.getApiMsg(UPDATE_INVOICE));
+	orderTypeIcon = computed(() => {
+		return InvoiceType[this.invoices.activeInvoice()?.salesInvoiceType!];
+	});
+
+	apiMsg = computed(() => this.invoices.getApiMsg(UPDATE_INVOICE));
 	isApiMsgActive = computed(() =>
-		this.invoiceStore.isApiMsgActive(UPDATE_INVOICE),
+		this.invoices.isApiMsgActive(UPDATE_INVOICE),
 	);
 
 	checkout() {
-		this.invoiceStore.clearApiMsg(UPDATE_INVOICE);
+		this.invoices.clearApiMsg(UPDATE_INVOICE);
 
-		this.invoiceStore.executeActiveInvoice().subscribe({
+		this.invoices.executeActiveInvoice().subscribe({
 			next: (invoice) => {
-				this.invoiceStore.setSelectedAddress(null);
+				this.invoices.setSelectedAddress(null);
 				this.router.navigate([
 					webstorePaths.order(invoice?.id.toString()),
 				]);

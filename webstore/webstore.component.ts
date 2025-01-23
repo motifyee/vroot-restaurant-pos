@@ -43,10 +43,12 @@ export class WebstoreComponent implements OnInit {
 
 	settings = inject(settingsStore);
 	user = inject(userStore);
-	invoiceStore = inject(invoiceStore);
+	invoices = inject(invoiceStore);
 
 	constructor() {}
 	ngOnInit(): void {
+		this.user.loadUserData();
+
 		this.settings.getCompanyInfo().subscribe((info) => {
 			if (info.branchs.length == 1)
 				this.settings.selectBranch(info.branchs[0]);
@@ -55,9 +57,7 @@ export class WebstoreComponent implements OnInit {
 			document.title = `WebStore — ${info.name}`;
 		});
 
-		this.invoiceStore.loadAnonymousInvoice();
-
-		this.user.loadUserData();
+		this.invoices.loadActiveInvoice();
 	}
 
 	@HostListener('window:resize', ['$event'])

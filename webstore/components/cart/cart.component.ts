@@ -63,9 +63,14 @@ export class CartComponent {
 					this.userStore.isLoggedIn() && this.gotoCheckout(),
 			});
 
+		const invoiceType =
+			this.invoiceStore.activeInvoice()?.salesInvoiceType ||
+			this.settings.defaultInvoiceType();
+
 		// ensure user has selected an address
 		if (
-			this.settings.defaultInvoiceType() == InvoiceType.delivery &&
+			typeof invoiceType === 'number' &&
+			invoiceType == InvoiceType.delivery &&
 			!this.invoiceStore.selectedAddress()
 		)
 			return singleCallEffect({

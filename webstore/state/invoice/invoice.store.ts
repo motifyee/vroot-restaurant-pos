@@ -63,6 +63,12 @@ export const invoiceStore = signalStore(
 				setSelectedAddress: (address: Address | null) => {
 					patchState(store, { selectedAddress: address });
 				},
+				clearInvoice: () => {
+					patchState(store, {
+						_anonymousInvoiceId: null,
+						selectedAddress: null,
+					});
+				},
 			})),
 		))(),
 
